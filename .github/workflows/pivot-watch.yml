@@ -41,6 +41,11 @@ jobs:
         run: |
           rm -rf -- output
           python -m pivot_watch --config config.json --state .state/state.json --out output
+      - name: Review the previous strategy reading
+        if: always() && hashFiles('output/latest.json') != '' && steps.analysis.outcome != 'skipped'
+        env:
+          OANDA_TOKEN: ${{ secrets.OANDA_TOKEN }}
+        run: python -m pivot_watch.review
       - name: Attach status to job summary
         if: always() && steps.analysis.outcome != 'skipped'
         run: |
@@ -48,6 +53,9 @@ jobs:
             cat output/report.md >> "$GITHUB_STEP_SUMMARY"
           else
             echo 'Analysis failed before a fresh report was generated. Check logs; no signal is verified.' >> "$GITHUB_STEP_SUMMARY"
+          fi
+          if [ -f output/strategy-review.md ]; then
+            cat output/strategy-review.md >> "$GITHUB_STEP_SUMMARY"
           fi
       - name: Downloadable reports and TradingView scripts
         if: always() && hashFiles('output/latest.json') != '' && steps.analysis.outcome != 'skipped'
@@ -75,6 +83,9 @@ jobs:
           git add -- .state/state.json output
           if [ -f .state/telegram.json ]; then
             git add -- .state/telegram.json
+          fi
+          if [ -f .state/review.json ]; then
+            git add -- .state/review.json strategy-reviews
           fi
           if ! git diff --cached --quiet; then
             git commit -m 'Update analysis and delivery state [skip ci]'

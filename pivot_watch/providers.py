@@ -1,6 +1,7 @@
 """Read-only official market-data endpoints. No trading methods or stored secrets."""
 from datetime import datetime, timezone
 import json
+import math
 import os
 import time
 import urllib.error
@@ -130,3 +131,53 @@ def fetch(config, now):
         raise DataError("Invalid market range")
     return {"candles": bars, "quote": q, "low": low, "high": high, "range_label": range_label,
             "source": provider, "sources": sources}
+
+
+def fetch_review_bars(config, since, until):
+    """Complete M5 bars strictly inside the observation window; never fill gaps."""
+    start, end = math.ceil(since / 300) * 300, int(until) // 300 * 300
+    # ponytail: review windows capped at 24h; paginate if multi-day reviews become necessary.
+    if not 0 < end - start <= 86400:
+        raise DataError('Review needs a window with complete M5 bars, at most 24 hours')
+    symbol = urllib.parse.quote(config['symbol'], safe='')
+    provider = config['provider']
+    if provider == 'coinbase':
+        rows = get_json(f'https://api.exchange.coinbase.com/products/{symbol}/candles',
+                        {'granularity': 300, 'start': iso(start), 'end': iso(end)})
+        values = [(r[0], r[3], r[2], r[1], r[4]) for r in rows]
+    elif provider == 'binance':
+        rows = get_json('https://data-api.binance.vision/api/v3/klines',
+                        {'symbol': config['symbol'], 'interval': '5m', 'startTime': start*1000,
+                         'endTime': end*1000-1, 'limit': 1000})
+        if any(int(r[6])+1 != int(r[0])+300000 for r in rows):
+            raise DataError('Invalid M5 candle duration')
+        values = [(int(r[0])/1000, *r[1:5]) for r in rows]
+    elif provider == 'oanda':
+        token = os.getenv('OANDA_TOKEN')
+        env = config.get('environment', 'practice')
+        if not token or env not in ('practice', 'live'):
+            raise DataError('OANDA review access is not configured')
+        host = 'api-fxpractice.oanda.com' if env == 'practice' else 'api-fxtrade.oanda.com'
+        rows = get_json(f'https://{host}/v3/instruments/{symbol}/candles',
+                        {'granularity': 'M5', 'price': 'M', 'from': iso(start), 'to': iso(end), 'smooth': 'false'},
+                        {'Authorization': 'Bearer ' + token})['candles']
+        if any(not isinstance(r['complete'], bool) for r in rows):
+            raise DataError('Invalid OANDA completion flag')
+        values = [(timestamp(r['time']), *(r['mid'][k] for k in ('o', 'h', 'l', 'c')))
+                  for r in rows if r['complete']]
+    else:
+        raise DataError('Unknown review provider')
+    bars = []
+    for when, op, high, low, close in values:
+        if not start <= when < end:
+            continue
+        if when % 300:
+            raise DataError('Misaligned M5 candle')
+        op, high, low, close = map(number, (op, high, low, close))
+        if not low <= min(op, close) <= max(op, close) <= high:
+            raise DataError('Invalid M5 OHLC')
+        bars.append(dict(start=int(when), end=int(when)+300, open=op, high=high, low=low, close=close))
+    bars.sort(key=lambda bar: bar['start'])
+    if [bar['start'] for bar in bars] != list(range(start, end, 300)):
+        raise DataError('Missing or duplicate M5 bars; review coverage is incomplete')
+    return bars

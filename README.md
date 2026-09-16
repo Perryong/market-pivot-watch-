@@ -163,6 +163,34 @@ Telegram is optional and sends one report per enabled market on every run when
 configured, including manual runs. No email or order placement is implemented.
 GitHub's job summary, Pages dashboard, artifact and committed report remain available.
 
+### Four-hour strategy verification journal
+
+Every workflow run compares the previous recorded reading with the new one and
+commits a dated Markdown file to `strategy-reviews/`. The latest copy is
+`output/strategy-review.md`, also included in the workflow summary and artifact.
+The first file is a baseline, not a historical performance claim.
+
+Each review freezes the previous decision and levels, records quote movement,
+and checks eligible BUY/SELL targets against completed five-minute candles.
+Completed UTC four-hour closes determine invalidation; target touches after
+invalidation are excluded. WAIT is not counted as a winning trade. A target
+touch is not proof of an executed fill or profit; no win rate or simulated P&L
+is invented.
+
+US-open check times do not align with UTC four-hour candles. Five-minute bars
+avoid counting price movements before the reading, and uncovered edge seconds
+are explicitly reported. Missing candles, unavailable markets and parameter
+changes are not scored. History retrieval is capped at 24 hours; larger gaps
+are marked incomplete. Actual elapsed time is shown, with manual runs and
+session gaps flagged when outside 3.75–4.25 hours.
+
+`.state/review.json` preserves the previous snapshot independently of signal
+deduplication. Keep it and the dated files committed. For a fresh local report:
+
+```bash
+python -m pivot_watch.review
+```
+
 ### Telegram chart reports
 
 Create a bot using Telegram's **@BotFather**, start a conversation with the bot

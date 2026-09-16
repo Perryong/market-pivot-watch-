@@ -1,7 +1,7 @@
 # Verification — 16 September 2026
 
 - Local Python 3.13: compileall passed. GitHub workflow targets Python 3.12.
-- 48 unittest cases passed, including duplicate alerts, missing/active/stale bars,
+- 55 unittest cases passed, including duplicate alerts, missing/active/stale bars,
   strict pivot boundaries, UTC aggregation, retest/invalidation, state failures,
   provider schema handling and independent market errors. Dashboard tests cover
   missing/stale reports, HTML escaping and suppression of stale/demo Pine downloads.
@@ -23,9 +23,13 @@
 - Telegram dry-run rendered all three PNG images and captions; the gold image
   was visually inspected. Unit tests cover multipart upload construction,
   rejected delivery, per-market receipts, partial failures, repeat suppression,
-  and rejection of stale/future/demo reports. No real Telegram message was sent;
-  bot token and destination chat still need configuration.
-- GitHub workflow has NOT been deployed or executed on a repository.
+  and rejection of stale/future/demo reports. Real local and GitHub workflow
+  deliveries succeeded after configuring secrets and trimming token whitespace.
+- GitHub run 35091462181 completed analysis, Telegram delivery and Pages deployment.
+- Strategy journal tests cover frozen prior plans, WAIT exclusions, short targets,
+  invalidation cutoffs, missing evidence, immutable baseline files, replay safety,
+  corrupt state and five-minute coverage gaps. Live five-minute history requests
+  succeeded for all three providers. These checks do not establish profitability.
 
 The tests use explicitly synthetic fixtures. They are correctness checks,
 not a backtest or evidence of profitability.
