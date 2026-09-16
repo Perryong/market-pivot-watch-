@@ -13,6 +13,15 @@ NOW = 1789516800 + 14460
 
 
 class TelegramTests(unittest.TestCase):
+    def test_cli_trims_pasted_secret_whitespace(self):
+        with tempfile.TemporaryDirectory() as d:
+            Path(d, 'latest.json').write_text(json.dumps(self.reports()))
+            with patch.dict(telegram.os.environ, {'TELEGRAM_BOT_TOKEN': ' 123:abc\r\n', 'TELEGRAM_CHAT_ID': ' 111756667\n'}), \
+                 patch.object(telegram.sys, 'argv', ['telegram', '--out', d]), \
+                 patch.object(telegram, 'notify', return_value=0) as notify:
+                self.assertEqual(telegram.main(), 0)
+                self.assertEqual(notify.call_args.args[1:3], ('123:abc', '111756667'))
+
     def reports(self):
         reports, _ = run(json.loads((ROOT/'config.json').read_text()),
                          {'version': 1, 'markets': {}}, NOW, demo_fetch)

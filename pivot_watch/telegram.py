@@ -152,7 +152,8 @@ def main():
     parser.add_argument('--state', type=Path, default=Path('.state/telegram.json'))
     parser.add_argument('--dry-run', type=Path, metavar='PREVIEW_DIRECTORY')
     args = parser.parse_args()
-    token, chat = os.getenv('TELEGRAM_BOT_TOKEN', ''), os.getenv('TELEGRAM_CHAT_ID', '')
+    token = os.getenv('TELEGRAM_BOT_TOKEN', '').strip()
+    chat = os.getenv('TELEGRAM_CHAT_ID', '').strip()
     if not args.dry_run and not token and not chat:
         print('Telegram not configured; set TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID')
         return 0
