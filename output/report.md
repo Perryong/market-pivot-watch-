@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-09-16 16:10:09 +08** / 2026-09-16 08:10:09 UTC.
+Checked **2026-09-16 19:37:08 +08** / 2026-09-16 11:37:08 UTC.
 
 ## BTCUSD
 
@@ -9,14 +9,14 @@ ACTION NOW: WAIT FOR CONFIRMATION
 
 [Open actual TradingView 4H chart](https://www.tradingview.com/chart/?symbol=COINBASE%3ABTCUSD&interval=240)
 
-Completed-candle state: **neutral**. New completed candle processed.
+Completed-candle state: **neutral**. No new 4H candle since the previous check.
 
 | Market data | Value |
 |---|---|
 | Latest completed 4H close | 75,690.46 |
 | Previous completed close | 75,755.41 |
 | Close time | 2026-09-16 16:00:00 +08 / 2026-09-16 08:00:00 UTC |
-| Current price | 75,457.77 at 2026-09-16 08:10:08 UTC |
+| Current price | 76,021.63 at 2026-09-16 11:37:07 UTC |
 | Range low / high | 74,887.50 / 77,297.04 |
 
 Range definition: Provider rolling 24h range (retrieved at check time).
@@ -48,14 +48,14 @@ ACTION NOW: WAIT FOR CONFIRMATION
 
 [Open actual TradingView 4H chart](https://www.tradingview.com/chart/?symbol=OANDA%3AXAUUSD&interval=240)
 
-Completed-candle state: **neutral**. Baseline only; no historical entry emitted.
+Completed-candle state: **neutral**. No new 4H candle since the previous check.
 
 | Market data | Value |
 |---|---|
 | Latest completed 4H close | 4,329.37 |
 | Previous completed close | 4,327.19 |
 | Close time | 2026-09-16 16:00:00 +08 / 2026-09-16 08:00:00 UTC |
-| Current price | 4,324.64 at 2026-09-16 08:10:10 UTC |
+| Current price | 4,353.19 at 2026-09-16 11:37:09 UTC |
 | Range low / high | 4,261.38 / 4,341.14 |
 
 Range definition: 24h completed-candle range, 2026-09-15T08:00:00Z to 2026-09-16T08:00:00Z (not rolling live 24h).
@@ -72,7 +72,6 @@ Pivot selection: Frozen high/low of six prior completed 4H candles; latest exclu
 
 No tracked active setup. Price state alone does not establish a new entry.
 
-Baseline established; existing price state is not a newly observed signal
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
 Selling an existing long and opening a short are different actions. Targets are conditional; closed-bar invalidation is not a guaranteed stop-loss fill.
@@ -87,14 +86,14 @@ ACTION NOW: WAIT FOR CONFIRMATION
 
 [Open actual TradingView 4H chart](https://www.tradingview.com/chart/?symbol=BINANCE%3ABTCUSDT&interval=240)
 
-Completed-candle state: **bearish**. New completed candle processed.
+Completed-candle state: **bearish**. No new 4H candle since the previous check.
 
 | Market data | Value |
 |---|---|
 | Latest completed 4H close | 75,766.63 |
 | Previous completed close | 75,824.01 |
 | Close time | 2026-09-16 16:00:00 +08 / 2026-09-16 08:00:00 UTC |
-| Current price | 75,531.95 at 2026-09-16 08:10:12 UTC |
+| Current price | 76,099.99 at 2026-09-16 11:37:10 UTC |
 | Range low / high | 74,967.97 / 77,343.44 |
 
 Range definition: Provider rolling 24h range.
