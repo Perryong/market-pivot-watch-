@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-09-16 19:37:08 +08** / 2026-09-16 11:37:08 UTC.
+Checked **2026-09-16 19:39:19 +08** / 2026-09-16 11:39:19 UTC.
 
 ## BTCUSD
 
@@ -16,7 +16,7 @@ Completed-candle state: **neutral**. No new 4H candle since the previous check.
 | Latest completed 4H close | 75,690.46 |
 | Previous completed close | 75,755.41 |
 | Close time | 2026-09-16 16:00:00 +08 / 2026-09-16 08:00:00 UTC |
-| Current price | 76,021.63 at 2026-09-16 11:37:07 UTC |
+| Current price | 75,926.37 at 2026-09-16 11:39:18 UTC |
 | Range low / high | 74,887.50 / 77,297.04 |
 
 Range definition: Provider rolling 24h range (retrieved at check time).
@@ -55,7 +55,7 @@ Completed-candle state: **neutral**. No new 4H candle since the previous check.
 | Latest completed 4H close | 4,329.37 |
 | Previous completed close | 4,327.19 |
 | Close time | 2026-09-16 16:00:00 +08 / 2026-09-16 08:00:00 UTC |
-| Current price | 4,353.19 at 2026-09-16 11:37:09 UTC |
+| Current price | 4,351.22 at 2026-09-16 11:39:20 UTC |
 | Range low / high | 4,261.38 / 4,341.14 |
 
 Range definition: 24h completed-candle range, 2026-09-15T08:00:00Z to 2026-09-16T08:00:00Z (not rolling live 24h).
@@ -93,7 +93,7 @@ Completed-candle state: **bearish**. No new 4H candle since the previous check.
 | Latest completed 4H close | 75,766.63 |
 | Previous completed close | 75,824.01 |
 | Close time | 2026-09-16 16:00:00 +08 / 2026-09-16 08:00:00 UTC |
-| Current price | 76,099.99 at 2026-09-16 11:37:10 UTC |
+| Current price | 76,010.01 at 2026-09-16 11:39:21 UTC |
 | Range low / high | 74,967.97 / 77,343.44 |
 
 Range definition: Provider rolling 24h range.
