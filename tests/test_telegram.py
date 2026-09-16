@@ -1,0 +1,73 @@
+import io
+import json
+from pathlib import Path
+import tempfile
+import unittest
+from unittest.mock import patch
+
+from pivot_watch.app import ROOT, demo_fetch, run
+from pivot_watch.core import DataError
+from pivot_watch import telegram
+
+NOW = 1789516800 + 14460
+
+
+class TelegramTests(unittest.TestCase):
+    def reports(self):
+        reports, _ = run(json.loads((ROOT/'config.json').read_text()),
+                         {'version': 1, 'markets': {}}, NOW, demo_fetch)
+        for report in reports:
+            report.pop('demo')
+        return {'checked_at': NOW, 'markets': reports}
+
+    def test_photo_and_failure_message_with_receipts_prevent_repeat_send(self):
+        payload = self.reports()
+        payload['markets'][1] = {'id': 'XAUUSD', 'checked_at': NOW, 'error': 'Market unavailable'}
+        with tempfile.TemporaryDirectory() as d:
+            state = Path(d)/'sent.json'
+            sent = []
+            def sender(token, chat, caption, photo):
+                sent.append((caption, photo))
+                if caption.startswith('BTCUSDT'):
+                    raise DataError('Telegram HTTP 503')
+            with patch.object(telegram, 'render_chart', return_value=b'PNG'), patch.object(telegram, 'send', side_effect=sender):
+                self.assertEqual(telegram.notify(payload, 'token', 'chat', state, NOW), 1)
+                self.assertEqual(len(sent), 3)
+                self.assertEqual(sent[0][1], b'PNG')
+                self.assertIn('WAIT', sent[0][0])
+                self.assertIsNone(sent[1][1])
+                self.assertIn('DATA UNAVAILABLE', sent[1][0])
+                sent.clear()
+                self.assertEqual(telegram.notify(payload, 'token', 'chat', state, NOW), 1)
+                self.assertEqual(len(sent), 1)
+                self.assertTrue(sent[0][0].startswith('BTCUSDT'))
+
+    def test_stale_future_and_demo_reports_never_send(self):
+        for kind in ('stale', 'future', 'demo'):
+            payload = self.reports()
+            if kind == 'demo':
+                payload['markets'][0]['demo'] = True
+            else:
+                payload['checked_at'] = NOW - 21601 if kind == 'stale' else NOW + 1
+            with tempfile.TemporaryDirectory() as d, patch.object(telegram, 'send') as send:
+                with self.assertRaises(DataError):
+                    telegram.notify(payload, 'token', 'chat', Path(d)/'state.json', NOW)
+                send.assert_not_called()
+
+    def test_telegram_request_uploads_png_and_handles_rejected_delivery(self):
+        requests = []
+        class Opener:
+            def open(self, request, timeout):
+                requests.append(request)
+                return io.BytesIO(b'{"ok": true}')
+        with patch.object(telegram.urllib.request, 'build_opener', return_value=Opener()):
+            telegram.send('123:abc', '-100123', 'BTCUSD — WAIT', b'\x89PNG\r\n')
+        request = requests[0]
+        self.assertEqual(request.full_url, 'https://api.telegram.org/bot123:abc/sendPhoto')
+        self.assertIn(b'name="chat_id"\r\n\r\n-100123', request.data)
+        self.assertIn(b'Content-Type: image/png', request.data)
+        self.assertIn(b'\x89PNG\r\n', request.data)
+        with patch.object(telegram.urllib.request, 'build_opener') as build:
+            build.return_value.open.return_value = io.BytesIO(b'{"ok": false, "description": "secret"}')
+            with self.assertRaisesRegex(DataError, '^Telegram rejected the message$'):
+                telegram.send('123:abc', 'chat', 'WAIT', None)

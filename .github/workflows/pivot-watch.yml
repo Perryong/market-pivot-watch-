@@ -1,0 +1,109 @@
+name: Four-hour pivot watch
+
+on:
+  schedule:
+    # US weekday open through the following morning, every four hours.
+    - cron: '30 9,13,17,21 * * 1-5'
+      timezone: America/New_York
+    - cron: '30 1,5 * * 2-6'
+      timezone: America/New_York
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pivot-watch-state
+  cancel-in-progress: false
+
+jobs:
+  analyse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      pages_ready: ${{ steps.pages_upload.outcome == 'success' }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          fetch-depth: 1
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Test signal and persistence rules
+        run: python -m unittest discover -s tests -v
+      - name: Analyse enabled markets
+        id: analysis
+        continue-on-error: true
+        env:
+          OANDA_TOKEN: ${{ secrets.OANDA_TOKEN }}
+          OANDA_ACCOUNT_ID: ${{ secrets.OANDA_ACCOUNT_ID }}
+        run: |
+          rm -rf -- output
+          python -m pivot_watch --config config.json --state .state/state.json --out output
+      - name: Attach status to job summary
+        if: always() && steps.analysis.outcome != 'skipped'
+        run: |
+          if [ -f output/report.md ]; then
+            cat output/report.md >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo 'Analysis failed before a fresh report was generated. Check logs; no signal is verified.' >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - name: Downloadable reports and TradingView scripts
+        if: always() && hashFiles('output/latest.json') != '' && steps.analysis.outcome != 'skipped'
+        uses: actions/upload-artifact@v6
+        with:
+          name: pivot-watch-${{ github.run_id }}-${{ github.run_attempt }}
+          path: output/
+          retention-days: 30
+          if-no-files-found: error
+      - name: Build dashboard including explicit data failures
+        id: site
+        if: always() && steps.analysis.outcome != 'skipped'
+        run: python -m pivot_watch.site --out output --site site-dist
+      - name: Telegram chart reports
+        if: always() && hashFiles('output/latest.json') != '' && steps.analysis.outcome != 'skipped'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python -m pivot_watch.telegram
+      - name: Persist analysis and Telegram delivery state
+        if: always() && hashFiles('output/latest.json') != '' && steps.analysis.outcome != 'skipped'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- .state/state.json output
+          if [ -f .state/telegram.json ]; then
+            git add -- .state/telegram.json
+          fi
+          if ! git diff --cached --quiet; then
+            git commit -m 'Update analysis and delivery state [skip ci]'
+            git push
+          fi
+      - name: Upload GitHub Pages dashboard
+        id: pages_upload
+        if: always() && steps.site.outcome == 'success'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: site-dist
+      - name: Surface partial data failures
+        if: always() && steps.analysis.outcome == 'failure'
+        run: |
+          echo 'One or more markets could not be verified. Read the report; successful market state was still preserved.'
+          exit 1
+
+  deploy:
+    needs: analyse
+    if: always() && needs.analyse.outputs.pages_ready == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy dashboard
+        id: deployment
+        uses: actions/deploy-pages@v4
