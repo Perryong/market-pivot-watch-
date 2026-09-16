@@ -7,13 +7,13 @@
       "upper": 78242.76,
       "origin": "Frozen high/low of six prior completed 4H candles; latest excluded",
       "baseline_end": 1789531200,
-      "last_end": 1789560000,
+      "last_end": 1789574400,
       "last_bar": [
-        1789545600,
-        75690.46,
-        76250.0,
-        75271.81,
-        76182.14
+        1789560000,
+        76182.14,
+        76232.38,
+        75349.25,
+        75730.9
       ],
       "setup": null
     },
@@ -23,15 +23,19 @@
       "upper": 77500.0,
       "origin": "Configured fixed pivots",
       "baseline_end": 1789531200,
-      "last_end": 1789560000,
+      "last_end": 1789574400,
       "last_bar": [
-        1789545600,
-        75766.62,
-        76304.01,
-        75350.0,
-        76250.0
+        1789560000,
+        76250.0,
+        76300.0,
+        75423.04,
+        75788.41
       ],
-      "setup": null
+      "setup": {
+        "side": "SELL",
+        "signal_end": 1789574400,
+        "retest_close_time": null
+      }
     },
     "XAUUSD": {
       "config_id": "08213075c5c9b2196d855761a9364ac1addbdb74eaac3f55043f20840bdbffd6",
@@ -39,18 +43,18 @@
       "upper": 4341.135,
       "origin": "Frozen high/low of six prior completed 4H candles; latest excluded",
       "baseline_end": 1789545600,
-      "last_end": 1789560000,
+      "last_end": 1789574400,
       "last_bar": [
-        1789545600,
-        4329.38,
-        4353.78,
-        4323.05,
-        4341.785
+        1789560000,
+        4341.79,
+        4361.575,
+        4324.25,
+        4352.815
       ],
       "setup": {
         "side": "BUY",
         "signal_end": 1789560000,
-        "retest_close_time": null
+        "retest_close_time": 1789574400
       }
     }
   },
