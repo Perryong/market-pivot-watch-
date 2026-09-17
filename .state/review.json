@@ -1,18 +1,18 @@
 {
   "version": 1,
-  "checked_at": 1789640206.2646725,
+  "checked_at": 1789656077.5088444,
   "markets": {
     "BTCUSD": {
       "id": "BTCUSD",
-      "checked_at": 1789640206.2646725,
+      "checked_at": 1789656077.5088444,
       "tradingview_symbol": "COINBASE:BTCUSD",
       "chart": "https://www.tradingview.com/chart/?symbol=COINBASE%3ABTCUSD&interval=240",
       "state": "neutral",
       "signal": null,
       "action": "WAIT FOR CONFIRMATION",
-      "close": 76388.12,
-      "previous_close": 76364.57,
-      "close_time": 1789632000,
+      "close": 76398.74,
+      "previous_close": 76388.12,
+      "close_time": 1789646400,
       "new_candle": true,
       "baseline": false,
       "lower": 74887.5,
@@ -32,11 +32,11 @@
       "events": [],
       "notes": [],
       "quote": {
-        "price": 76255.43,
-        "time": 1789640205.402042
+        "price": 76658.26,
+        "time": 1789656075.794805
       },
       "low": 74911.53,
-      "high": 76714.68,
+      "high": 77105.42,
       "range_label": "Provider rolling 24h range (retrieved at check time)",
       "source": "coinbase",
       "sources": [
@@ -50,15 +50,15 @@
     },
     "XAUUSD": {
       "id": "XAUUSD",
-      "checked_at": 1789640206.2646725,
+      "checked_at": 1789656077.5088444,
       "tradingview_symbol": "OANDA:XAUUSD",
       "chart": "https://www.tradingview.com/chart/?symbol=OANDA%3AXAUUSD&interval=240",
-      "state": "neutral",
-      "signal": null,
-      "action": "WAIT FOR CONFIRMATION",
-      "close": 4327.26,
-      "previous_close": 4296.0,
-      "close_time": 1789632000,
+      "state": "bullish",
+      "signal": "BUY",
+      "action": "WAIT—DO NOT CHASE",
+      "close": 4349.855,
+      "previous_close": 4327.26,
+      "close_time": 1789646400,
       "new_candle": true,
       "baseline": false,
       "lower": 4261.375,
@@ -73,37 +73,48 @@
         4181.615,
         4101.855
       ],
-      "setup": null,
+      "setup": {
+        "side": "BUY",
+        "signal_end": 1789646400,
+        "retest_close_time": null
+      },
       "retest_confirmed": false,
-      "events": [],
+      "events": [
+        {
+          "type": "BUY",
+          "close_time": 1789646400,
+          "close": 4349.855,
+          "historical": false
+        }
+      ],
       "notes": [],
       "quote": {
-        "price": 4309.594999999999,
-        "time": 1789640207.87363
+        "price": 4363.110000000001,
+        "time": 1789656080.424717
       },
       "low": 4235.165,
       "high": 4367.415,
-      "range_label": "24h completed-candle range, 2026-09-16T08:00:00Z to 2026-09-17T08:00:00Z (not rolling live 24h)",
+      "range_label": "24h completed-candle range, 2026-09-16T12:00:00Z to 2026-09-17T12:00:00Z (not rolling live 24h)",
       "source": "oanda",
       "sources": [
         "https://developer.oanda.com/rest-live-v20/instrument-df/",
         "https://developer.oanda.com/rest-live-v20/pricing-ep/"
       ],
-      "status": "NO NEW SIGNAL",
+      "status": "NEW SIGNAL",
       "review_decision": "WAIT",
       "review_config": "08213075c5c9b2196d855761a9364ac1addbdb74eaac3f55043f20840bdbffd6"
     },
     "BTCUSDT": {
       "id": "BTCUSDT",
-      "checked_at": 1789640206.2646725,
+      "checked_at": 1789656077.5088444,
       "tradingview_symbol": "BINANCE:BTCUSDT",
       "chart": "https://www.tradingview.com/chart/?symbol=BINANCE%3ABTCUSDT&interval=240",
       "state": "neutral",
       "signal": null,
       "action": "WAIT FOR CONFIRMATION",
-      "close": 76462.76,
-      "previous_close": 76441.99,
-      "close_time": 1789632000,
+      "close": 76482.0,
+      "previous_close": 76462.76,
+      "close_time": 1789646400,
       "new_candle": true,
       "baseline": false,
       "lower": 76200.0,
@@ -123,11 +134,11 @@
       "events": [],
       "notes": [],
       "quote": {
-        "price": 76327.45,
-        "time": 1789640209.012
+        "price": 76739.2,
+        "time": 1789656081.006
       },
       "low": 75064.82,
-      "high": 76774.08,
+      "high": 77179.47,
       "range_label": "Provider rolling 24h range",
       "source": "binance",
       "sources": [
