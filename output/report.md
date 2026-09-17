@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-09-18 01:41:39 +08** / 2026-09-17 17:41:39 UTC.
+Checked **2026-09-18 07:35:58 +08** / 2026-09-17 23:35:58 UTC.
 
 ## BTCUSD
 
@@ -13,11 +13,11 @@ Completed-candle state: **neutral**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 76,702.31 |
-| Previous completed close | 76,398.74 |
-| Close time | 2026-09-18 00:00:00 +08 / 2026-09-17 16:00:00 UTC |
-| Current price | 76,775.39 at 2026-09-17 17:41:38 UTC |
-| Range low / high | 74,911.53 / 77,105.42 |
+| Latest completed 4H close | 76,524.57 |
+| Previous completed close | 76,702.31 |
+| Close time | 2026-09-18 04:00:00 +08 / 2026-09-17 20:00:00 UTC |
+| Current price | 76,337.18 at 2026-09-17 23:35:57 UTC |
+| Range low / high | 75,921.88 / 77,105.42 |
 
 Range definition: Provider rolling 24h range (retrieved at check time).
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -52,13 +52,13 @@ Completed-candle state: **bullish**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 4,370.04 |
-| Previous completed close | 4,349.85 |
-| Close time | 2026-09-18 00:00:00 +08 / 2026-09-17 16:00:00 UTC |
-| Current price | 4,359.97 at 2026-09-17 17:41:40 UTC |
-| Range low / high | 4,235.16 / 4,381.06 |
+| Latest completed 4H close | 4,346.18 |
+| Previous completed close | 4,370.04 |
+| Close time | 2026-09-18 04:00:00 +08 / 2026-09-17 20:00:00 UTC |
+| Current price | 4,344.34 at 2026-09-17 23:35:57 UTC |
+| Range low / high | 4,257.35 / 4,381.06 |
 
-Range definition: 24h completed-candle range, 2026-09-16T16:00:00Z to 2026-09-17T16:00:00Z (not rolling live 24h).
+Range definition: 24h completed-candle range, 2026-09-16T20:00:00Z to 2026-09-17T20:00:00Z (not rolling live 24h).
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
 
 ### Trade levels — conditional plans
@@ -91,11 +91,11 @@ Completed-candle state: **neutral**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 76,780.01 |
-| Previous completed close | 76,482.00 |
-| Close time | 2026-09-18 00:00:00 +08 / 2026-09-17 16:00:00 UTC |
-| Current price | 76,839.22 at 2026-09-17 17:41:41 UTC |
-| Range low / high | 75,064.82 / 77,179.47 |
+| Latest completed 4H close | 76,594.01 |
+| Previous completed close | 76,780.01 |
+| Close time | 2026-09-18 04:00:00 +08 / 2026-09-17 20:00:00 UTC |
+| Current price | 76,407.20 at 2026-09-17 23:36:00 UTC |
+| Range low / high | 76,000.00 / 77,179.47 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Configured fixed pivots. These levels stay fixed until explicitly reset.
