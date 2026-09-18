@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "checked_at": 1789761039.5485008,
+  "checked_at": 1789774008.6735308,
   "markets": {
     "BTCUSD": {
       "id": "BTCUSD",
-      "checked_at": 1789761039.5485008,
+      "checked_at": 1789774008.6735308,
       "tradingview_symbol": "COINBASE:BTCUSD",
       "chart": "https://www.tradingview.com/chart/?symbol=COINBASE%3ABTCUSD&interval=240",
       "state": "bullish",
       "signal": null,
       "action": "WAIT FOR CONFIRMATION",
-      "close": 80700.62,
-      "previous_close": 77995.19,
-      "close_time": 1789747200,
-      "new_candle": false,
+      "close": 81193.47,
+      "previous_close": 80700.62,
+      "close_time": 1789761600,
+      "new_candle": true,
       "baseline": false,
       "lower": 74887.5,
       "upper": 78242.76,
@@ -36,10 +36,10 @@
       "events": [],
       "notes": [],
       "quote": {
-        "price": 81300.0,
-        "time": 1789761038.715877
+        "price": 81011.58,
+        "time": 1789774007.776026
       },
-      "low": 76182.88,
+      "low": 76205.46,
       "high": 81388.47,
       "range_label": "Provider rolling 24h range (retrieved at check time)",
       "source": "coinbase",
@@ -54,65 +54,28 @@
     },
     "XAUUSD": {
       "id": "XAUUSD",
-      "checked_at": 1789761039.5485008,
+      "checked_at": 1789774008.6735308,
       "tradingview_symbol": "OANDA:XAUUSD",
       "chart": "https://www.tradingview.com/chart/?symbol=OANDA%3AXAUUSD&interval=240",
-      "state": "bullish",
+      "status": "DATA UNAVAILABLE",
       "signal": null,
-      "action": "WAIT FOR CONFIRMATION",
-      "close": 4356.655,
-      "previous_close": 4381.62,
-      "close_time": 1789747200,
-      "new_candle": false,
-      "baseline": false,
-      "lower": 4261.375,
-      "upper": 4341.135,
-      "range_origin": "Frozen high/low of six prior completed 4H candles; latest excluded",
-      "baseline_end": 1789545600,
-      "bullish_targets": [
-        4420.895,
-        4500.655000000001
-      ],
-      "bearish_targets": [
-        4181.615,
-        4101.855
-      ],
-      "setup": {
-        "side": "BUY",
-        "signal_end": 1789646400,
-        "retest_close_time": 1789689600
-      },
-      "retest_confirmed": true,
-      "events": [],
-      "notes": [],
-      "quote": {
-        "price": 4381.27,
-        "time": 1789761041.015211
-      },
-      "low": 4334.295,
-      "high": 4399.67,
-      "range_label": "24h completed-candle range, 2026-09-17T16:00:00Z to 2026-09-18T16:00:00Z (not rolling live 24h)",
-      "source": "oanda",
-      "sources": [
-        "https://developer.oanda.com/rest-live-v20/instrument-df/",
-        "https://developer.oanda.com/rest-live-v20/pricing-ep/"
-      ],
-      "status": "NO NEW SIGNAL",
+      "action": "WAIT FOR VERIFIED DATA",
+      "error": "OANDA market closed or instrument not tradeable; no current signal",
       "review_decision": "WAIT",
       "review_config": "08213075c5c9b2196d855761a9364ac1addbdb74eaac3f55043f20840bdbffd6"
     },
     "BTCUSDT": {
       "id": "BTCUSDT",
-      "checked_at": 1789761039.5485008,
+      "checked_at": 1789774008.6735308,
       "tradingview_symbol": "BINANCE:BTCUSDT",
       "chart": "https://www.tradingview.com/chart/?symbol=BINANCE%3ABTCUSDT&interval=240",
       "state": "bullish",
       "signal": null,
       "action": "WAIT FOR CONFIRMATION",
-      "close": 80725.6,
-      "previous_close": 78062.0,
-      "close_time": 1789747200,
-      "new_candle": false,
+      "close": 81204.76,
+      "previous_close": 80725.6,
+      "close_time": 1789761600,
+      "new_candle": true,
       "baseline": false,
       "lower": 76200.0,
       "upper": 77500.0,
@@ -135,10 +98,10 @@
       "events": [],
       "notes": [],
       "quote": {
-        "price": 81312.74,
-        "time": 1789761042.009
+        "price": 81026.6,
+        "time": 1789774011.005
       },
-      "low": 76259.98,
+      "low": 76296.0,
       "high": 81400.0,
       "range_label": "Provider rolling 24h range",
       "source": "binance",
@@ -152,46 +115,13 @@
     },
     "USOIL": {
       "id": "USOIL",
-      "checked_at": 1789761039.5485008,
+      "checked_at": 1789774008.6735308,
       "tradingview_symbol": "OANDA:WTICOUSD",
       "chart": "https://www.tradingview.com/chart/?symbol=OANDA%3AWTICOUSD&interval=240",
-      "state": "neutral",
+      "status": "DATA UNAVAILABLE",
       "signal": null,
-      "action": "WAIT FOR CONFIRMATION",
-      "close": 101.328,
-      "previous_close": 100.724,
-      "close_time": 1789747200,
-      "new_candle": false,
-      "baseline": false,
-      "lower": 99.215,
-      "upper": 102.172,
-      "range_origin": "Frozen high/low of six prior completed 4H candles; latest excluded",
-      "baseline_end": 1789747200,
-      "bullish_targets": [
-        105.12899999999999,
-        108.08599999999998
-      ],
-      "bearish_targets": [
-        96.25800000000001,
-        93.30100000000002
-      ],
-      "setup": null,
-      "retest_confirmed": false,
-      "events": [],
-      "notes": [],
-      "quote": {
-        "price": 100.024,
-        "time": 1789761041.4579
-      },
-      "low": 99.29,
-      "high": 102.59,
-      "range_label": "24h completed-candle range, 2026-09-17T16:00:00Z to 2026-09-18T16:00:00Z (not rolling live 24h)",
-      "source": "oanda",
-      "sources": [
-        "https://developer.oanda.com/rest-live-v20/instrument-df/",
-        "https://developer.oanda.com/rest-live-v20/pricing-ep/"
-      ],
-      "status": "NO NEW SIGNAL",
+      "action": "WAIT FOR VERIFIED DATA",
+      "error": "OANDA market closed or instrument not tradeable; no current signal",
       "review_decision": "WAIT",
       "review_config": "27f08942f711c2824d09817b847ba4010acce24b4c6482a88d4bd23308b530af"
     }

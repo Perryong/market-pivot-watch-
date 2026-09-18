@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-09-19 03:50:39 +08** / 2026-09-18 19:50:39 UTC.
+Checked **2026-09-19 07:26:48 +08** / 2026-09-18 23:26:48 UTC.
 
 ## BTCUSD
 
@@ -9,15 +9,15 @@ ACTION NOW: WAIT FOR CONFIRMATION
 
 [Open actual TradingView 4H chart](https://www.tradingview.com/chart/?symbol=COINBASE%3ABTCUSD&interval=240)
 
-Completed-candle state: **bullish**. No new 4H candle since the previous check.
+Completed-candle state: **bullish**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 80,700.62 |
-| Previous completed close | 77,995.19 |
-| Close time | 2026-09-19 00:00:00 +08 / 2026-09-18 16:00:00 UTC |
-| Current price | 81,300.00 at 2026-09-18 19:50:38 UTC |
-| Range low / high | 76,182.88 / 81,388.47 |
+| Latest completed 4H close | 81,193.47 |
+| Previous completed close | 80,700.62 |
+| Close time | 2026-09-19 04:00:00 +08 / 2026-09-18 20:00:00 UTC |
+| Current price | 81,011.58 at 2026-09-18 23:26:47 UTC |
+| Range low / high | 76,205.46 / 81,388.47 |
 
 Range definition: Provider rolling 24h range (retrieved at check time).
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -44,42 +44,13 @@ Selling an existing long and opening a short are different actions. Targets are 
 
 ## XAUUSD
 
-STATUS: NO NEW SIGNAL
-ACTION NOW: WAIT FOR CONFIRMATION
+STATUS: DATA UNAVAILABLE
+ACTION NOW: WAIT FOR VERIFIED DATA
 
 [Open actual TradingView 4H chart](https://www.tradingview.com/chart/?symbol=OANDA%3AXAUUSD&interval=240)
 
-Completed-candle state: **bullish**. No new 4H candle since the previous check.
-
-| Market data | Value |
-|---|---|
-| Latest completed 4H close | 4,356.65 |
-| Previous completed close | 4,381.62 |
-| Close time | 2026-09-19 00:00:00 +08 / 2026-09-18 16:00:00 UTC |
-| Current price | 4,381.27 at 2026-09-18 19:50:41 UTC |
-| Range low / high | 4,334.30 / 4,399.67 |
-
-Range definition: 24h completed-candle range, 2026-09-17T16:00:00Z to 2026-09-18T16:00:00Z (not rolling live 24h).
-Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
-
-### Trade levels — conditional plans
-
-| Action | Confirmation / level | T1 / T2 |
-|---|---|---|
-| Buy entry | New 4H cross above 4,341.14, then a later completed retest and hold | 4,420.90 / 4,500.66 |
-| Sell/exit long | Completed 4H close below 4,341.14 after a bullish setup | — |
-| Short entry | New 4H cross below 4,261.38, then a later completed retest and rejection | 4,181.61 / 4,101.85 |
-| Buy/exit short | Completed 4H close above 4,261.38 after a bearish setup | — |
-
-Tracked setup: **BUY**, first confirmed 2026-09-17 12:00:00 UTC. Invalidation: completed close below 4,341.14.
-Retest: confirmed on a later completed bar at 2026-09-18 00:00:00 UTC; this is not a promise of a current fill.
-
-
-Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
-Selling an existing long and opening a short are different actions. Targets are conditional; closed-bar invalidation is not a guaranteed stop-loss fill.
-
-[Source 1](https://developer.oanda.com/rest-live-v20/instrument-df/)
-[Source 2](https://developer.oanda.com/rest-live-v20/pricing-ep/)
+OANDA market closed or instrument not tradeable; no current signal
+Exact completed 4H close, current price, range and active setup cannot be verified. No BUY/SELL signal issued.
 
 ## BTCUSDT
 
@@ -88,15 +59,15 @@ ACTION NOW: WAIT FOR CONFIRMATION
 
 [Open actual TradingView 4H chart](https://www.tradingview.com/chart/?symbol=BINANCE%3ABTCUSDT&interval=240)
 
-Completed-candle state: **bullish**. No new 4H candle since the previous check.
+Completed-candle state: **bullish**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 80,725.60 |
-| Previous completed close | 78,062.00 |
-| Close time | 2026-09-19 00:00:00 +08 / 2026-09-18 16:00:00 UTC |
-| Current price | 81,312.74 at 2026-09-18 19:50:42 UTC |
-| Range low / high | 76,259.98 / 81,400.00 |
+| Latest completed 4H close | 81,204.76 |
+| Previous completed close | 80,725.60 |
+| Close time | 2026-09-19 04:00:00 +08 / 2026-09-18 20:00:00 UTC |
+| Current price | 81,026.60 at 2026-09-18 23:26:51 UTC |
+| Range low / high | 76,296.00 / 81,400.00 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Configured fixed pivots. These levels stay fixed until explicitly reset.
@@ -122,41 +93,13 @@ Selling an existing long and opening a short are different actions. Targets are 
 
 ## USOIL
 
-STATUS: NO NEW SIGNAL
-ACTION NOW: WAIT FOR CONFIRMATION
+STATUS: DATA UNAVAILABLE
+ACTION NOW: WAIT FOR VERIFIED DATA
 
 [Open actual TradingView 4H chart](https://www.tradingview.com/chart/?symbol=OANDA%3AWTICOUSD&interval=240)
 
-Completed-candle state: **neutral**. No new 4H candle since the previous check.
-
-| Market data | Value |
-|---|---|
-| Latest completed 4H close | 101.33 |
-| Previous completed close | 100.72 |
-| Close time | 2026-09-19 00:00:00 +08 / 2026-09-18 16:00:00 UTC |
-| Current price | 100.02 at 2026-09-18 19:50:41 UTC |
-| Range low / high | 99.29 / 102.59 |
-
-Range definition: 24h completed-candle range, 2026-09-17T16:00:00Z to 2026-09-18T16:00:00Z (not rolling live 24h).
-Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
-
-### Trade levels — conditional plans
-
-| Action | Confirmation / level | T1 / T2 |
-|---|---|---|
-| Buy entry | New 4H cross above 102.17, then a later completed retest and hold | 105.13 / 108.09 |
-| Sell/exit long | Completed 4H close below 102.17 after a bullish setup | — |
-| Short entry | New 4H cross below 99.22, then a later completed retest and rejection | 96.26 / 93.30 |
-| Buy/exit short | Completed 4H close above 99.22 after a bearish setup | — |
-
-No tracked active setup. Price state alone does not establish a new entry.
-
-
-Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
-Selling an existing long and opening a short are different actions. Targets are conditional; closed-bar invalidation is not a guaranteed stop-loss fill.
-
-[Source 1](https://developer.oanda.com/rest-live-v20/instrument-df/)
-[Source 2](https://developer.oanda.com/rest-live-v20/pricing-ep/)
+OANDA market closed or instrument not tradeable; no current signal
+Exact completed 4H close, current price, range and active setup cannot be verified. No BUY/SELL signal issued.
 
 ## TradingView drawings
 
