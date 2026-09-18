@@ -10,7 +10,11 @@ function expireReports(now = Date.now()) {
     panel.querySelector('.signal').hidden = stale;
     panel.querySelector('.decision-panel').hidden = stale;
     const code = panel.querySelector('.pine-code');
-    if (code) code.hidden = stale;
+    if (code) {
+      const presetAge = now / 1000 - Number(code.dataset.checked);
+      code.hidden = !Number.isFinite(presetAge) || presetAge < -300;
+      code.querySelector('.pine-age-warning').hidden = presetAge <= 21600;
+    }
   });
 }
 function loadChart(panel) {

@@ -29,10 +29,10 @@ def level_chart(report):
             if not bar.complete or bar.end > report['close_time']:
                 raise ValueError('Unfinished chart candle')
         bars.sort(key=lambda bar: bar.start)
-        levels = [('Upper pivot', number(report['upper']), '#63e3c4'),
-                  ('Lower pivot', number(report['lower']), '#ffa5ae')]
-        levels += [(f'Bullish T{i+1}', number(value), '#63e3c4') for i, value in enumerate(report['bullish_targets'])]
-        levels += [(f'Bearish T{i+1}', number(value), '#ffa5ae') for i, value in enumerate(report['bearish_targets'])]
+        levels = [('BUY retest', number(report['upper']), '#63e3c4'),
+                  ('SHORT retest', number(report['lower']), '#ffa5ae')]
+        levels += [(f'Buy T{i+1}', number(value), '#63e3c4') for i, value in enumerate(report['bullish_targets'])]
+        levels += [(f'Short T{i+1}', number(value), '#ffa5ae') for i, value in enumerate(report['bearish_targets'])]
         low = min(min(bar.low for bar in bars), *(value for _, value, _ in levels))
         high = max(max(bar.high for bar in bars), *(value for _, value, _ in levels))
         span = high - low
@@ -48,11 +48,15 @@ def level_chart(report):
                           f'<line x1="{x}" x2="{x}" y1="{y(bar.high)}" y2="{y(bar.low)}"/>'
                           f'<rect class="candle-body" x="{x-step*.3}" y="{y(max(bar.open, bar.close))}" width="{step*.6}" height="{max(1, abs(y(bar.open)-y(bar.close)))}"/></g>')
         for label, value, color in levels:
+            exit_note = {'BUY retest': 'SELL / exit long on 4H close below',
+                         'SHORT retest': 'BUY / exit short on 4H close above'}.get(label)
+            subtitle = f'<tspan x="825" dy="15" font-size="11">{exit_note}</tspan>' if exit_note else ''
             shapes.append(f'<line class="price-level" data-price="{value}" x1="20" x2="810" y1="{y(value)}" y2="{y(value)}" stroke="{color}" stroke-dasharray="6 4"/>'
-                          f'<text x="825" y="{y(value)+4}" fill="{color}">{label} {price(value)}</text>')
+                          f'<text x="825" y="{y(value)+4}" fill="{color}">{label} {price(value)}{subtitle}</text>')
         caption = 'SYNTHETIC DEMO' if report.get('demo') else str(report['source'])
         return f'''<div class="level-chart"><h3>4H candles with pivots and targets</h3>
 <p class="meta">{e(caption)} · Completed candles through {e(clock(report['close_time'], 'Asia/Singapore'))}. Snapshot at the analysis check; refreshes with each report. Fixed levels are shown across the chart for reference, not as historical signals. Hover a candle for OHLC.</p>
+<p class="meta">Entries require a breakout and later completed retest: hold above the upper pivot for BUY, reject below the lower pivot for SHORT. Exit rules apply only to the corresponding tracked setup and existing position; these are conditional levels, not buy/sell-now instructions.</p>
 <div class="chart-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 450" role="img" aria-label="{e(report['id'])} completed four-hour candles with two pivots and four targets">
 <title>{e(report['id'])} — {e(caption)} — 4H candles and conditional levels</title>{''.join(shapes)}
 <text x="20" y="440" fill="#a4b5c8">{e(clock(bars[0].start))}</text>
@@ -121,8 +125,8 @@ def build(out, destination, config, now):
         old.unlink()
     try:
         payload = json.loads((out / 'latest.json').read_text())
-        if not 0 <= now - float(payload['checked_at']) <= MAX_AGE:
-            raise ValueError('stale')
+        if not 0 <= now - float(payload['checked_at']):
+            raise ValueError('invalid timestamp')
         indexed = {r['id']: r for r in payload['markets']}
     except (OSError, ValueError, KeyError, TypeError):
         indexed = {}
@@ -133,10 +137,15 @@ def build(out, destination, config, now):
         if not re.fullmatch(r'[A-Z0-9_-]+', ident) or not re.fullmatch(r'[A-Z0-9_]+:[A-Z0-9_.-]+', symbol):
             raise ValueError('Invalid market ID or TradingView symbol')
         r = indexed.get(ident, unavailable(market, now))
+        preset = None
         try:
-            if r['tradingview_symbol'] != symbol or not 0 <= now-float(r['checked_at']) <= MAX_AGE:
+            if r['tradingview_symbol'] != symbol or not 0 <= now-float(r['checked_at']):
                 raise ValueError('invalid report')
             body = details(r)
+            if 'error' not in r and not r.get('demo'):
+                preset = (pine(r), float(r['checked_at']))
+            if now-float(r['checked_at']) > MAX_AGE:
+                raise ValueError('stale')
         except (KeyError, TypeError, ValueError, OverflowError):
             r = unavailable(market, now)
             body = details(r)
@@ -146,11 +155,13 @@ def build(out, destination, config, now):
         checked = float(r['checked_at'])
         chart_url = 'https://www.tradingview.com/chart/?symbol=' + quote(symbol, safe='') + '&interval=240'
         code = '<p class="meta">Pine code available after a successful live data check.</p>'
-        if 'error' not in r and not demo:
-            code = f'''<details class="pine-code"><summary>View Pine Script · {ident}</summary>
-<p>These are the same pivot and target values drawn above. To use the indicator in TradingView, copy this code into Pine Editor, save and select Add to chart.</p>
+        if preset:
+            script, preset_time = preset
+            code = f'''<details class="pine-code" open data-checked="{preset_time}"><summary>View Pine Script · {ident}</summary>
+<p>Saved preset · {e(clock(preset_time, 'Asia/Singapore'))}. Fixed levels, not a live trading signal. Copy the complete script, select all existing text in TradingView's Pine Editor and replace it, then save and select Add to chart or Update on chart.</p>
+<p class="pine-age-warning" role="status" {'' if now-preset_time > MAX_AGE else 'hidden'}>STALE PRESET — these saved levels are historical. Verify the pivots before use; this is not a fresh analysis.</p>
 <button class="button copy-pine" type="button" aria-controls="pine-{ident}">Copy Pine code</button>
-<span class="copy-status" role="status"></span><pre><code id="pine-{ident}">{e(pine(r))}</code></pre></details>'''
+<span class="copy-status" role="status"></span><pre><code id="pine-{ident}">{e(script)}</code></pre></details>'''
         buttons.append(f'<button class="market-tab" id="tab-{ident}" role="tab" aria-controls="panel-{ident}" aria-selected="{str(n==0).lower()}" tabindex="{0 if n==0 else -1}" data-market="{ident}">{ident}</button>')
         panels.append(f'''<section class="market-panel" id="panel-{ident}" role="tabpanel" aria-labelledby="tab-{ident}" data-symbol="{symbol}" data-checked="{checked}" {'hidden' if n else ''}>
 <div class="panel-heading"><div><p class="eyebrow">{symbol} · 4H</p><h2>{ident}</h2></div><span class="badge">Completed candles only</span></div>

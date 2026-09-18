@@ -53,7 +53,7 @@ class SiteTests(unittest.TestCase):
             self.assertIn('input.float(77500.0', html)
             self.assertFalse((dst/'latest.json').exists())
 
-    def test_stale_input_cannot_publish_signal_or_pine(self):
+    def test_stale_input_keeps_copyable_preset_but_not_live_signal(self):
         with tempfile.TemporaryDirectory() as d:
             out, dst = Path(d)/'out', Path(d)/'site'
             reports, _ = run(CONFIG, {'version':1,'markets':{}}, NOW, demo_fetch)
@@ -66,7 +66,10 @@ class SiteTests(unittest.TestCase):
             self.assertNotIn('SIGNAL: BUY', html)
             self.assertIn('DATA UNAVAILABLE', html)
             self.assertFalse(list(dst.glob('*.pine')))
-            self.assertNotIn('class="pine-code"', html)
+            self.assertIn('class="pine-code"', html)
+            self.assertIn('Saved preset', html)
+            self.assertIn('STALE PRESET', html)
+            self.assertIn('https://www.tradingview.com/chart/?symbol=OANDA%3AXAUUSD&amp;interval=240', html)
             self.assertNotIn('<svg', html)
 
     def test_chart_places_candles_and_six_levels_on_one_price_scale(self):
@@ -81,3 +84,22 @@ class SiteTests(unittest.TestCase):
         self.assertGreater(float(candles[0].attrib['y']), float(levels[1].attrib['y1']))
         self.assertEqual(float(levels[0].attrib['y1']), float(levels[0].attrib['y2']))
         self.assertIn('SYNTHETIC DEMO', markup)
+
+    def test_all_markets_label_trade_entries_exits_and_targets_at_report_prices(self):
+        reports, _ = run(CONFIG, {'version':1,'markets':{}}, NOW, demo_fetch)
+        for report in reports:
+            with self.subTest(market=report['id']):
+                markup = site.level_chart(report)
+                svg = ET.fromstring(markup[markup.index('<svg'):markup.index('</svg>')+6])
+                lines = svg.findall(".//{*}line[@class='price-level']")
+                labels = svg.findall('{*}text')[:6]
+                expected = list(zip(
+                    ['BUY retest', 'SHORT retest', 'Buy T1', 'Buy T2', 'Short T1', 'Short T2'],
+                    [report['upper'], report['lower'], *report['bullish_targets'], *report['bearish_targets']]))
+                for line, label, (name, value) in zip(lines, labels, expected):
+                    self.assertEqual(float(line.attrib['data-price']), value)
+                    self.assertEqual(label.text, f'{name} {value:,.2f}')
+                    self.assertAlmostEqual(float(label.attrib['y']), float(line.attrib['y1'])+4)
+                self.assertIn('SELL / exit long on 4H close below', ''.join(labels[0].itertext()))
+                self.assertIn('BUY / exit short on 4H close above', ''.join(labels[1].itertext()))
+                self.assertIn('Entries require a breakout and later completed retest', markup)
