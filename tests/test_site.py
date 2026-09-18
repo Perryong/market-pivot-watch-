@@ -31,7 +31,7 @@ class SiteTests(unittest.TestCase):
             site.build(out, dst, CONFIG, NOW)
             html = (dst/'index.html').read_text()
             self.assertIn('SYNTHETIC DEMO', html)
-            self.assertEqual(html.count('class="market-panel"'), 3)
+            self.assertEqual(html.count('class="market-panel"'), 4)
             self.assertFalse(list(dst.glob('*.pine')))
             self.assertNotIn('class="pine-code"', html)
 
@@ -50,6 +50,9 @@ class SiteTests(unittest.TestCase):
             self.assertFalse((dst/'BTCUSDT.pine').exists())
             self.assertIn('//@version=6', html)
             self.assertIn('Copy Pine code', html)
+            self.assertIn('id="panel-USOIL"', html)
+            self.assertIn('id="pine-USOIL"', html)
+            self.assertIn('symbol=OANDA%3AWTICOUSD&amp;interval=240', html)
             self.assertIn('input.float(77500.0', html)
             self.assertFalse((dst/'latest.json').exists())
 

@@ -75,7 +75,10 @@ class TelegramTests(unittest.TestCase):
                     raise DataError('Telegram HTTP 503')
             with patch.object(telegram, 'render_chart', return_value=b'PNG'), patch.object(telegram, 'send', side_effect=sender):
                 self.assertEqual(telegram.notify(payload, 'token', 'chat', state, NOW), 1)
-                self.assertEqual(len(sent), 3)
+                self.assertEqual(len(sent), 4)
+                self.assertTrue(sent[3][0].startswith('USOIL'))
+                self.assertIn('OANDA%3AWTICOUSD', sent[3][0])
+                self.assertEqual(sent[3][1], b'PNG')
                 self.assertEqual(sent[0][1], b'PNG')
                 self.assertIn('WAIT', sent[0][0])
                 self.assertIsNone(sent[1][1])

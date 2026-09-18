@@ -77,7 +77,7 @@ def run(config, saved, now, provider=fetch):
 
 def demo_fetch(config, now):
     """Deterministic synthetic fixtures. Never used without explicit --demo."""
-    price = 2500.0 if config["id"] == "XAUUSD" else 70000.0
+    price = {'XAUUSD': 2500.0, 'USOIL': 80.0}.get(config['id'], 70000.0)
     spread = price * .01
     end = int(now) // H4 * H4
     bars = [Candle(end - (8 - i) * H4, price, price + spread, price - spread, price) for i in range(8)]

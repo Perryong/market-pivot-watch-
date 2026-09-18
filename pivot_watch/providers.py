@@ -101,7 +101,7 @@ def fetch(config, now):
     elif provider == "oanda":
         token, account = os.getenv("OANDA_TOKEN"), os.getenv("OANDA_ACCOUNT_ID")
         if not token or not account:
-            raise DataError("Set GitHub Secrets OANDA_TOKEN and OANDA_ACCOUNT_ID; XAUUSD access is not configured")
+            raise DataError("Set GitHub Secrets OANDA_TOKEN and OANDA_ACCOUNT_ID; OANDA access is not configured")
         env = config.get("environment", "practice")
         if env not in ("practice", "live"):
             raise DataError("OANDA environment must be practice or live")
@@ -121,7 +121,7 @@ def fetch(config, now):
         completed = sorted([c for c in bars if c.complete and c.end <= now], key=lambda c: c.start)
         window = completed[-6:]
         if len(window) != 6 or window[-1].end - window[0].start != 86400:
-            raise DataError("A complete contiguous 24-hour gold candle window is unavailable")
+            raise DataError("A complete contiguous 24-hour OANDA candle window is unavailable")
         low, high = min(c.low for c in window), max(c.high for c in window)
         range_label = f"24h completed-candle range, {iso(window[0].start)} to {iso(window[-1].end)} (not rolling live 24h)"
         sources = ["https://developer.oanda.com/rest-live-v20/instrument-df/", "https://developer.oanda.com/rest-live-v20/pricing-ep/"]

@@ -1,4 +1,7 @@
-# XAUUSD + BTCUSD + BTCUSDT Four-Hour Pivot Watch
+# XAUUSD + BTCUSD + BTCUSDT + USOIL Four-Hour Pivot Watch
+
+Read the [Trading strategy and operating guide](docs/TRADING_STRATEGY.md) for
+the rules, worked example, setup steps and observation-journal interpretation.
 
 Read-only Python analysis, a GitHub Actions run every four hours, and Pine Script
 drawings on **actual TradingView charts**. No order placement. Python 3.12; no
@@ -9,7 +12,7 @@ pip packages required (system timezone data is required; GitHub Ubuntu provides 
 - Reports on every run: BUY / SELL / NO NEW SIGNAL / DATA UNAVAILABLE, completed
   candle close and time, current quote, range, entry/exit conditions and T1/T2.
 - Completed 4H signals, persistent deduplication and explicit invalidation.
-- `output/BTCUSD.pine`, `output/BTCUSDT.pine` and `output/XAUUSD.pine` after successful data checks.
+- Complete `output/<market>.pine` presets for BTCUSD, BTCUSDT, XAUUSD and USOIL after successful data checks.
   Install these in TradingView once to see six lines, entry/exit labels, confirmed
   signal markers and later completed retest markers update with the chart.
 - Workflow summary, downloadable artifacts and latest committed reports.
@@ -32,9 +35,10 @@ captured from a signed-in TradingView layout.**
 | BTCUSD (enabled) | Coinbase Exchange BTC-USD | COINBASE:BTCUSD | Public read-only API |
 | XAUUSD (enabled) | OANDA XAU_USD midpoint | OANDA:XAUUSD | v20 account with instrument/API access |
 | BTCUSDT (enabled) | Binance spot | BINANCE:BTCUSDT | Public read-only API, region availability varies |
+| USOIL (enabled) | OANDA WTICO_USD midpoint, WTI CFD | OANDA:WTICOUSD | Existing OANDA account must support the instrument |
 
 BTCUSD is quoted in USD; BTCUSDT is quoted in USDT. The original 76,200/77,500
-watch range belongs to BTCUSDT only. All three markets are enabled in
+watch range belongs to BTCUSDT only. All four markets are enabled in
 `config.json`; each can be disabled independently.
 
 Coinbase's Exchange API has no native 4H candle. We combine exactly four
@@ -42,10 +46,10 @@ contiguous completed H1 bars aligned to UTC. Missing hours are never invented.
 OANDA requests H4 midpoint candles with `dailyAlignment=0` and
 `alignmentTimezone=UTC`. Only `complete=true` bars whose end time has passed count.
 
-## 2. Configure XAUUSD access
+## 2. Configure XAUUSD and USOIL access
 
 Obtain a token and account ID from an OANDA **v20** practice or live account with
-XAU_USD available. Availability depends on account/division; a token does not
+XAU_USD and WTICO_USD available. Availability depends on account/division; a token does not
 grant an instrument entitlement. Do not put credentials in source files.
 
 In your GitHub repository open **Settings → Secrets and variables → Actions →
