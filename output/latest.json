@@ -1,17 +1,17 @@
 {
-  "checked_at": 1789725486.737577,
+  "checked_at": 1789749589.930628,
   "markets": [
     {
       "id": "BTCUSD",
-      "checked_at": 1789725486.737577,
+      "checked_at": 1789749589.930628,
       "tradingview_symbol": "COINBASE:BTCUSD",
       "chart": "https://www.tradingview.com/chart/?symbol=COINBASE%3ABTCUSD&interval=240",
-      "state": "neutral",
-      "signal": null,
-      "action": "WAIT FOR CONFIRMATION",
-      "close": 77734.78,
-      "previous_close": 77312.13,
-      "close_time": 1789718400,
+      "state": "bullish",
+      "signal": "BUY",
+      "action": "WAIT—DO NOT CHASE",
+      "close": 80700.62,
+      "previous_close": 77995.19,
+      "close_time": 1789747200,
       "new_candle": true,
       "baseline": false,
       "lower": 74887.5,
@@ -26,16 +26,27 @@
         71532.24,
         68176.98000000001
       ],
-      "setup": null,
+      "setup": {
+        "side": "BUY",
+        "signal_end": 1789747200,
+        "retest_close_time": null
+      },
       "retest_confirmed": false,
-      "events": [],
+      "events": [
+        {
+          "type": "BUY",
+          "close_time": 1789747200,
+          "close": 80700.62,
+          "historical": false
+        }
+      ],
       "notes": [],
       "quote": {
-        "price": 78134.2,
-        "time": 1789725485.468772
+        "price": 81043.24,
+        "time": 1789749589.804317
       },
-      "low": 75921.88,
-      "high": 78409.69,
+      "low": 76182.88,
+      "high": 81253.15,
       "range_label": "Provider rolling 24h range (retrieved at check time)",
       "source": "coinbase",
       "sources": [
@@ -44,22 +55,6 @@
         "https://api.exchange.coinbase.com/products/BTC-USD/stats"
       ],
       "chart_candles": [
-        {
-          "start": 1788854400,
-          "open": 78451.07,
-          "high": 78971.16,
-          "low": 78259.75,
-          "close": 78401.88,
-          "complete": true
-        },
-        {
-          "start": 1788868800,
-          "open": 78401.89,
-          "high": 78900.0,
-          "low": 77589.0,
-          "close": 78900.0,
-          "complete": true
-        },
         {
           "start": 1788883200,
           "open": 78900.0,
@@ -523,21 +518,37 @@
           "low": 77143.09,
           "close": 77734.78,
           "complete": true
+        },
+        {
+          "start": 1789718400,
+          "open": 77734.78,
+          "high": 78409.69,
+          "low": 77581.31,
+          "close": 77995.19,
+          "complete": true
+        },
+        {
+          "start": 1789732800,
+          "open": 77995.71,
+          "high": 81127.8,
+          "low": 77900.0,
+          "close": 80700.62,
+          "complete": true
         }
       ],
-      "status": "NO NEW SIGNAL"
+      "status": "NEW SIGNAL"
     },
     {
       "id": "XAUUSD",
-      "checked_at": 1789725486.737577,
+      "checked_at": 1789749589.930628,
       "tradingview_symbol": "OANDA:XAUUSD",
       "chart": "https://www.tradingview.com/chart/?symbol=OANDA%3AXAUUSD&interval=240",
       "state": "bullish",
       "signal": null,
       "action": "WAIT FOR CONFIRMATION",
-      "close": 4393.49,
-      "previous_close": 4359.34,
-      "close_time": 1789718400,
+      "close": 4356.655,
+      "previous_close": 4381.62,
+      "close_time": 1789747200,
       "new_candle": true,
       "baseline": false,
       "lower": 4261.375,
@@ -561,34 +572,18 @@
       "events": [],
       "notes": [],
       "quote": {
-        "price": 4377.875,
-        "time": 1789725487.790783
+        "price": 4379.93,
+        "time": 1789749591.370663
       },
-      "low": 4305.15,
+      "low": 4334.295,
       "high": 4399.67,
-      "range_label": "24h completed-candle range, 2026-09-17T08:00:00Z to 2026-09-18T08:00:00Z (not rolling live 24h)",
+      "range_label": "24h completed-candle range, 2026-09-17T16:00:00Z to 2026-09-18T16:00:00Z (not rolling live 24h)",
       "source": "oanda",
       "sources": [
         "https://developer.oanda.com/rest-live-v20/instrument-df/",
         "https://developer.oanda.com/rest-live-v20/pricing-ep/"
       ],
       "chart_candles": [
-        {
-          "start": 1788537600,
-          "open": 4436.605,
-          "high": 4443.615,
-          "low": 4411.97,
-          "close": 4434.91,
-          "complete": true
-        },
-        {
-          "start": 1788552000,
-          "open": 4434.925,
-          "high": 4435.245,
-          "low": 4428.69,
-          "close": 4429.825,
-          "complete": true
-        },
         {
           "start": 1788724800,
           "open": 4422.495,
@@ -1052,21 +1047,37 @@
           "low": 4352.91,
           "close": 4393.49,
           "complete": true
+        },
+        {
+          "start": 1789718400,
+          "open": 4393.505,
+          "high": 4398.46,
+          "low": 4372.715,
+          "close": 4381.62,
+          "complete": true
+        },
+        {
+          "start": 1789732800,
+          "open": 4381.615,
+          "high": 4382.92,
+          "low": 4342.725,
+          "close": 4356.655,
+          "complete": true
         }
       ],
       "status": "NO NEW SIGNAL"
     },
     {
       "id": "BTCUSDT",
-      "checked_at": 1789725486.737577,
+      "checked_at": 1789749589.930628,
       "tradingview_symbol": "BINANCE:BTCUSDT",
       "chart": "https://www.tradingview.com/chart/?symbol=BINANCE%3ABTCUSDT&interval=240",
       "state": "bullish",
-      "signal": "BUY",
-      "action": "WAIT—DO NOT CHASE",
-      "close": 77798.01,
-      "previous_close": 77383.47,
-      "close_time": 1789718400,
+      "signal": null,
+      "action": "WAIT FOR CONFIRMATION",
+      "close": 80725.6,
+      "previous_close": 78062.0,
+      "close_time": 1789747200,
       "new_candle": true,
       "baseline": false,
       "lower": 76200.0,
@@ -1087,21 +1098,14 @@
         "retest_close_time": null
       },
       "retest_confirmed": false,
-      "events": [
-        {
-          "type": "BUY",
-          "close_time": 1789718400,
-          "close": 77798.01,
-          "historical": false
-        }
-      ],
+      "events": [],
       "notes": [],
       "quote": {
-        "price": 78201.66,
-        "time": 1789725489.01
+        "price": 81059.99,
+        "time": 1789749592.002
       },
-      "low": 76000.0,
-      "high": 78490.79,
+      "low": 76259.98,
+      "high": 81258.01,
       "range_label": "Provider rolling 24h range",
       "source": "binance",
       "sources": [
@@ -1109,22 +1113,6 @@
         "https://data-api.binance.vision/api/v3/ticker/24hr?symbol=BTCUSDT"
       ],
       "chart_candles": [
-        {
-          "start": 1788854400,
-          "open": 78482.0,
-          "high": 78994.5,
-          "low": 78271.63,
-          "close": 78430.01,
-          "complete": true
-        },
-        {
-          "start": 1788868800,
-          "open": 78430.0,
-          "high": 78910.88,
-          "low": 77620.01,
-          "close": 78904.0,
-          "complete": true
-        },
         {
           "start": 1788883200,
           "open": 78904.0,
@@ -1588,9 +1576,25 @@
           "low": 77216.76,
           "close": 77798.01,
           "complete": true
+        },
+        {
+          "start": 1789718400,
+          "open": 77798.0,
+          "high": 78490.79,
+          "low": 77660.0,
+          "close": 78062.0,
+          "complete": true
+        },
+        {
+          "start": 1789732800,
+          "open": 78062.01,
+          "high": 81154.67,
+          "low": 77972.3,
+          "close": 80725.6,
+          "complete": true
         }
       ],
-      "status": "NEW SIGNAL"
+      "status": "NO NEW SIGNAL"
     }
   ]
 }
