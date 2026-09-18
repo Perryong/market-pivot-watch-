@@ -6,6 +6,8 @@ upper = input.float(4341.135, "Upper pivot")
 lower = input.float(4261.375, "Lower pivot")
 baseline = input.time(1789545600000, "Baseline close (UTC)")
 expected = input.string("OANDA:XAUUSD", "Exact TradingView symbol")
+mode = input.string("Strict UTC", "Signal candle mode", options=["Strict UTC", "TradingView native"], tooltip="Native mode uses this chart's completed 4H candles. Signals are independent of the GitHub UTC journal. Pivots remain fixed.")
+nativeMode = mode == "TradingView native"
 
 if timeframe.in_seconds() != 14400 or not chart.is_standard
     runtime.error("Use standard 4-hour candlesticks; synthetic charts are not supported.")
@@ -16,8 +18,9 @@ if syminfo.tickerid != expected
 
 width = upper - lower
 visible = time_close >= baseline
-aligned = time % 14400000 == 0 and time_close - time == 14400000
-contiguous = time - time[1] == 14400000
+fullBar = time_close - time == 14400000
+aligned = fullBar and (nativeMode or time % 14400000 == 0)
+contiguous = time - time[1] == 14400000 and time_close[1] - time[1] == 14400000
 eligible = time_close > baseline and time_close[1] >= baseline and aligned
 
 plot(visible ? upper : na, "Buy retest / exit-long pivot", color=color.lime, linewidth=2, style=plot.style_linebr)
@@ -36,11 +39,12 @@ bool exitLong = false
 bool exitShort = false
 bool retest = false
 
-if barstate.isconfirmed and eligible
-    if not contiguous
+if barstate.isconfirmed
+    if not aligned or not contiguous
         side := 0
         retested := false
-    else
+        signalEnd := na
+    else if eligible
         exitLong := side == 1 and close < upper
         exitShort := side == -1 and close > lower
         if exitLong or exitShort
@@ -95,6 +99,7 @@ if barstate.islast and visible
     confirmedClose = barstate.isconfirmed ? close : close[1]
     regime = confirmedClose > upper ? "BULLISH" : confirmedClose < lower ? "BEARISH" : "NEUTRAL"
     table.cell(panel, 0, 0, expected + " | " + regime, text_color=color.white)
-    table.cell(panel, 0, 1, aligned ? "Completed candles only" : "ALIGNMENT MISMATCH: markers disabled", text_color=aligned ? color.white : color.orange)
+    modeStatus = nativeMode ? "NATIVE 4H: independent of GitHub" : "STRICT UTC: completed candles only"
+    table.cell(panel, 0, 1, aligned ? modeStatus : "ALIGNMENT / PARTIAL BAR: markers disabled", text_color=aligned ? color.white : color.orange)
     table.cell(panel, 0, 2, side == 0 ? "No tracked setup" : retested ? "Later 4H retest confirmed" : "WAIT for later 4H retest", text_color=color.white)
-    table.cell(panel, 0, 3, "Targets conditional. API/chart feeds can differ.", text_color=color.silver)
+    table.cell(panel, 0, 3, "Fixed pivots. Targets conditional; not GitHub sync.", text_color=color.silver)

@@ -303,6 +303,10 @@ python -m http.server 8000 --directory site-dist
 
 Open `http://localhost:8000`. Missing or expired input yields an explicit
 DATA UNAVAILABLE dashboard. Demo input is labelled and does not expose Pine code.
+An otherwise valid saved report keeps its complete Pine preset copyable after
+expiry, with a visible STALE PRESET warning and its original timestamp. This
+does not restore stale signals or make saved pivot levels current. Missing or
+failed market reports still cannot provide a verified preset.
 Application candles come from the configured provider, not from TradingView.
 
 ## 5. Draw on TradingView — one-time installation
@@ -343,7 +347,7 @@ config/range. Newly generated files do not overwrite installed indicators.
 Changing a TradingView input alone also does not change Python config.
 
 **Feed alignment:** a chart's timezone display does not change candle boundaries.
-The script disables its signal markers if that feed's 4H bars are not UTC
+The default **Strict UTC** mode disables signal markers if that feed's 4H bars are not UTC
 00/04/08/12/16/20 aligned. Lines still display. OANDA sessions, broker midpoint
 prices and TradingView prices can differ. Compare one completed bar's UTC close
 time and OHLC with the report before relying on matching markers. If mismatched,
@@ -351,8 +355,19 @@ use the indicator as a levels overlay and the API report as the signal record;
 do not claim both feeds produced the same signal. A prior API outage can also
 make TradingView's historical markers differ from actually issued reports.
 
-The Pine source has been reviewed but **has not been compiled in TradingView in
-this environment**. The manual installation/compile is a required setup check.
+For self-updating chart-native signals, select **Settings → Inputs → Signal candle
+mode → TradingView native**. This uses the chart's own completed four-hour candles,
+including non-UTC-aligned sessions. Breakout, later retest and invalidation markers
+update independently of GitHub. Fixed pivots and targets do not move automatically.
+Partial candles and gaps reset the tracked setup; no signals bridge these gaps.
+The panel labels native mode explicitly. This does not repair feed differences or
+change the API-based strategy journal. Reinstall the updated script once, save the
+layout in your preferred account, and recreate any existing alerts after changing
+the script or mode.
+
+The original XAUUSD preset was compiled in TradingView. The native-mode update
+has local gate tests, but activation and runtime behaviour on the saved chart
+still require verification. Python tests are not a Pine compiler or backtest.
 
 ## Local use and offline verification
 
