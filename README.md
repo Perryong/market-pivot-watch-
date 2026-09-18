@@ -215,6 +215,14 @@ synthetic reports are rejected. Missing both secrets skips Telegram; incomplete
 configuration or delivery errors fail the step while Pages and state persistence
 still run.
 
+Telegram distinguishes a bullish/bearish breakout from entry eligibility. A
+pending retest is labelled `WAIT — RETEST PENDING` on the image and in its caption,
+with the reason, completed-candle confirmation rule, invalidation level and
+conditional targets for the tracked side. Exit notices apply only to an existing
+position and mark the invalidated setup's targets inactive. This presentation
+does not change signal rules or imply an executed trade. Chart images are 1200×900
+to keep the labels and bottom timestamps in view.
+
 Successful sends are recorded per report timestamp and destination in
 `.state/telegram.json`, which the workflow commits alongside analysis state.
 Retrying the same saved report skips confirmed sends. This is not exactly-once

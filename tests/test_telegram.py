@@ -13,6 +13,40 @@ NOW = 1789516800 + 14460
 
 
 class TelegramTests(unittest.TestCase):
+    def test_caption_explains_pending_retests_and_separates_exits_from_entries(self):
+        for side, direction, touch, close in [('BUY', 'Bullish', 'at/above', 'above'),
+                                              ('SELL', 'Bearish', 'at/below', 'below')]:
+            report = self.reports()['markets'][0]
+            report.update(baseline=False, signal=side, events=[],
+                          setup={'side': side, 'signal_end': NOW-14400, 'retest_close_time': None})
+            text = telegram.caption(report)
+            self.assertIn('WAIT — RETEST PENDING', text)
+            self.assertIn(f'Detected: {direction} breakout', text)
+            self.assertNotIn('Breakout: BUY', text)
+            self.assertIn('Why:', text)
+            self.assertIn(f'opens {touch}', text)
+            self.assertIn(f'closes {close}', text)
+            self.assertIn('not an entry price', text)
+            self.assertLessEqual(len(text.encode('utf-16-le'))//2, 1024)
+            report['events'] = [{'type': 'RETEST_CONFIRMED', 'historical': False, 'close_time': report['close_time']}]
+            report['setup']['retest_close_time'] = report['close_time']
+            report['quote']['price'] = report['upper']+1 if side=='BUY' else report['lower']-1
+            self.assertIn('ENTRY SETUP CONFIRMED', telegram.caption(report))
+            self.assertNotIn('Confirmation needed:', telegram.caption(report))
+            self.assertLessEqual(len(telegram.caption(report).encode('utf-16-le'))//2, 1024)
+            report['quote']['price'] = report['lower'] if side=='BUY' else report['upper']
+            self.assertIn('crossed back through the pivot', telegram.caption(report))
+            self.assertNotIn('RETEST PENDING', telegram.caption(report))
+            report['events'] = []
+            self.assertIn('NO NEW ENTRY', telegram.caption(report))
+            report['events'] = [{'type': 'EXIT_LONG' if side=='BUY' else 'EXIT_SHORT',
+                                 'historical': False, 'close_time': report['close_time']}]
+            text = telegram.caption(report)
+            self.assertIn('IF YOU HOLD THIS POSITION', text)
+            self.assertIn('Targets: inactive', text)
+            self.assertNotIn('Confirmation needed:', text)
+            self.assertLessEqual(len(text.encode('utf-16-le'))//2, 1024)
+
     def test_cli_trims_pasted_secret_whitespace(self):
         with tempfile.TemporaryDirectory() as d:
             Path(d, 'latest.json').write_text(json.dumps(self.reports()))
