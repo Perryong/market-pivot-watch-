@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-09-18 14:15:54 +08** / 2026-09-18 06:15:54 UTC.
+Checked **2026-09-18 17:58:06 +08** / 2026-09-18 09:58:06 UTC.
 
 ## BTCUSD
 
@@ -9,15 +9,15 @@ ACTION NOW: WAIT FOR CONFIRMATION
 
 [Open actual TradingView 4H chart](https://www.tradingview.com/chart/?symbol=COINBASE%3ABTCUSD&interval=240)
 
-Completed-candle state: **neutral**. No new 4H candle since the previous check.
+Completed-candle state: **neutral**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 77,312.13 |
-| Previous completed close | 76,348.74 |
-| Close time | 2026-09-18 12:00:00 +08 / 2026-09-18 04:00:00 UTC |
-| Current price | 77,469.47 at 2026-09-18 06:15:53 UTC |
-| Range low / high | 75,921.88 / 77,646.65 |
+| Latest completed 4H close | 77,734.78 |
+| Previous completed close | 77,312.13 |
+| Close time | 2026-09-18 16:00:00 +08 / 2026-09-18 08:00:00 UTC |
+| Current price | 78,134.20 at 2026-09-18 09:58:05 UTC |
+| Range low / high | 75,921.88 / 78,409.69 |
 
 Range definition: Provider rolling 24h range (retrieved at check time).
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -48,17 +48,17 @@ ACTION NOW: WAIT FOR CONFIRMATION
 
 [Open actual TradingView 4H chart](https://www.tradingview.com/chart/?symbol=OANDA%3AXAUUSD&interval=240)
 
-Completed-candle state: **bullish**. No new 4H candle since the previous check.
+Completed-candle state: **bullish**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 4,359.34 |
-| Previous completed close | 4,346.43 |
-| Close time | 2026-09-18 12:00:00 +08 / 2026-09-18 04:00:00 UTC |
-| Current price | 4,385.24 at 2026-09-18 06:15:56 UTC |
-| Range low / high | 4,285.60 / 4,381.06 |
+| Latest completed 4H close | 4,393.49 |
+| Previous completed close | 4,359.34 |
+| Close time | 2026-09-18 16:00:00 +08 / 2026-09-18 08:00:00 UTC |
+| Current price | 4,377.88 at 2026-09-18 09:58:07 UTC |
+| Range low / high | 4,305.15 / 4,399.67 |
 
-Range definition: 24h completed-candle range, 2026-09-17T04:00:00Z to 2026-09-18T04:00:00Z (not rolling live 24h).
+Range definition: 24h completed-candle range, 2026-09-17T08:00:00Z to 2026-09-18T08:00:00Z (not rolling live 24h).
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
 
 ### Trade levels — conditional plans
@@ -82,20 +82,20 @@ Selling an existing long and opening a short are different actions. Targets are 
 
 ## BTCUSDT
 
-STATUS: NO NEW SIGNAL
-ACTION NOW: WAIT FOR CONFIRMATION
+SIGNAL: BUY
+ACTION NOW: WAIT—DO NOT CHASE
 
 [Open actual TradingView 4H chart](https://www.tradingview.com/chart/?symbol=BINANCE%3ABTCUSDT&interval=240)
 
-Completed-candle state: **neutral**. No new 4H candle since the previous check.
+Completed-candle state: **bullish**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 77,383.47 |
-| Previous completed close | 76,417.01 |
-| Close time | 2026-09-18 12:00:00 +08 / 2026-09-18 04:00:00 UTC |
-| Current price | 77,544.00 at 2026-09-18 06:15:58 UTC |
-| Range low / high | 76,000.00 / 77,715.48 |
+| Latest completed 4H close | 77,798.01 |
+| Previous completed close | 77,383.47 |
+| Close time | 2026-09-18 16:00:00 +08 / 2026-09-18 08:00:00 UTC |
+| Current price | 78,201.66 at 2026-09-18 09:58:09 UTC |
+| Range low / high | 76,000.00 / 78,490.79 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Configured fixed pivots. These levels stay fixed until explicitly reset.
@@ -109,7 +109,11 @@ Pivot selection: Configured fixed pivots. These levels stay fixed until explicit
 | Short entry | New 4H cross below 76,200.00, then a later completed retest and rejection | 74,900.00 / 73,600.00 |
 | Buy/exit short | Completed 4H close above 76,200.00 after a bearish setup | — |
 
-No tracked active setup. Price state alone does not establish a new entry.
+Tracked setup: **BUY**, first confirmed 2026-09-18 08:00:00 UTC. Invalidation: completed close below 77,500.00.
+Retest: not yet confirmed on a later completed bar.
+
+Events processed this run:
+- BUY at 2026-09-18 08:00:00 UTC, close 77,798.01
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
