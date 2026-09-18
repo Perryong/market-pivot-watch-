@@ -21,20 +21,47 @@ from .providers import NoRedirect
 from .site import MAX_AGE, e, level_chart, price
 
 
+def reading(report):
+    decision = decide(report)
+    setup = report.get('setup')
+    decision['pending'] = bool(decision['decision'] == 'WAIT' and setup
+                               and not setup.get('retest_close_time')
+                               and not any(report.get(k) for k in ('baseline', 'demo', 'error')))
+    action = 'RETEST PENDING' if decision['pending'] else decision['action']
+    decision['heading'] = f"{decision['decision']} — {action}"
+    return decision
+
+
 def caption(report):
     heading = f"{report['id']} · {clock(report['checked_at'], 'Asia/Singapore')}"
     if report.get('error'):
         return heading + '\nDATA UNAVAILABLE — WAIT\n' + report['error'][:500]
-    decision = decide(report)
-    return '\n'.join([
-        heading, f"Decision: {decision['decision']} — {decision['action']}",
-        f"Breakout: {report.get('signal') or 'NO NEW SIGNAL'}",
+    decision = reading(report)
+    detected = {'BUY': 'Bullish breakout', 'SELL': 'Bearish breakout'}.get(report.get('signal'), 'No new breakout')
+    lines = [heading, f"Decision: {decision['heading']}",
+             f'Detected: {detected} — not an entry instruction.', f"Why: {decision['reason']}"]
+    setup = report.get('setup')
+    exiting = decision['decision'] in ('SELL / EXIT LONG', 'BUY / EXIT SHORT')
+    if setup and not exiting:
+        long = setup['side'] == 'BUY'
+        pivot = price(report['upper'] if long else report['lower'])
+        if decision['pending']:
+            lines.append(f'Confirmation needed: a later 4H candle opens {"at/above" if long else "at/below"} {pivot}, '
+                         f'touches it and closes {"above" if long else "below"}. Active touches do not count.')
+        lines.append(f'Invalidation: completed 4H close {"below" if long else "above"} {pivot}; '
+                     'exit only if holding this position.')
+        targets = report['bullish_targets' if long else 'bearish_targets']
+        lines.append('Conditional T1/T2: ' + ' / '.join(map(price, targets)) + ' — not an entry price or guaranteed outcome.')
+    elif exiting:
+        lines.append('Targets: inactive for the invalidated setup; this is not an opposite-side entry.')
+    else:
+        lines.append('Next: wait for a new breakout, then a later completed retest. No entry is confirmed.')
+    lines += [
         f"4H close: {price(report['close'])} at {clock(report['close_time'], 'Asia/Singapore')}",
         f"Quote at check: {price(report['quote']['price'])}",
         f"Pivots: {price(report['lower'])} / {price(report['upper'])}",
-        'Bullish T1/T2: ' + ' / '.join(map(price, report['bullish_targets'])),
-        'Bearish T1/T2: ' + ' / '.join(map(price, report['bearish_targets'])),
-        'Application chart snapshot · Conditional levels; no orders placed.', report['chart']])
+        'Snapshot only; no orders placed.', report['chart']]
+    return '\n'.join(lines)
 
 
 def render_chart(report):
@@ -52,13 +79,14 @@ def render_chart(report):
         html = root/'chart.html'
         html.write_text('<!doctype html><meta charset="utf-8"><style>' + css +
                         'body{padding:20px}.level-chart{margin:0}h2{margin:0 0 12px}</style>' +
-                        f'<h2>{e(report["id"])} · {e(decide(report)["decision"])} · {e(clock(report["checked_at"], "Asia/Singapore"))}</h2>' + chart,
+                        f'<h2>{e(report["id"])} · {e(reading(report)["heading"])}</h2>' +
+                        f'<p class="meta">Snapshot: {e(clock(report["checked_at"], "Asia/Singapore"))}</p>' + chart,
                         encoding='utf-8')
         image = root/'chart.png'
         command = [browser, '--headless', '--disable-gpu', '--hide-scrollbars',
                    '--no-first-run', '--no-default-browser-check', '--force-device-scale-factor=1',
                    '--timeout=5000', '--disable-background-networking',
-                   '--window-size=1200,720', '--user-data-dir=' + str(root/'profile'),
+                   '--window-size=1200,900', '--user-data-dir=' + str(root/'profile'),
                    '--screenshot=' + str(image), html.as_uri()]
         if os.getenv('GITHUB_ACTIONS') == 'true':
             command.insert(1, '--no-sandbox')
