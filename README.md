@@ -39,8 +39,12 @@ captured from a signed-in TradingView layout.**
 | XAUUSD (enabled) | OANDA XAU_USD midpoint | OANDA:XAUUSD | v20 account with instrument/API access |
 | USOIL (enabled) | OANDA WTICO_USD midpoint, WTI CFD | OANDA:WTICOUSD | Existing OANDA account must support the instrument |
 
-BTCUSD is quoted in USD; BTCUSDT is quoted in USDT. The original 76,200/77,500
-watch range belongs to BTCUSDT only. All six markets are enabled in
+BTCUSD is quoted in USD; BTCUSDT is quoted in USDT. Both now initialize pivots
+automatically from their own six prior completed 4H candles, then keep those
+levels frozen. BTCUSDT no longer uses the original 76,200/77,500 manual range;
+its next analysis establishes a new baseline and clears the old setup without
+emitting a breakout. Different feeds and baseline dates can produce different
+levels even with the same calculation method. All six markets are enabled in
 `config.json`; each can be disabled independently.
 
 Website tabs, fresh reports, Telegram delivery and journal sections follow the
@@ -188,6 +192,14 @@ readings, normalized analysis candles, five-minute review evidence, decisions,
 configuration and run metadata. The Markdown remains unchanged in purpose.
 See [Data history and review guide](docs/DATA_HISTORY.md) for fields, retries,
 limitations and rebuilding CSV without provider requests.
+
+The optional top-level `shadow` configuration adds a separate research assessment
+without replacing baseline website, Telegram or Pine signals. It records entry
+distance, proposed stops, net reward/risk, setup expiry and missed moves in the
+Markdown/JSON/CSV outputs and a separate dashboard research panel beneath the
+baseline decision. Costs default to unknown, so an opportunity cannot
+pass all shadow entry checks until an explicit estimate is configured. See the
+[shadow evaluation guide](docs/SHADOW_EVALUATION.md) for exact rules and settings.
 
 Each review freezes the previous decision and levels, records quote movement,
 and checks eligible BUY/SELL targets against completed five-minute candles.

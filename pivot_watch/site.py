@@ -2,6 +2,7 @@
 import argparse
 from html import escape
 import json
+import math
 from pathlib import Path
 import re
 import shutil
@@ -77,6 +78,75 @@ def decision_panel(report):
 <p class="eyebrow">DECISION AT THIS CHECK</p><h3>{e(d['decision'])}</h3>
 <p class="decision-action">{e(d['action'])}</p><p>{e(d['reason'])}</p>
 <p class="meta">BUY / SELL means strategy eligibility, not an instruction to trade at any price. Check the timestamp and conditional levels below. No orders are placed.</p></div>'''
+
+def shadow_panel(report):
+    result = report.get('shadow') or {}
+    if report.get('error'):
+        result = dict(status='DATA_UNAVAILABLE', decision='WAIT', reason='UNVERIFIED_DATA')
+    elif report.get('demo'):
+        result = dict(status='DEMO_ONLY', decision='WAIT', reason='SYNTHETIC_DATA')
+    explanations = {
+        'WAIT_FOR_NEW_BREAKOUT': 'Wait for a new observed breakout. Existing setups are not approved retroactively.',
+        'WAIT_FOR_RETEST': 'Waiting for a later completed 4H retest before checking entry risk.',
+        'TOO_FAR_FROM_PIVOT': 'The assessed quote was too far from the pivot. This entry opportunity stays rejected.',
+        'INSUFFICIENT_REWARD': 'Remaining reward to T1 was too small relative to the proposed stop and estimated costs.',
+        'COSTS_NOT_CONFIGURED': 'Costs are unknown. Configure an explicit round-trip estimate for future setups; this entry stays rejected.',
+        'SETUP_EXPIRED': 'No qualifying retest occurred within the allowed completed candles.',
+        'MISSED_MOVE': 'T1 was observed before entry eligibility. A later retest cannot revive this opportunity.',
+        'RISK_CHECKS_PASSED': 'The shadow checks passed at the recorded assessment; this is not an order or a fill.',
+        'ATR_UNAVAILABLE': 'There was not enough contiguous completed history for a positive ATR.',
+        'QUOTE_UNAVAILABLE': 'The quote could not be verified for this entry assessment.',
+        'QUOTE_WRONG_SIDE': 'The quote had crossed back through the pivot at assessment.',
+        'INVALID_STOP': 'The proposed stop did not define a valid positive loss distance.',
+        'HISTORICAL_RETEST': 'The retest was discovered during catch-up. No historical fill is assumed.',
+        'DATA_SESSION_GAP': 'A data or session gap invalidated the pending shadow opportunity.',
+        'SETUP_INVALIDATED': 'A completed 4H close invalidated the tracked setup.',
+        'UNVERIFIED_DATA': 'No verified market reading is available for shadow evaluation.',
+        'SHADOW_CONFIG_OR_STATE_INVALID': 'Shadow settings or saved state need review; the baseline is separate.',
+        'SYNTHETIC_DATA': 'Synthetic demonstration only. No shadow entry is approved.',
+    }
+    status = result.get('status', 'NOT_AVAILABLE')
+    reasons = result.get('rejection_reasons') or [result.get('reason', 'NOT_AVAILABLE')]
+    if not isinstance(reasons, list) or any(not isinstance(reason, str) for reason in reasons):
+        raise ValueError('Invalid shadow reasons')
+    why = ''.join(f'<li><b>{e(reason)}</b> — {e(explanations.get(reason, "No verified shadow assessment is recorded."))}</li>' for reason in reasons)
+    def metric(values, key, suffix=''):
+        value = values.get(key)
+        if type(value) not in (int, float) or not math.isfinite(value):
+            return 'Not calculated'
+        return f'{value:,.2f}{suffix}'
+    metrics = [('Assessed entry quote', metric(result, 'entry')), ('Proposed stop', metric(result, 'stop')),
+               ('Target used: T1', metric(result, 'target')), ('ATR (simple mean)', metric(result, 'atr')),
+               ('Distance from pivot', metric(result, 'distance_atr', ' × ATR')),
+               ('Net reward / risk', metric(result, 'net_rr', ' : 1')),
+               ('Gross reward / risk', metric(result, 'gross_rr', ' : 1'))]
+    settings = result.get('settings') or {}
+    metrics.append(('Round-trip cost estimate', metric(settings, 'round_trip_cost_bps', ' bps')))
+    cards = ''.join(f'<div><span>{e(label)}</span><strong>{e(value)}</strong></div>' for label, value in metrics)
+    notes = []
+    assessed = result.get('evaluated_at')
+    if assessed is not None:
+        if type(assessed) not in (int, float) or not math.isfinite(assessed) or not 0 <= assessed <= report['checked_at']:
+            raise ValueError('Invalid shadow assessment time')
+        notes.append(f'{"Earlier assessment" if assessed < report["checked_at"] else "Assessed"}: {clock(assessed, "Asia/Singapore")}. Values are frozen, not a new quote.')
+    if status == 'ENTRY_ELIGIBLE' and result.get('decision') == 'WAIT':
+        notes.append('Previously eligible; no new entry at this check.')
+    if settings:
+        notes.append(f'Frozen research limits: distance ≤ {metric(settings, "max_entry_atr", " × ATR")}; net RR ≥ {metric(settings, "min_rr", " : 1")}.')
+        notes.append(f'Setup age at last assessment: {result.get("age_candles", "—")} / {settings.get("retest_candles", "—")} subsequent completed 4H candles.')
+        if settings.get('round_trip_cost_bps') is None:
+            notes.append('Costs not configured: shadow entry cannot pass until an explicit estimate is set for a new setup.')
+    if result.get('range_review_due'):
+        notes.append('Range age review due. Pivot levels have not moved.')
+    return f'''<details class="shadow-panel" aria-label="Shadow risk evaluation — research only">
+<summary>Shadow risk evaluation <span class="meta">— research only</span></summary>
+<p class="eyebrow">RESEARCH ONLY · BASELINE UNCHANGED</p>
+<div class="metrics shadow-comparison"><div><span>Baseline decision</span><strong>{e(decide(report)['decision'])}</strong></div>
+<div><span>Shadow decision</span><strong>{e(result.get('decision', 'WAIT'))}</strong></div></div>
+<p><b>Shadow status: {e(status)}</b></p><ul>{why}</ul>
+<div class="metrics shadow-metrics">{cards}</div>
+{''.join(f'<p class="meta">{e(note)}</p>' for note in notes)}
+<p class="meta">Metrics appear when a retest is assessed; missing values are not a pass. Experimental checks, not proven profitability. A proposed stop is not broker protection. No orders placed or fills assumed.</p></details>'''
 
 def strategy_panel(report):
     if 'error' in report:
@@ -163,12 +233,18 @@ def build(out, destination, config, now):
 <button class="button copy-pine" type="button" aria-controls="pine-{ident}">Copy Pine code</button>
 <span class="copy-status" role="status"></span><pre><code id="pine-{ident}">{e(script)}</code></pre></details>'''
         buttons.append(f'<button class="market-tab" id="tab-{ident}" role="tab" aria-controls="panel-{ident}" aria-selected="{str(n==0).lower()}" tabindex="{0 if n==0 else -1}" data-market="{ident}">{ident}</button>')
+        try:
+            research = shadow_panel(r)
+        except (AttributeError, KeyError, TypeError, ValueError, OverflowError, OSError):
+            research = shadow_panel(dict(r, shadow=dict(status='DATA_UNAVAILABLE', decision='WAIT',
+                                                       reason='SHADOW_CONFIG_OR_STATE_INVALID')))
         panels.append(f'''<section class="market-panel" id="panel-{ident}" role="tabpanel" aria-labelledby="tab-{ident}" data-symbol="{symbol}" data-checked="{checked}" {'hidden' if n else ''}>
 <div class="panel-heading"><div><p class="eyebrow">{symbol} · 4H</p><h2>{ident}</h2></div><span class="badge">Completed candles only</span></div>
 <div class="stale-notice" role="status" hidden>STALE REPORT — wait for a fresh verified check. Values below are historical; do not treat them as a current signal.</div>
 <div class="signal"><strong>{e(status)}</strong><span>Breakout notification; entry decision is shown below.</span></div>
 <p class="meta">Analysis check: {e(clock(checked, 'Asia/Singapore'))}</p>
 {decision_panel(r)}
+{research}
 {level_chart(r)}
 {code}
 <h3>TradingView live chart</h3>

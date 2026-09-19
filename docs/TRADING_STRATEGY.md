@@ -34,6 +34,10 @@ latest candle is excluded from calibration. Missing required bars prevent
 initialization. The first successful reading establishes a baseline, not a
 historical BUY or SELL. Pivots do not move automatically on every run.
 
+BTCUSDT now uses this same automatic initialization as BTCUSD, with its own
+Binance candles. Switching from its old manually configured range establishes
+a new BTCUSDT baseline and clears its old setup; other markets are unaffected.
+
 Let L = lower pivot, U = upper pivot, W = U - L. Bullish targets are U + W and
 U + 2W; bearish targets are L - W and L - 2W. Invalid ranges and nonpositive
 downside targets are rejected. A deliberate configuration change establishes
@@ -153,6 +157,13 @@ New runs also archive JSON evidence and monthly CSV under `history/YYYY/MM/`.
 Use the [data history guide](DATA_HISTORY.md) to inspect the exact saved candles,
 decisions, coverage gaps and run metadata, or regenerate CSV. This supplements
 the Markdown without introducing new trading rules or multi-run position tracking.
+
+The separate [shadow risk evaluation](SHADOW_EVALUATION.md) now compares an
+experimental risk-filtered opportunity against the unchanged baseline. It adds
+distance/RR checks, proposed stops, expiry and missed-move tracking to stored
+research results only. It does not alter website, Telegram or Pine signals.
+The dashboard shows those results in a separate research-only panel below the
+unchanged baseline decision; it does not treat a proposed stop as a broker order.
 
 ## 8. Setup and validation steps
 

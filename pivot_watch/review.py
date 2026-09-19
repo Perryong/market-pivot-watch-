@@ -16,6 +16,7 @@ from .decision import decide
 from .providers import fetch_review_bars
 from .site import MAX_AGE
 from . import history
+from .shadow import summary as shadow_summary
 
 
 def cell(value):
@@ -169,6 +170,8 @@ def write_review(payload, config, state_path, directory, provider=fetch_review_b
             decision = {'decision': 'WAIT', 'action': 'Unverified report', 'reason': 'Report validation failed'}
             evidence.update(status='DATA_UNAVAILABLE', data_status='INVALID_REPORT')
         lines += [f'Next observation starts from: **{cell(decision["decision"])} — {cell(decision["action"])}**.', '']
+        if report.get('shadow'):
+            lines += [shadow_summary(report), '']
         if not report.get('error'):
             lines += [f'Reference quote: {report["quote"]["price"]:,.4f}. '
                       f'Pivots: {report["lower"]:,.4f} / {report["upper"]:,.4f}.',
