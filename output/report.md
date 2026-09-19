@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-09-19 22:44:04 +08** / 2026-09-19 14:44:04 UTC.
+Checked **2026-09-20 00:38:31 +08** / 2026-09-19 16:38:31 UTC.
 
 ## BTCUSD
 
@@ -15,11 +15,11 @@ Completed-candle state: **bullish**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 81,280.00 |
-| Previous completed close | 81,073.15 |
-| Close time | 2026-09-19 20:00:00 +08 / 2026-09-19 12:00:00 UTC |
-| Current price | 81,509.68 at 2026-09-19 14:44:03 UTC |
-| Range low / high | 80,471.00 / 81,720.00 |
+| Latest completed 4H close | 81,626.45 |
+| Previous completed close | 81,280.00 |
+| Close time | 2026-09-20 00:00:00 +08 / 2026-09-19 16:00:00 UTC |
+| Current price | 81,805.78 at 2026-09-19 16:38:29 UTC |
+| Range low / high | 80,552.76 / 81,925.00 |
 
 Range definition: Provider rolling 24h range (retrieved at check time).
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -57,11 +57,11 @@ Completed-candle state: **neutral**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 81,302.63 |
-| Previous completed close | 81,100.16 |
-| Close time | 2026-09-19 20:00:00 +08 / 2026-09-19 12:00:00 UTC |
-| Current price | 81,546.02 at 2026-09-19 14:44:06 UTC |
-| Range low / high | 80,501.00 / 81,741.00 |
+| Latest completed 4H close | 81,636.01 |
+| Previous completed close | 81,302.63 |
+| Close time | 2026-09-20 00:00:00 +08 / 2026-09-19 16:00:00 UTC |
+| Current price | 81,829.30 at 2026-09-19 16:38:32 UTC |
+| Range low / high | 80,555.54 / 81,951.00 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -97,11 +97,11 @@ Completed-candle state: **neutral**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 2,638.60 |
-| Previous completed close | 2,626.24 |
-| Close time | 2026-09-19 20:00:00 +08 / 2026-09-19 12:00:00 UTC |
-| Current price | 2,638.55 at 2026-09-19 14:44:05 UTC |
-| Range low / high | 2,564.28 / 2,661.62 |
+| Latest completed 4H close | 2,640.59 |
+| Previous completed close | 2,638.60 |
+| Close time | 2026-09-20 00:00:00 +08 / 2026-09-19 16:00:00 UTC |
+| Current price | 2,648.07 at 2026-09-19 16:38:31 UTC |
+| Range low / high | 2,584.51 / 2,661.62 |
 
 Range definition: Provider rolling 24h range (retrieved at check time).
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -138,11 +138,11 @@ Completed-candle state: **neutral**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 2,639.67 |
-| Previous completed close | 2,626.95 |
-| Close time | 2026-09-19 20:00:00 +08 / 2026-09-19 12:00:00 UTC |
-| Current price | 2,639.28 at 2026-09-19 14:44:08 UTC |
-| Range low / high | 2,565.59 / 2,662.85 |
+| Latest completed 4H close | 2,641.16 |
+| Previous completed close | 2,639.67 |
+| Close time | 2026-09-20 00:00:00 +08 / 2026-09-19 16:00:00 UTC |
+| Current price | 2,648.75 at 2026-09-19 16:38:34 UTC |
+| Range low / high | 2,585.26 / 2,662.85 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
