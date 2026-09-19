@@ -1,4 +1,4 @@
-# XAUUSD + BTCUSD + BTCUSDT + USOIL Four-Hour Pivot Watch
+# BTCUSD + BTCUSDT + ETHUSD + ETHUSDT + XAUUSD + USOIL Four-Hour Pivot Watch
 
 Read the [Trading strategy and operating guide](docs/TRADING_STRATEGY.md) for
 the rules, worked example, setup steps and observation-journal interpretation.
@@ -12,7 +12,7 @@ pip packages required (system timezone data is required; GitHub Ubuntu provides 
 - Reports on every run: BUY / SELL / NO NEW SIGNAL / DATA UNAVAILABLE, completed
   candle close and time, current quote, range, entry/exit conditions and T1/T2.
 - Completed 4H signals, persistent deduplication and explicit invalidation.
-- Complete `output/<market>.pine` presets for BTCUSD, BTCUSDT, XAUUSD and USOIL after successful data checks.
+- Complete `output/<market>.pine` presets for all six markets after successful data checks.
   Install these in TradingView once to see six lines, entry/exit labels, confirmed
   signal markers and later completed retest markers update with the chart.
 - Workflow summary, downloadable artifacts and latest committed reports.
@@ -33,13 +33,21 @@ captured from a signed-in TradingView layout.**
 | Config ID | Data | Actual TradingView symbol | Access |
 |---|---|---|---|
 | BTCUSD (enabled) | Coinbase Exchange BTC-USD | COINBASE:BTCUSD | Public read-only API |
-| XAUUSD (enabled) | OANDA XAU_USD midpoint | OANDA:XAUUSD | v20 account with instrument/API access |
 | BTCUSDT (enabled) | Binance spot | BINANCE:BTCUSDT | Public read-only API, region availability varies |
+| ETHUSD (enabled) | Coinbase Exchange ETH-USD | COINBASE:ETHUSD | Public read-only API |
+| ETHUSDT (enabled) | Binance spot | BINANCE:ETHUSDT | Public read-only API, region availability varies |
+| XAUUSD (enabled) | OANDA XAU_USD midpoint | OANDA:XAUUSD | v20 account with instrument/API access |
 | USOIL (enabled) | OANDA WTICO_USD midpoint, WTI CFD | OANDA:WTICOUSD | Existing OANDA account must support the instrument |
 
 BTCUSD is quoted in USD; BTCUSDT is quoted in USDT. The original 76,200/77,500
-watch range belongs to BTCUSDT only. All four markets are enabled in
+watch range belongs to BTCUSDT only. All six markets are enabled in
 `config.json`; each can be disabled independently.
+
+Website tabs, fresh reports, Telegram delivery and journal sections follow the
+configuration order: BTCUSD, BTCUSDT, ETHUSD, ETHUSDT, XAUUSD, USOIL. ETHUSD and
+ETHUSDT use separate USD/USDT feeds and independent automatically initialized
+fixed pivots. Adding them does not reset existing market state. Their first
+successful readings establish baselines, not historical entry signals.
 
 Coinbase's Exchange API has no native 4H candle. We combine exactly four
 contiguous completed H1 bars aligned to UTC. Missing hours are never invented.
@@ -173,6 +181,13 @@ Every workflow run compares the previous recorded reading with the new one and
 commits a dated Markdown file to `strategy-reviews/`. The latest copy is
 `output/strategy-review.md`, also included in the workflow summary and artifact.
 The first file is a baseline, not a historical performance claim.
+
+Each new review also saves a dated JSON evidence snapshot under `history/YYYY/MM/`
+and regenerates that month's `readings.csv`. Snapshots include the original
+readings, normalized analysis candles, five-minute review evidence, decisions,
+configuration and run metadata. The Markdown remains unchanged in purpose.
+See [Data history and review guide](docs/DATA_HISTORY.md) for fields, retries,
+limitations and rebuilding CSV without provider requests.
 
 Each review freezes the previous decision and levels, records quote movement,
 and checks eligible BUY/SELL targets against completed five-minute candles.

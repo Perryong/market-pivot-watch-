@@ -65,7 +65,8 @@ class TelegramTests(unittest.TestCase):
 
     def test_photo_and_failure_message_with_receipts_prevent_repeat_send(self):
         payload = self.reports()
-        payload['markets'][1] = {'id': 'XAUUSD', 'checked_at': NOW, 'error': 'Market unavailable'}
+        gold = next(r for r in payload['markets'] if r['id'] == 'XAUUSD')
+        gold['error'] = 'Market unavailable'
         with tempfile.TemporaryDirectory() as d:
             state = Path(d)/'sent.json'
             sent = []
@@ -75,14 +76,14 @@ class TelegramTests(unittest.TestCase):
                     raise DataError('Telegram HTTP 503')
             with patch.object(telegram, 'render_chart', return_value=b'PNG'), patch.object(telegram, 'send', side_effect=sender):
                 self.assertEqual(telegram.notify(payload, 'token', 'chat', state, NOW), 1)
-                self.assertEqual(len(sent), 4)
-                self.assertTrue(sent[3][0].startswith('USOIL'))
-                self.assertIn('OANDA%3AWTICOUSD', sent[3][0])
-                self.assertEqual(sent[3][1], b'PNG')
+                self.assertEqual([c.split(' · ')[0] for c, _ in sent],
+                                 ['BTCUSD', 'BTCUSDT', 'ETHUSD', 'ETHUSDT', 'XAUUSD', 'USOIL'])
+                self.assertIn('OANDA%3AWTICOUSD', sent[5][0])
+                self.assertEqual(sent[5][1], b'PNG')
                 self.assertEqual(sent[0][1], b'PNG')
                 self.assertIn('WAIT', sent[0][0])
-                self.assertIsNone(sent[1][1])
-                self.assertIn('DATA UNAVAILABLE', sent[1][0])
+                self.assertIsNone(sent[4][1])
+                self.assertIn('DATA UNAVAILABLE', sent[4][0])
                 sent.clear()
                 self.assertEqual(telegram.notify(payload, 'token', 'chat', state, NOW), 1)
                 self.assertEqual(len(sent), 1)

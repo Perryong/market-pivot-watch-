@@ -61,6 +61,7 @@ def run(config, saved, now, provider=fetch):
             state["markets"][ident] = next_state
             base.update(report)
             base.update({k: v for k, v in data.items() if k != "candles"})
+            base['analysis_candles'] = [asdict(c) for c in data['candles']]
             base["chart_candles"] = [asdict(c) for c in sorted(data["candles"], key=lambda c: c.start)
                                      if c.complete and c.end <= now][-60:]
             base["status"] = "NEW SIGNAL" if report["signal"] else "NO NEW SIGNAL"
@@ -77,7 +78,7 @@ def run(config, saved, now, provider=fetch):
 
 def demo_fetch(config, now):
     """Deterministic synthetic fixtures. Never used without explicit --demo."""
-    price = {'XAUUSD': 2500.0, 'USOIL': 80.0}.get(config['id'], 70000.0)
+    price = {'XAUUSD': 2500.0, 'USOIL': 80.0, 'ETHUSD': 3000.0, 'ETHUSDT': 3000.0}.get(config['id'], 70000.0)
     spread = price * .01
     end = int(now) // H4 * H4
     bars = [Candle(end - (8 - i) * H4, price, price + spread, price - spread, price) for i in range(8)]

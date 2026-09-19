@@ -9,9 +9,16 @@ prove that the strategy is profitable.
 | Application market | Analysis feed | TradingView symbol |
 |---|---|---|
 | BTCUSD | Coinbase BTC-USD | COINBASE:BTCUSD |
-| XAUUSD | OANDA XAU_USD midpoint | OANDA:XAUUSD |
 | BTCUSDT | Binance BTCUSDT | BINANCE:BTCUSDT |
+| ETHUSD | Coinbase ETH-USD | COINBASE:ETHUSD |
+| ETHUSDT | Binance ETHUSDT | BINANCE:ETHUSDT |
+| XAUUSD | OANDA XAU_USD midpoint | OANDA:XAUUSD |
 | USOIL | OANDA WTICO_USD midpoint | OANDA:WTICOUSD |
+
+This is also the order used by website tabs, Telegram messages, newly generated
+reports and journal sections. ETHUSD and ETHUSDT have separate state and pivots;
+USD and USDT quotes are not interchangeable. Their first successful observations
+establish independent baselines without altering the existing markets' state.
 
 USOIL here is OANDA's West Texas Oil CFD, not a generic spot price, a particular
 exchange futures contract, or another broker's USOIL feed. Access was verified
@@ -141,6 +148,11 @@ missing evidence, changed parameters and nonstandard intervals are labelled.
 History retrieval is capped at 24 hours; larger gaps are not scored. WAIT is not
 counted as a win. Intrabar order, fees, spreads, slippage and fills are unknown.
 This is forward observation, not a profitability backtest.
+
+New runs also archive JSON evidence and monthly CSV under `history/YYYY/MM/`.
+Use the [data history guide](DATA_HISTORY.md) to inspect the exact saved candles,
+decisions, coverage gaps and run metadata, or regenerate CSV. This supplements
+the Markdown without introducing new trading rules or multi-run position tracking.
 
 ## 8. Setup and validation steps
 
