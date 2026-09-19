@@ -1,4 +1,5 @@
 import json
+import csv
 from pathlib import Path
 import tempfile
 import unittest
@@ -24,6 +25,104 @@ def reading(when, decision='BUY'):
 
 
 class ReviewTests(unittest.TestCase):
+    def test_archive_keeps_original_readings_evidence_and_regenerable_csv(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            old = reading(T)
+            old['events'] = [{'type': 'RETEST_CONFIRMED', 'historical': False, 'close_time': old['close_time']}]
+            first = review.write_review({'checked_at': T, 'markets': [old]}, CONFIG,
+                                        root/'state.json', root/'reviews')
+            snapshots = list((root/'history').rglob('*.json'))
+            self.assertEqual(len(snapshots), 1, 'Each reading needs its own evidence snapshot')
+            original = snapshots[0].read_bytes()
+            current = reading(T+H4)
+            current['chart_candles'] = [{'start': T//H4*H4, 'open': 115, 'high': 132,
+                                         'low': 112, 'close': 125, 'complete': True}]
+            current['analysis_candles'] = current['chart_candles']
+            bars = [dict(start=T+i*300, end=T+(i+1)*300, open=115, high=132, low=112, close=125)
+                    for i in range(48)]
+            payload = {'checked_at': T+H4, 'markets': [current]}
+            provider = unittest.mock.Mock(return_value=bars)
+            path = review.write_review(payload, CONFIG, root/'state.json', root/'reviews', provider)
+            files = sorted((root/'history').rglob('*.json'))
+            self.assertEqual(len(files), 2)
+            snapshot = json.loads(files[-1].read_text())
+            item = snapshot['readings'][0]
+            self.assertEqual(item['report']['analysis_candles'], current['analysis_candles'])
+            self.assertEqual(item['previous_reading']['quote']['price'], 115)
+            self.assertEqual(item['evidence']['bars_5m'], bars)
+            self.assertEqual(item['evidence']['status'], 'NOT_INVALIDATED')
+            self.assertEqual(item['evidence']['targets'][0]['first_touch_start'], T)
+            self.assertIn('reason', item['decision'])
+            self.assertEqual(snapshot['markdown'], path.read_text())
+            self.assertEqual(snapshots[0].read_bytes(), original)
+            self.assertEqual(provider.call_count, 1)
+            csv_path = files[-1].parent/'readings.csv'
+            rows = list(csv.DictReader(csv_path.read_text().splitlines()))
+            self.assertEqual(len(rows), 2)
+            self.assertEqual(rows[1]['review_status'], 'NOT_INVALIDATED')
+            self.assertEqual(rows[1]['prior_decision'], 'BUY')
+            csv_path.unlink()  # A disposable export, not the source of truth.
+            self.assertEqual(review.write_review(payload, CONFIG, root/'state.json', root/'reviews', provider), path)
+            self.assertTrue(csv_path.exists())
+            self.assertEqual(provider.call_count, 1, 'Replay must not refetch or revise evidence')
+            self.assertTrue(first.exists())
+
+    def test_interrupted_publish_reuses_frozen_archive_and_rejects_changed_inputs(self):
+        from pivot_watch import history
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            payload = {'checked_at': T, 'markets': [reading(T)]}
+            with patch.object(history, 'export_month', side_effect=OSError('interrupted')):
+                with self.assertRaises(OSError):
+                    review.write_review(payload, CONFIG, root/'state.json', root/'reviews')
+            self.assertFalse((root/'state.json').exists())
+            self.assertEqual(len(list((root/'reviews').glob('*.md'))), 1)
+            archive = next((root/'history').rglob('*.json'))
+            frozen = archive.read_bytes()
+            path = review.write_review(payload, CONFIG, root/'state.json', root/'reviews',
+                                       lambda *args: self.fail('Recovery must not fetch data'))
+            self.assertTrue(path.exists())
+            self.assertTrue((root/'state.json').exists())
+            self.assertEqual(archive.read_bytes(), frozen)
+            payload['markets'][0]['quote']['price'] = 999
+            with self.assertRaises(DataError):
+                review.write_review(payload, CONFIG, root/'state.json', root/'reviews')
+            self.assertEqual(archive.read_bytes(), frozen)
+            csv_path = archive.parent/'readings.csv'
+            csv_before = csv_path.read_bytes()
+            archive.write_text('{invalid')
+            with self.assertRaises(DataError):
+                history.export_month(archive.parent)
+            self.assertEqual(csv_path.read_bytes(), csv_before)
+
+    def test_unavailable_evidence_and_failed_markets_are_archived_without_secrets(self):
+        from copy import deepcopy
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            config = deepcopy(CONFIG)
+            config['token'] = 'NEVER_ARCHIVE_THIS'
+            config['markets'][0]['password'] = 'NEVER_ARCHIVE_THIS'
+            review.write_review({'checked_at': T, 'markets': [reading(T)]}, config,
+                                root/'state.json', root/'reviews')
+            def unavailable(*args):
+                raise DataError('NEVER_ARCHIVE_THIS')
+            review.write_review({'checked_at': T+H4, 'markets': [reading(T+H4)]}, config,
+                                root/'state.json', root/'reviews', unavailable)
+            archive = sorted((root/'history').rglob('*.json'))[-1]
+            item = json.loads(archive.read_text())['readings'][0]
+            self.assertEqual(item['evidence']['status'], 'INCOMPLETE_EVIDENCE')
+            self.assertEqual(item['evidence']['bars_5m'], [])
+            failed = {'id': 'BTCUSD', 'checked_at': T+2*H4, 'error': '=untrusted spreadsheet text'}
+            review.write_review({'checked_at': T+2*H4, 'markets': [failed]}, config,
+                                root/'state.json', root/'reviews', unavailable)
+            archive = sorted((root/'history').rglob('*.json'))[-1]
+            self.assertEqual(json.loads(archive.read_text())['readings'][0]['evidence']['status'], 'DATA_UNAVAILABLE')
+            self.assertIn("'=untrusted spreadsheet text", (archive.parent/'readings.csv').read_text())
+            for path in (root/'history').rglob('*'):
+                if path.is_file():
+                    self.assertNotIn('NEVER_ARCHIVE_THIS', path.read_text())
+
     def test_review_scores_previous_plan_not_new_levels(self):
         old, current = reading(T), reading(T+H4)
         current['quote']['price'] = 132

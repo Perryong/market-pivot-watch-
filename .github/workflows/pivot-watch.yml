@@ -87,6 +87,9 @@ jobs:
           if [ -f .state/review.json ]; then
             git add -- .state/review.json strategy-reviews
           fi
+          if [ -d history ]; then
+            git add -- history
+          fi
           if ! git diff --cached --quiet; then
             git commit -m 'Update analysis and delivery state [skip ci]'
             git push

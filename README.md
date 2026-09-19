@@ -182,6 +182,13 @@ commits a dated Markdown file to `strategy-reviews/`. The latest copy is
 `output/strategy-review.md`, also included in the workflow summary and artifact.
 The first file is a baseline, not a historical performance claim.
 
+Each new review also saves a dated JSON evidence snapshot under `history/YYYY/MM/`
+and regenerates that month's `readings.csv`. Snapshots include the original
+readings, normalized analysis candles, five-minute review evidence, decisions,
+configuration and run metadata. The Markdown remains unchanged in purpose.
+See [Data history and review guide](docs/DATA_HISTORY.md) for fields, retries,
+limitations and rebuilding CSV without provider requests.
+
 Each review freezes the previous decision and levels, records quote movement,
 and checks eligible BUY/SELL targets against completed five-minute candles.
 Completed UTC four-hour closes determine invalidation; target touches after

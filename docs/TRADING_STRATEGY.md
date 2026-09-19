@@ -149,6 +149,11 @@ History retrieval is capped at 24 hours; larger gaps are not scored. WAIT is not
 counted as a win. Intrabar order, fees, spreads, slippage and fills are unknown.
 This is forward observation, not a profitability backtest.
 
+New runs also archive JSON evidence and monthly CSV under `history/YYYY/MM/`.
+Use the [data history guide](DATA_HISTORY.md) to inspect the exact saved candles,
+decisions, coverage gaps and run metadata, or regenerate CSV. This supplements
+the Markdown without introducing new trading rules or multi-run position tracking.
+
 ## 8. Setup and validation steps
 
 1. Keep USOIL enabled in `config.json` with WTICO_USD and OANDA:WTICOUSD.
