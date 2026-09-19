@@ -182,6 +182,8 @@ def main():
     args = parser.parse_args()
     token = os.getenv('TELEGRAM_BOT_TOKEN', '').strip()
     chat = os.getenv('TELEGRAM_CHAT_ID', '').strip()
+    additional = os.getenv('TELEGRAM_ADDITIONAL_CHAT_IDS', '').strip()
+    chat = ','.join(value for value in (chat, additional) if value)
     if not args.dry_run and not token and not chat:
         print('Telegram not configured; set TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID')
         return 0
@@ -190,7 +192,15 @@ def main():
         return 1
     try:
         payload = json.loads((args.out/'latest.json').read_text())
-        return notify(payload, token, chat, args.state, time.time(), args.dry_run)
+        if args.dry_run:
+            return notify(payload, token, chat, args.state, time.time(), args.dry_run)
+        recipients = list(dict.fromkeys(value.strip() for value in chat.split(',')))
+        if any(not re.fullmatch(r'-?[1-9][0-9]*|@[A-Za-z][A-Za-z0-9_]{4,}', value) for value in recipients):
+            raise DataError('Invalid Telegram recipient list')
+        failed = 0
+        for recipient in recipients:
+            failed |= notify(payload, token, recipient, args.state, time.time())
+        return failed
     except (DataError, OSError, ValueError, KeyError, TypeError):
         print('ERROR: Telegram report or delivery state is invalid/unavailable; no reset performed', file=sys.stderr)
         return 1

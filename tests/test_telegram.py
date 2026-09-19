@@ -13,6 +13,42 @@ NOW = 1789516800 + 14460
 
 
 class TelegramTests(unittest.TestCase):
+    def test_cli_additional_recipient_retries_only_failed_destination(self):
+        payload = self.reports()
+        payload['markets'] = payload['markets'][:1]
+        sent = []
+        def sender(token, chat, caption, photo):
+            sent.append(chat)
+            if chat == '222' and sent.count('222') == 1:
+                raise DataError('Telegram rejected recipient')
+        with tempfile.TemporaryDirectory() as directory:
+            Path(directory, 'latest.json').write_text(json.dumps(payload))
+            with patch.dict(telegram.os.environ, {'TELEGRAM_BOT_TOKEN': '123:abc',
+                    'TELEGRAM_CHAT_ID': '111', 'TELEGRAM_ADDITIONAL_CHAT_IDS': ' 222,111,222 '}), \
+                 patch.object(telegram.sys, 'argv', ['telegram', '--out', directory, '--state', directory+'/sent.json']), \
+                 patch.object(telegram.time, 'time', return_value=NOW), \
+                 patch.object(telegram, 'render_chart', return_value=b'PNG'), \
+                 patch.object(telegram, 'send', side_effect=sender):
+                self.assertEqual(telegram.main(), 1)
+                self.assertEqual(sent, ['111', '222'])
+                self.assertEqual(telegram.main(), 0)
+                self.assertEqual(sent, ['111', '222', '222'])
+                self.assertEqual(telegram.main(), 0)
+                self.assertEqual(sent, ['111', '222', '222'])
+
+    def test_cli_validates_all_recipients_before_sending(self):
+        with tempfile.TemporaryDirectory() as directory:
+            Path(directory, 'latest.json').write_text(json.dumps(self.reports()))
+            for invalid in ('222,,333', '222,wrong id', '222,'):
+                with self.subTest(invalid=invalid), \
+                     patch.dict(telegram.os.environ, {'TELEGRAM_BOT_TOKEN': '123:abc',
+                        'TELEGRAM_CHAT_ID': '111', 'TELEGRAM_ADDITIONAL_CHAT_IDS': invalid}), \
+                     patch.object(telegram.sys, 'argv', ['telegram', '--out', directory]), \
+                     patch.object(telegram.time, 'time', return_value=NOW), \
+                     patch.object(telegram, 'notify', return_value=0) as notify:
+                    self.assertEqual(telegram.main(), 1)
+                    notify.assert_not_called()
+
     def test_caption_explains_pending_retests_and_separates_exits_from_entries(self):
         for side, direction, touch, close in [('BUY', 'Bullish', 'at/above', 'above'),
                                               ('SELL', 'Bearish', 'at/below', 'below')]:

@@ -231,6 +231,16 @@ or add it to your intended group, and configure these **GitHub Actions secrets**
 |---|---|
 | `TELEGRAM_BOT_TOKEN` | Token issued by BotFather |
 | `TELEGRAM_CHAT_ID` | Destination chat/group/channel ID; keep a leading minus sign if present |
+| `TELEGRAM_ADDITIONAL_CHAT_IDS` | Optional comma-separated extra chat IDs; the original recipient is retained |
+
+Manage recipients under **Repository Settings → Secrets and variables → Actions**.
+The application combines the original and additional IDs, trims whitespace and
+removes duplicates. Every new private-chat recipient must first open the bot and
+press **Start**. Delivery receipts are separate for each destination: a failure
+for one recipient does not block the others, and successful deliveries are not
+repeated when retrying the same report. Recipient IDs are not hardcoded in source.
+Deploy this code and workflow before expecting the additional secret to be used;
+older deployed code ignores it and continues sending to the original recipient.
 
 For a channel, give the bot permission to post. Keep the bot token out of chat,
 source files and logs. For local runs the same names can go in the ignored

@@ -74,6 +74,7 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TELEGRAM_ADDITIONAL_CHAT_IDS: ${{ secrets.TELEGRAM_ADDITIONAL_CHAT_IDS }}
         run: python -m pivot_watch.telegram
       - name: Persist analysis and Telegram delivery state
         if: always() && hashFiles('output/latest.json') != '' && steps.analysis.outcome != 'skipped'
