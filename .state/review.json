@@ -1,18 +1,18 @@
 {
   "version": 1,
-  "checked_at": 1789774008.6735308,
+  "checked_at": 1789798469.2265177,
   "markets": {
     "BTCUSD": {
       "id": "BTCUSD",
-      "checked_at": 1789774008.6735308,
+      "checked_at": 1789798469.2265177,
       "tradingview_symbol": "COINBASE:BTCUSD",
       "chart": "https://www.tradingview.com/chart/?symbol=COINBASE%3ABTCUSD&interval=240",
       "state": "bullish",
       "signal": null,
       "action": "WAIT FOR CONFIRMATION",
-      "close": 81193.47,
-      "previous_close": 80700.62,
-      "close_time": 1789761600,
+      "close": 81105.04,
+      "previous_close": 80875.04,
+      "close_time": 1789790400,
       "new_candle": true,
       "baseline": false,
       "lower": 74887.5,
@@ -36,11 +36,11 @@
       "events": [],
       "notes": [],
       "quote": {
-        "price": 81011.58,
-        "time": 1789774007.776026
+        "price": 80981.3,
+        "time": 1789798468.271645
       },
-      "low": 76205.46,
-      "high": 81388.47,
+      "low": 77494.83,
+      "high": 81720.0,
       "range_label": "Provider rolling 24h range (retrieved at check time)",
       "source": "coinbase",
       "sources": [
@@ -52,29 +52,17 @@
       "review_decision": "WAIT",
       "review_config": "a60bb5ae4499f9381dd741ea176ac5db821e23ad39ec488f30d555123f4e5b6a"
     },
-    "XAUUSD": {
-      "id": "XAUUSD",
-      "checked_at": 1789774008.6735308,
-      "tradingview_symbol": "OANDA:XAUUSD",
-      "chart": "https://www.tradingview.com/chart/?symbol=OANDA%3AXAUUSD&interval=240",
-      "status": "DATA UNAVAILABLE",
-      "signal": null,
-      "action": "WAIT FOR VERIFIED DATA",
-      "error": "OANDA market closed or instrument not tradeable; no current signal",
-      "review_decision": "WAIT",
-      "review_config": "08213075c5c9b2196d855761a9364ac1addbdb74eaac3f55043f20840bdbffd6"
-    },
     "BTCUSDT": {
       "id": "BTCUSDT",
-      "checked_at": 1789774008.6735308,
+      "checked_at": 1789798469.2265177,
       "tradingview_symbol": "BINANCE:BTCUSDT",
       "chart": "https://www.tradingview.com/chart/?symbol=BINANCE%3ABTCUSDT&interval=240",
       "state": "bullish",
       "signal": null,
       "action": "WAIT FOR CONFIRMATION",
-      "close": 81204.76,
-      "previous_close": 80725.6,
-      "close_time": 1789761600,
+      "close": 81136.01,
+      "previous_close": 80883.87,
+      "close_time": 1789790400,
       "new_candle": true,
       "baseline": false,
       "lower": 76200.0,
@@ -98,11 +86,11 @@
       "events": [],
       "notes": [],
       "quote": {
-        "price": 81026.6,
-        "time": 1789774011.005
+        "price": 81001.5,
+        "time": 1789798471.001
       },
-      "low": 76296.0,
-      "high": 81400.0,
+      "low": 77402.32,
+      "high": 81741.0,
       "range_label": "Provider rolling 24h range",
       "source": "binance",
       "sources": [
@@ -113,9 +101,116 @@
       "review_decision": "WAIT",
       "review_config": "9162b49ac84a547014de01ab76ed5c700dd636429ab0e7a7ea4fa4ae794c03e4"
     },
+    "ETHUSD": {
+      "id": "ETHUSD",
+      "checked_at": 1789798469.2265177,
+      "tradingview_symbol": "COINBASE:ETHUSD",
+      "chart": "https://www.tradingview.com/chart/?symbol=COINBASE%3AETHUSD&interval=240",
+      "state": "neutral",
+      "signal": null,
+      "action": "WAIT FOR CONFIRMATION",
+      "close": 2619.09,
+      "previous_close": 2611.34,
+      "close_time": 1789790400,
+      "new_candle": false,
+      "baseline": true,
+      "lower": 2434.6,
+      "upper": 2646.55,
+      "range_origin": "Frozen high/low of six prior completed 4H candles; latest excluded",
+      "baseline_end": 1789790400,
+      "bullish_targets": [
+        2858.5000000000005,
+        3070.4500000000007
+      ],
+      "bearish_targets": [
+        2222.6499999999996,
+        2010.6999999999994
+      ],
+      "setup": null,
+      "retest_confirmed": false,
+      "events": [],
+      "notes": [
+        "Baseline established; existing price state is not a newly observed signal"
+      ],
+      "quote": {
+        "price": 2625.0,
+        "time": 1789798470.06911
+      },
+      "low": 2483.18,
+      "high": 2646.55,
+      "range_label": "Provider rolling 24h range (retrieved at check time)",
+      "source": "coinbase",
+      "sources": [
+        "https://api.exchange.coinbase.com/products/ETH-USD/candles",
+        "https://api.exchange.coinbase.com/products/ETH-USD/ticker",
+        "https://api.exchange.coinbase.com/products/ETH-USD/stats"
+      ],
+      "status": "NO NEW SIGNAL",
+      "review_decision": "WAIT",
+      "review_config": "7b5e902c2101e40fa5c90e91ea44b272a6a56a5893316310a24ece0e3b025da3"
+    },
+    "ETHUSDT": {
+      "id": "ETHUSDT",
+      "checked_at": 1789798469.2265177,
+      "tradingview_symbol": "BINANCE:ETHUSDT",
+      "chart": "https://www.tradingview.com/chart/?symbol=BINANCE%3AETHUSDT&interval=240",
+      "state": "neutral",
+      "signal": null,
+      "action": "WAIT FOR CONFIRMATION",
+      "close": 2620.18,
+      "previous_close": 2612.14,
+      "close_time": 1789790400,
+      "new_candle": false,
+      "baseline": true,
+      "lower": 2436.89,
+      "upper": 2646.0,
+      "range_origin": "Frozen high/low of six prior completed 4H candles; latest excluded",
+      "baseline_end": 1789790400,
+      "bullish_targets": [
+        2855.11,
+        3064.2200000000003
+      ],
+      "bearish_targets": [
+        2227.7799999999997,
+        2018.6699999999996
+      ],
+      "setup": null,
+      "retest_confirmed": false,
+      "events": [],
+      "notes": [
+        "Baseline established; existing price state is not a newly observed signal"
+      ],
+      "quote": {
+        "price": 2625.43,
+        "time": 1789798471.999
+      },
+      "low": 2482.32,
+      "high": 2646.0,
+      "range_label": "Provider rolling 24h range",
+      "source": "binance",
+      "sources": [
+        "https://data-api.binance.vision/api/v3/klines?symbol=ETHUSDT&interval=4h&limit=200",
+        "https://data-api.binance.vision/api/v3/ticker/24hr?symbol=ETHUSDT"
+      ],
+      "status": "NO NEW SIGNAL",
+      "review_decision": "WAIT",
+      "review_config": "d0bbfb4725b720386563954c6b0b0e332226f29dc749ba613feb9e5636e0e8ae"
+    },
+    "XAUUSD": {
+      "id": "XAUUSD",
+      "checked_at": 1789798469.2265177,
+      "tradingview_symbol": "OANDA:XAUUSD",
+      "chart": "https://www.tradingview.com/chart/?symbol=OANDA%3AXAUUSD&interval=240",
+      "status": "DATA UNAVAILABLE",
+      "signal": null,
+      "action": "WAIT FOR VERIFIED DATA",
+      "error": "OANDA market closed or instrument not tradeable; no current signal",
+      "review_decision": "WAIT",
+      "review_config": "08213075c5c9b2196d855761a9364ac1addbdb74eaac3f55043f20840bdbffd6"
+    },
     "USOIL": {
       "id": "USOIL",
-      "checked_at": 1789774008.6735308,
+      "checked_at": 1789798469.2265177,
       "tradingview_symbol": "OANDA:WTICOUSD",
       "chart": "https://www.tradingview.com/chart/?symbol=OANDA%3AWTICOUSD&interval=240",
       "status": "DATA UNAVAILABLE",

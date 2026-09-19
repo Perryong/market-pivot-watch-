@@ -1,0 +1,105 @@
+//@version=6
+// Generated preset. Install on the EXACT named TradingView symbol, standard 4H candles.
+// GitHub cannot remotely update Pine Editor. Reinstall after changing/resetting pivots.
+indicator("ETHUSD 4H Pivot Watch", overlay=true, max_labels_count=50)
+upper = input.float(2646.55, "Upper pivot")
+lower = input.float(2434.6, "Lower pivot")
+baseline = input.time(1789790400000, "Baseline close (UTC)")
+expected = input.string("COINBASE:ETHUSD", "Exact TradingView symbol")
+mode = input.string("Strict UTC", "Signal candle mode", options=["Strict UTC", "TradingView native"], tooltip="Native mode uses this chart's completed 4H candles. Signals are independent of the GitHub UTC journal. Pivots remain fixed.")
+nativeMode = mode == "TradingView native"
+
+if timeframe.in_seconds() != 14400 or not chart.is_standard
+    runtime.error("Use standard 4-hour candlesticks; synthetic charts are not supported.")
+if upper <= lower or lower <= 0 or lower - 2 * (upper - lower) <= 0
+    runtime.error("Invalid pivot range.")
+if syminfo.tickerid != expected
+    runtime.error("Wrong feed. Open the exact symbol in the generated preset.")
+
+width = upper - lower
+visible = time_close >= baseline
+fullBar = time_close - time == 14400000
+aligned = fullBar and (nativeMode or time % 14400000 == 0)
+contiguous = time - time[1] == 14400000 and time_close[1] - time[1] == 14400000
+eligible = time_close > baseline and time_close[1] >= baseline and aligned
+
+plot(visible ? upper : na, "Buy retest / exit-long pivot", color=color.lime, linewidth=2, style=plot.style_linebr)
+plot(visible ? lower : na, "Short retest / exit-short pivot", color=color.red, linewidth=2, style=plot.style_linebr)
+plot(visible ? upper + width : na, "Bullish T1", color=color.new(color.lime, 30), style=plot.style_linebr)
+plot(visible ? upper + 2 * width : na, "Bullish T2", color=color.new(color.lime, 50), style=plot.style_linebr)
+plot(visible ? lower - width : na, "Bearish T1", color=color.new(color.red, 30), style=plot.style_linebr)
+plot(visible ? lower - 2 * width : na, "Bearish T2", color=color.new(color.red, 50), style=plot.style_linebr)
+
+var int side = 0
+var int signalEnd = na
+var bool retested = false
+bool buy = false
+bool sell = false
+bool exitLong = false
+bool exitShort = false
+bool retest = false
+
+if barstate.isconfirmed
+    if not aligned or not contiguous
+        side := 0
+        retested := false
+        signalEnd := na
+    else if eligible
+        exitLong := side == 1 and close < upper
+        exitShort := side == -1 and close > lower
+        if exitLong or exitShort
+            side := 0
+            retested := false
+        buy := close[1] <= upper and close > upper
+        sell := close[1] >= lower and close < lower
+        if buy or sell
+            side := buy ? 1 : -1
+            signalEnd := time_close
+            retested := false
+        else if side != 0 and time_close > signalEnd and not retested
+            hold = side == 1 and open >= upper and low <= upper and close > upper
+            rejection = side == -1 and open <= lower and high >= lower and close < lower
+            if hold or rejection
+                retested := true
+                retest := true
+
+plotshape(buy, title="Confirmed BUY", text="BUY\nwait retest", style=shape.labelup, location=location.belowbar, color=color.green, textcolor=color.white, size=size.tiny)
+plotshape(sell, title="Confirmed SELL", text="SELL\nwait retest", style=shape.labeldown, location=location.abovebar, color=color.red, textcolor=color.white, size=size.tiny)
+plotshape(exitLong, title="Exit long", text="EXIT LONG", style=shape.xcross, location=location.abovebar, color=color.orange, size=size.tiny)
+plotshape(exitShort, title="Exit short", text="EXIT SHORT", style=shape.xcross, location=location.belowbar, color=color.orange, size=size.tiny)
+plotshape(retest and side == 1, title="Long retest held", text="RETEST HELD", style=shape.triangleup, location=location.belowbar, color=color.teal, size=size.tiny)
+plotshape(retest and side == -1, title="Short retest rejected", text="RETEST REJECTED", style=shape.triangledown, location=location.abovebar, color=color.orange, size=size.tiny)
+
+alertcondition(buy, "4H BUY transition", "Completed 4H bullish transition. Wait for a later completed retest; do not chase.")
+alertcondition(sell, "4H SELL transition", "Completed 4H bearish transition. Wait for a later completed retest; do not chase.")
+alertcondition(retest, "Completed retest", "Later completed 4H retest confirmed. Review current price and risk; no guaranteed fill.")
+alertcondition(exitLong or exitShort, "Setup invalidated", "A completed 4H close invalidated the tracked setup.")
+
+// Latest-bar labels show the exact execution, exit and target levels.
+var label upperLabel = label.new(na, na, "", style=label.style_label_left, color=color.green, textcolor=color.white)
+var label lowerLabel = label.new(na, na, "", style=label.style_label_left, color=color.red, textcolor=color.white)
+var label bt1 = label.new(na, na, "", style=label.style_label_left, color=color.green, textcolor=color.white)
+var label bt2 = label.new(na, na, "", style=label.style_label_left, color=color.green, textcolor=color.white)
+var label st1 = label.new(na, na, "", style=label.style_label_left, color=color.red, textcolor=color.white)
+var label st2 = label.new(na, na, "", style=label.style_label_left, color=color.red, textcolor=color.white)
+var table panel = table.new(position.top_right, 1, 4, bgcolor=color.new(color.black, 15))
+if barstate.islast and visible
+    label.set_xy(upperLabel, bar_index + 2, upper)
+    label.set_text(upperLabel, "BUY retest / EXIT LONG below " + str.tostring(upper, format.mintick))
+    label.set_xy(lowerLabel, bar_index + 2, lower)
+    label.set_text(lowerLabel, "SHORT retest / EXIT SHORT above " + str.tostring(lower, format.mintick))
+    label.set_xy(bt1, bar_index + 2, upper + width)
+    label.set_text(bt1, "BUY T1 " + str.tostring(upper + width, format.mintick))
+    label.set_xy(bt2, bar_index + 2, upper + 2 * width)
+    label.set_text(bt2, "BUY T2 " + str.tostring(upper + 2 * width, format.mintick))
+    label.set_xy(st1, bar_index + 2, lower - width)
+    label.set_text(st1, "SHORT T1 " + str.tostring(lower - width, format.mintick))
+    label.set_xy(st2, bar_index + 2, lower - 2 * width)
+    label.set_text(st2, "SHORT T2 " + str.tostring(lower - 2 * width, format.mintick))
+    confirmedClose = barstate.isconfirmed ? close : close[1]
+    regime = confirmedClose > upper ? "BULLISH" : confirmedClose < lower ? "BEARISH" : "NEUTRAL"
+    table.cell(panel, 0, 0, expected + " | " + regime, text_color=color.white)
+    modeStatus = nativeMode ? "NATIVE 4H: independent of GitHub" : "STRICT UTC: completed candles only"
+    table.cell(panel, 0, 1, aligned ? modeStatus : "ALIGNMENT / PARTIAL BAR: markers disabled", text_color=aligned ? color.white : color.orange)
+    table.cell(panel, 0, 2, side == 0 ? "No tracked setup" : retested ? "Later 4H retest confirmed" : "WAIT for later 4H retest", text_color=color.white)
+    table.cell(panel, 0, 3, "Fixed pivots. Targets conditional; not GitHub sync.", text_color=color.silver)
