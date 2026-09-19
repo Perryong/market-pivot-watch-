@@ -9,9 +9,16 @@ prove that the strategy is profitable.
 | Application market | Analysis feed | TradingView symbol |
 |---|---|---|
 | BTCUSD | Coinbase BTC-USD | COINBASE:BTCUSD |
-| XAUUSD | OANDA XAU_USD midpoint | OANDA:XAUUSD |
 | BTCUSDT | Binance BTCUSDT | BINANCE:BTCUSDT |
+| ETHUSD | Coinbase ETH-USD | COINBASE:ETHUSD |
+| ETHUSDT | Binance ETHUSDT | BINANCE:ETHUSDT |
+| XAUUSD | OANDA XAU_USD midpoint | OANDA:XAUUSD |
 | USOIL | OANDA WTICO_USD midpoint | OANDA:WTICOUSD |
+
+This is also the order used by website tabs, Telegram messages, newly generated
+reports and journal sections. ETHUSD and ETHUSDT have separate state and pivots;
+USD and USDT quotes are not interchangeable. Their first successful observations
+establish independent baselines without altering the existing markets' state.
 
 USOIL here is OANDA's West Texas Oil CFD, not a generic spot price, a particular
 exchange futures contract, or another broker's USOIL feed. Access was verified

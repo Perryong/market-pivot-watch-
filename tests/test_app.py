@@ -2,13 +2,40 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
-from pivot_watch.app import ROOT, demo_fetch, pine, run, load_state
+from pivot_watch.app import ROOT, demo_fetch, pine, render, run, load_state
 from pivot_watch.core import Candle, DataError
 
 T = 1789516800
 
 
 class AppTests(unittest.TestCase):
+    def test_market_order_and_independent_eth_baselines(self):
+        config = json.loads((ROOT/'config.json').read_text())
+        reports, state = run(config, {'version': 1, 'markets': {}}, T+14460, demo_fetch)
+        self.assertEqual([r['id'] for r in reports],
+                         ['BTCUSD', 'BTCUSDT', 'ETHUSD', 'ETHUSDT', 'XAUUSD', 'USOIL'])
+        for ident, symbol in [('ETHUSD', 'COINBASE:ETHUSD'), ('ETHUSDT', 'BINANCE:ETHUSDT')]:
+            r = next(r for r in reports if r['id'] == ident)
+            self.assertTrue(r['baseline'])
+            self.assertIsNone(r['signal'])
+            self.assertAlmostEqual(r['lower'], 2970)
+            self.assertAlmostEqual(r['upper'], 3030)
+            self.assertIn(ident, state['markets'])
+            self.assertIn(symbol, pine(r))
+        _, again = run(config, state, T+14460, demo_fetch)
+        self.assertEqual(state, again)
+        order = ['BTCUSD', 'BTCUSDT', 'ETHUSD', 'ETHUSDT', 'XAUUSD', 'USOIL']
+        self.assertEqual([line[3:] for line in render(reports, T+14460).splitlines()
+                          if line.startswith('## ') and line[3:] in order], order)
+        from pivot_watch.review import write_review
+        with tempfile.TemporaryDirectory() as directory:
+            for r in reports:
+                r.pop('demo')  # Synthetic fixture exercises journal formatting only.
+            path = write_review({'checked_at': T+14460, 'markets': reports}, config,
+                                Path(directory)/'state.json', Path(directory)/'reviews')
+            self.assertEqual([line[3:] for line in path.read_text().splitlines()
+                              if line.startswith('## ')], order)
+
     def test_usoil_has_independent_oanda_baseline_and_complete_pine(self):
         config = json.loads((ROOT/'config.json').read_text())
         reports, state = run(config, {'version': 1, 'markets': {}}, T+14460, demo_fetch)

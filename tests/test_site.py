@@ -31,7 +31,7 @@ class SiteTests(unittest.TestCase):
             site.build(out, dst, CONFIG, NOW)
             html = (dst/'index.html').read_text()
             self.assertIn('SYNTHETIC DEMO', html)
-            self.assertEqual(html.count('class="market-panel"'), 4)
+            self.assertEqual(html.count('class="market-panel"'), 6)
             self.assertFalse(list(dst.glob('*.pine')))
             self.assertNotIn('class="pine-code"', html)
 
@@ -52,6 +52,11 @@ class SiteTests(unittest.TestCase):
             self.assertIn('Copy Pine code', html)
             self.assertIn('id="panel-USOIL"', html)
             self.assertIn('id="pine-USOIL"', html)
+            order = ['BTCUSD', 'BTCUSDT', 'ETHUSD', 'ETHUSDT', 'XAUUSD', 'USOIL']
+            positions = [html.index(f'id="tab-{ident}"') for ident in order]
+            self.assertEqual(positions, sorted(positions))
+            self.assertIn('id="pine-ETHUSD"', html)
+            self.assertIn('id="pine-ETHUSDT"', html)
             self.assertIn('symbol=OANDA%3AWTICOUSD&amp;interval=240', html)
             self.assertIn('input.float(77500.0', html)
             self.assertFalse((dst/'latest.json').exists())
@@ -77,7 +82,7 @@ class SiteTests(unittest.TestCase):
 
     def test_chart_places_candles_and_six_levels_on_one_price_scale(self):
         reports, _ = run(CONFIG, {'version':1,'markets':{}}, NOW, demo_fetch)
-        markup = site.level_chart(reports[2])
+        markup = site.level_chart(next(r for r in reports if r['id'] == 'BTCUSDT'))
         svg = ET.fromstring(markup[markup.index('<svg'):markup.index('</svg>')+6])
         levels = svg.findall(".//{*}line[@class='price-level']")
         self.assertEqual([float(line.attrib['data-price']) for line in levels],
