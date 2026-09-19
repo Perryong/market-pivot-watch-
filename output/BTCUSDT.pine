@@ -2,9 +2,9 @@
 // Generated preset. Install on the EXACT named TradingView symbol, standard 4H candles.
 // GitHub cannot remotely update Pine Editor. Reinstall after changing/resetting pivots.
 indicator("BTCUSDT 4H Pivot Watch", overlay=true, max_labels_count=50)
-upper = input.float(77500.0, "Upper pivot")
-lower = input.float(76200.0, "Lower pivot")
-baseline = input.time(1789531200000, "Baseline close (UTC)")
+upper = input.float(81741.0, "Upper pivot")
+lower = input.float(77216.76, "Lower pivot")
+baseline = input.time(1789804800000, "Baseline close (UTC)")
 expected = input.string("BINANCE:BTCUSDT", "Exact TradingView symbol")
 mode = input.string("Strict UTC", "Signal candle mode", options=["Strict UTC", "TradingView native"], tooltip="Native mode uses this chart's completed 4H candles. Signals are independent of the GitHub UTC journal. Pivots remain fixed.")
 nativeMode = mode == "TradingView native"

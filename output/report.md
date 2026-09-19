@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-09-19 17:40:20 +08** / 2026-09-19 09:40:20 UTC.
+Checked **2026-09-19 19:56:42 +08** / 2026-09-19 11:56:42 UTC.
 
 ## BTCUSD
 
@@ -9,14 +9,16 @@ ACTION NOW: WAIT FOR CONFIRMATION
 
 [Open actual TradingView 4H chart](https://www.tradingview.com/chart/?symbol=COINBASE%3ABTCUSD&interval=240)
 
-Completed-candle state: **bullish**. New completed candle processed.
+Shadow research: **WAIT / UNTRACKED — WAIT_FOR_NEW_BREAKOUT**. Baseline unchanged; no order or fill.
+
+Completed-candle state: **bullish**. No new 4H candle since the previous check.
 
 | Market data | Value |
 |---|---|
 | Latest completed 4H close | 81,073.15 |
 | Previous completed close | 81,105.04 |
 | Close time | 2026-09-19 16:00:00 +08 / 2026-09-19 08:00:00 UTC |
-| Current price | 81,301.33 at 2026-09-19 09:40:18 UTC |
+| Current price | 81,278.61 at 2026-09-19 11:56:41 UTC |
 | Range low / high | 77,900.00 / 81,720.00 |
 
 Range definition: Provider rolling 24h range (retrieved at check time).
@@ -49,31 +51,33 @@ ACTION NOW: WAIT FOR CONFIRMATION
 
 [Open actual TradingView 4H chart](https://www.tradingview.com/chart/?symbol=BINANCE%3ABTCUSDT&interval=240)
 
-Completed-candle state: **bullish**. New completed candle processed.
+Shadow research: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. Baseline unchanged; no order or fill.
+
+Completed-candle state: **neutral**. Baseline only; no historical entry emitted.
 
 | Market data | Value |
 |---|---|
 | Latest completed 4H close | 81,100.16 |
 | Previous completed close | 81,136.01 |
 | Close time | 2026-09-19 16:00:00 +08 / 2026-09-19 08:00:00 UTC |
-| Current price | 81,314.37 at 2026-09-19 09:40:22 UTC |
+| Current price | 81,312.08 at 2026-09-19 11:56:44 UTC |
 | Range low / high | 77,972.30 / 81,741.00 |
 
 Range definition: Provider rolling 24h range.
-Pivot selection: Configured fixed pivots. These levels stay fixed until explicitly reset.
+Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
 
 ### Trade levels — conditional plans
 
 | Action | Confirmation / level | T1 / T2 |
 |---|---|---|
-| Buy entry | New 4H cross above 77,500.00, then a later completed retest and hold | 78,800.00 / 80,100.00 |
-| Sell/exit long | Completed 4H close below 77,500.00 after a bullish setup | — |
-| Short entry | New 4H cross below 76,200.00, then a later completed retest and rejection | 74,900.00 / 73,600.00 |
-| Buy/exit short | Completed 4H close above 76,200.00 after a bearish setup | — |
+| Buy entry | New 4H cross above 81,741.00, then a later completed retest and hold | 86,265.24 / 90,789.48 |
+| Sell/exit long | Completed 4H close below 81,741.00 after a bullish setup | — |
+| Short entry | New 4H cross below 77,216.76, then a later completed retest and rejection | 72,692.52 / 68,168.28 |
+| Buy/exit short | Completed 4H close above 77,216.76 after a bearish setup | — |
 
-Tracked setup: **BUY**, first confirmed 2026-09-18 08:00:00 UTC. Invalidation: completed close below 77,500.00.
-Retest: not yet confirmed on a later completed bar.
+No tracked active setup. Price state alone does not establish a new entry.
 
+Baseline established; existing price state is not a newly observed signal
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
 Selling an existing long and opening a short are different actions. Targets are conditional; closed-bar invalidation is not a guaranteed stop-loss fill.
@@ -88,14 +92,16 @@ ACTION NOW: WAIT FOR CONFIRMATION
 
 [Open actual TradingView 4H chart](https://www.tradingview.com/chart/?symbol=COINBASE%3AETHUSD&interval=240)
 
-Completed-candle state: **neutral**. New completed candle processed.
+Shadow research: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. Baseline unchanged; no order or fill.
+
+Completed-candle state: **neutral**. No new 4H candle since the previous check.
 
 | Market data | Value |
 |---|---|
 | Latest completed 4H close | 2,626.24 |
 | Previous completed close | 2,619.09 |
 | Close time | 2026-09-19 16:00:00 +08 / 2026-09-19 08:00:00 UTC |
-| Current price | 2,635.52 at 2026-09-19 09:40:20 UTC |
+| Current price | 2,639.73 at 2026-09-19 11:56:43 UTC |
 | Range low / high | 2,492.67 / 2,661.62 |
 
 Range definition: Provider rolling 24h range (retrieved at check time).
@@ -127,14 +133,16 @@ ACTION NOW: WAIT FOR CONFIRMATION
 
 [Open actual TradingView 4H chart](https://www.tradingview.com/chart/?symbol=BINANCE%3AETHUSDT&interval=240)
 
-Completed-candle state: **neutral**. New completed candle processed.
+Shadow research: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. Baseline unchanged; no order or fill.
+
+Completed-candle state: **neutral**. No new 4H candle since the previous check.
 
 | Market data | Value |
 |---|---|
 | Latest completed 4H close | 2,626.95 |
 | Previous completed close | 2,620.18 |
 | Close time | 2026-09-19 16:00:00 +08 / 2026-09-19 08:00:00 UTC |
-| Current price | 2,636.50 at 2026-09-19 09:40:22 UTC |
+| Current price | 2,640.56 at 2026-09-19 11:56:44 UTC |
 | Range low / high | 2,494.37 / 2,662.85 |
 
 Range definition: Provider rolling 24h range.
@@ -165,6 +173,8 @@ ACTION NOW: WAIT FOR VERIFIED DATA
 
 [Open actual TradingView 4H chart](https://www.tradingview.com/chart/?symbol=OANDA%3AXAUUSD&interval=240)
 
+Shadow research: **WAIT / DATA_UNAVAILABLE — UNVERIFIED_DATA**. Baseline unchanged; no order or fill.
+
 OANDA market closed or instrument not tradeable; no current signal
 Exact completed 4H close, current price, range and active setup cannot be verified. No BUY/SELL signal issued.
 
@@ -174,6 +184,8 @@ STATUS: DATA UNAVAILABLE
 ACTION NOW: WAIT FOR VERIFIED DATA
 
 [Open actual TradingView 4H chart](https://www.tradingview.com/chart/?symbol=OANDA%3AWTICOUSD&interval=240)
+
+Shadow research: **WAIT / DATA_UNAVAILABLE — UNVERIFIED_DATA**. Baseline unchanged; no order or fill.
 
 OANDA market closed or instrument not tradeable; no current signal
 Exact completed 4H close, current price, range and active setup cannot be verified. No BUY/SELL signal issued.
