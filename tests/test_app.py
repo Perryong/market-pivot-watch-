@@ -9,6 +9,22 @@ T = 1789516800
 
 
 class AppTests(unittest.TestCase):
+    def test_btcusdt_automatic_range_rebaselines_old_fixed_levels_without_signal(self):
+        from copy import deepcopy
+        config = json.loads((ROOT/'config.json').read_text())
+        old_config = deepcopy(config)
+        market = next(m for m in old_config['markets'] if m['id'] == 'BTCUSDT')
+        market.update(lower=76200, upper=77500)
+        _, saved = run(old_config, {'version': 1, 'markets': {}}, T+14460, demo_fetch)
+        saved['markets']['BTCUSDT']['setup'] = {'side': 'SELL', 'signal_end': T, 'retest_close_time': None}
+        reports, state = run(config, saved, T+14460, demo_fetch)
+        report = next(r for r in reports if r['id'] == 'BTCUSDT')
+        self.assertTrue(report['baseline'])
+        self.assertEqual((report['lower'], report['upper']), (69300, 70700))
+        self.assertIsNone(report['signal'])
+        self.assertIsNone(state['markets']['BTCUSDT']['setup'])
+        self.assertEqual(state['markets']['BTCUSD'], saved['markets']['BTCUSD'])
+
     def test_market_order_and_independent_eth_baselines(self):
         config = json.loads((ROOT/'config.json').read_text())
         reports, state = run(config, {'version': 1, 'markets': {}}, T+14460, demo_fetch)

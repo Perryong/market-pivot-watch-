@@ -4,10 +4,12 @@ import csv
 from datetime import datetime, timezone
 import io
 import json
+import math
 from pathlib import Path
 
 from .app import atomic_text, clock, json_text
 from .core import DataError
+from .shadow import DEFAULTS
 
 
 def snapshot_path(root, checked):
@@ -18,7 +20,17 @@ def snapshot_path(root, checked):
 def safe_config(config):
     # Credentials belong in environment variables, never in the public archive.
     keys = ('id', 'enabled', 'provider', 'environment', 'symbol', 'tradingview', 'lower', 'upper')
-    return {'markets': [{k: market[k] for k in keys if k in market} for market in config['markets']]}
+    result = {'markets': [{k: market[k] for k in keys if k in market} for market in config['markets']]}
+    if isinstance(config.get('shadow'), dict):
+        # Only numeric research settings may enter the public archive.
+        clean = lambda values: {k: v for k, v in values.items() if k in DEFAULTS and
+                                (v is None or type(v) is int or type(v) is float and math.isfinite(v))}
+        result['shadow'] = clean(config['shadow'])
+        overrides = config['shadow'].get('overrides', {})
+        if isinstance(overrides, dict):
+            result['shadow']['overrides'] = {m['id']: clean(overrides[m['id']]) for m in config['markets']
+                                            if isinstance(overrides.get(m['id']), dict)}
+    return result
 
 
 def load_snapshot(path):
@@ -39,7 +51,10 @@ def export_month(directory):
               'review_status', 'evidence_status', 'elapsed_hours', 'interval', 'm5_count',
               'coverage_start_utc', 'coverage_end_utc', 'uncovered_start_seconds',
               'uncovered_end_seconds', 't1_first_touch_utc', 't2_first_touch_utc',
-              'invalidated_at_utc', 'error', 'run_id', 'run_attempt', 'code_commit', 'code_dirty', 'snapshot')
+              'invalidated_at_utc', 'error', 'run_id', 'run_attempt', 'code_commit', 'code_dirty', 'snapshot',
+              'shadow_decision', 'shadow_status', 'shadow_reason', 'shadow_entry', 'shadow_stop',
+              'shadow_target', 'shadow_atr', 'shadow_distance_atr', 'shadow_gross_rr', 'shadow_net_rr',
+              'shadow_range_review_due')
     output = io.StringIO(newline='')
     writer = csv.DictWriter(output, fieldnames=fields)
     writer.writeheader()
@@ -72,6 +87,10 @@ def export_month(directory):
                 values = r.get(side+'_targets', [])
                 for i in range(2):
                     row[f'{side}_t{i+1}'] = values[i] if i < len(values) else ''
+            shadow = r.get('shadow', {})
+            for key in ('decision', 'status', 'reason', 'entry', 'stop', 'target', 'atr',
+                        'distance_atr', 'gross_rr', 'net_rr', 'range_review_due'):
+                row['shadow_'+key] = shadow.get(key, '')
             for i in range(2):
                 row[f't{i+1}_first_touch_utc'] = utc(targets[i].get('first_touch_start')) if i < len(targets) else ''
             # Protect spreadsheet users from formulas in textual provider/error fields.

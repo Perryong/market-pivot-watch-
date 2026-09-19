@@ -10,6 +10,92 @@ NOW = 1789516800 + 14460
 CONFIG = json.loads((ROOT / 'config.json').read_text())
 
 class SiteTests(unittest.TestCase):
+    def test_shadow_panel_is_a_native_disclosure_closed_by_default(self):
+        reports, _ = run(CONFIG, {'version': 1, 'markets': {}}, NOW, demo_fetch)
+        panel = ET.fromstring(site.shadow_panel(reports[0]))
+        self.assertEqual(panel.tag, 'details')
+        self.assertNotIn('open', panel.attrib)
+        self.assertEqual(panel[0].tag, 'summary')
+        self.assertIn('Shadow risk evaluation', ''.join(panel[0].itertext()))
+        self.assertIn('research only', ''.join(panel[0].itertext()).lower())
+
+    def shadow_page(self, shadow, age=0, demo=False):
+        with tempfile.TemporaryDirectory() as directory:
+            out, dst = Path(directory)/'out', Path(directory)/'site'
+            reports, _ = run(CONFIG, {'version': 1, 'markets': {}}, NOW, demo_fetch)
+            report = reports[0]
+            if not demo:
+                report.pop('demo')
+            report.update(baseline=False, setup={'side': 'BUY', 'signal_end': NOW-14460,
+                          'retest_close_time': NOW-60},
+                          events=[{'type': 'RETEST_CONFIRMED', 'historical': False,
+                                   'close_time': NOW-60, 'close': report['close']}])
+            report['quote']['price'] = report['upper']+1
+            if shadow is None:
+                report.pop('shadow', None)
+            else:
+                report['shadow'] = shadow
+            out.mkdir()
+            (out/'latest.json').write_text(json.dumps({'checked_at': NOW, 'markets': reports}))
+            site.build(out, dst, CONFIG, NOW+age)
+            html = (dst/'index.html').read_text()
+            return html[html.index('<section class="market-panel"'):html.index('</section>')]
+
+    def test_shadow_panel_separates_baseline_and_risk_metrics(self):
+        page = self.shadow_page(dict(decision='WAIT', status='REJECTED', reason='TOO_FAR_FROM_PIVOT',
+            rejection_reasons=['TOO_FAR_FROM_PIVOT', 'COSTS_NOT_CONFIGURED'], entry=115, stop=108,
+            target=130, atr=10, distance_atr=.5, gross_rr=2.14, net_rr=None,
+            evaluated_at=NOW, age_candles=1, range_review_due=True,
+            settings={'max_entry_atr': .25, 'min_rr': 2, 'retest_candles': 6, 'round_trip_cost_bps': None}))
+        self.assertIn('class="shadow-panel"', page)
+        self.assertIn('Baseline decision</span><strong>BUY', page)
+        self.assertIn('Shadow decision</span><strong>WAIT', page)
+        self.assertIn('TOO_FAR_FROM_PIVOT', page)
+        self.assertIn('COSTS_NOT_CONFIGURED', page)
+        self.assertIn('115.00', page)
+        self.assertIn('Proposed stop', page)
+        self.assertIn('0.50 × ATR', page)
+        self.assertIn('Range age review due', page)
+        self.assertIn('Not calculated', page)
+        self.assertLess(page.index('class="decision-panel'), page.index('class="shadow-panel"'))
+        self.assertLess(page.index('class="shadow-panel"'), page.index('class="level-chart"'))
+        self.assertIn('Copy Pine code', page)
+        self.assertIn('Open TradingView 4H', page)
+
+    def test_shadow_old_eligibility_is_not_presented_as_new_entry(self):
+        page = self.shadow_page(dict(decision='WAIT', status='ENTRY_ELIGIBLE', reason='RISK_CHECKS_PASSED',
+                                     entry=111, stop=108, net_rr=5.83, evaluated_at=NOW-14400))
+        self.assertIn('Earlier assessment', page)
+        self.assertIn('no new entry', page)
+        self.assertIn('5.83 : 1', page)
+
+    def test_shadow_missing_demo_and_stale_data_never_show_eligibility(self):
+        eligible = dict(decision='BUY', status='ENTRY_ELIGIBLE', reason='RISK_CHECKS_PASSED', entry=123456)
+        for page in (self.shadow_page(None), self.shadow_page(eligible, age=7*3600),
+                     self.shadow_page(eligible, demo=True)):
+            self.assertIn('class="shadow-panel"', page)
+            self.assertNotIn('ENTRY_ELIGIBLE', page)
+            self.assertNotIn('123,456', page)
+
+    def test_shadow_statuses_and_untrusted_text_render_safely(self):
+        for status, reason in [('EXPIRED', 'SETUP_EXPIRED'), ('MISSED', 'MISSED_MOVE'),
+                               ('UNTRACKED', 'WAIT_FOR_NEW_BREAKOUT'),
+                               ('DATA_UNAVAILABLE', 'UNVERIFIED_DATA'),
+                               ('REJECTED', '<script>alert(1)</script>')]:
+            page = self.shadow_page(dict(decision='WAIT', status=status, reason=reason))
+            self.assertIn('class="shadow-panel"', page)
+            self.assertIn(status, page)
+            self.assertNotIn('<script>alert(1)</script>', page)
+
+    def test_malformed_optional_shadow_does_not_break_baseline_dashboard(self):
+        for invalid in ([1], {'settings': [1]}, {'evaluated_at': 'bad'},
+                        {'rejection_reasons': 'not a list'}):
+            with self.subTest(invalid=invalid):
+                page = self.shadow_page(invalid)
+                self.assertIn('Baseline decision</span><strong>BUY', page)
+                self.assertIn('Shadow status: DATA_UNAVAILABLE', page)
+                self.assertIn('Copy Pine code', page)
+
     def test_missing_output_publishes_unavailable_not_previous_pine(self):
         with tempfile.TemporaryDirectory() as d:
             out, dst = Path(d)/'out', Path(d)/'site'
@@ -58,7 +144,7 @@ class SiteTests(unittest.TestCase):
             self.assertIn('id="pine-ETHUSD"', html)
             self.assertIn('id="pine-ETHUSDT"', html)
             self.assertIn('symbol=OANDA%3AWTICOUSD&amp;interval=240', html)
-            self.assertIn('input.float(77500.0', html)
+            self.assertIn('input.float(70700.0', html)
             self.assertFalse((dst/'latest.json').exists())
 
     def test_stale_input_keeps_copyable_preset_but_not_live_signal(self):
@@ -86,10 +172,10 @@ class SiteTests(unittest.TestCase):
         svg = ET.fromstring(markup[markup.index('<svg'):markup.index('</svg>')+6])
         levels = svg.findall(".//{*}line[@class='price-level']")
         self.assertEqual([float(line.attrib['data-price']) for line in levels],
-                         [77500, 76200, 78800, 80100, 74900, 73600])
+                         [70700, 69300, 72100, 73500, 67900, 66500])
         candles = svg.findall(".//{*}rect[@class='candle-body']")
         self.assertEqual(len(candles), 8)
-        self.assertGreater(float(candles[0].attrib['y']), float(levels[1].attrib['y1']))
+        self.assertLess(float(candles[0].attrib['y']), float(levels[1].attrib['y1']))
         self.assertEqual(float(levels[0].attrib['y1']), float(levels[0].attrib['y2']))
         self.assertIn('SYNTHETIC DEMO', markup)
 

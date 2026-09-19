@@ -4,6 +4,12 @@ The dated Markdown journal remains the human-readable review. JSON snapshots
 preserve its evidence; CSV is a disposable spreadsheet export of those snapshots.
 These additions do not change entries, exits, targets or strategy scoring.
 
+With shadow research enabled, reports also carry a separate `shadow` assessment
+and the snapshot configuration includes sanitized numerical research settings.
+Monthly CSV adds `shadow_*` columns; old snapshots export blank values in them.
+The original `decision` and journal evidence still refer to the baseline, not a
+shadow simulated trade. See [Shadow risk evaluation](SHADOW_EVALUATION.md).
+
 ## What is saved after each analysis
 
 ```text
@@ -25,7 +31,8 @@ including markets with explicit data errors. The CSV has one row per market per
 snapshot. GitHub commits `history/` alongside the existing review and state files.
 The downloadable `output/` artifact includes the current snapshot and that month's
 CSV; its existing 30-day retention is unchanged. Repository files do not depend
-on artifact retention. The website and Telegram presentation are unchanged.
+on artifact retention. Archiving does not change baseline decisions or Telegram
+presentation; shadow research is shown separately on the website.
 
 ## JSON contents
 

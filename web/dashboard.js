@@ -9,6 +9,8 @@ function expireReports(now = Date.now()) {
     panel.querySelector('.stale-notice').hidden = !stale;
     panel.querySelector('.signal').hidden = stale;
     panel.querySelector('.decision-panel').hidden = stale;
+    const shadow = panel.querySelector('.shadow-panel');
+    if (shadow) shadow.hidden = stale;
     const code = panel.querySelector('.pine-code');
     if (code) {
       const presetAge = now / 1000 - Number(code.dataset.checked);

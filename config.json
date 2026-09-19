@@ -1,4 +1,14 @@
 {
+  "shadow": {
+    "retest_candles": 6,
+    "atr_period": 14,
+    "max_entry_atr": 0.25,
+    "min_rr": 2,
+    "stop_buffer_atr": 0.1,
+    "round_trip_cost_bps": null,
+    "range_review_hours": 168,
+    "overrides": {}
+  },
   "markets": [
     {
       "id": "BTCUSD",
@@ -15,8 +25,8 @@
       "provider": "binance",
       "symbol": "BTCUSDT",
       "tradingview": "BINANCE:BTCUSDT",
-      "lower": 76200,
-      "upper": 77500
+      "lower": null,
+      "upper": null
     },
     {
       "id": "ETHUSD",

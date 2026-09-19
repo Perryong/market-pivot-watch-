@@ -11,6 +11,7 @@ from zoneinfo import ZoneInfo
 
 from .core import Candle, DataError, H4, evaluate
 from .providers import fetch
+from . import shadow
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -70,6 +71,19 @@ def run(config, saved, now, provider=fetch):
         except (KeyError, IndexError, TypeError, ValueError, StopIteration):
             base.update(status="DATA UNAVAILABLE", signal=None, action="WAIT FOR VERIFIED DATA",
                         error="Provider/state payload failed validation; inspect schema or restore valid state")
+        if 'shadow' in config:
+            if base.get('error'):
+                base['shadow'] = dict(status='DATA_UNAVAILABLE', reason='UNVERIFIED_DATA', decision='WAIT')
+            else:
+                try:
+                    settings = shadow.rules(config, ident)
+                    previous_market = saved['markets'].get(ident) or {}
+                    base['shadow'], shadow_state = shadow.evaluate(
+                        base, data['candles'], settings, previous_market.get('shadow'), previous_market.get('last_end'))
+                    if shadow_state is not None:
+                        state['markets'][ident]['shadow'] = shadow_state
+                except (DataError, KeyError, TypeError, ValueError, OverflowError):
+                    base['shadow'] = dict(status='DATA_UNAVAILABLE', reason='SHADOW_CONFIG_OR_STATE_INVALID', decision='WAIT')
         reports.append(base)
     if not reports:
         raise DataError("No enabled markets")
@@ -93,6 +107,8 @@ def render(reports, now):
     for r in reports:
         text += [f"## {r['id']}", "", f"SIGNAL: {r['signal']}" if r["signal"] else f"STATUS: {r['status']}",
                  f"ACTION NOW: {r['action']}", "", f"[Open actual TradingView 4H chart]({r['chart']})", ""]
+        if r.get('shadow'):
+            text += [shadow.summary(r), '']
         if "error" in r:
             text += [r["error"], "Exact completed 4H close, current price, range and active setup cannot be verified. No BUY/SELL signal issued.", ""]
             continue
