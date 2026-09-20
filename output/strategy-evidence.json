@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "checked_at": 1789876911.7018166,
-  "checked_at_utc": "2026-09-20 04:01:51 UTC",
-  "previous_checked_at": 1789862090.7659814,
-  "elapsed_hours": 4.116926620867517,
-  "interval": "FOUR_HOUR",
+  "checked_at": 1789876967.5098147,
+  "checked_at_utc": "2026-09-20 04:02:47 UTC",
+  "previous_checked_at": 1789876911.7018166,
+  "elapsed_hours": 0.015502221716774834,
+  "interval": "NONSTANDARD",
   "configuration": {
     "markets": [
       {
@@ -76,19 +76,19 @@
     }
   },
   "metadata": {
-    "code_commit": "8682c0f9c468194d7631f2ef3ece7c034fb999af",
-    "run_id": "35488080640",
+    "code_commit": "ff6df041c4d1421cec0b0acf64ac9efe7f7d20ad",
+    "run_id": "35388177259",
     "code_dirty": false,
-    "run_attempt": "1",
-    "event": "workflow_dispatch"
+    "run_attempt": "2",
+    "event": "schedule"
   },
-  "input_hash": "3da48d7d79dbf55afba762e8f58ff398e6a08c1ed64c34b0b69f9ed75491f72b",
-  "previous_state_hash": "a9ca17a6c4cf4ad67d77140a007af0317fbfe1e8c73d63533ca1d1d0ba19e3ea",
+  "input_hash": "6ba3474f195830b7afa401d538831580180c11256524e7270a326a7fde6c057e",
+  "previous_state_hash": "0d2a210da4537864efe313e58145a17d44dd9d02db8a712feefb2b785ba0c7b6",
   "readings": [
     {
       "report": {
         "id": "BTCUSD",
-        "checked_at": 1789876911.7018166,
+        "checked_at": 1789876967.5098147,
         "tradingview_symbol": "COINBASE:BTCUSD",
         "chart": "https://www.tradingview.com/chart/?symbol=COINBASE%3ABTCUSD&interval=240",
         "state": "bullish",
@@ -97,7 +97,7 @@
         "close": 80458.82,
         "previous_close": 81233.91,
         "close_time": 1789876800,
-        "new_candle": true,
+        "new_candle": false,
         "baseline": false,
         "lower": 74887.5,
         "upper": 78242.76,
@@ -120,8 +120,8 @@
         "events": [],
         "notes": [],
         "quote": {
-          "price": 80451.0,
-          "time": 1789876910.406065
+          "price": 80412.14,
+          "time": 1789876964.968677
         },
         "low": 80085.0,
         "high": 81925.0,
@@ -1185,7 +1185,7 @@
           "reason": "WAIT_FOR_NEW_BREAKOUT",
           "decision": "WAIT",
           "transitions": [],
-          "range_age_hours": 96.03102828237745,
+          "range_age_hours": 96.04653050409424,
           "range_review_due": false
         }
       },
@@ -1196,15 +1196,15 @@
       },
       "previous_reading": {
         "id": "BTCUSD",
-        "checked_at": 1789862090.7659814,
+        "checked_at": 1789876911.7018166,
         "tradingview_symbol": "COINBASE:BTCUSD",
         "chart": "https://www.tradingview.com/chart/?symbol=COINBASE%3ABTCUSD&interval=240",
         "state": "bullish",
         "signal": null,
         "action": "WAIT FOR CONFIRMATION",
-        "close": 81345.02,
-        "previous_close": 81626.45,
-        "close_time": 1789848000,
+        "close": 80458.82,
+        "previous_close": 81233.91,
+        "close_time": 1789876800,
         "new_candle": true,
         "baseline": false,
         "lower": 74887.5,
@@ -1228,10 +1228,10 @@
         "events": [],
         "notes": [],
         "quote": {
-          "price": 81292.4,
-          "time": 1789862089.996928
+          "price": 80451.0,
+          "time": 1789876910.406065
         },
-        "low": 80822.48,
+        "low": 80085.0,
         "high": 81925.0,
         "range_label": "Provider rolling 24h range (retrieved at check time)",
         "source": "coinbase",
@@ -1244,12 +1244,12 @@
         "shadow": {
           "version": 1,
           "range_id": "4479c88215db939d472d8c1a227672994e3e8956b2417a586264a82329e1cc36",
-          "last_end": 1789848000,
+          "last_end": 1789876800,
           "status": "UNTRACKED",
           "reason": "WAIT_FOR_NEW_BREAKOUT",
           "decision": "WAIT",
           "transitions": [],
-          "range_age_hours": 91.91410166150993,
+          "range_age_hours": 96.03102828237745,
           "range_review_due": false
         },
         "review_decision": "WAIT",
@@ -1265,414 +1265,16 @@
         "upper": null
       },
       "evidence": {
-        "status": "NO_ENTRY_TO_SCORE",
-        "data_status": "COMPLETE_M5_WINDOW",
-        "bars_5m": [
-          {
-            "start": 1789862100,
-            "end": 1789862400,
-            "open": 81292.41,
-            "high": 81293.35,
-            "low": 81216.01,
-            "close": 81233.91
-          },
-          {
-            "start": 1789862400,
-            "end": 1789862700,
-            "open": 81233.91,
-            "high": 81240.0,
-            "low": 81185.69,
-            "close": 81185.72
-          },
-          {
-            "start": 1789862700,
-            "end": 1789863000,
-            "open": 81185.72,
-            "high": 81207.0,
-            "low": 81175.51,
-            "close": 81206.99
-          },
-          {
-            "start": 1789863000,
-            "end": 1789863300,
-            "open": 81206.99,
-            "high": 81269.17,
-            "low": 81206.99,
-            "close": 81258.96
-          },
-          {
-            "start": 1789863300,
-            "end": 1789863600,
-            "open": 81258.96,
-            "high": 81284.66,
-            "low": 81217.51,
-            "close": 81230.71
-          },
-          {
-            "start": 1789863600,
-            "end": 1789863900,
-            "open": 81230.71,
-            "high": 81230.72,
-            "low": 81171.11,
-            "close": 81215.48
-          },
-          {
-            "start": 1789863900,
-            "end": 1789864200,
-            "open": 81215.49,
-            "high": 81297.54,
-            "low": 81202.94,
-            "close": 81279.55
-          },
-          {
-            "start": 1789864200,
-            "end": 1789864500,
-            "open": 81279.55,
-            "high": 81299.99,
-            "low": 81219.38,
-            "close": 81294.76
-          },
-          {
-            "start": 1789864500,
-            "end": 1789864800,
-            "open": 81294.76,
-            "high": 81297.32,
-            "low": 81232.75,
-            "close": 81277.8
-          },
-          {
-            "start": 1789864800,
-            "end": 1789865100,
-            "open": 81278.82,
-            "high": 81302.35,
-            "low": 81269.99,
-            "close": 81300.71
-          },
-          {
-            "start": 1789865100,
-            "end": 1789865400,
-            "open": 81300.71,
-            "high": 81300.71,
-            "low": 81251.01,
-            "close": 81257.07
-          },
-          {
-            "start": 1789865400,
-            "end": 1789865700,
-            "open": 81257.14,
-            "high": 81277.63,
-            "low": 81253.44,
-            "close": 81259.76
-          },
-          {
-            "start": 1789865700,
-            "end": 1789866000,
-            "open": 81259.76,
-            "high": 81278.94,
-            "low": 81240.29,
-            "close": 81263.65
-          },
-          {
-            "start": 1789866000,
-            "end": 1789866300,
-            "open": 81261.98,
-            "high": 81281.78,
-            "low": 81235.2,
-            "close": 81235.2
-          },
-          {
-            "start": 1789866300,
-            "end": 1789866600,
-            "open": 81235.2,
-            "high": 81248.91,
-            "low": 81195.39,
-            "close": 81199.92
-          },
-          {
-            "start": 1789866600,
-            "end": 1789866900,
-            "open": 81199.92,
-            "high": 81199.92,
-            "low": 81097.2,
-            "close": 81106.08
-          },
-          {
-            "start": 1789866900,
-            "end": 1789867200,
-            "open": 81106.07,
-            "high": 81166.33,
-            "low": 81063.51,
-            "close": 81166.32
-          },
-          {
-            "start": 1789867200,
-            "end": 1789867500,
-            "open": 81166.32,
-            "high": 81187.69,
-            "low": 81124.38,
-            "close": 81132.41
-          },
-          {
-            "start": 1789867500,
-            "end": 1789867800,
-            "open": 81132.41,
-            "high": 81134.05,
-            "low": 81082.27,
-            "close": 81088.79
-          },
-          {
-            "start": 1789867800,
-            "end": 1789868100,
-            "open": 81088.79,
-            "high": 81103.81,
-            "low": 81032.91,
-            "close": 81043.4
-          },
-          {
-            "start": 1789868100,
-            "end": 1789868400,
-            "open": 81043.4,
-            "high": 81091.48,
-            "low": 81000.01,
-            "close": 81076.21
-          },
-          {
-            "start": 1789868400,
-            "end": 1789868700,
-            "open": 81076.21,
-            "high": 81097.43,
-            "low": 81037.38,
-            "close": 81045.57
-          },
-          {
-            "start": 1789868700,
-            "end": 1789869000,
-            "open": 81045.57,
-            "high": 81076.98,
-            "low": 81000.0,
-            "close": 81044.18
-          },
-          {
-            "start": 1789869000,
-            "end": 1789869300,
-            "open": 81044.18,
-            "high": 81061.63,
-            "low": 81028.5,
-            "close": 81049.74
-          },
-          {
-            "start": 1789869300,
-            "end": 1789869600,
-            "open": 81049.74,
-            "high": 81094.84,
-            "low": 81039.0,
-            "close": 81071.71
-          },
-          {
-            "start": 1789869600,
-            "end": 1789869900,
-            "open": 81071.71,
-            "high": 81117.42,
-            "low": 81050.0,
-            "close": 81057.17
-          },
-          {
-            "start": 1789869900,
-            "end": 1789870200,
-            "open": 81057.17,
-            "high": 81083.59,
-            "low": 81052.23,
-            "close": 81081.55
-          },
-          {
-            "start": 1789870200,
-            "end": 1789870500,
-            "open": 81081.56,
-            "high": 81123.0,
-            "low": 81076.87,
-            "close": 81122.99
-          },
-          {
-            "start": 1789870500,
-            "end": 1789870800,
-            "open": 81122.99,
-            "high": 81131.5,
-            "low": 81000.0,
-            "close": 81038.99
-          },
-          {
-            "start": 1789870800,
-            "end": 1789871100,
-            "open": 81038.99,
-            "high": 81049.5,
-            "low": 80982.89,
-            "close": 80986.43
-          },
-          {
-            "start": 1789871100,
-            "end": 1789871400,
-            "open": 80986.42,
-            "high": 80989.5,
-            "low": 80944.84,
-            "close": 80944.84
-          },
-          {
-            "start": 1789871400,
-            "end": 1789871700,
-            "open": 80944.85,
-            "high": 80970.0,
-            "low": 80866.0,
-            "close": 80871.63
-          },
-          {
-            "start": 1789871700,
-            "end": 1789872000,
-            "open": 80871.64,
-            "high": 80958.74,
-            "low": 80866.01,
-            "close": 80881.5
-          },
-          {
-            "start": 1789872000,
-            "end": 1789872300,
-            "open": 80881.51,
-            "high": 80881.51,
-            "low": 80513.86,
-            "close": 80529.29
-          },
-          {
-            "start": 1789872300,
-            "end": 1789872600,
-            "open": 80531.34,
-            "high": 80656.98,
-            "low": 80401.8,
-            "close": 80539.99
-          },
-          {
-            "start": 1789872600,
-            "end": 1789872900,
-            "open": 80539.99,
-            "high": 80616.54,
-            "low": 80321.97,
-            "close": 80442.9
-          },
-          {
-            "start": 1789872900,
-            "end": 1789873200,
-            "open": 80439.14,
-            "high": 80490.0,
-            "low": 80220.45,
-            "close": 80305.44
-          },
-          {
-            "start": 1789873200,
-            "end": 1789873500,
-            "open": 80303.45,
-            "high": 80386.56,
-            "low": 80175.68,
-            "close": 80338.37
-          },
-          {
-            "start": 1789873500,
-            "end": 1789873800,
-            "open": 80338.38,
-            "high": 80498.62,
-            "low": 80338.37,
-            "close": 80400.01
-          },
-          {
-            "start": 1789873800,
-            "end": 1789874100,
-            "open": 80400.01,
-            "high": 80432.87,
-            "low": 80213.41,
-            "close": 80215.86
-          },
-          {
-            "start": 1789874100,
-            "end": 1789874400,
-            "open": 80215.86,
-            "high": 80399.99,
-            "low": 80085.0,
-            "close": 80397.13
-          },
-          {
-            "start": 1789874400,
-            "end": 1789874700,
-            "open": 80397.14,
-            "high": 80498.6,
-            "low": 80359.69,
-            "close": 80451.0
-          },
-          {
-            "start": 1789874700,
-            "end": 1789875000,
-            "open": 80450.99,
-            "high": 80464.87,
-            "low": 80323.82,
-            "close": 80356.5
-          },
-          {
-            "start": 1789875000,
-            "end": 1789875300,
-            "open": 80356.5,
-            "high": 80380.64,
-            "low": 80315.9,
-            "close": 80341.02
-          },
-          {
-            "start": 1789875300,
-            "end": 1789875600,
-            "open": 80341.02,
-            "high": 80341.02,
-            "low": 80269.26,
-            "close": 80272.5
-          },
-          {
-            "start": 1789875600,
-            "end": 1789875900,
-            "open": 80272.51,
-            "high": 80365.86,
-            "low": 80269.09,
-            "close": 80358.24
-          },
-          {
-            "start": 1789875900,
-            "end": 1789876200,
-            "open": 80358.25,
-            "high": 80463.1,
-            "low": 80295.0,
-            "close": 80446.85
-          },
-          {
-            "start": 1789876200,
-            "end": 1789876500,
-            "open": 80451.97,
-            "high": 80489.71,
-            "low": 80396.56,
-            "close": 80475.66
-          },
-          {
-            "start": 1789876500,
-            "end": 1789876800,
-            "open": 80475.71,
-            "high": 80480.52,
-            "low": 80430.0,
-            "close": 80458.82
-          }
-        ],
-        "coverage": {
-          "start": 1789862100,
-          "end": 1789876800,
-          "uncovered_start_seconds": 9.234018564224243,
-          "uncovered_end_seconds": 111.70181655883789
-        }
+        "status": "INCOMPLETE_EVIDENCE",
+        "data_status": "UNAVAILABLE",
+        "bars_5m": [],
+        "error": "Interval M5 candles unavailable or invalid"
       }
     },
     {
       "report": {
         "id": "BTCUSDT",
-        "checked_at": 1789876911.7018166,
+        "checked_at": 1789876967.5098147,
         "tradingview_symbol": "BINANCE:BTCUSDT",
         "chart": "https://www.tradingview.com/chart/?symbol=BINANCE%3ABTCUSDT&interval=240",
         "state": "neutral",
@@ -1681,7 +1283,7 @@
         "close": 80486.38,
         "previous_close": 81249.99,
         "close_time": 1789876800,
-        "new_candle": true,
+        "new_candle": false,
         "baseline": false,
         "lower": 77216.76,
         "upper": 81741.0,
@@ -1700,8 +1302,8 @@
         "events": [],
         "notes": [],
         "quote": {
-          "price": 80480.01,
-          "time": 1789876913.002
+          "price": 80437.77,
+          "time": 1789876969.008
         },
         "low": 80126.04,
         "high": 81951.0,
@@ -3308,8 +2910,8 @@
             "start": 1789876800,
             "open": 80486.38,
             "high": 80508.04,
-            "low": 80480.0,
-            "close": 80480.01,
+            "low": 80437.77,
+            "close": 80437.78,
             "complete": false
           }
         ],
@@ -3804,7 +3406,7 @@
           "reason": "WAIT_FOR_NEW_BREAKOUT",
           "decision": "WAIT",
           "transitions": [],
-          "range_age_hours": 20.031028282377456,
+          "range_age_hours": 20.04653050409423,
           "range_review_due": false
         }
       },
@@ -3815,15 +3417,15 @@
       },
       "previous_reading": {
         "id": "BTCUSDT",
-        "checked_at": 1789862090.7659814,
+        "checked_at": 1789876911.7018166,
         "tradingview_symbol": "BINANCE:BTCUSDT",
         "chart": "https://www.tradingview.com/chart/?symbol=BINANCE%3ABTCUSDT&interval=240",
         "state": "neutral",
         "signal": null,
         "action": "WAIT FOR CONFIRMATION",
-        "close": 81354.01,
-        "previous_close": 81636.01,
-        "close_time": 1789848000,
+        "close": 80486.38,
+        "previous_close": 81249.99,
+        "close_time": 1789876800,
         "new_candle": true,
         "baseline": false,
         "lower": 77216.76,
@@ -3843,10 +3445,10 @@
         "events": [],
         "notes": [],
         "quote": {
-          "price": 81317.51,
-          "time": 1789862091.01
+          "price": 80480.01,
+          "time": 1789876913.002
         },
-        "low": 80844.58,
+        "low": 80126.04,
         "high": 81951.0,
         "range_label": "Provider rolling 24h range",
         "source": "binance",
@@ -3858,12 +3460,12 @@
         "shadow": {
           "version": 1,
           "range_id": "0337bf766716d6cee85eac8697fd6b0ef817f8e00e62d7dcabf99b7363401df4",
-          "last_end": 1789848000,
+          "last_end": 1789876800,
           "status": "WATCHING",
           "reason": "WAIT_FOR_NEW_BREAKOUT",
           "decision": "WAIT",
           "transitions": [],
-          "range_age_hours": 15.914101661509937,
+          "range_age_hours": 20.031028282377456,
           "range_review_due": false
         },
         "review_decision": "WAIT",
@@ -3879,414 +3481,16 @@
         "upper": null
       },
       "evidence": {
-        "status": "NO_ENTRY_TO_SCORE",
-        "data_status": "COMPLETE_M5_WINDOW",
-        "bars_5m": [
-          {
-            "start": 1789862100,
-            "end": 1789862400,
-            "open": 81317.51,
-            "high": 81319.26,
-            "low": 81243.46,
-            "close": 81249.99
-          },
-          {
-            "start": 1789862400,
-            "end": 1789862700,
-            "open": 81249.99,
-            "high": 81259.53,
-            "low": 81212.09,
-            "close": 81212.09
-          },
-          {
-            "start": 1789862700,
-            "end": 1789863000,
-            "open": 81212.1,
-            "high": 81227.88,
-            "low": 81208.83,
-            "close": 81227.87
-          },
-          {
-            "start": 1789863000,
-            "end": 1789863300,
-            "open": 81227.87,
-            "high": 81286.0,
-            "low": 81227.87,
-            "close": 81285.99
-          },
-          {
-            "start": 1789863300,
-            "end": 1789863600,
-            "open": 81286.0,
-            "high": 81300.0,
-            "low": 81252.0,
-            "close": 81262.0
-          },
-          {
-            "start": 1789863600,
-            "end": 1789863900,
-            "open": 81262.0,
-            "high": 81262.01,
-            "low": 81214.0,
-            "close": 81244.46
-          },
-          {
-            "start": 1789863900,
-            "end": 1789864200,
-            "open": 81244.46,
-            "high": 81330.01,
-            "low": 81234.24,
-            "close": 81318.01
-          },
-          {
-            "start": 1789864200,
-            "end": 1789864500,
-            "open": 81318.0,
-            "high": 81326.01,
-            "low": 81266.0,
-            "close": 81326.01
-          },
-          {
-            "start": 1789864500,
-            "end": 1789864800,
-            "open": 81326.0,
-            "high": 81326.1,
-            "low": 81264.45,
-            "close": 81313.07
-          },
-          {
-            "start": 1789864800,
-            "end": 1789865100,
-            "open": 81313.06,
-            "high": 81330.01,
-            "low": 81312.0,
-            "close": 81330.0
-          },
-          {
-            "start": 1789865100,
-            "end": 1789865400,
-            "open": 81330.0,
-            "high": 81330.01,
-            "low": 81286.0,
-            "close": 81296.01
-          },
-          {
-            "start": 1789865400,
-            "end": 1789865700,
-            "open": 81296.0,
-            "high": 81300.01,
-            "low": 81293.39,
-            "close": 81293.39
-          },
-          {
-            "start": 1789865700,
-            "end": 1789866000,
-            "open": 81293.39,
-            "high": 81300.01,
-            "low": 81277.3,
-            "close": 81293.37
-          },
-          {
-            "start": 1789866000,
-            "end": 1789866300,
-            "open": 81293.37,
-            "high": 81300.0,
-            "low": 81270.82,
-            "close": 81270.82
-          },
-          {
-            "start": 1789866300,
-            "end": 1789866600,
-            "open": 81270.82,
-            "high": 81270.83,
-            "low": 81238.0,
-            "close": 81238.0
-          },
-          {
-            "start": 1789866600,
-            "end": 1789866900,
-            "open": 81238.0,
-            "high": 81238.0,
-            "low": 81138.49,
-            "close": 81138.5
-          },
-          {
-            "start": 1789866900,
-            "end": 1789867200,
-            "open": 81138.5,
-            "high": 81192.0,
-            "low": 81104.0,
-            "close": 81192.0
-          },
-          {
-            "start": 1789867200,
-            "end": 1789867500,
-            "open": 81192.0,
-            "high": 81211.99,
-            "low": 81164.12,
-            "close": 81164.12
-          },
-          {
-            "start": 1789867500,
-            "end": 1789867800,
-            "open": 81164.13,
-            "high": 81164.13,
-            "low": 81122.0,
-            "close": 81122.0
-          },
-          {
-            "start": 1789867800,
-            "end": 1789868100,
-            "open": 81122.0,
-            "high": 81122.01,
-            "low": 81070.0,
-            "close": 81070.01
-          },
-          {
-            "start": 1789868100,
-            "end": 1789868400,
-            "open": 81070.0,
-            "high": 81121.38,
-            "low": 81027.11,
-            "close": 81098.37
-          },
-          {
-            "start": 1789868400,
-            "end": 1789868700,
-            "open": 81098.37,
-            "high": 81121.31,
-            "low": 81078.0,
-            "close": 81078.01
-          },
-          {
-            "start": 1789868700,
-            "end": 1789869000,
-            "open": 81078.01,
-            "high": 81101.18,
-            "low": 81031.71,
-            "close": 81074.22
-          },
-          {
-            "start": 1789869000,
-            "end": 1789869300,
-            "open": 81074.22,
-            "high": 81086.01,
-            "low": 81064.33,
-            "close": 81080.0
-          },
-          {
-            "start": 1789869300,
-            "end": 1789869600,
-            "open": 81080.0,
-            "high": 81116.01,
-            "low": 81078.36,
-            "close": 81097.99
-          },
-          {
-            "start": 1789869600,
-            "end": 1789869900,
-            "open": 81098.0,
-            "high": 81145.24,
-            "low": 81084.0,
-            "close": 81089.12
-          },
-          {
-            "start": 1789869900,
-            "end": 1789870200,
-            "open": 81089.12,
-            "high": 81112.01,
-            "low": 81089.11,
-            "close": 81109.4
-          },
-          {
-            "start": 1789870200,
-            "end": 1789870500,
-            "open": 81109.4,
-            "high": 81152.03,
-            "low": 81109.4,
-            "close": 81152.03
-          },
-          {
-            "start": 1789870500,
-            "end": 1789870800,
-            "open": 81152.03,
-            "high": 81175.62,
-            "low": 81029.98,
-            "close": 81066.01
-          },
-          {
-            "start": 1789870800,
-            "end": 1789871100,
-            "open": 81066.0,
-            "high": 81076.89,
-            "low": 81019.24,
-            "close": 81019.24
-          },
-          {
-            "start": 1789871100,
-            "end": 1789871400,
-            "open": 81019.24,
-            "high": 81019.24,
-            "low": 80984.48,
-            "close": 80984.49
-          },
-          {
-            "start": 1789871400,
-            "end": 1789871700,
-            "open": 80984.49,
-            "high": 80990.01,
-            "low": 80909.05,
-            "close": 80909.05
-          },
-          {
-            "start": 1789871700,
-            "end": 1789872000,
-            "open": 80909.05,
-            "high": 80977.37,
-            "low": 80899.0,
-            "close": 80914.45
-          },
-          {
-            "start": 1789872000,
-            "end": 1789872300,
-            "open": 80914.46,
-            "high": 80914.46,
-            "low": 80562.86,
-            "close": 80562.86
-          },
-          {
-            "start": 1789872300,
-            "end": 1789872600,
-            "open": 80562.87,
-            "high": 80690.01,
-            "low": 80423.9,
-            "close": 80573.27
-          },
-          {
-            "start": 1789872600,
-            "end": 1789872900,
-            "open": 80573.26,
-            "high": 80662.01,
-            "low": 80352.94,
-            "close": 80470.2
-          },
-          {
-            "start": 1789872900,
-            "end": 1789873200,
-            "open": 80470.21,
-            "high": 80513.27,
-            "low": 80263.66,
-            "close": 80331.52
-          },
-          {
-            "start": 1789873200,
-            "end": 1789873500,
-            "open": 80331.52,
-            "high": 80413.33,
-            "low": 80210.46,
-            "close": 80366.62
-          },
-          {
-            "start": 1789873500,
-            "end": 1789873800,
-            "open": 80366.63,
-            "high": 80524.52,
-            "low": 80366.63,
-            "close": 80436.5
-          },
-          {
-            "start": 1789873800,
-            "end": 1789874100,
-            "open": 80436.51,
-            "high": 80468.4,
-            "low": 80247.38,
-            "close": 80247.39
-          },
-          {
-            "start": 1789874100,
-            "end": 1789874400,
-            "open": 80247.39,
-            "high": 80439.77,
-            "low": 80126.04,
-            "close": 80439.75
-          },
-          {
-            "start": 1789874400,
-            "end": 1789874700,
-            "open": 80439.75,
-            "high": 80525.83,
-            "low": 80403.95,
-            "close": 80488.4
-          },
-          {
-            "start": 1789874700,
-            "end": 1789875000,
-            "open": 80488.41,
-            "high": 80497.04,
-            "low": 80358.93,
-            "close": 80382.66
-          },
-          {
-            "start": 1789875000,
-            "end": 1789875300,
-            "open": 80382.65,
-            "high": 80404.13,
-            "low": 80346.85,
-            "close": 80379.45
-          },
-          {
-            "start": 1789875300,
-            "end": 1789875600,
-            "open": 80379.46,
-            "high": 80379.46,
-            "low": 80295.97,
-            "close": 80295.98
-          },
-          {
-            "start": 1789875600,
-            "end": 1789875900,
-            "open": 80295.98,
-            "high": 80388.0,
-            "low": 80295.97,
-            "close": 80387.99
-          },
-          {
-            "start": 1789875900,
-            "end": 1789876200,
-            "open": 80388.0,
-            "high": 80488.41,
-            "low": 80327.03,
-            "close": 80480.36
-          },
-          {
-            "start": 1789876200,
-            "end": 1789876500,
-            "open": 80480.37,
-            "high": 80499.96,
-            "low": 80429.74,
-            "close": 80499.96
-          },
-          {
-            "start": 1789876500,
-            "end": 1789876800,
-            "open": 80499.96,
-            "high": 80508.05,
-            "low": 80464.89,
-            "close": 80486.38
-          }
-        ],
-        "coverage": {
-          "start": 1789862100,
-          "end": 1789876800,
-          "uncovered_start_seconds": 9.234018564224243,
-          "uncovered_end_seconds": 111.70181655883789
-        }
+        "status": "INCOMPLETE_EVIDENCE",
+        "data_status": "UNAVAILABLE",
+        "bars_5m": [],
+        "error": "Interval M5 candles unavailable or invalid"
       }
     },
     {
       "report": {
         "id": "ETHUSD",
-        "checked_at": 1789876911.7018166,
+        "checked_at": 1789876967.5098147,
         "tradingview_symbol": "COINBASE:ETHUSD",
         "chart": "https://www.tradingview.com/chart/?symbol=COINBASE%3AETHUSD&interval=240",
         "state": "neutral",
@@ -4295,7 +3499,7 @@
         "close": 2587.18,
         "previous_close": 2631.7,
         "close_time": 1789876800,
-        "new_candle": true,
+        "new_candle": false,
         "baseline": false,
         "lower": 2434.6,
         "upper": 2646.55,
@@ -4314,8 +3518,8 @@
         "events": [],
         "notes": [],
         "quote": {
-          "price": 2586.46,
-          "time": 1789876912.958984
+          "price": 2584.51,
+          "time": 1789876967.599632
         },
         "low": 2563.6,
         "high": 2667.53,
@@ -5379,7 +4583,7 @@
           "reason": "WAIT_FOR_NEW_BREAKOUT",
           "decision": "WAIT",
           "transitions": [],
-          "range_age_hours": 24.031028282377456,
+          "range_age_hours": 24.04653050409423,
           "range_review_due": false
         }
       },
@@ -5390,15 +4594,15 @@
       },
       "previous_reading": {
         "id": "ETHUSD",
-        "checked_at": 1789862090.7659814,
+        "checked_at": 1789876911.7018166,
         "tradingview_symbol": "COINBASE:ETHUSD",
         "chart": "https://www.tradingview.com/chart/?symbol=COINBASE%3AETHUSD&interval=240",
         "state": "neutral",
         "signal": null,
         "action": "WAIT FOR CONFIRMATION",
-        "close": 2634.33,
-        "previous_close": 2640.59,
-        "close_time": 1789848000,
+        "close": 2587.18,
+        "previous_close": 2631.7,
+        "close_time": 1789876800,
         "new_candle": true,
         "baseline": false,
         "lower": 2434.6,
@@ -5418,10 +4622,10 @@
         "events": [],
         "notes": [],
         "quote": {
-          "price": 2633.08,
-          "time": 1789862088.126452
+          "price": 2586.46,
+          "time": 1789876912.958984
         },
-        "low": 2601.84,
+        "low": 2563.6,
         "high": 2667.53,
         "range_label": "Provider rolling 24h range (retrieved at check time)",
         "source": "coinbase",
@@ -5434,12 +4638,12 @@
         "shadow": {
           "version": 1,
           "range_id": "28319710bc1be5002dc90aefddf18c3eff7c6437ba7e7db43bcf013f3c3751ca",
-          "last_end": 1789848000,
+          "last_end": 1789876800,
           "status": "WATCHING",
           "reason": "WAIT_FOR_NEW_BREAKOUT",
           "decision": "WAIT",
           "transitions": [],
-          "range_age_hours": 19.91410166150994,
+          "range_age_hours": 24.031028282377456,
           "range_review_due": false
         },
         "review_decision": "WAIT",
@@ -5455,414 +4659,16 @@
         "upper": null
       },
       "evidence": {
-        "status": "NO_ENTRY_TO_SCORE",
-        "data_status": "COMPLETE_M5_WINDOW",
-        "bars_5m": [
-          {
-            "start": 1789862100,
-            "end": 1789862400,
-            "open": 2632.9,
-            "high": 2633.49,
-            "low": 2631.62,
-            "close": 2631.7
-          },
-          {
-            "start": 1789862400,
-            "end": 1789862700,
-            "open": 2631.91,
-            "high": 2631.92,
-            "low": 2627.3,
-            "close": 2627.31
-          },
-          {
-            "start": 1789862700,
-            "end": 1789863000,
-            "open": 2627.31,
-            "high": 2627.31,
-            "low": 2626.07,
-            "close": 2627.06
-          },
-          {
-            "start": 1789863000,
-            "end": 1789863300,
-            "open": 2627.05,
-            "high": 2629.22,
-            "low": 2626.7,
-            "close": 2629.22
-          },
-          {
-            "start": 1789863300,
-            "end": 1789863600,
-            "open": 2629.49,
-            "high": 2630.96,
-            "low": 2627.41,
-            "close": 2629.11
-          },
-          {
-            "start": 1789863600,
-            "end": 1789863900,
-            "open": 2629.12,
-            "high": 2629.32,
-            "low": 2626.01,
-            "close": 2626.69
-          },
-          {
-            "start": 1789863900,
-            "end": 1789864200,
-            "open": 2626.64,
-            "high": 2629.05,
-            "low": 2626.14,
-            "close": 2628.39
-          },
-          {
-            "start": 1789864200,
-            "end": 1789864500,
-            "open": 2628.31,
-            "high": 2630.79,
-            "low": 2625.96,
-            "close": 2629.92
-          },
-          {
-            "start": 1789864500,
-            "end": 1789864800,
-            "open": 2629.98,
-            "high": 2630.7,
-            "low": 2626.81,
-            "close": 2629.69
-          },
-          {
-            "start": 1789864800,
-            "end": 1789865100,
-            "open": 2629.44,
-            "high": 2630.37,
-            "low": 2628.43,
-            "close": 2630.0
-          },
-          {
-            "start": 1789865100,
-            "end": 1789865400,
-            "open": 2629.83,
-            "high": 2629.83,
-            "low": 2626.81,
-            "close": 2627.43
-          },
-          {
-            "start": 1789865400,
-            "end": 1789865700,
-            "open": 2627.43,
-            "high": 2628.42,
-            "low": 2626.82,
-            "close": 2627.14
-          },
-          {
-            "start": 1789865700,
-            "end": 1789866000,
-            "open": 2627.23,
-            "high": 2627.23,
-            "low": 2624.84,
-            "close": 2626.19
-          },
-          {
-            "start": 1789866000,
-            "end": 1789866300,
-            "open": 2626.42,
-            "high": 2626.49,
-            "low": 2623.51,
-            "close": 2623.61
-          },
-          {
-            "start": 1789866300,
-            "end": 1789866600,
-            "open": 2623.81,
-            "high": 2626.17,
-            "low": 2622.73,
-            "close": 2622.91
-          },
-          {
-            "start": 1789866600,
-            "end": 1789866900,
-            "open": 2622.75,
-            "high": 2622.75,
-            "low": 2619.39,
-            "close": 2620.31
-          },
-          {
-            "start": 1789866900,
-            "end": 1789867200,
-            "open": 2620.05,
-            "high": 2624.12,
-            "low": 2619.5,
-            "close": 2623.78
-          },
-          {
-            "start": 1789867200,
-            "end": 1789867500,
-            "open": 2623.75,
-            "high": 2625.0,
-            "low": 2622.83,
-            "close": 2623.14
-          },
-          {
-            "start": 1789867500,
-            "end": 1789867800,
-            "open": 2623.14,
-            "high": 2623.14,
-            "low": 2620.01,
-            "close": 2620.07
-          },
-          {
-            "start": 1789867800,
-            "end": 1789868100,
-            "open": 2620.0,
-            "high": 2620.53,
-            "low": 2617.61,
-            "close": 2617.67
-          },
-          {
-            "start": 1789868100,
-            "end": 1789868400,
-            "open": 2617.61,
-            "high": 2618.38,
-            "low": 2612.2,
-            "close": 2617.94
-          },
-          {
-            "start": 1789868400,
-            "end": 1789868700,
-            "open": 2618.0,
-            "high": 2619.14,
-            "low": 2616.99,
-            "close": 2617.66
-          },
-          {
-            "start": 1789868700,
-            "end": 1789869000,
-            "open": 2618.43,
-            "high": 2619.46,
-            "low": 2614.77,
-            "close": 2618.29
-          },
-          {
-            "start": 1789869000,
-            "end": 1789869300,
-            "open": 2618.3,
-            "high": 2618.78,
-            "low": 2617.2,
-            "close": 2618.53
-          },
-          {
-            "start": 1789869300,
-            "end": 1789869600,
-            "open": 2618.28,
-            "high": 2619.2,
-            "low": 2617.2,
-            "close": 2618.39
-          },
-          {
-            "start": 1789869600,
-            "end": 1789869900,
-            "open": 2618.53,
-            "high": 2621.59,
-            "low": 2617.16,
-            "close": 2618.67
-          },
-          {
-            "start": 1789869900,
-            "end": 1789870200,
-            "open": 2618.67,
-            "high": 2619.88,
-            "low": 2617.0,
-            "close": 2618.97
-          },
-          {
-            "start": 1789870200,
-            "end": 1789870500,
-            "open": 2618.98,
-            "high": 2621.95,
-            "low": 2618.51,
-            "close": 2621.95
-          },
-          {
-            "start": 1789870500,
-            "end": 1789870800,
-            "open": 2621.9,
-            "high": 2623.18,
-            "low": 2616.12,
-            "close": 2618.62
-          },
-          {
-            "start": 1789870800,
-            "end": 1789871100,
-            "open": 2618.8,
-            "high": 2619.0,
-            "low": 2614.15,
-            "close": 2614.57
-          },
-          {
-            "start": 1789871100,
-            "end": 1789871400,
-            "open": 2614.29,
-            "high": 2614.76,
-            "low": 2612.62,
-            "close": 2613.32
-          },
-          {
-            "start": 1789871400,
-            "end": 1789871700,
-            "open": 2613.2,
-            "high": 2614.53,
-            "low": 2608.6,
-            "close": 2608.91
-          },
-          {
-            "start": 1789871700,
-            "end": 1789872000,
-            "open": 2608.9,
-            "high": 2610.47,
-            "low": 2605.62,
-            "close": 2605.64
-          },
-          {
-            "start": 1789872000,
-            "end": 1789872300,
-            "open": 2605.86,
-            "high": 2606.95,
-            "low": 2586.87,
-            "close": 2589.59
-          },
-          {
-            "start": 1789872300,
-            "end": 1789872600,
-            "open": 2589.6,
-            "high": 2599.0,
-            "low": 2586.4,
-            "close": 2592.58
-          },
-          {
-            "start": 1789872600,
-            "end": 1789872900,
-            "open": 2592.17,
-            "high": 2595.44,
-            "low": 2582.32,
-            "close": 2588.85
-          },
-          {
-            "start": 1789872900,
-            "end": 1789873200,
-            "open": 2588.78,
-            "high": 2590.05,
-            "low": 2565.8,
-            "close": 2573.49
-          },
-          {
-            "start": 1789873200,
-            "end": 1789873500,
-            "open": 2573.0,
-            "high": 2576.0,
-            "low": 2563.6,
-            "close": 2576.0
-          },
-          {
-            "start": 1789873500,
-            "end": 1789873800,
-            "open": 2576.04,
-            "high": 2584.98,
-            "low": 2576.04,
-            "close": 2580.44
-          },
-          {
-            "start": 1789873800,
-            "end": 1789874100,
-            "open": 2580.95,
-            "high": 2584.15,
-            "low": 2573.35,
-            "close": 2574.49
-          },
-          {
-            "start": 1789874100,
-            "end": 1789874400,
-            "open": 2574.42,
-            "high": 2584.2,
-            "low": 2568.88,
-            "close": 2584.19
-          },
-          {
-            "start": 1789874400,
-            "end": 1789874700,
-            "open": 2584.08,
-            "high": 2590.45,
-            "low": 2584.08,
-            "close": 2588.39
-          },
-          {
-            "start": 1789874700,
-            "end": 1789875000,
-            "open": 2588.39,
-            "high": 2588.39,
-            "low": 2583.03,
-            "close": 2584.2
-          },
-          {
-            "start": 1789875000,
-            "end": 1789875300,
-            "open": 2584.08,
-            "high": 2588.35,
-            "low": 2583.73,
-            "close": 2586.05
-          },
-          {
-            "start": 1789875300,
-            "end": 1789875600,
-            "open": 2585.66,
-            "high": 2585.66,
-            "low": 2577.67,
-            "close": 2577.67
-          },
-          {
-            "start": 1789875600,
-            "end": 1789875900,
-            "open": 2578.2,
-            "high": 2581.88,
-            "low": 2578.07,
-            "close": 2580.85
-          },
-          {
-            "start": 1789875900,
-            "end": 1789876200,
-            "open": 2580.87,
-            "high": 2584.83,
-            "low": 2579.2,
-            "close": 2584.74
-          },
-          {
-            "start": 1789876200,
-            "end": 1789876500,
-            "open": 2584.67,
-            "high": 2587.39,
-            "low": 2583.49,
-            "close": 2586.97
-          },
-          {
-            "start": 1789876500,
-            "end": 1789876800,
-            "open": 2587.1,
-            "high": 2587.5,
-            "low": 2585.43,
-            "close": 2587.18
-          }
-        ],
-        "coverage": {
-          "start": 1789862100,
-          "end": 1789876800,
-          "uncovered_start_seconds": 9.234018564224243,
-          "uncovered_end_seconds": 111.70181655883789
-        }
+        "status": "INCOMPLETE_EVIDENCE",
+        "data_status": "UNAVAILABLE",
+        "bars_5m": [],
+        "error": "Interval M5 candles unavailable or invalid"
       }
     },
     {
       "report": {
         "id": "ETHUSDT",
-        "checked_at": 1789876911.7018166,
+        "checked_at": 1789876967.5098147,
         "tradingview_symbol": "BINANCE:ETHUSDT",
         "chart": "https://www.tradingview.com/chart/?symbol=BINANCE%3AETHUSDT&interval=240",
         "state": "neutral",
@@ -5871,7 +4677,7 @@
         "close": 2588.03,
         "previous_close": 2632.69,
         "close_time": 1789876800,
-        "new_candle": true,
+        "new_candle": false,
         "baseline": false,
         "lower": 2436.89,
         "upper": 2646.0,
@@ -5890,8 +4696,8 @@
         "events": [],
         "notes": [],
         "quote": {
-          "price": 2587.26,
-          "time": 1789876914.987
+          "price": 2585.48,
+          "time": 1789876969.962
         },
         "low": 2564.33,
         "high": 2668.0,
@@ -7498,8 +6304,8 @@
             "start": 1789876800,
             "open": 2588.03,
             "high": 2588.04,
-            "low": 2585.14,
-            "close": 2587.26,
+            "low": 2584.26,
+            "close": 2585.49,
             "complete": false
           }
         ],
@@ -7994,7 +6800,7 @@
           "reason": "WAIT_FOR_NEW_BREAKOUT",
           "decision": "WAIT",
           "transitions": [],
-          "range_age_hours": 24.031028282377456,
+          "range_age_hours": 24.04653050409423,
           "range_review_due": false
         }
       },
@@ -8004,764 +6810,6 @@
         "reason": "No tracked setup is active. Wait for a new completed 4H pivot crossing, then a later completed retest."
       },
       "previous_reading": {
-        "id": "ETHUSDT",
-        "checked_at": 1789862090.7659814,
-        "tradingview_symbol": "BINANCE:ETHUSDT",
-        "chart": "https://www.tradingview.com/chart/?symbol=BINANCE%3AETHUSDT&interval=240",
-        "state": "neutral",
-        "signal": null,
-        "action": "WAIT FOR CONFIRMATION",
-        "close": 2634.88,
-        "previous_close": 2641.16,
-        "close_time": 1789848000,
-        "new_candle": true,
-        "baseline": false,
-        "lower": 2436.89,
-        "upper": 2646.0,
-        "range_origin": "Frozen high/low of six prior completed 4H candles; latest excluded",
-        "baseline_end": 1789790400,
-        "bullish_targets": [
-          2855.11,
-          3064.2200000000003
-        ],
-        "bearish_targets": [
-          2227.7799999999997,
-          2018.6699999999996
-        ],
-        "setup": null,
-        "retest_confirmed": false,
-        "events": [],
-        "notes": [],
-        "quote": {
-          "price": 2633.82,
-          "time": 1789862092.991
-        },
-        "low": 2602.94,
-        "high": 2668.0,
-        "range_label": "Provider rolling 24h range",
-        "source": "binance",
-        "sources": [
-          "https://data-api.binance.vision/api/v3/klines?symbol=ETHUSDT&interval=4h&limit=200",
-          "https://data-api.binance.vision/api/v3/ticker/24hr?symbol=ETHUSDT"
-        ],
-        "status": "NO NEW SIGNAL",
-        "shadow": {
-          "version": 1,
-          "range_id": "4b0d067ec453316fe0886aa925c72e97ad21de55f3b150b18a9885614ee27b72",
-          "last_end": 1789848000,
-          "status": "WATCHING",
-          "reason": "WAIT_FOR_NEW_BREAKOUT",
-          "decision": "WAIT",
-          "transitions": [],
-          "range_age_hours": 19.91410166150994,
-          "range_review_due": false
-        },
-        "review_decision": "WAIT",
-        "review_config": "d0bbfb4725b720386563954c6b0b0e332226f29dc749ba613feb9e5636e0e8ae"
-      },
-      "configuration": {
-        "id": "ETHUSDT",
-        "enabled": true,
-        "provider": "binance",
-        "symbol": "ETHUSDT",
-        "tradingview": "BINANCE:ETHUSDT",
-        "lower": null,
-        "upper": null
-      },
-      "evidence": {
-        "status": "NO_ENTRY_TO_SCORE",
-        "data_status": "COMPLETE_M5_WINDOW",
-        "bars_5m": [
-          {
-            "start": 1789862100,
-            "end": 1789862400,
-            "open": 2633.82,
-            "high": 2633.85,
-            "low": 2632.55,
-            "close": 2632.69
-          },
-          {
-            "start": 1789862400,
-            "end": 1789862700,
-            "open": 2632.7,
-            "high": 2632.97,
-            "low": 2628.08,
-            "close": 2628.11
-          },
-          {
-            "start": 1789862700,
-            "end": 1789863000,
-            "open": 2628.1,
-            "high": 2628.1,
-            "low": 2626.54,
-            "close": 2627.74
-          },
-          {
-            "start": 1789863000,
-            "end": 1789863300,
-            "open": 2627.74,
-            "high": 2630.0,
-            "low": 2627.74,
-            "close": 2629.99
-          },
-          {
-            "start": 1789863300,
-            "end": 1789863600,
-            "open": 2630.0,
-            "high": 2631.5,
-            "low": 2628.58,
-            "close": 2629.96
-          },
-          {
-            "start": 1789863600,
-            "end": 1789863900,
-            "open": 2629.96,
-            "high": 2630.0,
-            "low": 2627.05,
-            "close": 2627.61
-          },
-          {
-            "start": 1789863900,
-            "end": 1789864200,
-            "open": 2627.61,
-            "high": 2629.44,
-            "low": 2627.07,
-            "close": 2629.43
-          },
-          {
-            "start": 1789864200,
-            "end": 1789864500,
-            "open": 2629.44,
-            "high": 2631.5,
-            "low": 2627.13,
-            "close": 2631.0
-          },
-          {
-            "start": 1789864500,
-            "end": 1789864800,
-            "open": 2630.99,
-            "high": 2631.47,
-            "low": 2627.62,
-            "close": 2630.0
-          },
-          {
-            "start": 1789864800,
-            "end": 1789865100,
-            "open": 2629.99,
-            "high": 2631.14,
-            "low": 2629.73,
-            "close": 2630.8
-          },
-          {
-            "start": 1789865100,
-            "end": 1789865400,
-            "open": 2630.8,
-            "high": 2630.8,
-            "low": 2627.78,
-            "close": 2628.27
-          },
-          {
-            "start": 1789865400,
-            "end": 1789865700,
-            "open": 2628.28,
-            "high": 2629.36,
-            "low": 2627.98,
-            "close": 2628.2
-          },
-          {
-            "start": 1789865700,
-            "end": 1789866000,
-            "open": 2628.19,
-            "high": 2628.19,
-            "low": 2625.98,
-            "close": 2627.37
-          },
-          {
-            "start": 1789866000,
-            "end": 1789866300,
-            "open": 2627.36,
-            "high": 2627.37,
-            "low": 2624.5,
-            "close": 2624.54
-          },
-          {
-            "start": 1789866300,
-            "end": 1789866600,
-            "open": 2624.54,
-            "high": 2626.25,
-            "low": 2623.79,
-            "close": 2623.79
-          },
-          {
-            "start": 1789866600,
-            "end": 1789866900,
-            "open": 2623.79,
-            "high": 2623.79,
-            "low": 2620.18,
-            "close": 2620.85
-          },
-          {
-            "start": 1789866900,
-            "end": 1789867200,
-            "open": 2620.86,
-            "high": 2624.7,
-            "low": 2620.38,
-            "close": 2624.69
-          },
-          {
-            "start": 1789867200,
-            "end": 1789867500,
-            "open": 2624.69,
-            "high": 2625.92,
-            "low": 2624.01,
-            "close": 2624.08
-          },
-          {
-            "start": 1789867500,
-            "end": 1789867800,
-            "open": 2624.07,
-            "high": 2624.08,
-            "low": 2620.96,
-            "close": 2620.96
-          },
-          {
-            "start": 1789867800,
-            "end": 1789868100,
-            "open": 2620.96,
-            "high": 2621.32,
-            "low": 2618.3,
-            "close": 2618.53
-          },
-          {
-            "start": 1789868100,
-            "end": 1789868400,
-            "open": 2618.53,
-            "high": 2619.16,
-            "low": 2613.04,
-            "close": 2619.15
-          },
-          {
-            "start": 1789868400,
-            "end": 1789868700,
-            "open": 2619.15,
-            "high": 2619.73,
-            "low": 2618.23,
-            "close": 2619.48
-          },
-          {
-            "start": 1789868700,
-            "end": 1789869000,
-            "open": 2619.49,
-            "high": 2620.6,
-            "low": 2615.89,
-            "close": 2618.94
-          },
-          {
-            "start": 1789869000,
-            "end": 1789869300,
-            "open": 2618.94,
-            "high": 2619.95,
-            "low": 2618.5,
-            "close": 2619.48
-          },
-          {
-            "start": 1789869300,
-            "end": 1789869600,
-            "open": 2619.47,
-            "high": 2620.21,
-            "low": 2618.4,
-            "close": 2619.8
-          },
-          {
-            "start": 1789869600,
-            "end": 1789869900,
-            "open": 2619.8,
-            "high": 2622.64,
-            "low": 2618.39,
-            "close": 2620.0
-          },
-          {
-            "start": 1789869900,
-            "end": 1789870200,
-            "open": 2620.01,
-            "high": 2620.7,
-            "low": 2618.25,
-            "close": 2619.96
-          },
-          {
-            "start": 1789870200,
-            "end": 1789870500,
-            "open": 2619.96,
-            "high": 2622.88,
-            "low": 2619.96,
-            "close": 2622.88
-          },
-          {
-            "start": 1789870500,
-            "end": 1789870800,
-            "open": 2622.87,
-            "high": 2624.04,
-            "low": 2617.0,
-            "close": 2619.27
-          },
-          {
-            "start": 1789870800,
-            "end": 1789871100,
-            "open": 2619.27,
-            "high": 2620.0,
-            "low": 2615.45,
-            "close": 2615.46
-          },
-          {
-            "start": 1789871100,
-            "end": 1789871400,
-            "open": 2615.45,
-            "high": 2615.46,
-            "low": 2613.39,
-            "close": 2614.03
-          },
-          {
-            "start": 1789871400,
-            "end": 1789871700,
-            "open": 2614.03,
-            "high": 2615.28,
-            "low": 2609.74,
-            "close": 2609.75
-          },
-          {
-            "start": 1789871700,
-            "end": 1789872000,
-            "open": 2609.75,
-            "high": 2610.82,
-            "low": 2606.71,
-            "close": 2606.72
-          },
-          {
-            "start": 1789872000,
-            "end": 1789872300,
-            "open": 2606.72,
-            "high": 2607.78,
-            "low": 2587.36,
-            "close": 2589.47
-          },
-          {
-            "start": 1789872300,
-            "end": 1789872600,
-            "open": 2589.48,
-            "high": 2599.81,
-            "low": 2586.96,
-            "close": 2593.49
-          },
-          {
-            "start": 1789872600,
-            "end": 1789872900,
-            "open": 2593.49,
-            "high": 2596.23,
-            "low": 2583.12,
-            "close": 2589.75
-          },
-          {
-            "start": 1789872900,
-            "end": 1789873200,
-            "open": 2589.73,
-            "high": 2591.13,
-            "low": 2566.54,
-            "close": 2574.23
-          },
-          {
-            "start": 1789873200,
-            "end": 1789873500,
-            "open": 2574.24,
-            "high": 2576.82,
-            "low": 2564.33,
-            "close": 2576.79
-          },
-          {
-            "start": 1789873500,
-            "end": 1789873800,
-            "open": 2576.78,
-            "high": 2585.89,
-            "low": 2576.78,
-            "close": 2581.1
-          },
-          {
-            "start": 1789873800,
-            "end": 1789874100,
-            "open": 2581.11,
-            "high": 2584.51,
-            "low": 2574.91,
-            "close": 2574.92
-          },
-          {
-            "start": 1789874100,
-            "end": 1789874400,
-            "open": 2574.91,
-            "high": 2585.39,
-            "low": 2569.75,
-            "close": 2585.16
-          },
-          {
-            "start": 1789874400,
-            "end": 1789874700,
-            "open": 2585.16,
-            "high": 2591.25,
-            "low": 2585.15,
-            "close": 2589.26
-          },
-          {
-            "start": 1789874700,
-            "end": 1789875000,
-            "open": 2589.26,
-            "high": 2589.59,
-            "low": 2584.12,
-            "close": 2584.93
-          },
-          {
-            "start": 1789875000,
-            "end": 1789875300,
-            "open": 2584.93,
-            "high": 2589.07,
-            "low": 2584.63,
-            "close": 2586.74
-          },
-          {
-            "start": 1789875300,
-            "end": 1789875600,
-            "open": 2586.74,
-            "high": 2586.74,
-            "low": 2578.63,
-            "close": 2579.1
-          },
-          {
-            "start": 1789875600,
-            "end": 1789875900,
-            "open": 2579.1,
-            "high": 2582.2,
-            "low": 2578.82,
-            "close": 2582.0
-          },
-          {
-            "start": 1789875900,
-            "end": 1789876200,
-            "open": 2582.0,
-            "high": 2586.2,
-            "low": 2580.0,
-            "close": 2585.74
-          },
-          {
-            "start": 1789876200,
-            "end": 1789876500,
-            "open": 2585.74,
-            "high": 2588.21,
-            "low": 2584.4,
-            "close": 2588.21
-          },
-          {
-            "start": 1789876500,
-            "end": 1789876800,
-            "open": 2588.21,
-            "high": 2588.21,
-            "low": 2586.45,
-            "close": 2588.03
-          }
-        ],
-        "coverage": {
-          "start": 1789862100,
-          "end": 1789876800,
-          "uncovered_start_seconds": 9.234018564224243,
-          "uncovered_end_seconds": 111.70181655883789
-        }
-      }
-    },
-    {
-      "report": {
-        "id": "XAUUSD",
-        "checked_at": 1789876911.7018166,
-        "tradingview_symbol": "OANDA:XAUUSD",
-        "chart": "https://www.tradingview.com/chart/?symbol=OANDA%3AXAUUSD&interval=240",
-        "status": "DATA UNAVAILABLE",
-        "signal": null,
-        "action": "WAIT FOR VERIFIED DATA",
-        "error": "OANDA market closed or instrument not tradeable; no current signal",
-        "shadow": {
-          "status": "DATA_UNAVAILABLE",
-          "reason": "UNVERIFIED_DATA",
-          "decision": "WAIT"
-        }
-      },
-      "decision": {
-        "decision": "WAIT",
-        "action": "WAIT FOR VERIFIED DATA",
-        "reason": "The completed candle cannot be verified. No trade decision is available."
-      },
-      "previous_reading": {
-        "id": "XAUUSD",
-        "checked_at": 1789862090.7659814,
-        "tradingview_symbol": "OANDA:XAUUSD",
-        "chart": "https://www.tradingview.com/chart/?symbol=OANDA%3AXAUUSD&interval=240",
-        "status": "DATA UNAVAILABLE",
-        "signal": null,
-        "action": "WAIT FOR VERIFIED DATA",
-        "error": "OANDA market closed or instrument not tradeable; no current signal",
-        "shadow": {
-          "status": "DATA_UNAVAILABLE",
-          "reason": "UNVERIFIED_DATA",
-          "decision": "WAIT"
-        },
-        "review_decision": "WAIT",
-        "review_config": "08213075c5c9b2196d855761a9364ac1addbdb74eaac3f55043f20840bdbffd6"
-      },
-      "configuration": {
-        "id": "XAUUSD",
-        "enabled": true,
-        "provider": "oanda",
-        "environment": "practice",
-        "symbol": "XAU_USD",
-        "tradingview": "OANDA:XAUUSD",
-        "lower": null,
-        "upper": null
-      },
-      "evidence": {
-        "status": "DATA_UNAVAILABLE",
-        "data_status": "NOT_REQUESTED",
-        "bars_5m": []
-      }
-    },
-    {
-      "report": {
-        "id": "USOIL",
-        "checked_at": 1789876911.7018166,
-        "tradingview_symbol": "OANDA:WTICOUSD",
-        "chart": "https://www.tradingview.com/chart/?symbol=OANDA%3AWTICOUSD&interval=240",
-        "status": "DATA UNAVAILABLE",
-        "signal": null,
-        "action": "WAIT FOR VERIFIED DATA",
-        "error": "OANDA market closed or instrument not tradeable; no current signal",
-        "shadow": {
-          "status": "DATA_UNAVAILABLE",
-          "reason": "UNVERIFIED_DATA",
-          "decision": "WAIT"
-        }
-      },
-      "decision": {
-        "decision": "WAIT",
-        "action": "WAIT FOR VERIFIED DATA",
-        "reason": "The completed candle cannot be verified. No trade decision is available."
-      },
-      "previous_reading": {
-        "id": "USOIL",
-        "checked_at": 1789862090.7659814,
-        "tradingview_symbol": "OANDA:WTICOUSD",
-        "chart": "https://www.tradingview.com/chart/?symbol=OANDA%3AWTICOUSD&interval=240",
-        "status": "DATA UNAVAILABLE",
-        "signal": null,
-        "action": "WAIT FOR VERIFIED DATA",
-        "error": "OANDA market closed or instrument not tradeable; no current signal",
-        "shadow": {
-          "status": "DATA_UNAVAILABLE",
-          "reason": "UNVERIFIED_DATA",
-          "decision": "WAIT"
-        },
-        "review_decision": "WAIT",
-        "review_config": "27f08942f711c2824d09817b847ba4010acce24b4c6482a88d4bd23308b530af"
-      },
-      "configuration": {
-        "id": "USOIL",
-        "enabled": true,
-        "provider": "oanda",
-        "environment": "practice",
-        "symbol": "WTICO_USD",
-        "tradingview": "OANDA:WTICOUSD",
-        "lower": null,
-        "upper": null
-      },
-      "evidence": {
-        "status": "DATA_UNAVAILABLE",
-        "data_status": "NOT_REQUESTED",
-        "bars_5m": []
-      }
-    }
-  ],
-  "markdown": "# Four-hour strategy review\n\nCheck: **2026-09-20 00:01:51 EDT** / 2026-09-20 12:01:51 +08.\n\nPrevious reading: **2026-09-19 19:54:50 EDT** / 2026-09-20 07:54:50 +08.\nActual elapsed time: **4.12 hours**.\n\nForward observation only. Previous decisions and levels are frozen before comparison.\nTarget observations are not trade fills or a profitability backtest. WAIT is never counted as a win.\n\n## BTCUSD\n\n| Reading | Previous | Current |\n|---|---|---|\n| Decision | WAIT | WAIT |\n| Breakout | None | None |\n| Quote | 81,292.4000 | 80,451.0000 |\n| Quote timestamp (UTC) | 2026-09-19 23:54:49 UTC | 2026-09-20 04:01:50 UTC |\n| Completed 4H close | 81,345.0200 | 80,458.8200 |\n| Candle ended (UTC) | 2026-09-19 20:00:00 UTC | 2026-09-20 04:00:00 UTC |\n\nQuote-to-quote movement: **-841.4000 (-1.04%)**; not realised trading P&L.\nPrior fixed pivots: lower **74,887.5000**, upper **78,242.7600**.\n\n**NO ENTRY TO SCORE.** The prior reading was WAIT or a position-specific exit, not a new entry.\nLater movement is not credited as a winning or losing trade.\n\nObserved M5 range: **80,085.0000–81,302.3500**.\nCoverage: 2026-09-19 23:55:00 UTC to 2026-09-20 04:00:00 UTC (49 completed M5 bars).\nUncovered edges: 9s at start, 112s at end. No claim about touches in these edges.\n\n\nNext observation starts from: **WAIT — WAIT FOR CONFIRMATION**.\n\nShadow research: **WAIT / UNTRACKED — WAIT_FOR_NEW_BREAKOUT**. Baseline unchanged; no order or fill.\n\nReference quote: 80,451.0000. Pivots: 74,887.5000 / 78,242.7600.\nBullish targets: 81,598.0200 / 84,953.2800. Bearish targets: 71,532.2400 / 68,176.9800.\n\n## BTCUSDT\n\n| Reading | Previous | Current |\n|---|---|---|\n| Decision | WAIT | WAIT |\n| Breakout | None | None |\n| Quote | 81,317.5100 | 80,480.0100 |\n| Quote timestamp (UTC) | 2026-09-19 23:54:51 UTC | 2026-09-20 04:01:53 UTC |\n| Completed 4H close | 81,354.0100 | 80,486.3800 |\n| Candle ended (UTC) | 2026-09-19 20:00:00 UTC | 2026-09-20 04:00:00 UTC |\n\nQuote-to-quote movement: **-837.5000 (-1.03%)**; not realised trading P&L.\nPrior fixed pivots: lower **77,216.7600**, upper **81,741.0000**.\n\n**NO ENTRY TO SCORE.** The prior reading was WAIT or a position-specific exit, not a new entry.\nLater movement is not credited as a winning or losing trade.\n\nObserved M5 range: **80,126.0400–81,330.0100**.\nCoverage: 2026-09-19 23:55:00 UTC to 2026-09-20 04:00:00 UTC (49 completed M5 bars).\nUncovered edges: 9s at start, 112s at end. No claim about touches in these edges.\n\n\nNext observation starts from: **WAIT — WAIT FOR CONFIRMATION**.\n\nShadow research: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. Baseline unchanged; no order or fill.\n\nReference quote: 80,480.0100. Pivots: 77,216.7600 / 81,741.0000.\nBullish targets: 86,265.2400 / 90,789.4800. Bearish targets: 72,692.5200 / 68,168.2800.\n\n## ETHUSD\n\n| Reading | Previous | Current |\n|---|---|---|\n| Decision | WAIT | WAIT |\n| Breakout | None | None |\n| Quote | 2,633.0800 | 2,586.4600 |\n| Quote timestamp (UTC) | 2026-09-19 23:54:48 UTC | 2026-09-20 04:01:52 UTC |\n| Completed 4H close | 2,634.3300 | 2,587.1800 |\n| Candle ended (UTC) | 2026-09-19 20:00:00 UTC | 2026-09-20 04:00:00 UTC |\n\nQuote-to-quote movement: **-46.6200 (-1.77%)**; not realised trading P&L.\nPrior fixed pivots: lower **2,434.6000**, upper **2,646.5500**.\n\n**NO ENTRY TO SCORE.** The prior reading was WAIT or a position-specific exit, not a new entry.\nLater movement is not credited as a winning or losing trade.\n\nObserved M5 range: **2,563.6000–2,633.4900**.\nCoverage: 2026-09-19 23:55:00 UTC to 2026-09-20 04:00:00 UTC (49 completed M5 bars).\nUncovered edges: 9s at start, 112s at end. No claim about touches in these edges.\n\n\nNext observation starts from: **WAIT — WAIT FOR CONFIRMATION**.\n\nShadow research: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. Baseline unchanged; no order or fill.\n\nReference quote: 2,586.4600. Pivots: 2,434.6000 / 2,646.5500.\nBullish targets: 2,858.5000 / 3,070.4500. Bearish targets: 2,222.6500 / 2,010.7000.\n\n## ETHUSDT\n\n| Reading | Previous | Current |\n|---|---|---|\n| Decision | WAIT | WAIT |\n| Breakout | None | None |\n| Quote | 2,633.8200 | 2,587.2600 |\n| Quote timestamp (UTC) | 2026-09-19 23:54:52 UTC | 2026-09-20 04:01:54 UTC |\n| Completed 4H close | 2,634.8800 | 2,588.0300 |\n| Candle ended (UTC) | 2026-09-19 20:00:00 UTC | 2026-09-20 04:00:00 UTC |\n\nQuote-to-quote movement: **-46.5600 (-1.77%)**; not realised trading P&L.\nPrior fixed pivots: lower **2,436.8900**, upper **2,646.0000**.\n\n**NO ENTRY TO SCORE.** The prior reading was WAIT or a position-specific exit, not a new entry.\nLater movement is not credited as a winning or losing trade.\n\nObserved M5 range: **2,564.3300–2,633.8500**.\nCoverage: 2026-09-19 23:55:00 UTC to 2026-09-20 04:00:00 UTC (49 completed M5 bars).\nUncovered edges: 9s at start, 112s at end. No claim about touches in these edges.\n\n\nNext observation starts from: **WAIT — WAIT FOR CONFIRMATION**.\n\nShadow research: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. Baseline unchanged; no order or fill.\n\nReference quote: 2,587.2600. Pivots: 2,436.8900 / 2,646.0000.\nBullish targets: 2,855.1100 / 3,064.2200. Bearish targets: 2,227.7800 / 2,018.6700.\n\n## XAUUSD\n\n**DATA UNAVAILABLE — no performance conclusion.**\n\nNext observation starts from: **WAIT — WAIT FOR VERIFIED DATA**.\n\nShadow research: **WAIT / DATA_UNAVAILABLE — UNVERIFIED_DATA**. Baseline unchanged; no order or fill.\n\n## USOIL\n\n**DATA UNAVAILABLE — no performance conclusion.**\n\nNext observation starts from: **WAIT — WAIT FOR VERIFIED DATA**.\n\nShadow research: **WAIT / DATA_UNAVAILABLE — UNVERIFIED_DATA**. Baseline unchanged; no order or fill.\n",
-  "next_review_state": {
-    "version": 1,
-    "checked_at": 1789876911.7018166,
-    "markets": {
-      "BTCUSD": {
-        "id": "BTCUSD",
-        "checked_at": 1789876911.7018166,
-        "tradingview_symbol": "COINBASE:BTCUSD",
-        "chart": "https://www.tradingview.com/chart/?symbol=COINBASE%3ABTCUSD&interval=240",
-        "state": "bullish",
-        "signal": null,
-        "action": "WAIT FOR CONFIRMATION",
-        "close": 80458.82,
-        "previous_close": 81233.91,
-        "close_time": 1789876800,
-        "new_candle": true,
-        "baseline": false,
-        "lower": 74887.5,
-        "upper": 78242.76,
-        "range_origin": "Frozen high/low of six prior completed 4H candles; latest excluded",
-        "baseline_end": 1789531200,
-        "bullish_targets": [
-          81598.01999999999,
-          84953.27999999998
-        ],
-        "bearish_targets": [
-          71532.24,
-          68176.98000000001
-        ],
-        "setup": {
-          "side": "BUY",
-          "signal_end": 1789747200,
-          "retest_close_time": null
-        },
-        "retest_confirmed": false,
-        "events": [],
-        "notes": [],
-        "quote": {
-          "price": 80451.0,
-          "time": 1789876910.406065
-        },
-        "low": 80085.0,
-        "high": 81925.0,
-        "range_label": "Provider rolling 24h range (retrieved at check time)",
-        "source": "coinbase",
-        "sources": [
-          "https://api.exchange.coinbase.com/products/BTC-USD/candles",
-          "https://api.exchange.coinbase.com/products/BTC-USD/ticker",
-          "https://api.exchange.coinbase.com/products/BTC-USD/stats"
-        ],
-        "status": "NO NEW SIGNAL",
-        "shadow": {
-          "version": 1,
-          "range_id": "4479c88215db939d472d8c1a227672994e3e8956b2417a586264a82329e1cc36",
-          "last_end": 1789876800,
-          "status": "UNTRACKED",
-          "reason": "WAIT_FOR_NEW_BREAKOUT",
-          "decision": "WAIT",
-          "transitions": [],
-          "range_age_hours": 96.03102828237745,
-          "range_review_due": false
-        },
-        "review_decision": "WAIT",
-        "review_config": "a60bb5ae4499f9381dd741ea176ac5db821e23ad39ec488f30d555123f4e5b6a"
-      },
-      "BTCUSDT": {
-        "id": "BTCUSDT",
-        "checked_at": 1789876911.7018166,
-        "tradingview_symbol": "BINANCE:BTCUSDT",
-        "chart": "https://www.tradingview.com/chart/?symbol=BINANCE%3ABTCUSDT&interval=240",
-        "state": "neutral",
-        "signal": null,
-        "action": "WAIT FOR CONFIRMATION",
-        "close": 80486.38,
-        "previous_close": 81249.99,
-        "close_time": 1789876800,
-        "new_candle": true,
-        "baseline": false,
-        "lower": 77216.76,
-        "upper": 81741.0,
-        "range_origin": "Frozen high/low of six prior completed 4H candles; latest excluded",
-        "baseline_end": 1789804800,
-        "bullish_targets": [
-          86265.24,
-          90789.48000000001
-        ],
-        "bearish_targets": [
-          72692.51999999999,
-          68168.27999999998
-        ],
-        "setup": null,
-        "retest_confirmed": false,
-        "events": [],
-        "notes": [],
-        "quote": {
-          "price": 80480.01,
-          "time": 1789876913.002
-        },
-        "low": 80126.04,
-        "high": 81951.0,
-        "range_label": "Provider rolling 24h range",
-        "source": "binance",
-        "sources": [
-          "https://data-api.binance.vision/api/v3/klines?symbol=BTCUSDT&interval=4h&limit=200",
-          "https://data-api.binance.vision/api/v3/ticker/24hr?symbol=BTCUSDT"
-        ],
-        "status": "NO NEW SIGNAL",
-        "shadow": {
-          "version": 1,
-          "range_id": "0337bf766716d6cee85eac8697fd6b0ef817f8e00e62d7dcabf99b7363401df4",
-          "last_end": 1789876800,
-          "status": "WATCHING",
-          "reason": "WAIT_FOR_NEW_BREAKOUT",
-          "decision": "WAIT",
-          "transitions": [],
-          "range_age_hours": 20.031028282377456,
-          "range_review_due": false
-        },
-        "review_decision": "WAIT",
-        "review_config": "723edda3046d9c3cd7e084a266e46c05c40cecabfeba3b6849ef3dec4c17507a"
-      },
-      "ETHUSD": {
-        "id": "ETHUSD",
-        "checked_at": 1789876911.7018166,
-        "tradingview_symbol": "COINBASE:ETHUSD",
-        "chart": "https://www.tradingview.com/chart/?symbol=COINBASE%3AETHUSD&interval=240",
-        "state": "neutral",
-        "signal": null,
-        "action": "WAIT FOR CONFIRMATION",
-        "close": 2587.18,
-        "previous_close": 2631.7,
-        "close_time": 1789876800,
-        "new_candle": true,
-        "baseline": false,
-        "lower": 2434.6,
-        "upper": 2646.55,
-        "range_origin": "Frozen high/low of six prior completed 4H candles; latest excluded",
-        "baseline_end": 1789790400,
-        "bullish_targets": [
-          2858.5000000000005,
-          3070.4500000000007
-        ],
-        "bearish_targets": [
-          2222.6499999999996,
-          2010.6999999999994
-        ],
-        "setup": null,
-        "retest_confirmed": false,
-        "events": [],
-        "notes": [],
-        "quote": {
-          "price": 2586.46,
-          "time": 1789876912.958984
-        },
-        "low": 2563.6,
-        "high": 2667.53,
-        "range_label": "Provider rolling 24h range (retrieved at check time)",
-        "source": "coinbase",
-        "sources": [
-          "https://api.exchange.coinbase.com/products/ETH-USD/candles",
-          "https://api.exchange.coinbase.com/products/ETH-USD/ticker",
-          "https://api.exchange.coinbase.com/products/ETH-USD/stats"
-        ],
-        "status": "NO NEW SIGNAL",
-        "shadow": {
-          "version": 1,
-          "range_id": "28319710bc1be5002dc90aefddf18c3eff7c6437ba7e7db43bcf013f3c3751ca",
-          "last_end": 1789876800,
-          "status": "WATCHING",
-          "reason": "WAIT_FOR_NEW_BREAKOUT",
-          "decision": "WAIT",
-          "transitions": [],
-          "range_age_hours": 24.031028282377456,
-          "range_review_due": false
-        },
-        "review_decision": "WAIT",
-        "review_config": "7b5e902c2101e40fa5c90e91ea44b272a6a56a5893316310a24ece0e3b025da3"
-      },
-      "ETHUSDT": {
         "id": "ETHUSDT",
         "checked_at": 1789876911.7018166,
         "tradingview_symbol": "BINANCE:ETHUSDT",
@@ -8817,7 +6865,44 @@
         "review_decision": "WAIT",
         "review_config": "d0bbfb4725b720386563954c6b0b0e332226f29dc749ba613feb9e5636e0e8ae"
       },
-      "XAUUSD": {
+      "configuration": {
+        "id": "ETHUSDT",
+        "enabled": true,
+        "provider": "binance",
+        "symbol": "ETHUSDT",
+        "tradingview": "BINANCE:ETHUSDT",
+        "lower": null,
+        "upper": null
+      },
+      "evidence": {
+        "status": "INCOMPLETE_EVIDENCE",
+        "data_status": "UNAVAILABLE",
+        "bars_5m": [],
+        "error": "Interval M5 candles unavailable or invalid"
+      }
+    },
+    {
+      "report": {
+        "id": "XAUUSD",
+        "checked_at": 1789876967.5098147,
+        "tradingview_symbol": "OANDA:XAUUSD",
+        "chart": "https://www.tradingview.com/chart/?symbol=OANDA%3AXAUUSD&interval=240",
+        "status": "DATA UNAVAILABLE",
+        "signal": null,
+        "action": "WAIT FOR VERIFIED DATA",
+        "error": "OANDA market closed or instrument not tradeable; no current signal",
+        "shadow": {
+          "status": "DATA_UNAVAILABLE",
+          "reason": "UNVERIFIED_DATA",
+          "decision": "WAIT"
+        }
+      },
+      "decision": {
+        "decision": "WAIT",
+        "action": "WAIT FOR VERIFIED DATA",
+        "reason": "The completed candle cannot be verified. No trade decision is available."
+      },
+      "previous_reading": {
         "id": "XAUUSD",
         "checked_at": 1789876911.7018166,
         "tradingview_symbol": "OANDA:XAUUSD",
@@ -8834,9 +6919,332 @@
         "review_decision": "WAIT",
         "review_config": "08213075c5c9b2196d855761a9364ac1addbdb74eaac3f55043f20840bdbffd6"
       },
-      "USOIL": {
+      "configuration": {
+        "id": "XAUUSD",
+        "enabled": true,
+        "provider": "oanda",
+        "environment": "practice",
+        "symbol": "XAU_USD",
+        "tradingview": "OANDA:XAUUSD",
+        "lower": null,
+        "upper": null
+      },
+      "evidence": {
+        "status": "DATA_UNAVAILABLE",
+        "data_status": "NOT_REQUESTED",
+        "bars_5m": []
+      }
+    },
+    {
+      "report": {
+        "id": "USOIL",
+        "checked_at": 1789876967.5098147,
+        "tradingview_symbol": "OANDA:WTICOUSD",
+        "chart": "https://www.tradingview.com/chart/?symbol=OANDA%3AWTICOUSD&interval=240",
+        "status": "DATA UNAVAILABLE",
+        "signal": null,
+        "action": "WAIT FOR VERIFIED DATA",
+        "error": "OANDA market closed or instrument not tradeable; no current signal",
+        "shadow": {
+          "status": "DATA_UNAVAILABLE",
+          "reason": "UNVERIFIED_DATA",
+          "decision": "WAIT"
+        }
+      },
+      "decision": {
+        "decision": "WAIT",
+        "action": "WAIT FOR VERIFIED DATA",
+        "reason": "The completed candle cannot be verified. No trade decision is available."
+      },
+      "previous_reading": {
         "id": "USOIL",
         "checked_at": 1789876911.7018166,
+        "tradingview_symbol": "OANDA:WTICOUSD",
+        "chart": "https://www.tradingview.com/chart/?symbol=OANDA%3AWTICOUSD&interval=240",
+        "status": "DATA UNAVAILABLE",
+        "signal": null,
+        "action": "WAIT FOR VERIFIED DATA",
+        "error": "OANDA market closed or instrument not tradeable; no current signal",
+        "shadow": {
+          "status": "DATA_UNAVAILABLE",
+          "reason": "UNVERIFIED_DATA",
+          "decision": "WAIT"
+        },
+        "review_decision": "WAIT",
+        "review_config": "27f08942f711c2824d09817b847ba4010acce24b4c6482a88d4bd23308b530af"
+      },
+      "configuration": {
+        "id": "USOIL",
+        "enabled": true,
+        "provider": "oanda",
+        "environment": "practice",
+        "symbol": "WTICO_USD",
+        "tradingview": "OANDA:WTICOUSD",
+        "lower": null,
+        "upper": null
+      },
+      "evidence": {
+        "status": "DATA_UNAVAILABLE",
+        "data_status": "NOT_REQUESTED",
+        "bars_5m": []
+      }
+    }
+  ],
+  "markdown": "# Four-hour strategy review\n\nCheck: **2026-09-20 00:02:47 EDT** / 2026-09-20 12:02:47 +08.\n\nPrevious reading: **2026-09-20 00:01:51 EDT** / 2026-09-20 12:01:51 +08.\nActual elapsed time: **0.02 hours**.\n\n**NONSTANDARD INTERVAL:** manual run, delay or session gap; not a standard four-hour test.\n\nForward observation only. Previous decisions and levels are frozen before comparison.\nTarget observations are not trade fills or a profitability backtest. WAIT is never counted as a win.\n\n## BTCUSD\n\n| Reading | Previous | Current |\n|---|---|---|\n| Decision | WAIT | WAIT |\n| Breakout | None | None |\n| Quote | 80,451.0000 | 80,412.1400 |\n| Quote timestamp (UTC) | 2026-09-20 04:01:50 UTC | 2026-09-20 04:02:44 UTC |\n| Completed 4H close | 80,458.8200 | 80,458.8200 |\n| Candle ended (UTC) | 2026-09-20 04:00:00 UTC | 2026-09-20 04:00:00 UTC |\n\nQuote-to-quote movement: **-38.8600 (-0.05%)**; not realised trading P&L.\nPrior fixed pivots: lower **74,887.5000**, upper **78,242.7600**.\n\n**NO ENTRY TO SCORE.** The prior reading was WAIT or a position-specific exit, not a new entry.\nLater movement is not credited as a winning or losing trade.\n\n**INCOMPLETE EVIDENCE — interval candles unavailable; targets cannot be verified.**\n\nNext observation starts from: **WAIT — WAIT FOR CONFIRMATION**.\n\nShadow research: **WAIT / UNTRACKED — WAIT_FOR_NEW_BREAKOUT**. Baseline unchanged; no order or fill.\n\nReference quote: 80,412.1400. Pivots: 74,887.5000 / 78,242.7600.\nBullish targets: 81,598.0200 / 84,953.2800. Bearish targets: 71,532.2400 / 68,176.9800.\n\n## BTCUSDT\n\n| Reading | Previous | Current |\n|---|---|---|\n| Decision | WAIT | WAIT |\n| Breakout | None | None |\n| Quote | 80,480.0100 | 80,437.7700 |\n| Quote timestamp (UTC) | 2026-09-20 04:01:53 UTC | 2026-09-20 04:02:49 UTC |\n| Completed 4H close | 80,486.3800 | 80,486.3800 |\n| Candle ended (UTC) | 2026-09-20 04:00:00 UTC | 2026-09-20 04:00:00 UTC |\n\nQuote-to-quote movement: **-42.2400 (-0.05%)**; not realised trading P&L.\nPrior fixed pivots: lower **77,216.7600**, upper **81,741.0000**.\n\n**NO ENTRY TO SCORE.** The prior reading was WAIT or a position-specific exit, not a new entry.\nLater movement is not credited as a winning or losing trade.\n\n**INCOMPLETE EVIDENCE — interval candles unavailable; targets cannot be verified.**\n\nNext observation starts from: **WAIT — WAIT FOR CONFIRMATION**.\n\nShadow research: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. Baseline unchanged; no order or fill.\n\nReference quote: 80,437.7700. Pivots: 77,216.7600 / 81,741.0000.\nBullish targets: 86,265.2400 / 90,789.4800. Bearish targets: 72,692.5200 / 68,168.2800.\n\n## ETHUSD\n\n| Reading | Previous | Current |\n|---|---|---|\n| Decision | WAIT | WAIT |\n| Breakout | None | None |\n| Quote | 2,586.4600 | 2,584.5100 |\n| Quote timestamp (UTC) | 2026-09-20 04:01:52 UTC | 2026-09-20 04:02:47 UTC |\n| Completed 4H close | 2,587.1800 | 2,587.1800 |\n| Candle ended (UTC) | 2026-09-20 04:00:00 UTC | 2026-09-20 04:00:00 UTC |\n\nQuote-to-quote movement: **-1.9500 (-0.08%)**; not realised trading P&L.\nPrior fixed pivots: lower **2,434.6000**, upper **2,646.5500**.\n\n**NO ENTRY TO SCORE.** The prior reading was WAIT or a position-specific exit, not a new entry.\nLater movement is not credited as a winning or losing trade.\n\n**INCOMPLETE EVIDENCE — interval candles unavailable; targets cannot be verified.**\n\nNext observation starts from: **WAIT — WAIT FOR CONFIRMATION**.\n\nShadow research: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. Baseline unchanged; no order or fill.\n\nReference quote: 2,584.5100. Pivots: 2,434.6000 / 2,646.5500.\nBullish targets: 2,858.5000 / 3,070.4500. Bearish targets: 2,222.6500 / 2,010.7000.\n\n## ETHUSDT\n\n| Reading | Previous | Current |\n|---|---|---|\n| Decision | WAIT | WAIT |\n| Breakout | None | None |\n| Quote | 2,587.2600 | 2,585.4800 |\n| Quote timestamp (UTC) | 2026-09-20 04:01:54 UTC | 2026-09-20 04:02:49 UTC |\n| Completed 4H close | 2,588.0300 | 2,588.0300 |\n| Candle ended (UTC) | 2026-09-20 04:00:00 UTC | 2026-09-20 04:00:00 UTC |\n\nQuote-to-quote movement: **-1.7800 (-0.07%)**; not realised trading P&L.\nPrior fixed pivots: lower **2,436.8900**, upper **2,646.0000**.\n\n**NO ENTRY TO SCORE.** The prior reading was WAIT or a position-specific exit, not a new entry.\nLater movement is not credited as a winning or losing trade.\n\n**INCOMPLETE EVIDENCE — interval candles unavailable; targets cannot be verified.**\n\nNext observation starts from: **WAIT — WAIT FOR CONFIRMATION**.\n\nShadow research: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. Baseline unchanged; no order or fill.\n\nReference quote: 2,585.4800. Pivots: 2,436.8900 / 2,646.0000.\nBullish targets: 2,855.1100 / 3,064.2200. Bearish targets: 2,227.7800 / 2,018.6700.\n\n## XAUUSD\n\n**DATA UNAVAILABLE — no performance conclusion.**\n\nNext observation starts from: **WAIT — WAIT FOR VERIFIED DATA**.\n\nShadow research: **WAIT / DATA_UNAVAILABLE — UNVERIFIED_DATA**. Baseline unchanged; no order or fill.\n\n## USOIL\n\n**DATA UNAVAILABLE — no performance conclusion.**\n\nNext observation starts from: **WAIT — WAIT FOR VERIFIED DATA**.\n\nShadow research: **WAIT / DATA_UNAVAILABLE — UNVERIFIED_DATA**. Baseline unchanged; no order or fill.\n",
+  "next_review_state": {
+    "version": 1,
+    "checked_at": 1789876967.5098147,
+    "markets": {
+      "BTCUSD": {
+        "id": "BTCUSD",
+        "checked_at": 1789876967.5098147,
+        "tradingview_symbol": "COINBASE:BTCUSD",
+        "chart": "https://www.tradingview.com/chart/?symbol=COINBASE%3ABTCUSD&interval=240",
+        "state": "bullish",
+        "signal": null,
+        "action": "WAIT FOR CONFIRMATION",
+        "close": 80458.82,
+        "previous_close": 81233.91,
+        "close_time": 1789876800,
+        "new_candle": false,
+        "baseline": false,
+        "lower": 74887.5,
+        "upper": 78242.76,
+        "range_origin": "Frozen high/low of six prior completed 4H candles; latest excluded",
+        "baseline_end": 1789531200,
+        "bullish_targets": [
+          81598.01999999999,
+          84953.27999999998
+        ],
+        "bearish_targets": [
+          71532.24,
+          68176.98000000001
+        ],
+        "setup": {
+          "side": "BUY",
+          "signal_end": 1789747200,
+          "retest_close_time": null
+        },
+        "retest_confirmed": false,
+        "events": [],
+        "notes": [],
+        "quote": {
+          "price": 80412.14,
+          "time": 1789876964.968677
+        },
+        "low": 80085.0,
+        "high": 81925.0,
+        "range_label": "Provider rolling 24h range (retrieved at check time)",
+        "source": "coinbase",
+        "sources": [
+          "https://api.exchange.coinbase.com/products/BTC-USD/candles",
+          "https://api.exchange.coinbase.com/products/BTC-USD/ticker",
+          "https://api.exchange.coinbase.com/products/BTC-USD/stats"
+        ],
+        "status": "NO NEW SIGNAL",
+        "shadow": {
+          "version": 1,
+          "range_id": "4479c88215db939d472d8c1a227672994e3e8956b2417a586264a82329e1cc36",
+          "last_end": 1789876800,
+          "status": "UNTRACKED",
+          "reason": "WAIT_FOR_NEW_BREAKOUT",
+          "decision": "WAIT",
+          "transitions": [],
+          "range_age_hours": 96.04653050409424,
+          "range_review_due": false
+        },
+        "review_decision": "WAIT",
+        "review_config": "a60bb5ae4499f9381dd741ea176ac5db821e23ad39ec488f30d555123f4e5b6a"
+      },
+      "BTCUSDT": {
+        "id": "BTCUSDT",
+        "checked_at": 1789876967.5098147,
+        "tradingview_symbol": "BINANCE:BTCUSDT",
+        "chart": "https://www.tradingview.com/chart/?symbol=BINANCE%3ABTCUSDT&interval=240",
+        "state": "neutral",
+        "signal": null,
+        "action": "WAIT FOR CONFIRMATION",
+        "close": 80486.38,
+        "previous_close": 81249.99,
+        "close_time": 1789876800,
+        "new_candle": false,
+        "baseline": false,
+        "lower": 77216.76,
+        "upper": 81741.0,
+        "range_origin": "Frozen high/low of six prior completed 4H candles; latest excluded",
+        "baseline_end": 1789804800,
+        "bullish_targets": [
+          86265.24,
+          90789.48000000001
+        ],
+        "bearish_targets": [
+          72692.51999999999,
+          68168.27999999998
+        ],
+        "setup": null,
+        "retest_confirmed": false,
+        "events": [],
+        "notes": [],
+        "quote": {
+          "price": 80437.77,
+          "time": 1789876969.008
+        },
+        "low": 80126.04,
+        "high": 81951.0,
+        "range_label": "Provider rolling 24h range",
+        "source": "binance",
+        "sources": [
+          "https://data-api.binance.vision/api/v3/klines?symbol=BTCUSDT&interval=4h&limit=200",
+          "https://data-api.binance.vision/api/v3/ticker/24hr?symbol=BTCUSDT"
+        ],
+        "status": "NO NEW SIGNAL",
+        "shadow": {
+          "version": 1,
+          "range_id": "0337bf766716d6cee85eac8697fd6b0ef817f8e00e62d7dcabf99b7363401df4",
+          "last_end": 1789876800,
+          "status": "WATCHING",
+          "reason": "WAIT_FOR_NEW_BREAKOUT",
+          "decision": "WAIT",
+          "transitions": [],
+          "range_age_hours": 20.04653050409423,
+          "range_review_due": false
+        },
+        "review_decision": "WAIT",
+        "review_config": "723edda3046d9c3cd7e084a266e46c05c40cecabfeba3b6849ef3dec4c17507a"
+      },
+      "ETHUSD": {
+        "id": "ETHUSD",
+        "checked_at": 1789876967.5098147,
+        "tradingview_symbol": "COINBASE:ETHUSD",
+        "chart": "https://www.tradingview.com/chart/?symbol=COINBASE%3AETHUSD&interval=240",
+        "state": "neutral",
+        "signal": null,
+        "action": "WAIT FOR CONFIRMATION",
+        "close": 2587.18,
+        "previous_close": 2631.7,
+        "close_time": 1789876800,
+        "new_candle": false,
+        "baseline": false,
+        "lower": 2434.6,
+        "upper": 2646.55,
+        "range_origin": "Frozen high/low of six prior completed 4H candles; latest excluded",
+        "baseline_end": 1789790400,
+        "bullish_targets": [
+          2858.5000000000005,
+          3070.4500000000007
+        ],
+        "bearish_targets": [
+          2222.6499999999996,
+          2010.6999999999994
+        ],
+        "setup": null,
+        "retest_confirmed": false,
+        "events": [],
+        "notes": [],
+        "quote": {
+          "price": 2584.51,
+          "time": 1789876967.599632
+        },
+        "low": 2563.6,
+        "high": 2667.53,
+        "range_label": "Provider rolling 24h range (retrieved at check time)",
+        "source": "coinbase",
+        "sources": [
+          "https://api.exchange.coinbase.com/products/ETH-USD/candles",
+          "https://api.exchange.coinbase.com/products/ETH-USD/ticker",
+          "https://api.exchange.coinbase.com/products/ETH-USD/stats"
+        ],
+        "status": "NO NEW SIGNAL",
+        "shadow": {
+          "version": 1,
+          "range_id": "28319710bc1be5002dc90aefddf18c3eff7c6437ba7e7db43bcf013f3c3751ca",
+          "last_end": 1789876800,
+          "status": "WATCHING",
+          "reason": "WAIT_FOR_NEW_BREAKOUT",
+          "decision": "WAIT",
+          "transitions": [],
+          "range_age_hours": 24.04653050409423,
+          "range_review_due": false
+        },
+        "review_decision": "WAIT",
+        "review_config": "7b5e902c2101e40fa5c90e91ea44b272a6a56a5893316310a24ece0e3b025da3"
+      },
+      "ETHUSDT": {
+        "id": "ETHUSDT",
+        "checked_at": 1789876967.5098147,
+        "tradingview_symbol": "BINANCE:ETHUSDT",
+        "chart": "https://www.tradingview.com/chart/?symbol=BINANCE%3AETHUSDT&interval=240",
+        "state": "neutral",
+        "signal": null,
+        "action": "WAIT FOR CONFIRMATION",
+        "close": 2588.03,
+        "previous_close": 2632.69,
+        "close_time": 1789876800,
+        "new_candle": false,
+        "baseline": false,
+        "lower": 2436.89,
+        "upper": 2646.0,
+        "range_origin": "Frozen high/low of six prior completed 4H candles; latest excluded",
+        "baseline_end": 1789790400,
+        "bullish_targets": [
+          2855.11,
+          3064.2200000000003
+        ],
+        "bearish_targets": [
+          2227.7799999999997,
+          2018.6699999999996
+        ],
+        "setup": null,
+        "retest_confirmed": false,
+        "events": [],
+        "notes": [],
+        "quote": {
+          "price": 2585.48,
+          "time": 1789876969.962
+        },
+        "low": 2564.33,
+        "high": 2668.0,
+        "range_label": "Provider rolling 24h range",
+        "source": "binance",
+        "sources": [
+          "https://data-api.binance.vision/api/v3/klines?symbol=ETHUSDT&interval=4h&limit=200",
+          "https://data-api.binance.vision/api/v3/ticker/24hr?symbol=ETHUSDT"
+        ],
+        "status": "NO NEW SIGNAL",
+        "shadow": {
+          "version": 1,
+          "range_id": "4b0d067ec453316fe0886aa925c72e97ad21de55f3b150b18a9885614ee27b72",
+          "last_end": 1789876800,
+          "status": "WATCHING",
+          "reason": "WAIT_FOR_NEW_BREAKOUT",
+          "decision": "WAIT",
+          "transitions": [],
+          "range_age_hours": 24.04653050409423,
+          "range_review_due": false
+        },
+        "review_decision": "WAIT",
+        "review_config": "d0bbfb4725b720386563954c6b0b0e332226f29dc749ba613feb9e5636e0e8ae"
+      },
+      "XAUUSD": {
+        "id": "XAUUSD",
+        "checked_at": 1789876967.5098147,
+        "tradingview_symbol": "OANDA:XAUUSD",
+        "chart": "https://www.tradingview.com/chart/?symbol=OANDA%3AXAUUSD&interval=240",
+        "status": "DATA UNAVAILABLE",
+        "signal": null,
+        "action": "WAIT FOR VERIFIED DATA",
+        "error": "OANDA market closed or instrument not tradeable; no current signal",
+        "shadow": {
+          "status": "DATA_UNAVAILABLE",
+          "reason": "UNVERIFIED_DATA",
+          "decision": "WAIT"
+        },
+        "review_decision": "WAIT",
+        "review_config": "08213075c5c9b2196d855761a9364ac1addbdb74eaac3f55043f20840bdbffd6"
+      },
+      "USOIL": {
+        "id": "USOIL",
+        "checked_at": 1789876967.5098147,
         "tradingview_symbol": "OANDA:WTICOUSD",
         "chart": "https://www.tradingview.com/chart/?symbol=OANDA%3AWTICOUSD&interval=240",
         "status": "DATA UNAVAILABLE",
