@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-09-21 00:47:19 +08** / 2026-09-20 16:47:19 UTC.
+Checked **2026-09-21 09:25:10 +08** / 2026-09-21 01:25:10 UTC.
 
 ## BTCUSD
 
@@ -15,11 +15,11 @@ Completed-candle state: **bullish**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 80,874.20 |
-| Previous completed close | 80,442.98 |
-| Close time | 2026-09-21 00:00:00 +08 / 2026-09-20 16:00:00 UTC |
-| Current price | 81,338.09 at 2026-09-20 16:47:19 UTC |
-| Range low / high | 80,085.00 / 81,829.76 |
+| Latest completed 4H close | 81,159.64 |
+| Previous completed close | 81,162.44 |
+| Close time | 2026-09-21 08:00:00 +08 / 2026-09-21 00:00:00 UTC |
+| Current price | 81,867.52 at 2026-09-21 01:25:09 UTC |
+| Range low / high | 80,085.00 / 82,087.11 |
 
 Range definition: Provider rolling 24h range (retrieved at check time).
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -57,11 +57,11 @@ Completed-candle state: **neutral**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 80,912.00 |
-| Previous completed close | 80,493.20 |
-| Close time | 2026-09-21 00:00:00 +08 / 2026-09-20 16:00:00 UTC |
-| Current price | 81,358.00 at 2026-09-20 16:47:21 UTC |
-| Range low / high | 80,126.04 / 81,863.92 |
+| Latest completed 4H close | 81,178.00 |
+| Previous completed close | 81,177.32 |
+| Close time | 2026-09-21 08:00:00 +08 / 2026-09-21 00:00:00 UTC |
+| Current price | 81,889.56 at 2026-09-21 01:25:12 UTC |
+| Range low / high | 80,126.04 / 82,100.00 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -97,11 +97,11 @@ Completed-candle state: **neutral**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 2,612.48 |
-| Previous completed close | 2,577.71 |
-| Close time | 2026-09-21 00:00:00 +08 / 2026-09-20 16:00:00 UTC |
-| Current price | 2,640.17 at 2026-09-20 16:47:18 UTC |
-| Range low / high | 2,563.60 / 2,667.53 |
+| Latest completed 4H close | 2,644.31 |
+| Previous completed close | 2,632.97 |
+| Close time | 2026-09-21 08:00:00 +08 / 2026-09-21 00:00:00 UTC |
+| Current price | 2,692.08 at 2026-09-21 01:25:12 UTC |
+| Range low / high | 2,563.60 / 2,706.51 |
 
 Range definition: Provider rolling 24h range (retrieved at check time).
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -138,11 +138,11 @@ Completed-candle state: **neutral**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 2,613.11 |
-| Previous completed close | 2,579.08 |
-| Close time | 2026-09-21 00:00:00 +08 / 2026-09-20 16:00:00 UTC |
-| Current price | 2,640.71 at 2026-09-20 16:47:23 UTC |
-| Range low / high | 2,564.33 / 2,668.00 |
+| Latest completed 4H close | 2,645.21 |
+| Previous completed close | 2,633.34 |
+| Close time | 2026-09-21 08:00:00 +08 / 2026-09-21 00:00:00 UTC |
+| Current price | 2,693.20 at 2026-09-21 01:25:14 UTC |
+| Range low / high | 2,564.33 / 2,707.70 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -174,7 +174,7 @@ ACTION NOW: WAIT FOR VERIFIED DATA
 
 Shadow research: **WAIT / DATA_UNAVAILABLE — UNVERIFIED_DATA**. Baseline unchanged; no order or fill.
 
-OANDA market closed or instrument not tradeable; no current signal
+A complete contiguous 24-hour OANDA candle window is unavailable
 Exact completed 4H close, current price, range and active setup cannot be verified. No BUY/SELL signal issued.
 
 ## USOIL
@@ -186,7 +186,7 @@ ACTION NOW: WAIT FOR VERIFIED DATA
 
 Shadow research: **WAIT / DATA_UNAVAILABLE — UNVERIFIED_DATA**. Baseline unchanged; no order or fill.
 
-OANDA market closed or instrument not tradeable; no current signal
+A complete contiguous 24-hour OANDA candle window is unavailable
 Exact completed 4H close, current price, range and active setup cannot be verified. No BUY/SELL signal issued.
 
 ## TradingView drawings
