@@ -7,13 +7,13 @@
       "upper": 78242.76,
       "origin": "Frozen high/low of six prior completed 4H candles; latest excluded",
       "baseline_end": 1789531200,
-      "last_end": 1789948800,
+      "last_end": 1789977600,
       "last_bar": [
-        1789934400,
-        81162.45,
-        81320.0,
-        80570.77,
-        81159.64
+        1789963200,
+        81411.5,
+        81870.79,
+        81210.0,
+        81704.88
       ],
       "setup": {
         "side": "BUY",
@@ -23,7 +23,7 @@
       "shadow": {
         "version": 1,
         "range_id": "4479c88215db939d472d8c1a227672994e3e8956b2417a586264a82329e1cc36",
-        "last_end": 1789948800,
+        "last_end": 1789977600,
         "status": "UNTRACKED",
         "reason": "WAIT_FOR_NEW_BREAKOUT"
       }
@@ -34,19 +34,19 @@
       "upper": 81741.0,
       "origin": "Frozen high/low of six prior completed 4H candles; latest excluded",
       "baseline_end": 1789804800,
-      "last_end": 1789948800,
+      "last_end": 1789977600,
       "last_bar": [
-        1789934400,
-        81177.32,
-        81332.01,
-        80579.43,
-        81178.0
+        1789963200,
+        81425.24,
+        81878.98,
+        81228.15,
+        81720.01
       ],
       "setup": null,
       "shadow": {
         "version": 1,
         "range_id": "0337bf766716d6cee85eac8697fd6b0ef817f8e00e62d7dcabf99b7363401df4",
-        "last_end": 1789948800,
+        "last_end": 1789977600,
         "status": "WATCHING",
         "reason": "WAIT_FOR_NEW_BREAKOUT"
       }
@@ -93,21 +93,52 @@
       "upper": 2646.55,
       "origin": "Frozen high/low of six prior completed 4H candles; latest excluded",
       "baseline_end": 1789790400,
-      "last_end": 1789948800,
+      "last_end": 1789977600,
       "last_bar": [
-        1789934400,
-        2633.2,
-        2648.39,
-        2608.0,
-        2644.31
+        1789963200,
+        2665.34,
+        2677.77,
+        2646.15,
+        2661.26
       ],
-      "setup": null,
+      "setup": {
+        "side": "BUY",
+        "signal_end": 1789963200,
+        "retest_close_time": 1789977600
+      },
       "shadow": {
         "version": 1,
         "range_id": "28319710bc1be5002dc90aefddf18c3eff7c6437ba7e7db43bcf013f3c3751ca",
-        "last_end": 1789948800,
-        "status": "WATCHING",
-        "reason": "WAIT_FOR_NEW_BREAKOUT"
+        "last_end": 1789977600,
+        "status": "REJECTED",
+        "reason": "TOO_FAR_FROM_PIVOT",
+        "side": "BUY",
+        "signal_end": 1789963200,
+        "age_candles": 1,
+        "settings": {
+          "retest_candles": 6,
+          "atr_period": 14,
+          "max_entry_atr": 0.25,
+          "min_rr": 2,
+          "stop_buffer_atr": 0.1,
+          "round_trip_cost_bps": null,
+          "range_review_hours": 168
+        },
+        "lower": 2434.6,
+        "upper": 2646.55,
+        "entry": 2711.57,
+        "target": 2858.5000000000005,
+        "evaluated_at": 1789987873.9217017,
+        "quote_time": 1789987873.521519,
+        "atr": 36.14,
+        "stop": 2642.536,
+        "distance_atr": 1.7991145545102374,
+        "gross_rr": 2.1283715270736168,
+        "rejection_reasons": [
+          "TOO_FAR_FROM_PIVOT",
+          "COSTS_NOT_CONFIGURED"
+        ],
+        "resolved_at": 1789977600
       }
     },
     "ETHUSDT": {
@@ -116,21 +147,39 @@
       "upper": 2646.0,
       "origin": "Frozen high/low of six prior completed 4H candles; latest excluded",
       "baseline_end": 1789790400,
-      "last_end": 1789948800,
+      "last_end": 1789977600,
       "last_bar": [
-        1789934400,
-        2633.35,
-        2649.14,
-        2608.31,
-        2645.21
+        1789963200,
+        2665.95,
+        2678.7,
+        2646.58,
+        2661.66
       ],
-      "setup": null,
+      "setup": {
+        "side": "BUY",
+        "signal_end": 1789963200,
+        "retest_close_time": null
+      },
       "shadow": {
         "version": 1,
         "range_id": "4b0d067ec453316fe0886aa925c72e97ad21de55f3b150b18a9885614ee27b72",
-        "last_end": 1789948800,
-        "status": "WATCHING",
-        "reason": "WAIT_FOR_NEW_BREAKOUT"
+        "last_end": 1789977600,
+        "status": "RETEST_PENDING",
+        "reason": "WAIT_FOR_RETEST",
+        "side": "BUY",
+        "signal_end": 1789963200,
+        "age_candles": 1,
+        "settings": {
+          "retest_candles": 6,
+          "atr_period": 14,
+          "max_entry_atr": 0.25,
+          "min_rr": 2,
+          "stop_buffer_atr": 0.1,
+          "round_trip_cost_bps": null,
+          "range_review_hours": 168
+        },
+        "lower": 2436.89,
+        "upper": 2646.0
       }
     }
   },
