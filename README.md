@@ -456,9 +456,12 @@ failures, with available reports/state retained; `1` fatal configuration/state/
 filesystem error. Quote freshness is at most 15 minutes, with at most 60 seconds
 future clock skew. The newest expected UTC completed candle must be present.
 
-The gold range is **six contiguous complete 4H candles ending at the latest
-completed close**, explicitly timestamped. It is not an exact trailing 24-hour
-high/low as of the current tick. Crypto uses the provider's rolling 24h stats.
+The gold and oil display range uses the **last six completed 4H candles**,
+with explicit start/end timestamps and elapsed hours. Weekend/session gaps can
+make this span longer than 24 hours; gaps are never filled. This display range
+does not relax signal freshness, gap handling, or automatic pivot calibration
+checks. It is not an exact trailing 24-hour high/low as of the current tick.
+Crypto uses the provider's rolling 24h stats.
 
 ## Files
 

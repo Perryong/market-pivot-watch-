@@ -80,6 +80,42 @@ class ProviderTests(unittest.TestCase):
         self.assertEqual((r["low"], r["high"]), (2490, 2510))
         self.assertIn("not rolling live", r["range_label"])
 
+    def test_oanda_weekend_range_uses_completed_candles_without_filling_gap(self):
+        from datetime import datetime
+        starts = ["2026-09-18T16:00:00Z", "2026-09-18T20:00:00Z",
+                  "2026-09-20T20:00:00Z", "2026-09-21T00:00:00Z",
+                  "2026-09-21T04:00:00Z", "2026-09-21T08:00:00Z"]
+        now = datetime.fromisoformat("2026-09-21T12:01:00+00:00").timestamp()
+        candles = [{"time": start, "complete": True, "volume": 10,
+                    "mid": {"o": "100", "h": "110", "l": "90", "c": "101"}}
+                   for start in starts]
+        # An active candle's extremes must not leak into the display range.
+        active = {"time": "2026-09-21T12:00:00Z", "complete": False, "volume": 1,
+                  "mid": {"o": "100", "h": "200", "l": "50", "c": "101"}}
+        for symbol in ("XAU_USD", "WTICO_USD"):
+            for scenario in ("weekend", "closed", "stale", "short_history"):
+                with self.subTest(symbol=symbol, scenario=scenario):
+                    prices = {"prices": [{"instrument": symbol,
+                        "status": "non-tradeable" if scenario == "closed" else "tradeable",
+                        "time": "2026-09-21T11:00:00Z" if scenario == "stale" else "2026-09-21T12:01:00Z",
+                        "bids": [{"price": "100"}], "asks": [{"price": "102"}]}]}
+                    payload = {"candles": (candles[1:] if scenario == "short_history" else candles) + [active]}
+                    with patch.dict(os.environ, {"OANDA_TOKEN": "fixture-secret", "OANDA_ACCOUNT_ID": "fixture-account"}), patch(
+                            "pivot_watch.providers.get_json", side_effect=[payload, prices]):
+                        config = {"provider": "oanda", "symbol": symbol, "environment": "practice"}
+                        if scenario != "weekend":
+                            with self.assertRaises(DataError):
+                                fetch(config, now)
+                            continue
+                        result = fetch(config, now)
+                    self.assertEqual((result["low"], result["high"]), (90, 110))
+                    self.assertEqual(result["quote"]["price"], 101)
+                    self.assertEqual(len(result["candles"]), 7)
+                    self.assertIn("68h elapsed", result["range_label"])
+                    self.assertIn("2026-09-18T16:00:00Z", result["range_label"])
+                    self.assertIn("2026-09-21T12:00:00Z", result["range_label"])
+                    self.assertNotIn("24h completed-candle range", result["range_label"])
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -120,10 +120,12 @@ def fetch(config, now):
                   timestamp(price["time"]), now)
         completed = sorted([c for c in bars if c.complete and c.end <= now], key=lambda c: c.start)
         window = completed[-6:]
-        if len(window) != 6 or window[-1].end - window[0].start != 86400:
-            raise DataError("A complete contiguous 24-hour OANDA candle window is unavailable")
+        if len(window) != 6:
+            raise DataError("Six completed OANDA candles are unavailable for the display range")
         low, high = min(c.low for c in window), max(c.high for c in window)
-        range_label = f"24h completed-candle range, {iso(window[0].start)} to {iso(window[-1].end)} (not rolling live 24h)"
+        elapsed_hours = (window[-1].end - window[0].start) / 3600
+        range_label = (f"Last six completed 4H candles, {iso(window[0].start)} to {iso(window[-1].end)} "
+                       f"({elapsed_hours:g}h elapsed; gaps not filled; not rolling live 24h)")
         sources = ["https://developer.oanda.com/rest-live-v20/instrument-df/", "https://developer.oanda.com/rest-live-v20/pricing-ep/"]
     else:
         raise DataError("Unknown market-data provider")
