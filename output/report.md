@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-09-21 18:51:13 +08** / 2026-09-21 10:51:13 UTC.
+Checked **2026-09-21 21:53:16 +08** / 2026-09-21 13:53:16 UTC.
 
 ## BTCUSD
 
@@ -15,11 +15,11 @@ Completed-candle state: **bullish**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 81,704.88 |
-| Previous completed close | 81,411.50 |
-| Close time | 2026-09-21 16:00:00 +08 / 2026-09-21 08:00:00 UTC |
-| Current price | 84,174.76 at 2026-09-21 10:51:13 UTC |
-| Range low / high | 80,241.84 / 85,257.00 |
+| Latest completed 4H close | 84,878.78 |
+| Previous completed close | 81,704.88 |
+| Close time | 2026-09-21 20:00:00 +08 / 2026-09-21 12:00:00 UTC |
+| Current price | 85,582.00 at 2026-09-21 13:53:16 UTC |
+| Range low / high | 80,377.50 / 85,829.95 |
 
 Range definition: Provider rolling 24h range (retrieved at check time).
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -46,22 +46,22 @@ Selling an existing long and opening a short are different actions. Targets are 
 
 ## BTCUSDT
 
-STATUS: NO NEW SIGNAL
-ACTION NOW: WAIT FOR CONFIRMATION
+SIGNAL: BUY
+ACTION NOW: WAIT—DO NOT CHASE
 
 [Open actual TradingView 4H chart](https://www.tradingview.com/chart/?symbol=BINANCE%3ABTCUSDT&interval=240)
 
-Shadow research: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. Baseline unchanged; no order or fill.
+Shadow research: **WAIT / RETEST_PENDING — WAIT_FOR_RETEST**. Baseline unchanged; no order or fill.
 
-Completed-candle state: **neutral**. New completed candle processed.
+Completed-candle state: **bullish**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 81,720.01 |
-| Previous completed close | 81,425.23 |
-| Close time | 2026-09-21 16:00:00 +08 / 2026-09-21 08:00:00 UTC |
-| Current price | 84,200.00 at 2026-09-21 10:51:15 UTC |
-| Range low / high | 80,286.00 / 85,299.87 |
+| Latest completed 4H close | 84,887.19 |
+| Previous completed close | 81,720.01 |
+| Close time | 2026-09-21 20:00:00 +08 / 2026-09-21 12:00:00 UTC |
+| Current price | 85,601.44 at 2026-09-21 13:53:17 UTC |
+| Range low / high | 80,414.00 / 85,845.27 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -75,7 +75,11 @@ Pivot selection: Frozen high/low of six prior completed 4H candles; latest exclu
 | Short entry | New 4H cross below 77,216.76, then a later completed retest and rejection | 72,692.52 / 68,168.28 |
 | Buy/exit short | Completed 4H close above 77,216.76 after a bearish setup | — |
 
-No tracked active setup. Price state alone does not establish a new entry.
+Tracked setup: **BUY**, first confirmed 2026-09-21 12:00:00 UTC. Invalidation: completed close below 81,741.00.
+Retest: not yet confirmed on a later completed bar.
+
+Events processed this run:
+- BUY at 2026-09-21 12:00:00 UTC, close 84,887.19
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
@@ -97,11 +101,11 @@ Completed-candle state: **bullish**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 2,661.26 |
-| Previous completed close | 2,665.22 |
-| Close time | 2026-09-21 16:00:00 +08 / 2026-09-21 08:00:00 UTC |
-| Current price | 2,711.57 at 2026-09-21 10:51:13 UTC |
-| Range low / high | 2,566.46 / 2,748.94 |
+| Latest completed 4H close | 2,724.53 |
+| Previous completed close | 2,661.26 |
+| Close time | 2026-09-21 20:00:00 +08 / 2026-09-21 12:00:00 UTC |
+| Current price | 2,734.80 at 2026-09-21 13:53:17 UTC |
+| Range low / high | 2,572.83 / 2,748.94 |
 
 Range definition: Provider rolling 24h range (retrieved at check time).
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -117,10 +121,6 @@ Pivot selection: Frozen high/low of six prior completed 4H candles; latest exclu
 
 Tracked setup: **BUY**, first confirmed 2026-09-21 04:00:00 UTC. Invalidation: completed close below 2,646.55.
 Retest: confirmed on a later completed bar at 2026-09-21 08:00:00 UTC; this is not a promise of a current fill.
-
-Events processed this run:
-- BUY at 2026-09-21 04:00:00 UTC, close 2,665.22 — historical catch-up, not a new instruction
-- RETEST_CONFIRMED at 2026-09-21 08:00:00 UTC, close 2,661.26
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
@@ -143,11 +143,11 @@ Completed-candle state: **bullish**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 2,661.66 |
-| Previous completed close | 2,665.95 |
-| Close time | 2026-09-21 16:00:00 +08 / 2026-09-21 08:00:00 UTC |
-| Current price | 2,712.53 at 2026-09-21 10:51:17 UTC |
-| Range low / high | 2,567.52 / 2,749.98 |
+| Latest completed 4H close | 2,725.38 |
+| Previous completed close | 2,661.66 |
+| Close time | 2026-09-21 20:00:00 +08 / 2026-09-21 12:00:00 UTC |
+| Current price | 2,733.52 at 2026-09-21 13:53:19 UTC |
+| Range low / high | 2,573.78 / 2,749.98 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -163,9 +163,6 @@ Pivot selection: Frozen high/low of six prior completed 4H candles; latest exclu
 
 Tracked setup: **BUY**, first confirmed 2026-09-21 04:00:00 UTC. Invalidation: completed close below 2,646.00.
 Retest: not yet confirmed on a later completed bar.
-
-Events processed this run:
-- BUY at 2026-09-21 04:00:00 UTC, close 2,665.95 — historical catch-up, not a new instruction
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
