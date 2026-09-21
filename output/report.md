@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-09-22 00:05:14 +08** / 2026-09-21 16:05:14 UTC.
+Checked **2026-09-22 00:10:52 +08** / 2026-09-21 16:10:52 UTC.
 
 ## BTCUSD
 
@@ -11,14 +11,14 @@ ACTION NOW: WAIT FOR CONFIRMATION
 
 Shadow research: **WAIT / UNTRACKED — WAIT_FOR_NEW_BREAKOUT**. Baseline unchanged; no order or fill.
 
-Completed-candle state: **bullish**. New completed candle processed.
+Completed-candle state: **bullish**. No new 4H candle since the previous check.
 
 | Market data | Value |
 |---|---|
 | Latest completed 4H close | 85,933.17 |
 | Previous completed close | 84,878.78 |
 | Close time | 2026-09-22 00:00:00 +08 / 2026-09-21 16:00:00 UTC |
-| Current price | 85,743.38 at 2026-09-21 16:05:13 UTC |
+| Current price | 85,803.72 at 2026-09-21 16:10:52 UTC |
 | Range low / high | 80,570.77 / 86,354.94 |
 
 Range definition: Provider rolling 24h range (retrieved at check time).
@@ -53,14 +53,14 @@ ACTION NOW: WAIT FOR CONFIRMATION
 
 Shadow research: **WAIT / MISSED — MISSED_MOVE**. Baseline unchanged; no order or fill.
 
-Completed-candle state: **bullish**. New completed candle processed.
+Completed-candle state: **bullish**. No new 4H candle since the previous check.
 
 | Market data | Value |
 |---|---|
 | Latest completed 4H close | 85,927.71 |
 | Previous completed close | 84,887.19 |
 | Close time | 2026-09-22 00:00:00 +08 / 2026-09-21 16:00:00 UTC |
-| Current price | 85,735.93 at 2026-09-21 16:05:15 UTC |
+| Current price | 85,798.50 at 2026-09-21 16:10:54 UTC |
 | Range low / high | 80,579.43 / 86,344.70 |
 
 Range definition: Provider rolling 24h range.
@@ -94,14 +94,14 @@ ACTION NOW: WAIT FOR CONFIRMATION
 
 Shadow research: **WAIT / REJECTED — TOO_FAR_FROM_PIVOT**. Baseline unchanged; no order or fill.
 
-Completed-candle state: **bullish**. New completed candle processed.
+Completed-candle state: **bullish**. No new 4H candle since the previous check.
 
 | Market data | Value |
 |---|---|
 | Latest completed 4H close | 2,755.32 |
 | Previous completed close | 2,724.53 |
 | Close time | 2026-09-22 00:00:00 +08 / 2026-09-21 16:00:00 UTC |
-| Current price | 2,745.88 at 2026-09-21 16:05:14 UTC |
+| Current price | 2,750.63 at 2026-09-21 16:10:54 UTC |
 | Range low / high | 2,608.00 / 2,765.62 |
 
 Range definition: Provider rolling 24h range (retrieved at check time).
@@ -136,15 +136,15 @@ ACTION NOW: WAIT FOR CONFIRMATION
 
 Shadow research: **WAIT / RETEST_PENDING — WAIT_FOR_RETEST**. Baseline unchanged; no order or fill.
 
-Completed-candle state: **bullish**. New completed candle processed.
+Completed-candle state: **bullish**. No new 4H candle since the previous check.
 
 | Market data | Value |
 |---|---|
 | Latest completed 4H close | 2,755.27 |
 | Previous completed close | 2,725.38 |
 | Close time | 2026-09-22 00:00:00 +08 / 2026-09-21 16:00:00 UTC |
-| Current price | 2,745.55 at 2026-09-21 16:05:17 UTC |
-| Range low / high | 2,607.00 / 2,765.43 |
+| Current price | 2,751.77 at 2026-09-21 16:10:56 UTC |
+| Range low / high | 2,608.31 / 2,765.43 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -177,14 +177,14 @@ ACTION NOW: WAIT FOR CONFIRMATION
 
 Shadow research: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. Baseline unchanged; no order or fill.
 
-Completed-candle state: **bullish**. New completed candle processed.
+Completed-candle state: **bullish**. No new 4H candle since the previous check.
 
 | Market data | Value |
 |---|---|
 | Latest completed 4H close | 4,348.09 |
 | Previous completed close | 4,369.15 |
 | Close time | 2026-09-22 00:00:00 +08 / 2026-09-21 16:00:00 UTC |
-| Current price | 4,349.52 at 2026-09-21 16:05:17 UTC |
+| Current price | 4,355.62 at 2026-09-21 16:10:57 UTC |
 | Range low / high | 4,322.81 / 4,383.44 |
 
 Range definition: Last six completed 4H candles, 2026-09-18T20:00:00Z to 2026-09-21T16:00:00Z (68h elapsed; gaps not filled; not rolling live 24h).
@@ -201,7 +201,6 @@ Pivot selection: Frozen high/low of six prior completed 4H candles; latest exclu
 
 No tracked active setup. Price state alone does not establish a new entry.
 
-Data/session gap: transition suppressed and setup cleared
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
 Selling an existing long and opening a short are different actions. Targets are conditional; closed-bar invalidation is not a guaranteed stop-loss fill.
@@ -218,14 +217,14 @@ ACTION NOW: WAIT FOR CONFIRMATION
 
 Shadow research: **WAIT / UNTRACKED — WAIT_FOR_NEW_BREAKOUT**. Baseline unchanged; no order or fill.
 
-Completed-candle state: **bearish**. New completed candle processed.
+Completed-candle state: **bearish**. No new 4H candle since the previous check.
 
 | Market data | Value |
 |---|---|
 | Latest completed 4H close | 96.20 |
 | Previous completed close | 97.44 |
 | Close time | 2026-09-22 00:00:00 +08 / 2026-09-21 16:00:00 UTC |
-| Current price | 95.89 at 2026-09-21 16:05:20 UTC |
+| Current price | 95.39 at 2026-09-21 16:10:57 UTC |
 | Range low / high | 95.46 / 101.15 |
 
 Range definition: Last six completed 4H candles, 2026-09-18T20:00:00Z to 2026-09-21T16:00:00Z (68h elapsed; gaps not filled; not rolling live 24h).
@@ -243,10 +242,6 @@ Pivot selection: Frozen high/low of six prior completed 4H candles; latest exclu
 Tracked setup: **SELL**, first confirmed 2026-09-21 04:00:00 UTC. Invalidation: completed close above 99.22.
 Retest: not yet confirmed on a later completed bar.
 
-Events processed this run:
-- SELL at 2026-09-21 04:00:00 UTC, close 98.04 — historical catch-up, not a new instruction
-
-Data/session gap: transition suppressed and setup cleared
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
 Selling an existing long and opening a short are different actions. Targets are conditional; closed-bar invalidation is not a guaranteed stop-loss fill.
