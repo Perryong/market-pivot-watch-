@@ -279,12 +279,12 @@ def build(out, destination, config, now):
 <div class="links"><a class="button" href="{e(chart_url)}" target="_blank" rel="noopener noreferrer">Open TradingView 4H ↗</a></div>
 {body}{strategy_panel(r)}</section>''')
     html = '''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Pivot Watch · 4H market dashboard</title><link rel="stylesheet" href="style.css"><script src="dashboard.js" defer></script></head>
-<body><main><header><p class="eyebrow">MARKET RESEARCH / FOUR-HOUR CLOSES</p><h1>Pivot Watch<span class="accent">.</span></h1>
+<title>Pivot Watch · 4H direction / 1H entry</title><link rel="stylesheet" href="style.css"><script src="dashboard.js" defer></script></head>
+<body><main><header><p class="eyebrow">MARKET RESEARCH / 4H DIRECTION + 1H ENTRY</p><h1>Pivot Watch<span class="accent">.</span></h1>
 <p class="intro">A clear view of the chart, the confirmed close and the next conditional trade levels.</p></header>
 <noscript><p class="stale-notice">JavaScript is disabled. Live charts, tabs and automatic stale checks are unavailable. Check every timestamp; open TradingView via the links.</p></noscript>
 <nav class="tabs" role="tablist" aria-label="Choose market">''' + ''.join(buttons) + '</nav>' + ''.join(panels) + '''
-<footer><p><b>Strategy:</b> completed 4H pivot breakout, followed by a later completed retest. Targets project one and two fixed range widths.</p><p>Conditional research, not guaranteed returns. A completed-close invalidation is not an exchange stop-loss order. Data failures suppress signals. Reports expire after six hours.</p><p>Built ''' + e(clock(now, 'Asia/Singapore')) + ''' · Scheduled every four hours from the US weekday open through the following morning. Actual Actions start time can vary.</p></footer></main></body></html>'''
+<footer><p><b>Strategy:</b> completed 4H pivot breakout, followed by a later completed 1H retest and risk checks. Original 4H retest strategy retained for comparison. Targets project one and two fixed range widths.</p><p>Conditional research, not guaranteed returns. A completed-close invalidation is not an exchange stop-loss order. Data failures suppress signals. Hourly guidance expires after 90 minutes; baseline reports after six hours.</p><p>Built ''' + e(clock(now, 'Asia/Singapore')) + ''' · Scheduled hourly at :05 UTC, 24/7. Actual Actions start time can vary; closed markets produce no verified signal.</p></footer></main></body></html>'''
     atomic_text(destination / 'index.html', html)
     for name in ('style.css','dashboard.js'):
         shutil.copyfile(ROOT / 'web' / name, destination / name)
