@@ -11,7 +11,7 @@ from zoneinfo import ZoneInfo
 
 from .core import Candle, DataError, H4, evaluate
 from .providers import fetch
-from . import shadow
+from . import shadow, hourly
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -57,11 +57,11 @@ def run(config, saved, now, provider=fetch):
         base = {"id": ident, "checked_at": now, "tradingview_symbol": market["tradingview"],
                 "chart": "https://www.tradingview.com/chart/?symbol=" + urlquote(market["tradingview"], safe="") + "&interval=240"}
         try:
-            data = provider(market, now)
+            data = provider(market, now, include_hourly=True) if provider is fetch and 'hourly' in config else provider(market, now)
             report, next_state = evaluate(data["candles"], market, saved["markets"].get(ident), now)
             state["markets"][ident] = next_state
             base.update(report)
-            base.update({k: v for k, v in data.items() if k != "candles"})
+            base.update({k: v for k, v in data.items() if k not in ("candles", "hourly_candles")})
             base['analysis_candles'] = [asdict(c) for c in data['candles']]
             base["chart_candles"] = [asdict(c) for c in sorted(data["candles"], key=lambda c: c.start)
                                      if c.complete and c.end <= now][-60:]
@@ -84,6 +84,24 @@ def run(config, saved, now, provider=fetch):
                         state['markets'][ident]['shadow'] = shadow_state
                 except (DataError, KeyError, TypeError, ValueError, OverflowError):
                     base['shadow'] = dict(status='DATA_UNAVAILABLE', reason='SHADOW_CONFIG_OR_STATE_INVALID', decision='WAIT')
+        if 'hourly' in config:
+            base['hourly'] = dict(status='DATA_UNAVAILABLE', reason='UNVERIFIED_DATA', decision='WAIT')
+            if not base.get('error'):
+                try:
+                    if data.get('hourly_error'):
+                        raise DataError('Hourly feed unavailable')
+                    candles = data.get('hourly_candles', [])
+                    previous = saved['markets'].get(ident) or {}
+                    base['hourly'], hourly_state = hourly.evaluate(
+                        dict(base, previous_4h_end=previous.get('last_end')), candles,
+                        hourly.rules(config, ident), previous.get('hourly'))
+                    base['hourly_candles'] = [asdict(c) for c in candles]
+                    base['hourly_chart_candles'] = [asdict(c) for c in sorted(candles, key=lambda c: c.start)
+                                                    if c.complete and c.end <= now][-60:]
+                    if hourly_state is not None:
+                        state['markets'][ident]['hourly'] = hourly_state
+                except (DataError, KeyError, TypeError, ValueError, OverflowError):
+                    base['hourly'] = dict(status='DATA_UNAVAILABLE', reason='HOURLY_DATA_OR_STATE_UNAVAILABLE', decision='WAIT')
         reports.append(base)
     if not reports:
         raise DataError("No enabled markets")
@@ -96,8 +114,10 @@ def demo_fetch(config, now):
     spread = price * .01
     end = int(now) // H4 * H4
     bars = [Candle(end - (8 - i) * H4, price, price + spread, price - spread, price) for i in range(8)]
+    hours = [Candle(end - (32 - i) * 3600, price, price + spread, price - spread, price, duration=3600) for i in range(32)]
     return {"candles": bars, "quote": {"price": price, "time": now}, "low": price - spread,
-            "high": price + spread, "range_label": "SYNTHETIC DEMO range", "source": "SYNTHETIC DEMO", "sources": [], "demo": True}
+            "high": price + spread, "range_label": "SYNTHETIC DEMO range", "source": "SYNTHETIC DEMO", "sources": [], "demo": True,
+            "hourly_candles": hours}
 
 
 def render(reports, now):
@@ -109,6 +129,8 @@ def render(reports, now):
                  f"ACTION NOW: {r['action']}", "", f"[Open actual TradingView 4H chart]({r['chart']})", ""]
         if r.get('shadow'):
             text += [shadow.summary(r), '']
+        if r.get('hourly'):
+            text += [hourly.summary(r), '']
         if "error" in r:
             text += [r["error"], "Exact completed 4H close, current price, range and active setup cannot be verified. No BUY/SELL signal issued.", ""]
             continue
