@@ -15,7 +15,7 @@ from .core import Candle, DataError, H4, fingerprint, number
 from .decision import decide
 from .providers import fetch_review_bars
 from .site import MAX_AGE
-from . import history
+from . import history, hourly
 from .shadow import summary as shadow_summary
 
 
@@ -23,7 +23,7 @@ def cell(value):
     return escape(str(value)).replace('|', '\\|').replace('\n', ' ')
 
 
-def review_market(previous, current, config, provider=fetch_review_bars, evidence=None):
+def review_market(previous, current, config, provider=fetch_review_bars, evidence=None, decision_override=None):
     evidence = evidence if evidence is not None else {}
     evidence.update(status='BASELINE', data_status='NOT_REQUESTED', bars_5m=[])
     if previous is None:
@@ -39,7 +39,7 @@ def review_market(previous, current, config, provider=fetch_review_bars, evidenc
         return '**PARAMETERS CHANGED — comparison not scored; establish a new baseline.**\n'
     since, until = previous['checked_at'], current['checked_at']
     prior = previous['review_decision']
-    current_decision = decide(current)['decision']
+    current_decision = decide(current)['decision'] if decision_override is None else decision_override
     p0, p1 = number(previous['quote']['price']), number(current['quote']['price'])
     lines = ['| Reading | Previous | Current |', '|---|---|---|',
              f'| Decision | {cell(prior)} | {cell(current_decision)} |',
@@ -113,6 +113,31 @@ def review_market(previous, current, config, provider=fetch_review_bars, evidenc
     return '\n'.join(lines) + '\n'
 
 
+def review_hourly(previous, current, config, baseline_evidence):
+    """Reuse this interval's evidence; a confirmation without eligibility is WAIT."""
+    evidence = dict(status='NO_ENTRY_TO_SCORE')
+    reviewed = previous.get('hourly_reviewed_key') if previous else None
+    view = hourly.presentation(current)
+    lines = ['### 1H entry observation', '',
+             f"Current: **{cell(view['decision'])} — {cell(view.get('reason'))}**.",
+             'Observations only; no fills, position ledger or realised P&L.', '']
+    prior = hourly.presentation(previous) if previous else {'decision':'WAIT'}
+    if prior['decision'] not in ('BUY', 'SELL'):
+        return '\n'.join(lines+['NO ENTRY TO SCORE — no prior eligible hourly entry.']), evidence, reviewed
+    raw = previous['hourly']
+    identity = fingerprint([previous['id'], raw.get('range_id'), raw.get('signal_end'), raw.get('retest_close_time')])
+    if identity == reviewed:
+        return '\n'.join(lines+['NO ENTRY TO SCORE — hourly observation already reviewed.']), evidence, reviewed
+    frozen = dict(previous, review_decision=prior['decision'])
+    def cached_provider(*args):
+        if baseline_evidence.get('data_status') != 'COMPLETE_M5_WINDOW':
+            raise DataError('No verified interval evidence')
+        return baseline_evidence['bars_5m']
+    lines.append(review_market(frozen, current, config, cached_provider, evidence, view['decision']))
+    evidence['observation_id'] = identity
+    return '\n'.join(lines), evidence, identity
+
+
 def write_review(payload, config, state_path, directory, provider=fetch_review_bars, history_dir=None, metadata=None):
     state_path, directory = Path(state_path), Path(directory)
     checked = payload['checked_at']
@@ -172,6 +197,14 @@ def write_review(payload, config, state_path, directory, provider=fetch_review_b
         lines += [f'Next observation starts from: **{cell(decision["decision"])} — {cell(decision["action"])}**.', '']
         if report.get('shadow'):
             lines += [shadow_summary(report), '']
+        hourly_evidence, reviewed = {}, old.get('hourly_reviewed_key') if old else None
+        if 'hourly' in report or old and 'hourly' in old:
+            try:
+                text, hourly_evidence, reviewed = review_hourly(old, report, markets[ident], evidence)
+                lines += [text, '']
+            except (KeyError, ValueError, TypeError, OverflowError):
+                hourly_evidence = dict(status='DATA_UNAVAILABLE')
+                lines += ['Hourly observation unavailable; no performance conclusion.', '']
         if not report.get('error'):
             lines += [f'Reference quote: {report["quote"]["price"]:,.4f}. '
                       f'Pivots: {report["lower"]:,.4f} / {report["upper"]:,.4f}.',
@@ -180,16 +213,21 @@ def write_review(payload, config, state_path, directory, provider=fetch_review_b
         snapshot = deepcopy(report)
         snapshot.pop('chart_candles', None)
         snapshot.pop('analysis_candles', None)
+        snapshot.pop('hourly_candles', None)
+        snapshot.pop('hourly_chart_candles', None)
+        if reviewed:
+            snapshot['hourly_reviewed_key'] = reviewed
         snapshot['review_decision'] = decision['decision']
         snapshot['review_config'] = fingerprint(markets[ident])
         saved['markets'][ident] = snapshot
         observations.append(dict(report=deepcopy(report), decision=decision, previous_reading=deepcopy(old),
                                  configuration=next(m for m in configuration['markets'] if m['id'] == ident),
-                                 evidence=evidence))
+                                 evidence=evidence, hourly_evidence=hourly_evidence))
     elapsed = (checked-previous['checked_at'])/3600 if previous else None
     snapshot = dict(schema_version=1, checked_at=checked, checked_at_utc=clock(checked),
                     previous_checked_at=previous['checked_at'] if previous else None, elapsed_hours=elapsed,
                     interval='BASELINE' if elapsed is None else 'FOUR_HOUR' if 3.75 <= elapsed <= 4.25 else 'NONSTANDARD',
+                    hourly_interval='BASELINE' if elapsed is None else 'HOURLY' if .75 <= elapsed <= 1.25 else 'NONSTANDARD',
                     configuration=configuration, metadata=metadata or {}, input_hash=input_hash,
                     previous_state_hash=fingerprint(previous), readings=observations,
                     markdown='\n'.join(lines), next_review_state=saved)

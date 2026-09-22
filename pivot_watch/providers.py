@@ -8,7 +8,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
-from .core import Candle, DataError, H4, aggregate_hours, number
+from .core import Candle, DataError, H1, H4, aggregate_hours, number
 
 
 def timestamp(value):
@@ -55,27 +55,27 @@ def quote(price, when, now):
     return {"price": number(price), "time": when}
 
 
-def parse_oanda(payload):
+def parse_oanda(payload, duration=H4):
     bars = []
     for c in payload["candles"]:
         if not isinstance(c["complete"], bool):
             raise DataError("OANDA completion flag is not boolean")
         p = c["mid"]
-        bars.append(Candle(int(timestamp(c["time"])), *(number(p[k]) for k in ("o", "h", "l", "c")), c["complete"]))
+        bars.append(Candle(int(timestamp(c["time"])), *(number(p[k]) for k in ("o", "h", "l", "c")), c["complete"], duration))
     return bars
 
 
-def parse_binance(rows, now):
+def parse_binance(rows, now, duration=H4):
     bars = []
     for row in rows:
         start = int(row[0]) // 1000
-        if int(row[6]) + 1 != (start + H4) * 1000:
-            raise DataError("Binance candle duration is not exactly four hours")
-        bars.append(Candle(start, *(number(x) for x in row[1:5]), start + H4 <= now))
+        if int(row[6]) + 1 != (start + duration) * 1000:
+            raise DataError("Binance candle duration does not match requested timeframe")
+        bars.append(Candle(start, *(number(x) for x in row[1:5]), start + duration <= now, duration))
     return bars
 
 
-def fetch(config, now):
+def fetch(config, now, include_hourly=False):
     provider, symbol = config["provider"], config["symbol"]
     safe_symbol = urllib.parse.quote(symbol, safe="")
     if provider == "coinbase":
@@ -131,8 +131,29 @@ def fetch(config, now):
         raise DataError("Unknown market-data provider")
     if low > high:
         raise DataError("Invalid market range")
-    return {"candles": bars, "quote": q, "low": low, "high": high, "range_label": range_label,
-            "source": provider, "sources": sources}
+    result = {"candles": bars, "quote": q, "low": low, "high": high, "range_label": range_label,
+              "source": provider, "sources": sources}
+    if include_hourly:
+        try:
+            if provider == 'coinbase':
+                hourly = [Candle(int(r[0]), *(number(r[i]) for i in (3, 2, 1, 4)),
+                                int(r[0]) + H1 <= now, H1) for r in rows]
+            elif provider == 'binance':
+                hourly = parse_binance(get_json(base + '/klines',
+                    {'symbol': symbol, 'interval': '1h', 'limit': 200}), now, H1)
+            else:
+                hourly = parse_oanda(get_json(base + f'/v3/instruments/{safe_symbol}/candles',
+                    {'granularity': 'H1', 'price': 'M', 'count': 200, 'dailyAlignment': 0,
+                     'alignmentTimezone': 'UTC', 'smooth': 'false'}, headers), H1)
+            hourly = sorted((c for c in hourly if c.complete and c.end <= now), key=lambda c: c.start)
+            for c in hourly:
+                c.validate()
+            if len({c.start for c in hourly}) != len(hourly):
+                raise DataError('Duplicate hourly candles')
+            result['hourly_candles'] = hourly
+        except (DataError, KeyError, TypeError, ValueError, IndexError):
+            result['hourly_error'] = 'Hourly provider data unavailable or invalid'
+    return result
 
 
 def fetch_review_bars(config, since, until):

@@ -1,8 +1,37 @@
 # Trading strategy and operating guide
 
-This application observes fixed-pivot breakouts and later retests on completed
-four-hour candles. It does not place orders, record fills, size positions, or
+This application observes fixed-pivot breakouts on completed four-hour candles
+and subsequent retests on completed one-hour candles. The original four-hour
+retest rules remain as a separately labelled baseline. It does not place orders, record fills, size positions, or
 prove that the strategy is profitable.
+
+## Hourly entry variant
+
+The sections below describing 4H retests document the original baseline. The
+new primary guidance waits for a new 4H breakout, then a **later completed 1H
+retest of that same 4H pivot**. The 1H candle must start no earlier than the
+breakout's closing time. Long: open at/above pivot, low touches pivot, close
+above; short mirrors this. Intrabar touches alone never qualify.
+
+The variant has separate persisted state and frozen settings. First activation
+does not import old baseline setups. Missing hourly data preserves baseline
+analysis but blocks hourly guidance; lost event history causes an explicit
+hourly rebaseline, not a backdated entry. A gap cancels pending setups. A 4H
+invalidation overrides a simultaneous 1H retest. T1 before entry marks MISSED;
+24 consecutive 1H candles without a qualifying retest expires the setup.
+
+Confirmation is separate from risk eligibility. Entry estimates use the quote
+after confirmation, not an earlier pivot touch. Risk uses 1H ATR(14), maximum
+0.25 ATR distance, stop 0.1 ATR beyond the retest extreme, and net T1 RR >= 2.
+Unknown round-trip costs block eligibility; configure realistic instrument
+costs in `hourly.overrides`. Rejected setups do not rearm without a new breakout.
+These parameters need research; no actual fill or stop protection is implied.
+
+Dashboard and Telegram show 4H direction, 1H confirmation and the risk result.
+Hourly guidance expires after 90 minutes. Existing Pine and TradingView controls
+remain the 4H baseline; the Pine script does not implement hourly entries.
+Archives include both variants and actual elapsed intervals. Review unique
+eligibility events, not repeated WAIT readings; target observations are not P&L.
 
 ## Markets
 
@@ -109,8 +138,7 @@ targets are 78 / 76.
    message. This requires the Telegram secrets to be configured.
 7. Commit reports and state, then deploy the dashboard through GitHub Pages.
 
-The schedule is 09:30, 13:30, 17:30 and 21:30 New York time Monday–Friday, plus
-01:30 and 05:30 Tuesday–Saturday. Daylight saving follows America/New_York.
+The schedule is :05 every hour in UTC, seven days a week, including weekends.
 It is not a holiday calendar. GitHub may delay or miss runs; use actual report
 timestamps. The schedule does not change UTC candle boundaries. Manual workflow
 runs also send Telegram when configured.

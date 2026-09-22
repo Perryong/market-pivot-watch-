@@ -21,14 +21,16 @@ def safe_config(config):
     # Credentials belong in environment variables, never in the public archive.
     keys = ('id', 'enabled', 'provider', 'environment', 'symbol', 'tradingview', 'lower', 'upper')
     result = {'markets': [{k: market[k] for k in keys if k in market} for market in config['markets']]}
-    if isinstance(config.get('shadow'), dict):
+    for section in ('shadow', 'hourly'):
+        if not isinstance(config.get(section), dict):
+            continue
         # Only numeric research settings may enter the public archive.
         clean = lambda values: {k: v for k, v in values.items() if k in DEFAULTS and
                                 (v is None or type(v) is int or type(v) is float and math.isfinite(v))}
-        result['shadow'] = clean(config['shadow'])
-        overrides = config['shadow'].get('overrides', {})
+        result[section] = clean(config[section])
+        overrides = config[section].get('overrides', {})
         if isinstance(overrides, dict):
-            result['shadow']['overrides'] = {m['id']: clean(overrides[m['id']]) for m in config['markets']
+            result[section]['overrides'] = {m['id']: clean(overrides[m['id']]) for m in config['markets']
                                             if isinstance(overrides.get(m['id']), dict)}
     return result
 
@@ -54,7 +56,9 @@ def export_month(directory):
               'invalidated_at_utc', 'error', 'run_id', 'run_attempt', 'code_commit', 'code_dirty', 'snapshot',
               'shadow_decision', 'shadow_status', 'shadow_reason', 'shadow_entry', 'shadow_stop',
               'shadow_target', 'shadow_atr', 'shadow_distance_atr', 'shadow_gross_rr', 'shadow_net_rr',
-              'shadow_range_review_due')
+              'shadow_range_review_due', 'hourly_interval', 'hourly_decision', 'hourly_status',
+              'hourly_reason', 'hourly_retest_close_time', 'hourly_stop', 'hourly_target', 'hourly_net_rr',
+              'hourly_observation_id', 'hourly_review_status')
     output = io.StringIO(newline='')
     writer = csv.DictWriter(output, fieldnames=fields)
     writer.writeheader()
@@ -91,6 +95,14 @@ def export_month(directory):
             for key in ('decision', 'status', 'reason', 'entry', 'stop', 'target', 'atr',
                         'distance_atr', 'gross_rr', 'net_rr', 'range_review_due'):
                 row['shadow_'+key] = shadow.get(key, '')
+            hourly = r.get('hourly') or {}
+            if not isinstance(hourly, dict):
+                hourly = {}
+            for key in ('decision', 'status', 'reason', 'retest_close_time', 'stop', 'target', 'net_rr'):
+                row['hourly_'+key] = hourly.get(key, '')
+            row['hourly_interval'] = snapshot.get('hourly_interval', '') if hourly else ''
+            row['hourly_observation_id'] = item.get('hourly_evidence', {}).get('observation_id', '')
+            row['hourly_review_status'] = item.get('hourly_evidence', {}).get('status', '')
             for i in range(2):
                 row[f't{i+1}_first_touch_utc'] = utc(targets[i].get('first_touch_start')) if i < len(targets) else ''
             # Protect spreadsheet users from formulas in textual provider/error fields.

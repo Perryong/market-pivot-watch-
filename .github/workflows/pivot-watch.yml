@@ -1,12 +1,10 @@
-name: Four-hour pivot watch
+name: Hourly pivot watch
 
 on:
   schedule:
-    # US weekday open through the following morning, every four hours.
-    - cron: '30 9,13,17,21 * * 1-5'
-      timezone: America/New_York
-    - cron: '30 1,5 * * 2-6'
-      timezone: America/New_York
+    # Completed 4H direction and 1H entry checks, hourly, 24/7.
+    - cron: '5 * * * *'
+      timezone: UTC
   workflow_dispatch:
 
 permissions:

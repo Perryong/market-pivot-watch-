@@ -6,6 +6,7 @@ import json
 import math
 
 H4 = 4 * 3600
+H1 = 3600
 
 
 class DataError(ValueError):
@@ -27,14 +28,17 @@ class Candle:
     low: float
     close: float
     complete: bool = True
+    duration: int = H4
 
     @property
     def end(self):
-        return self.start + H4
+        return self.start + self.duration
 
     def validate(self):
-        if self.start % H4 != 0:
-            raise DataError("4H candle is not aligned to UTC 00/04/08/12/16/20")
+        if type(self.duration) is not int or self.duration not in (H1, H4):
+            raise DataError("Unsupported candle duration")
+        if type(self.start) is not int or self.start % self.duration != 0:
+            raise DataError("Candle is not aligned to its UTC timeframe")
         values = [number(x) for x in (self.open, self.high, self.low, self.close)]
         o, h, l, c = values
         if not l <= min(o, c) <= max(o, c) <= h:
@@ -80,6 +84,8 @@ def evaluate(candles, config, saved, now):
         raise DataError("Need at least two completed 4H candles")
     for c in bars:
         c.validate()
+        if c.duration != H4:
+            raise DataError("4H engine requires 4H candles")
     if len({c.start for c in bars}) != len(bars):
         raise DataError("Duplicate 4H candles")
     if bars[-1].end != int(now) // H4 * H4:

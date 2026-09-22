@@ -1,10 +1,16 @@
 # Shadow risk evaluation
 
 This is a forward-looking research comparison, **not automated trading**. The
-original decision remains unchanged on the website, Telegram and TradingView
-Pine indicator. The website displays a separate research panel below that decision;
+original 4H decision remains unchanged as the baseline comparison and TradingView
+Pine indicator. Primary dashboard/Telegram guidance now uses the separate
+4H-direction/1H-entry variant. The website displays a separate research panel below the baseline decision;
 shadow results also remain separate fields in the reports and history.
 They neither protect a position nor establish a profitable strategy.
+
+Hourly entry risk reuses the calculation with 1H candles and separately frozen
+`hourly` settings, including a 24-candle expiry. The `shadow` settings documented
+here continue to apply only to the original 4H research comparison. Unknown
+costs block hourly risk eligibility even when a 1H retest has been confirmed.
 
 ## Where to look
 

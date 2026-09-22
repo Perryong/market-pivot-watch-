@@ -3,12 +3,17 @@
 Read the [Trading strategy and operating guide](docs/TRADING_STRATEGY.md) for
 the rules, worked example, setup steps and observation-journal interpretation.
 
-Read-only Python analysis, a GitHub Actions run every four hours, and Pine Script
+Read-only Python analysis, a GitHub Actions run every hour (24/7), and Pine Script
 drawings on **actual TradingView charts**. No order placement. Python 3.12; no
 pip packages required (system timezone data is required; GitHub Ubuntu provides it).
 
 ## What you get
 
+- **4H direction + 1H entry:** a completed 4H breakout followed by a later
+  completed 1H retest of the same pivot, with risk checks. The original 4H
+  retest strategy remains a separately labelled baseline comparison.
+- Separate 1H and 4H charts, hourly Telegram reports and archived observations.
+  Existing Pine scripts remain **4H baseline only**, not 1H entry scripts.
 - Reports on every run: BUY / SELL / NO NEW SIGNAL / DATA UNAVAILABLE, completed
   candle close and time, current quote, range, entry/exit conditions and T1/T2.
 - Completed 4H signals, persistent deduplication and explicit invalidation.
@@ -152,15 +157,23 @@ git push -u origin main
    artifact for JSON and ready-to-paste Pine files.
 6. Open the URL shown by the `deploy` job to view the dashboard. Typically it is
    `https://YOUR_USERNAME.github.io/market-pivot-watch/`; use the actual job URL.
-7. Runs start at **09:30 New York time**, every four hours through the following
-   morning: **09:30, 13:30, 17:30, 21:30, 01:30, 05:30**. The workflow uses
-   `timezone: America/New_York`, so daylight saving is handled automatically.
-   The first four runs are Monday–Friday; the overnight runs are Tuesday–Saturday.
-   During US daylight saving these are **21:30 SGT**, then **01:30, 05:30, 09:30,
-   13:30, 17:30 SGT** the next day. During US standard time, add one hour.
-   This is a weekday clock schedule, not an exchange holiday calendar.
-   Each check uses the latest completed UTC 4H bar; the US-open schedule does not
-   change candle boundaries. Use **Run workflow** for an immediate manual check.
+7. Runs are scheduled at **:05 every hour, 24/7**, using UTC (`5 * * * *`).
+   This is also :05 every hour in Singapore and replaces the US-open-based
+   weekday schedule. OANDA closures still suppress gold/oil signals; crypto
+   continues on weekends. Each run checks completed UTC 4H and 1H candles.
+   Use **Run workflow** for an immediate manual check.
+
+The first hourly run establishes its own cursor and waits for a new 4H breakout;
+it never turns an old setup into a fresh entry. A 1H retest must occur after the
+4H breakout closes. Pending setups expire after 24 hourly candles or cancel on
+gaps/invalidation; reaching T1 first marks the move missed. Risk uses hourly
+ATR(14), maximum 0.25 ATR entry distance, a 0.1 ATR retest-stop buffer and minimum
+2:1 net reward/risk. These are research settings, not proven optimal values.
+Set realistic per-market `hourly.overrides.<market>.round_trip_cost_bps` before
+risk eligibility is possible: **null costs block entries**, not confirmation
+observations. Do not substitute zero for unknown costs. Hourly guidance expires
+after 90 minutes; 4H baseline reports retain their six-hour limit. No orders or
+protective stops are submitted.
 
 GitHub schedules run from the default branch and can be delayed or dropped.
 Public-repository schedules can be disabled after prolonged inactivity. Treat
@@ -472,7 +485,7 @@ Crypto uses the provider's rolling 24h stats.
 | `pivot_watch/providers.py` | Coinbase, OANDA and Binance read-only feeds |
 | `pivot_watch/app.py` | Independent market handling, Markdown/JSON and Pine generation |
 | `tradingview/pivot_watch.pine.tmpl` | Pine v6 generator template |
-| `.github/workflows/pivot-watch.yml` | Four-hour schedule, persistent state and artifacts |
+| `.github/workflows/pivot-watch.yml` | Hourly 24/7 schedule, persistent state and artifacts |
 | `.github/workflows/tests.yml` | Offline CI |
 | `tests/` | Safety and correctness tests |
 

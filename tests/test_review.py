@@ -25,6 +25,57 @@ def reading(when, decision='BUY'):
 
 
 class ReviewTests(unittest.TestCase):
+    def test_hourly_archive_compatibility_and_safe_configuration(self):
+        from pivot_watch.history import safe_config, export_month
+        config = {'markets': CONFIG['markets'], 'hourly': {'retest_candles':24, 'token':'secret',
+                  'overrides': {'BTCUSD': {'round_trip_cost_bps':2, 'token':'secret'}}}}
+        cleaned = safe_config(config)
+        self.assertEqual(cleaned['hourly']['retest_candles'], 24)
+        self.assertNotIn('secret', json.dumps(cleaned))
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            review.write_review({'checked_at':T, 'markets':[reading(T)]}, CONFIG, root/'state', root/'reviews')
+            original = next((root/'history').rglob('*.json'))
+            before = original.read_bytes()
+            current = reading(T+3600)
+            current['hourly'] = dict(status='REJECTED', decision='WAIT', reason='COSTS_NOT_CONFIGURED',
+                                    checked_at=T+3600, close_time=(T+3600)//3600*3600)
+            bars = [dict(start=T,end=T+300,open=115,high=131,low=114,close=130)]
+            review.write_review({'checked_at':T+3600, 'markets':[current]}, CONFIG, root/'state', root/'reviews', lambda *a:bars)
+            export_month(original.parent)
+            rows = list(csv.DictReader((original.parent/'readings.csv').read_text().splitlines()))
+            self.assertEqual(rows[0]['hourly_decision'], '')
+            self.assertEqual(rows[1]['hourly_decision'], 'WAIT')
+            self.assertEqual(rows[1]['interval'], 'NONSTANDARD')
+            self.assertEqual(rows[1]['hourly_interval'], 'HOURLY')
+            self.assertEqual(original.read_bytes(), before)
+
+    def test_hourly_review_reuses_evidence_and_never_scores_wait_or_duplicate(self):
+        from copy import deepcopy
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            old = reading(T)
+            old['hourly'] = dict(version=1, range_id='range', signal_end=T-7200,
+                retest_close_time=T//3600*3600, close_time=T//3600*3600, evaluated_at=T,
+                checked_at=T, status='ENTRY_ELIGIBLE', decision='BUY', reason='RISK_CHECKS_PASSED')
+            review.write_review({'checked_at':T, 'markets':[old]}, CONFIG, root/'state', root/'reviews')
+            current = reading(T+3600)
+            current['hourly'] = deepcopy(old['hourly'])
+            # Simulate repeated eligibility; the observation identity must prevent re-scoring.
+            provider = unittest.mock.Mock(return_value=[dict(start=T,end=T+300,open=115,high=131,low=114,close=130)])
+            path = review.write_review({'checked_at':T+3600, 'markets':[current]}, CONFIG, root/'state', root/'reviews', provider)
+            snapshot = json.loads(sorted((root/'history').rglob('*.json'))[-1].read_text())
+            evidence = snapshot['readings'][0]['hourly_evidence']
+            self.assertEqual(evidence['targets'][0]['level'], 130)
+            self.assertEqual(evidence['targets'][0]['first_touch_start'], T)
+            self.assertIn('1H entry observation', path.read_text())
+            self.assertEqual(provider.call_count, 1)
+            latest = reading(T+7200)
+            latest['hourly'] = dict(current['hourly'], decision='WAIT')
+            review.write_review({'checked_at':T+7200,'markets':[latest]},CONFIG,root/'state',root/'reviews',provider)
+            snapshot = json.loads(sorted((root/'history').rglob('*.json'))[-1].read_text())
+            self.assertEqual(snapshot['readings'][0]['hourly_evidence']['status'], 'NO_ENTRY_TO_SCORE')
+
     def test_archive_keeps_original_readings_evidence_and_regenerable_csv(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

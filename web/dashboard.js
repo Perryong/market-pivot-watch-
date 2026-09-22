@@ -4,6 +4,13 @@ const tabs = Array.from(document.querySelectorAll('.market-tab'));
 const panels = Array.from(document.querySelectorAll('.market-panel'));
 function expireReports(now = Date.now()) {
   panels.forEach(panel => {
+    const hourly = panel.querySelector('.hourly-panel');
+    if (hourly) {
+      const expires = Number(hourly.dataset.expires);
+      const expired = !Number.isFinite(expires) || (expires > 0 && now / 1000 > expires);
+      hourly.querySelector('.hourly-guidance').hidden = expired;
+      hourly.querySelector('.hourly-stale').hidden = !expired;
+    }
     const age = now / 1000 - Number(panel.dataset.checked);
     const stale = !Number.isFinite(age) || age > 21600 || age < -300;
     panel.querySelector('.stale-notice').hidden = !stale;
