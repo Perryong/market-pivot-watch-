@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-09-22 18:12:33 +08** / 2026-09-22 10:12:33 UTC.
+Checked **2026-09-23 01:41:24 +08** / 2026-09-22 17:41:24 UTC.
 
 ## BTCUSD
 
@@ -11,15 +11,15 @@ ACTION NOW: WAIT FOR CONFIRMATION
 
 Shadow research: **WAIT / UNTRACKED — WAIT_FOR_NEW_BREAKOUT**. Baseline unchanged; no order or fill.
 
-Completed-candle state: **bullish**. No new 4H candle since the previous check.
+Completed-candle state: **bullish**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 85,339.85 |
-| Previous completed close | 85,667.84 |
-| Close time | 2026-09-22 16:00:00 +08 / 2026-09-22 08:00:00 UTC |
-| Current price | 86,037.01 at 2026-09-22 10:12:32 UTC |
-| Range low / high | 84,367.51 / 87,397.00 |
+| Latest completed 4H close | 86,417.80 |
+| Previous completed close | 85,969.07 |
+| Close time | 2026-09-23 00:00:00 +08 / 2026-09-22 16:00:00 UTC |
+| Current price | 86,509.04 at 2026-09-22 17:41:23 UTC |
+| Range low / high | 85,059.28 / 87,397.00 |
 
 Range definition: Provider rolling 24h range (retrieved at check time).
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -53,15 +53,15 @@ ACTION NOW: WAIT FOR CONFIRMATION
 
 Shadow research: **WAIT / MISSED — MISSED_MOVE**. Baseline unchanged; no order or fill.
 
-Completed-candle state: **bullish**. No new 4H candle since the previous check.
+Completed-candle state: **bullish**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 85,344.00 |
-| Previous completed close | 85,692.83 |
-| Close time | 2026-09-22 16:00:00 +08 / 2026-09-22 08:00:00 UTC |
-| Current price | 86,068.00 at 2026-09-22 10:12:34 UTC |
-| Range low / high | 84,130.21 / 87,395.67 |
+| Latest completed 4H close | 86,413.12 |
+| Previous completed close | 85,986.62 |
+| Close time | 2026-09-23 00:00:00 +08 / 2026-09-22 16:00:00 UTC |
+| Current price | 86,508.79 at 2026-09-22 17:41:26 UTC |
+| Range low / high | 85,114.00 / 87,395.67 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -94,15 +94,15 @@ ACTION NOW: WAIT FOR CONFIRMATION
 
 Shadow research: **WAIT / REJECTED — TOO_FAR_FROM_PIVOT**. Baseline unchanged; no order or fill.
 
-Completed-candle state: **bullish**. No new 4H candle since the previous check.
+Completed-candle state: **bullish**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 2,726.13 |
-| Previous completed close | 2,738.81 |
-| Close time | 2026-09-22 16:00:00 +08 / 2026-09-22 08:00:00 UTC |
-| Current price | 2,745.31 at 2026-09-22 10:12:32 UTC |
-| Range low / high | 2,711.00 / 2,807.10 |
+| Latest completed 4H close | 2,743.89 |
+| Previous completed close | 2,741.62 |
+| Close time | 2026-09-23 00:00:00 +08 / 2026-09-22 16:00:00 UTC |
+| Current price | 2,751.33 at 2026-09-22 17:41:26 UTC |
+| Range low / high | 2,715.02 / 2,807.10 |
 
 Range definition: Provider rolling 24h range (retrieved at check time).
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -136,15 +136,15 @@ ACTION NOW: WAIT FOR CONFIRMATION
 
 Shadow research: **WAIT / EXPIRED — SETUP_EXPIRED**. Baseline unchanged; no order or fill.
 
-Completed-candle state: **bullish**. No new 4H candle since the previous check.
+Completed-candle state: **bullish**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 2,726.34 |
-| Previous completed close | 2,739.65 |
-| Close time | 2026-09-22 16:00:00 +08 / 2026-09-22 08:00:00 UTC |
-| Current price | 2,746.35 at 2026-09-22 10:12:36 UTC |
-| Range low / high | 2,707.97 / 2,807.34 |
+| Latest completed 4H close | 2,743.91 |
+| Previous completed close | 2,742.60 |
+| Close time | 2026-09-23 00:00:00 +08 / 2026-09-22 16:00:00 UTC |
+| Current price | 2,751.45 at 2026-09-22 17:41:28 UTC |
+| Range low / high | 2,715.91 / 2,807.34 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -177,17 +177,17 @@ ACTION NOW: WAIT FOR CONFIRMATION
 
 Shadow research: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. Baseline unchanged; no order or fill.
 
-Completed-candle state: **neutral**. No new 4H candle since the previous check.
+Completed-candle state: **neutral**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 4,301.12 |
-| Previous completed close | 4,341.82 |
-| Close time | 2026-09-22 16:00:00 +08 / 2026-09-22 08:00:00 UTC |
-| Current price | 4,333.35 at 2026-09-22 10:12:37 UTC |
-| Range low / high | 4,299.60 / 4,376.01 |
+| Latest completed 4H close | 4,331.28 |
+| Previous completed close | 4,322.77 |
+| Close time | 2026-09-23 00:00:00 +08 / 2026-09-22 16:00:00 UTC |
+| Current price | 4,336.77 at 2026-09-22 17:41:28 UTC |
+| Range low / high | 4,291.49 / 4,376.01 |
 
-Range definition: Last six completed 4H candles, 2026-09-21T08:00:00Z to 2026-09-22T08:00:00Z (24h elapsed; gaps not filled; not rolling live 24h).
+Range definition: Last six completed 4H candles, 2026-09-21T16:00:00Z to 2026-09-22T16:00:00Z (24h elapsed; gaps not filled; not rolling live 24h).
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
 
 ### Trade levels — conditional plans
@@ -217,17 +217,17 @@ ACTION NOW: WAIT FOR CONFIRMATION
 
 Shadow research: **WAIT / UNTRACKED — WAIT_FOR_NEW_BREAKOUT**. Baseline unchanged; no order or fill.
 
-Completed-candle state: **bearish**. No new 4H candle since the previous check.
+Completed-candle state: **bearish**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 97.08 |
-| Previous completed close | 96.84 |
-| Close time | 2026-09-22 16:00:00 +08 / 2026-09-22 08:00:00 UTC |
-| Current price | 92.97 at 2026-09-22 10:12:38 UTC |
-| Range low / high | 95.03 / 98.62 |
+| Latest completed 4H close | 95.39 |
+| Previous completed close | 93.65 |
+| Close time | 2026-09-23 00:00:00 +08 / 2026-09-22 16:00:00 UTC |
+| Current price | 94.66 at 2026-09-22 17:41:21 UTC |
+| Range low / high | 92.82 / 97.70 |
 
-Range definition: Last six completed 4H candles, 2026-09-21T08:00:00Z to 2026-09-22T08:00:00Z (24h elapsed; gaps not filled; not rolling live 24h).
+Range definition: Last six completed 4H candles, 2026-09-21T16:00:00Z to 2026-09-22T16:00:00Z (24h elapsed; gaps not filled; not rolling live 24h).
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
 
 ### Trade levels — conditional plans
