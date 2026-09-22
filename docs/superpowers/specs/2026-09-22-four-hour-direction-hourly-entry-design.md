@@ -1,6 +1,6 @@
 # 4H direction with 1H entry confirmation
 
-Status: proposed design for review; not implemented or deployed.
+Status: design approved, including 24/7 scheduling; not implemented or deployed.
 
 ## Goal and scope
 
@@ -88,7 +88,7 @@ zero fees/spread. Missing costs must show COSTS_NOT_CONFIGURED and block risk
 eligibility, while still allowing observation of retest confirmations. No
 position sizing, actual protective orders, simulated fills or P&L are added.
 
-## Scheduling and delivery — assumptions requiring approval
+## Scheduling and delivery — approved 24/7 cadence
 
 Replace the US-open-based cadence with minute 5 of every hour, every day, in
 UTC. This allows all crypto sessions to be observed; OANDA market closures
