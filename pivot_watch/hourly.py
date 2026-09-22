@@ -1,5 +1,6 @@
 """Completed 4H breakouts with subsequent 1H retests. Guidance, never orders."""
 from copy import deepcopy
+import math
 
 from .core import Candle, DataError, H1, H4, candle_fingerprint, fingerprint
 from . import shadow
@@ -16,7 +17,8 @@ def rules(config, ident):
 
 def evaluate(report, candles, settings, saved=None):
     if report.get('demo') or report.get('error'):
-        return dict(status='DATA_UNAVAILABLE', reason='UNVERIFIED_DATA', decision='WAIT'), saved
+        return dict(status='DATA_UNAVAILABLE', reason='UNVERIFIED_DATA', decision='WAIT',
+                    checked_at=report['checked_at'], close_time=int(report['checked_at'])//H1*H1), saved
     bars = sorted((b for b in candles if b.complete and b.end <= report['checked_at']), key=lambda b: b.start)
     for b in bars:
         b.validate()
@@ -137,3 +139,32 @@ def summary(report):
     if not r:
         return ''
     return f"4H direction / 1H entry: **{r['decision']} / {r['status']} — {r['reason']}**. No order or fill."
+
+
+def presentation(report, now=None):
+    """Fail-closed view shared by web and Telegram; historical state is not an entry."""
+    fallback = dict(status='DATA_UNAVAILABLE', decision='WAIT', reason='HOURLY_DATA_OR_STATE_UNAVAILABLE',
+                    confirmation='NOT CONFIRMED', expires_at=0)
+    r = report.get('hourly')
+    if not isinstance(r, dict) or report.get('error') or report.get('demo'):
+        return fallback
+    try:
+        checked, close = r['checked_at'], r['close_time']
+        now = report['checked_at'] if now is None else now
+        retest = r.get('retest_close_time')
+        values = [checked, close, now, report['checked_at']] + ([retest] if retest is not None else [])
+        if any(type(v) not in (float, int) or not math.isfinite(v) for v in values):
+            return fallback
+        if close > checked or checked > now or checked != report['checked_at'] or (retest is not None and retest > close):
+            return fallback
+        result = dict(r, confirmation='1H RETEST CONFIRMED' if retest is not None else 'NOT CONFIRMED',
+                      decision='WAIT', expires_at=min(checked, close, retest if retest is not None else close)+MAX_AGE)
+        if now > result['expires_at']:
+            result.update(reason='STALE_HOURLY_ASSESSMENT', confirmation='HISTORICAL / STALE — NO NEW ENTRY')
+        elif r.get('decision') in ('BUY', 'SELL') and r.get('status') == 'ENTRY_ELIGIBLE' and r.get('reason') == 'RISK_CHECKS_PASSED' and retest == close and r.get('evaluated_at') == checked:
+            result['decision'] = r['decision']
+        elif r.get('status') == 'ENTRY_ELIGIBLE':
+            result['confirmation'] = 'EARLIER RETEST — NO NEW ENTRY'
+        return result
+    except (KeyError, TypeError, ValueError, OverflowError):
+        return fallback

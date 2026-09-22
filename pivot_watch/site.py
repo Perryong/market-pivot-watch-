@@ -9,8 +9,9 @@ import shutil
 import time
 from urllib.parse import quote
 from .app import ROOT, atomic_text, clock, pine
-from .core import Candle, H4, number
+from .core import Candle, H1, H4, number
 from .decision import decide
+from . import hourly
 
 MAX_AGE = 6 * 3600
 
@@ -20,14 +21,17 @@ def e(value):
 def price(value):
     return f'{float(value):,.2f}'
 
-def level_chart(report):
-    if 'error' in report or not report.get('chart_candles'):
+def level_chart(report, timeframe='4H'):
+    key = 'hourly_chart_candles' if timeframe == '1H' else 'chart_candles'
+    duration = H1 if timeframe == '1H' else H4
+    if 'error' in report or not report.get(key):
         return '<p class="meta">Chart with levels available after a successful data refresh.</p>'
     try:
-        bars = [Candle(**row) for row in report['chart_candles']]
+        close_time = report['hourly']['close_time'] if timeframe == '1H' else report['close_time']
+        bars = [Candle(**row) for row in report[key]]
         for bar in bars:
             bar.validate()
-            if not bar.complete or bar.end > report['close_time']:
+            if bar.duration != duration or not bar.complete or bar.end > close_time:
                 raise ValueError('Unfinished chart candle')
         bars.sort(key=lambda bar: bar.start)
         levels = [('BUY retest', number(report['upper']), '#63e3c4'),
@@ -40,10 +44,10 @@ def level_chart(report):
         if span <= 0:
             raise ValueError('Empty price scale')
         y = lambda value: 400 - (value - low) / span * 360
-        step = 780 / ((bars[-1].start - bars[0].start) / H4 + 1)
+        step = 780 / ((bars[-1].start - bars[0].start) / duration + 1)
         shapes = []
         for bar in bars:
-            x = 20 + ((bar.start - bars[0].start) / H4 + .5) * step
+            x = 20 + ((bar.start - bars[0].start) / duration + .5) * step
             color = '#63e3c4' if bar.close >= bar.open else '#ffa5ae'
             shapes.append(f'<g fill="{color}" stroke="{color}"><title>{e(clock(bar.start))} | O {price(bar.open)} H {price(bar.high)} L {price(bar.low)} C {price(bar.close)}</title>'
                           f'<line x1="{x}" x2="{x}" y1="{y(bar.high)}" y2="{y(bar.low)}"/>'
@@ -55,11 +59,11 @@ def level_chart(report):
             shapes.append(f'<line class="price-level" data-price="{value}" x1="20" x2="810" y1="{y(value)}" y2="{y(value)}" stroke="{color}" stroke-dasharray="6 4"/>'
                           f'<text x="825" y="{y(value)+4}" fill="{color}">{label} {price(value)}{subtitle}</text>')
         caption = 'SYNTHETIC DEMO' if report.get('demo') else str(report['source'])
-        return f'''<div class="level-chart"><h3>4H candles with pivots and targets</h3>
-<p class="meta">{e(caption)} · Completed candles through {e(clock(report['close_time'], 'Asia/Singapore'))}. Snapshot at the analysis check; refreshes with each report. Fixed levels are shown across the chart for reference, not as historical signals. Hover a candle for OHLC.</p>
+        return f'''<div class="level-chart"><h3>{timeframe} candles with pivots and targets</h3>
+<p class="meta">{e(caption)} · Completed candles through {e(clock(close_time, 'Asia/Singapore'))}. Snapshot at the analysis check; refreshes with each report. Fixed 4H levels are shown across the chart for reference, not as historical signals. Hover a candle for OHLC.</p>
 <p class="meta">Entries require a breakout and later completed retest: hold above the upper pivot for BUY, reject below the lower pivot for SHORT. Exit rules apply only to the corresponding tracked setup and existing position; these are conditional levels, not buy/sell-now instructions.</p>
-<div class="chart-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 450" role="img" aria-label="{e(report['id'])} completed four-hour candles with two pivots and four targets">
-<title>{e(report['id'])} — {e(caption)} — 4H candles and conditional levels</title>{''.join(shapes)}
+<div class="chart-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 450" role="img" aria-label="{e(report['id'])} completed {'one-hour' if timeframe == '1H' else 'four-hour'} candles with two pivots and four targets">
+<title>{e(report['id'])} — {e(caption)} — {timeframe} candles and conditional levels</title>{''.join(shapes)}
 <text x="20" y="440" fill="#a4b5c8">{e(clock(bars[0].start))}</text>
 <text x="800" y="440" text-anchor="end" fill="#a4b5c8">{e(clock(bars[-1].end))}</text></svg></div></div>'''
     except (KeyError, TypeError, ValueError, OverflowError):
@@ -78,6 +82,25 @@ def decision_panel(report):
 <p class="eyebrow">DECISION AT THIS CHECK</p><h3>{e(d['decision'])}</h3>
 <p class="decision-action">{e(d['action'])}</p><p>{e(d['reason'])}</p>
 <p class="meta">BUY / SELL means strategy eligibility, not an instruction to trade at any price. Check the timestamp and conditional levels below. No orders are placed.</p></div>'''
+
+def hourly_panel(report, now=None):
+    r = hourly.presentation(report, now)
+    details = []
+    for key, label in [('entry','Quote-based entry estimate'), ('stop','Proposed stop (not an order)'),
+                       ('target','4H T1'), ('net_rr','Net reward / risk')]:
+        value = r.get(key)
+        if type(value) in (int, float) and math.isfinite(value):
+            details.append(f'<div><span>{label}</span><strong>{e(price(value))}</strong></div>')
+    stamp = clock(r['close_time'], 'Asia/Singapore') if 'close_time' in r else 'Unavailable'
+    return f'''<div class="hourly-panel" data-expires="{r['expires_at']}">
+<p class="eyebrow">4H DIRECTION / 1H ENTRY</p>
+<p>4H direction: <b>{e(report.get('state', 'unavailable'))}</b> · baseline candle {e(clock(report['close_time'], 'Asia/Singapore')) if 'close_time' in report else 'Unavailable'}</p>
+<div class="hourly-guidance"><h3>{e(r['decision'])}</h3><p>{e(r['confirmation'])}</p>
+<p>Risk / setup: {e(r.get('status', 'DATA_UNAVAILABLE'))} — {e(r.get('reason', 'UNVERIFIED_DATA'))}</p></div>
+<p class="hourly-stale" hidden="hidden">STALE 1H GUIDANCE — WAIT; historical evidence only.</p>
+<p class="meta">1H candle ended: {e(stamp)}. A later 1H retest of the original 4H pivot is required. Confirmation alone is not risk eligibility.</p>
+<div class="metrics">{''.join(details)}</div>
+<p class="meta">No orders or fills. Existing setups are not imported on first activation. Missing execution costs block entry eligibility.</p></div>'''
 
 def shadow_panel(report):
     result = report.get('shadow') or {}
@@ -228,7 +251,7 @@ def build(out, destination, config, now):
         if preset:
             script, preset_time = preset
             code = f'''<details class="pine-code" open data-checked="{preset_time}"><summary>View Pine Script · {ident}</summary>
-<p>Saved preset · {e(clock(preset_time, 'Asia/Singapore'))}. Fixed levels, not a live trading signal. Copy the complete script, select all existing text in TradingView's Pine Editor and replace it, then save and select Add to chart or Update on chart.</p>
+<p>Saved preset · {e(clock(preset_time, 'Asia/Singapore'))}. 4H baseline only; this Pine script does not implement the 1H entry logic. Fixed levels, not a live trading signal. Copy the complete script, select all existing text in TradingView's Pine Editor and replace it, then save and select Add to chart or Update on chart.</p>
 <p class="pine-age-warning" role="status" {'' if now-preset_time > MAX_AGE else 'hidden'}>STALE PRESET — these saved levels are historical. Verify the pivots before use; this is not a fresh analysis.</p>
 <button class="button copy-pine" type="button" aria-controls="pine-{ident}">Copy Pine code</button>
 <span class="copy-status" role="status"></span><pre><code id="pine-{ident}">{e(script)}</code></pre></details>'''
@@ -243,9 +266,12 @@ def build(out, destination, config, now):
 <div class="stale-notice" role="status" hidden>STALE REPORT — wait for a fresh verified check. Values below are historical; do not treat them as a current signal.</div>
 <div class="signal"><strong>{e(status)}</strong><span>Breakout notification; entry decision is shown below.</span></div>
 <p class="meta">Analysis check: {e(clock(checked, 'Asia/Singapore'))}</p>
+{hourly_panel(r, now) if 'hourly' in r else ''}
+{'<h3>Original 4H baseline comparison</h3>' if 'hourly' in r else ''}
 {decision_panel(r)}
 {research}
 {level_chart(r)}
+{level_chart(r, '1H') if 'hourly' in r else ''}
 {code}
 <h3>TradingView live chart</h3>
 <div class="chart" id="chart-{ident}"><p class="chart-loading">Loading official TradingView chart… If unavailable, use the link below.</p></div>

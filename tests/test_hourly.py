@@ -33,6 +33,19 @@ def event(kind, end):
 
 
 class HourlyTests(unittest.TestCase):
+    def test_presentation_freshness_and_malformed_results(self):
+        rules, state = self.armed()
+        r = report(5)
+        result, _ = hourly.evaluate(r, self.retest(), rules, state)
+        r['hourly'] = result
+        self.assertEqual(hourly.presentation(r)['decision'], 'BUY')
+        self.assertEqual(hourly.presentation(r, r['checked_at']+5401)['decision'], 'WAIT')
+        r['checked_at'] += 7200
+        self.assertEqual(hourly.presentation(r)['decision'], 'WAIT')
+        for bad in (None, 'BUY', {'status':'ENTRY_ELIGIBLE','decision':'BUY'}, {'checked_at':float('nan')}):
+            r['hourly'] = bad
+            self.assertEqual(hourly.presentation(r)['decision'], 'WAIT')
+
     def test_app_hourly_failure_and_recovery_preserve_baseline(self):
         from pivot_watch.app import run, demo_fetch, json_text
         market = dict(id='BTCUSD', provider='coinbase', symbol='BTC-USD', tradingview='COINBASE:BTCUSD', lower=90, upper=110)

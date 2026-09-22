@@ -10,6 +10,35 @@ NOW = 1789516800 + 14460
 CONFIG = json.loads((ROOT / 'config.json').read_text())
 
 class SiteTests(unittest.TestCase):
+    def test_hourly_panel_and_chart_are_separate_from_baseline(self):
+        reports, _ = run(CONFIG, {'version':1,'markets':{}}, NOW, demo_fetch)
+        r = reports[0]
+        r.pop('demo')
+        r['hourly'] = dict(status='REJECTED', decision='WAIT', reason='COSTS_NOT_CONFIGURED',
+                           checked_at=NOW, close_time=NOW-60, retest_close_time=NOW-60)
+        html = site.hourly_panel(r, NOW)
+        self.assertIn('COSTS_NOT_CONFIGURED', html)
+        self.assertIn('1H RETEST CONFIRMED', html)
+        self.assertNotIn('ENTRY ELIGIBLE', html)
+        chart = site.level_chart(r, '1H')
+        self.assertIn('1H candles with pivots and targets', chart)
+        self.assertIn('duration', str(r['hourly_chart_candles'][0]))
+        svg = ET.fromstring(chart[chart.index('<svg'):chart.index('</svg>')+6])
+        bodies = [n for n in svg.iter() if n.attrib.get('class') == 'candle-body']
+        self.assertEqual(len(bodies), 32)
+        self.assertAlmostEqual(float(bodies[0].attrib['width']), 780/32*.6)
+        self.assertIn('4H candles with pivots and targets', site.level_chart(r))
+        for bad in ('oops', None, {'reason':'<script>','decision':'BUY'}):
+            r['hourly'] = bad
+            self.assertNotIn('<script>', site.hourly_panel(r, NOW))
+
+    def test_demo_hourly_chart_remains_explicitly_synthetic(self):
+        reports, _ = run(CONFIG, {'version':1,'markets':{}}, NOW, demo_fetch)
+        chart = site.level_chart(reports[0], '1H')
+        self.assertIn('<svg', chart)
+        self.assertIn('SYNTHETIC DEMO', chart)
+        self.assertNotIn('<h3>BUY</h3>', site.hourly_panel(reports[0], NOW))
+
     def test_shadow_panel_is_a_native_disclosure_closed_by_default(self):
         reports, _ = run(CONFIG, {'version': 1, 'markets': {}}, NOW, demo_fetch)
         panel = ET.fromstring(site.shadow_panel(reports[0]))

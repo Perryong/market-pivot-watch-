@@ -13,6 +13,19 @@ NOW = 1789516800 + 14460
 
 
 class TelegramTests(unittest.TestCase):
+    def test_hourly_caption_blocks_unpriced_risk_and_stale_confirmation(self):
+        r = self.reports()['markets'][0]
+        r['hourly'] = dict(status='REJECTED', decision='WAIT', reason='COSTS_NOT_CONFIGURED',
+                           checked_at=NOW, close_time=NOW-60, retest_close_time=NOW-60)
+        text = telegram.caption(r)
+        self.assertIn('1H RETEST CONFIRMED', text)
+        self.assertIn('COSTS_NOT_CONFIGURED', text)
+        self.assertIn('4H baseline:', text)
+        self.assertLessEqual(len(text.encode('utf-16-le'))//2, 1024)
+        text = telegram.caption(r, NOW+5401)
+        self.assertIn('STALE', text)
+        self.assertIn('WAIT', text)
+
     def test_cli_additional_recipient_retries_only_failed_destination(self):
         payload = self.reports()
         payload['markets'] = payload['markets'][:1]
@@ -97,6 +110,7 @@ class TelegramTests(unittest.TestCase):
                          {'version': 1, 'markets': {}}, NOW, demo_fetch)
         for report in reports:
             report.pop('demo')
+            report.pop('hourly', None)  # Existing tests exercise the legacy 4H path.
         return {'checked_at': NOW, 'markets': reports}
 
     def test_photo_and_failure_message_with_receipts_prevent_repeat_send(self):
