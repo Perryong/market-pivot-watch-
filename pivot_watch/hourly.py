@@ -109,6 +109,10 @@ def evaluate(report, candles, settings, saved=None):
             if when != latest.end:
                 finish('REJECTED', 'HISTORICAL_RETEST', when)
                 continue
+            # A 4H close exactly at the pivot is neutral without emitting an EXIT event.
+            if report['state'] != ('bullish' if long else 'bearish'):
+                finish('REJECTED', 'DIRECTION_NOT_ALIGNED', when)
+                continue
             q = report['quote']
             fresh_quote = when <= q['time'] <= report['checked_at']+60 and report['checked_at']-q['time'] <= 900
             if fresh_quote and (q['price'] >= target if long else q['price'] <= target):

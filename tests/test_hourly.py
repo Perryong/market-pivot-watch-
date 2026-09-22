@@ -122,6 +122,17 @@ class HourlyTests(unittest.TestCase):
         self.assertEqual(result['status'], 'INVALIDATED')
         self.assertEqual(result['decision'], 'WAIT')
 
+    def test_neutral_four_hour_direction_blocks_long_and_short_entry(self):
+        for short in (False, True):
+            with self.subTest(short=short):
+                rules, state = self.armed(short)
+                r = report(8, short=short)
+                r['state'] = 'neutral'
+                r['analysis_candles'][-1]['close'] = 90 if short else 110
+                result, _ = hourly.evaluate(r, self.retest(8, short), rules, state)
+                self.assertEqual(result['decision'], 'WAIT')
+                self.assertEqual(result['reason'], 'DIRECTION_NOT_ALIGNED')
+
     def test_target_and_risk_failures_are_terminal(self):
         cases = [('costs', 'COSTS_NOT_CONFIGURED'), ('far','TOO_FAR_FROM_PIVOT'),
                  ('quote_target','MISSED_MOVE'), ('candle_target','MISSED_MOVE'),
