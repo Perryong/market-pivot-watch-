@@ -1,13 +1,63 @@
 import os
 import unittest
 from unittest.mock import patch
-from pivot_watch.core import DataError
+from pivot_watch.core import Candle, DataError, evaluate
 from pivot_watch.providers import parse_oanda, parse_binance, quote, fetch
 
 T = 1789516800
 
 
 class ProviderTests(unittest.TestCase):
+    def test_hourly_duration_and_four_hour_engine_separation(self):
+        c = Candle(T, 100, 110, 90, 101, duration=3600)
+        self.assertEqual(c.end, T + 3600)
+        c.validate()
+        with self.assertRaises(DataError):
+            Candle(T, 100, 110, 90, 101, duration=60).validate()
+        with self.assertRaisesRegex(DataError, '4H'):
+            evaluate([c, Candle(T + 3600, 100, 110, 90, 101, duration=3600)],
+                     {'lower': 90, 'upper': 110}, None, T + 7200)
+
+    def test_hourly_feeds_and_isolated_hourly_failure(self):
+        from pivot_watch.providers import iso
+        now = T + 14460
+        for provider, symbol in [('coinbase', 'BTC-USD'), ('binance', 'BTCUSDT'), ('oanda', 'XAU_USD')]:
+            for failed in (False, True):
+                if failed and provider == 'coinbase':
+                    continue
+                with self.subTest(provider=provider, failed=failed):
+                    def transport(url, params=None, headers=None):
+                        if provider == 'coinbase':
+                            if url.endswith('/candles'):
+                                return [[T+i*3600, 90, 110, 100, 101, 1] for i in range(5)]
+                            if url.endswith('/ticker'):
+                                return {'price': '101', 'time': iso(now)}
+                            return {'low': '90', 'high': '110'}
+                        hourly = params.get('interval') == '1h' or params.get('granularity') == 'H1'
+                        if hourly and failed:
+                            raise DataError('Provider connection unavailable')
+                        if url.endswith('/pricing'):
+                            return {'prices': [{'instrument': symbol, 'status': 'tradeable', 'time': iso(now),
+                                    'bids': [{'price': '100'}], 'asks': [{'price': '102'}]}]}
+                        if url.endswith('/24hr'):
+                            return {'lastPrice': '101', 'closeTime': now*1000, 'lowPrice': '90', 'highPrice': '110'}
+                        duration = 3600 if hourly else 14400
+                        starts = [T-i*duration for i in range(6)] + [T+14400]
+                        if provider == 'binance':
+                            return [[s*1000, '100', '110', '90', '101', '1', (s+duration)*1000-1] for s in starts]
+                        return {'candles': [{'time': iso(s), 'complete': s+duration <= now,
+                                  'mid': {'o':'100','h':'110','l':'90','c':'101'}} for s in starts]}
+                    with patch.dict(os.environ, {'OANDA_TOKEN':'fixture', 'OANDA_ACCOUNT_ID':'fixture'}), patch(
+                            'pivot_watch.providers.get_json', transport):
+                        r = fetch({'provider':provider, 'symbol':symbol}, now, include_hourly=True)
+                    self.assertEqual(r['quote']['price'], 101)
+                    self.assertTrue(all(c.duration == 14400 for c in r['candles']))
+                    if failed:
+                        self.assertIn('hourly_error', r)
+                    else:
+                        self.assertTrue(r['hourly_candles'])
+                        self.assertTrue(all(c.duration == 3600 and c.complete and c.end <= now for c in r['hourly_candles']))
+
     def test_oanda_unfinished_bar_stays_unfinished(self):
         payload = {"candles": [{"time": "2026-09-16T00:00:00.000000000Z", "complete": False,
             "volume": 1, "mid": {"o": "100", "h": "110", "l": "90", "c": "101"}}]}
