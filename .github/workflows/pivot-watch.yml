@@ -3,11 +3,11 @@ name: Two-hourly pivot watch
 on:
   schedule:
     # Completed 4H direction and 1H entry checks, 24/7.
-    # Minute 27 avoids the congested top of the hour, which GitHub drops first.
-    # Every two hours: GitHub dropped the hourly events outright (schedule is
-    # best-effort and shed under load). Manual dispatch stays available.
-    - cron: '27 */2 * * *'
-      timezone: UTC
+    # Every two hours from 21:30 Singapore time (odd hours at :30, SGT has no
+    # DST). GitHub dropped the hourly events outright: schedule is best-effort
+    # and shed under load. Manual dispatch stays available.
+    - cron: '30 1-23/2 * * *'
+      timezone: Asia/Singapore
   workflow_dispatch:
 
 permissions:

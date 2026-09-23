@@ -157,10 +157,11 @@ git push -u origin main
    artifact for JSON and ready-to-paste Pine files.
 6. Open the URL shown by the `deploy` job to view the dashboard. Typically it is
    `https://YOUR_USERNAME.github.io/market-pivot-watch/`; use the actual job URL.
-7. Runs are scheduled at **:27 every second hour, 24/7**, using UTC (`27 */2 * * *`).
+7. Runs are scheduled **every two hours at :30 Singapore time, 24/7**, starting
+   21:30 SGT (`30 1-23/2 * * *`, `timezone: Asia/Singapore`; odd hours in UTC).
    GitHub's scheduler is best-effort and drops events under load, so hourly was
    unreliable; trigger a manual run any time for a fresh reading.
-   This is also :27 every second hour in Singapore and replaces the US-open-based
+   This replaces the US-open-based
    weekday schedule. OANDA closures still suppress gold/oil signals; crypto
    continues on weekends. Each run checks completed UTC 4H and 1H candles.
    Use **Run workflow** for an immediate manual check.

@@ -138,8 +138,8 @@ targets are 78 / 76.
    message. This requires the Telegram secrets to be configured.
 7. Commit reports and state, then deploy the dashboard through GitHub Pages.
 
-The schedule is :27 every second hour in UTC, seven days a week, including
-weekends. GitHub delivers scheduled events late or not at all under load, so
+The schedule is :30 every second hour in Singapore time (21:30, 23:30, 01:30
+and so on; odd hours in UTC), seven days a week, including weekends. GitHub delivers scheduled events late or not at all under load, so
 hourly runs were dropped; two-hourly matches what the scheduler actually
 delivers. A 1H retest seen only on a skipped hour resolves as evidence, not a
 fresh entry.
