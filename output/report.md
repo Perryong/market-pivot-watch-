@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-09-23 18:00:42 +08** / 2026-09-23 10:00:42 UTC.
+Checked **2026-09-23 23:08:30 +08** / 2026-09-23 15:08:30 UTC.
 
 ## BTCUSD
 
@@ -17,11 +17,11 @@ Completed-candle state: **bullish**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 86,128.20 |
-| Previous completed close | 86,696.41 |
-| Close time | 2026-09-23 16:00:00 +08 / 2026-09-23 08:00:00 UTC |
-| Current price | 85,905.00 at 2026-09-23 10:00:41 UTC |
-| Range low / high | 85,450.00 / 87,282.81 |
+| Latest completed 4H close | 85,637.71 |
+| Previous completed close | 86,128.20 |
+| Close time | 2026-09-23 20:00:00 +08 / 2026-09-23 12:00:00 UTC |
+| Current price | 84,654.27 at 2026-09-23 15:08:29 UTC |
+| Range low / high | 83,799.24 / 87,282.81 |
 
 Range definition: Provider rolling 24h range (retrieved at check time).
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -61,11 +61,11 @@ Completed-candle state: **bullish**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 86,124.77 |
-| Previous completed close | 86,704.27 |
-| Close time | 2026-09-23 16:00:00 +08 / 2026-09-23 08:00:00 UTC |
-| Current price | 85,923.64 at 2026-09-23 10:00:43 UTC |
-| Range low / high | 85,461.53 / 87,278.54 |
+| Latest completed 4H close | 85,649.95 |
+| Previous completed close | 86,124.77 |
+| Close time | 2026-09-23 20:00:00 +08 / 2026-09-23 12:00:00 UTC |
+| Current price | 84,690.01 at 2026-09-23 15:08:31 UTC |
+| Range low / high | 83,864.07 / 87,278.54 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -104,11 +104,11 @@ Completed-candle state: **bullish**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 2,742.78 |
-| Previous completed close | 2,773.68 |
-| Close time | 2026-09-23 16:00:00 +08 / 2026-09-23 08:00:00 UTC |
-| Current price | 2,736.27 at 2026-09-23 10:00:43 UTC |
-| Range low / high | 2,715.69 / 2,788.35 |
+| Latest completed 4H close | 2,727.25 |
+| Previous completed close | 2,742.78 |
+| Close time | 2026-09-23 20:00:00 +08 / 2026-09-23 12:00:00 UTC |
+| Current price | 2,681.60 at 2026-09-23 15:08:31 UTC |
+| Range low / high | 2,644.80 / 2,788.35 |
 
 Range definition: Provider rolling 24h range (retrieved at check time).
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -148,11 +148,11 @@ Completed-candle state: **bullish**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 2,742.92 |
-| Previous completed close | 2,774.01 |
-| Close time | 2026-09-23 16:00:00 +08 / 2026-09-23 08:00:00 UTC |
-| Current price | 2,736.65 at 2026-09-23 10:00:46 UTC |
-| Range low / high | 2,716.02 / 2,789.00 |
+| Latest completed 4H close | 2,727.96 |
+| Previous completed close | 2,742.92 |
+| Close time | 2026-09-23 20:00:00 +08 / 2026-09-23 12:00:00 UTC |
+| Current price | 2,682.22 at 2026-09-23 15:08:33 UTC |
+| Range low / high | 2,647.66 / 2,789.00 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -191,13 +191,13 @@ Completed-candle state: **neutral**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 4,319.61 |
-| Previous completed close | 4,342.64 |
-| Close time | 2026-09-23 16:00:00 +08 / 2026-09-23 08:00:00 UTC |
-| Current price | 4,314.31 at 2026-09-23 10:00:51 UTC |
-| Range low / high | 4,291.49 / 4,371.38 |
+| Latest completed 4H close | 4,309.63 |
+| Previous completed close | 4,319.61 |
+| Close time | 2026-09-23 20:00:00 +08 / 2026-09-23 12:00:00 UTC |
+| Current price | 4,294.47 at 2026-09-23 15:08:35 UTC |
+| Range low / high | 4,294.62 / 4,371.38 |
 
-Range definition: Last six completed 4H candles, 2026-09-22T08:00:00Z to 2026-09-23T08:00:00Z (24h elapsed; gaps not filled; not rolling live 24h).
+Range definition: Last six completed 4H candles, 2026-09-22T12:00:00Z to 2026-09-23T12:00:00Z (24h elapsed; gaps not filled; not rolling live 24h).
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
 
 ### Trade levels — conditional plans
@@ -211,9 +211,6 @@ Pivot selection: Frozen high/low of six prior completed 4H candles; latest exclu
 
 No tracked active setup. Price state alone does not establish a new entry.
 
-Events processed this run:
-- EXIT_LONG at 2026-09-23 08:00:00 UTC, close 4,319.61
-
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
 Selling an existing long and opening a short are different actions. Targets are conditional; closed-bar invalidation is not a guaranteed stop-loss fill.
@@ -223,17 +220,46 @@ Selling an existing long and opening a short are different actions. Targets are 
 
 ## USOIL
 
-STATUS: DATA UNAVAILABLE
-ACTION NOW: WAIT FOR VERIFIED DATA
+STATUS: NO NEW SIGNAL
+ACTION NOW: WAIT FOR CONFIRMATION
 
 [Open actual TradingView 4H chart](https://www.tradingview.com/chart/?symbol=OANDA%3AWTICOUSD&interval=240)
 
-Shadow research: **WAIT / DATA_UNAVAILABLE — UNVERIFIED_DATA**. Baseline unchanged; no order or fill.
+Shadow research: **WAIT / UNTRACKED — WAIT_FOR_NEW_BREAKOUT**. Baseline unchanged; no order or fill.
 
-4H direction / 1H entry: **WAIT / DATA_UNAVAILABLE — UNVERIFIED_DATA**. No order or fill.
+4H direction / 1H entry: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. No order or fill.
 
-Provider HTTP 401; check entitlement, region and rate limits
-Exact completed 4H close, current price, range and active setup cannot be verified. No BUY/SELL signal issued.
+Completed-candle state: **bearish**. New completed candle processed.
+
+| Market data | Value |
+|---|---|
+| Latest completed 4H close | 94.30 |
+| Previous completed close | 93.08 |
+| Close time | 2026-09-23 20:00:00 +08 / 2026-09-23 12:00:00 UTC |
+| Current price | 94.82 at 2026-09-23 15:08:35 UTC |
+| Range low / high | 92.25 / 95.80 |
+
+Range definition: Last six completed 4H candles, 2026-09-22T12:00:00Z to 2026-09-23T12:00:00Z (24h elapsed; gaps not filled; not rolling live 24h).
+Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
+
+### Trade levels — conditional plans
+
+| Action | Confirmation / level | T1 / T2 |
+|---|---|---|
+| Buy entry | New 4H cross above 102.17, then a later completed retest and hold | 105.13 / 108.09 |
+| Sell/exit long | Completed 4H close below 102.17 after a bullish setup | — |
+| Short entry | New 4H cross below 99.22, then a later completed retest and rejection | 96.26 / 93.30 |
+| Buy/exit short | Completed 4H close above 99.22 after a bearish setup | — |
+
+Tracked setup: **SELL**, first confirmed 2026-09-21 04:00:00 UTC. Invalidation: completed close above 99.22.
+Retest: not yet confirmed on a later completed bar.
+
+
+Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
+Selling an existing long and opening a short are different actions. Targets are conditional; closed-bar invalidation is not a guaranteed stop-loss fill.
+
+[Source 1](https://developer.oanda.com/rest-live-v20/instrument-df/)
+[Source 2](https://developer.oanda.com/rest-live-v20/pricing-ep/)
 
 ## TradingView drawings
 
