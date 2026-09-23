@@ -138,7 +138,11 @@ targets are 78 / 76.
    message. This requires the Telegram secrets to be configured.
 7. Commit reports and state, then deploy the dashboard through GitHub Pages.
 
-The schedule is :27 every hour in UTC, seven days a week, including weekends.
+The schedule is :27 every second hour in UTC, seven days a week, including
+weekends. GitHub delivers scheduled events late or not at all under load, so
+hourly runs were dropped; two-hourly matches what the scheduler actually
+delivers. A 1H retest seen only on a skipped hour resolves as evidence, not a
+fresh entry.
 It is not a holiday calendar. GitHub may delay or miss runs; use actual report
 timestamps. The schedule does not change UTC candle boundaries. Manual workflow
 runs also send Telegram when configured.

@@ -3,7 +3,7 @@
 Read the [Trading strategy and operating guide](docs/TRADING_STRATEGY.md) for
 the rules, worked example, setup steps and observation-journal interpretation.
 
-Read-only Python analysis, a GitHub Actions run every hour (24/7), and Pine Script
+Read-only Python analysis, a GitHub Actions run every two hours (24/7), and Pine Script
 drawings on **actual TradingView charts**. No order placement. Python 3.12; no
 pip packages required (system timezone data is required; GitHub Ubuntu provides it).
 
@@ -157,8 +157,10 @@ git push -u origin main
    artifact for JSON and ready-to-paste Pine files.
 6. Open the URL shown by the `deploy` job to view the dashboard. Typically it is
    `https://YOUR_USERNAME.github.io/market-pivot-watch/`; use the actual job URL.
-7. Runs are scheduled at **:27 every hour, 24/7**, using UTC (`27 * * * *`).
-   This is also :27 every hour in Singapore and replaces the US-open-based
+7. Runs are scheduled at **:27 every second hour, 24/7**, using UTC (`27 */2 * * *`).
+   GitHub's scheduler is best-effort and drops events under load, so hourly was
+   unreliable; trigger a manual run any time for a fresh reading.
+   This is also :27 every second hour in Singapore and replaces the US-open-based
    weekday schedule. OANDA closures still suppress gold/oil signals; crypto
    continues on weekends. Each run checks completed UTC 4H and 1H candles.
    Use **Run workflow** for an immediate manual check.
