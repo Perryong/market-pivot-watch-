@@ -279,6 +279,7 @@ def build(out, destination, config, now):
 <div class="links"><a class="button" href="{e(chart_url)}" target="_blank" rel="noopener noreferrer">Open TradingView 4H ↗</a></div>
 {body}{strategy_panel(r)}</section>''')
     html = '''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="refresh" content="600">
 <title>Pivot Watch · 4H direction / 1H entry</title><link rel="stylesheet" href="style.css"><script src="dashboard.js" defer></script></head>
 <body><main><header><p class="eyebrow">MARKET RESEARCH / 4H DIRECTION + 1H ENTRY</p><h1>Pivot Watch<span class="accent">.</span></h1>
 <p class="intro">A clear view of the chart, the confirmed close and the next conditional trade levels.</p></header>

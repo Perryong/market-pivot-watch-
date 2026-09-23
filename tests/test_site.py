@@ -176,6 +176,15 @@ class SiteTests(unittest.TestCase):
             self.assertIn('input.float(70700.0', html)
             self.assertFalse((dst/'latest.json').exists())
 
+    def test_open_tab_reloads_itself_to_pick_up_newer_runs(self):
+        with tempfile.TemporaryDirectory() as d:
+            out, dst = Path(d)/'out', Path(d)/'site'
+            reports, _ = run(CONFIG, {'version':1,'markets':{}}, NOW, demo_fetch)
+            write_outputs(out, reports, NOW)
+            site.build(out, dst, CONFIG, NOW)
+            html = (dst/'index.html').read_text()
+            self.assertIn('<meta http-equiv="refresh" content="600">', html)
+
     def test_stale_input_keeps_copyable_preset_but_not_live_signal(self):
         with tempfile.TemporaryDirectory() as d:
             out, dst = Path(d)/'out', Path(d)/'site'
