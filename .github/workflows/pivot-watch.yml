@@ -3,7 +3,8 @@ name: Hourly pivot watch
 on:
   schedule:
     # Completed 4H direction and 1H entry checks, hourly, 24/7.
-    - cron: '5 * * * *'
+    # Minute 27 avoids the congested top of the hour, which GitHub drops first.
+    - cron: '27 * * * *'
       timezone: UTC
   workflow_dispatch:
 
