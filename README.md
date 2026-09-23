@@ -152,7 +152,7 @@ git push -u origin main
 3. Under **Settings → Pages → Build and deployment → Source**, choose
    **GitHub Actions**. The workflow uses the `github-pages` environment; allow
    deployments from your default branch under your repository's protection rules.
-4. Open **Actions → Four-hour pivot watch → Run workflow** on the default branch.
+4. Open **Actions → Two-hourly pivot watch → Run workflow** on the default branch.
 5. Read the job summary and `output/report.md`. Download the `pivot-watch-…`
    artifact for JSON and ready-to-paste Pine files.
 6. Open the URL shown by the `deploy` job to view the dashboard. Typically it is
