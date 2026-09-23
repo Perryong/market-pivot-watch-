@@ -86,7 +86,7 @@ class SiteTests(unittest.TestCase):
         self.assertIn('0.50 × ATR', page)
         self.assertIn('Range age review due', page)
         self.assertIn('Not calculated', page)
-        self.assertLess(page.index('class="decision-panel'), page.index('class="shadow-panel"'))
+        self.assertLess(page.index('class="hourly-panel"'), page.index('class="shadow-panel"'))
         self.assertLess(page.index('class="shadow-panel"'), page.index('class="level-chart"'))
         self.assertIn('Copy Pine code', page)
         self.assertIn('Open TradingView 4H', page)
@@ -175,6 +175,32 @@ class SiteTests(unittest.TestCase):
             self.assertIn('symbol=OANDA%3AWTICOUSD&amp;interval=240', html)
             self.assertIn('input.float(70700.0', html)
             self.assertFalse((dst/'latest.json').exists())
+
+    def test_hourly_reports_drop_the_duplicate_baseline_decision_panel(self):
+        with tempfile.TemporaryDirectory() as d:
+            out, dst = Path(d)/'out', Path(d)/'site'
+            reports, _ = run(dict(CONFIG, hourly={}), {'version':1,'markets':{}}, NOW, demo_fetch)
+            for r in reports:
+                r.pop('demo', None)
+            write_outputs(out, reports, NOW)
+            site.build(out, dst, CONFIG, NOW)
+            html = (dst/'index.html').read_text()
+            self.assertIn('4H DIRECTION / 1H ENTRY', html)
+            self.assertNotIn('Original 4H baseline comparison', html)
+            self.assertNotIn('class="decision-panel', html)
+
+    def test_legacy_reports_without_hourly_keep_the_baseline_decision_panel(self):
+        with tempfile.TemporaryDirectory() as d:
+            out, dst = Path(d)/'out', Path(d)/'site'
+            reports, _ = run(CONFIG, {'version':1,'markets':{}}, NOW, demo_fetch)
+            for r in reports:
+                r.pop('demo', None)
+                r.pop('hourly', None)
+            write_outputs(out, reports, NOW)
+            site.build(out, dst, CONFIG, NOW)
+            html = (dst/'index.html').read_text()
+            self.assertIn('class="decision-panel', html)
+            self.assertNotIn('4H DIRECTION / 1H ENTRY', html)
 
     def test_open_tab_reloads_itself_to_pick_up_newer_runs(self):
         with tempfile.TemporaryDirectory() as d:

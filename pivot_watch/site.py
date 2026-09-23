@@ -267,8 +267,7 @@ def build(out, destination, config, now):
 <div class="signal"><strong>{e(status)}</strong><span>Breakout notification; entry decision is shown below.</span></div>
 <p class="meta">Analysis check: {e(clock(checked, 'Asia/Singapore'))}</p>
 {hourly_panel(r, now) if 'hourly' in r else ''}
-{'<h3>Original 4H baseline comparison</h3>' if 'hourly' in r else ''}
-{decision_panel(r)}
+{'' if 'hourly' in r else decision_panel(r)}
 {research}
 {level_chart(r)}
 {level_chart(r, '1H') if 'hourly' in r else ''}
