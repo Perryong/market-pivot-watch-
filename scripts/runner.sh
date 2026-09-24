@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# One analysis run: engine -> AI analysis -> review draft. No push, no broadcast.
+# One analysis run: engine -> AI analysis -> auto-publish (git push + telegram).
 set -euo pipefail
 cd /home/pi/code/market-pivot-watch
 mkdir -p logs
@@ -15,5 +15,5 @@ python3 -m pivot_watch --config config.json --state .state/state.json --out outp
 echo "[runner] ai analysis $(date -Is)"
 python3 -m pivot_watch.ai_analysis --out output || true
 
-echo "[runner] sending review draft $(date -Is)"
-python3 scripts/market_bot.py draft || true
+echo "[runner] auto-publish $(date -Is)"
+python3 scripts/market_bot.py publish || true

@@ -273,14 +273,27 @@ def cmd_serve(args) -> int:
     return 0
 
 
+def cmd_publish(args) -> int:
+    """Auto-publish: push to git and send to all recipients (no approval gate)."""
+    ok, detail = finalize()
+    if ok:
+        print(f"published: {detail}")
+        return 0
+    print(f"publish failed: {detail}", file=sys.stderr)
+    return 1
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
     sub.add_parser("draft", help="send review draft to owner")
+    sub.add_parser("publish", help="push to git and send to all recipients (no approval)")
     sub.add_parser("serve", help="poll for approve/reject")
     args = parser.parse_args()
     if args.command == "draft":
         return cmd_draft(args)
+    if args.command == "publish":
+        return cmd_publish(args)
     return cmd_serve(args)
 
 
