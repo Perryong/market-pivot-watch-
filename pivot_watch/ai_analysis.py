@@ -14,6 +14,7 @@ import argparse
 import json
 import os
 import sys
+import time
 import urllib.error
 import urllib.request
 from pathlib import Path
@@ -71,7 +72,8 @@ def build_prompt(report: dict) -> str:
     facts = "\n".join(lines)
     return (
         "You are a concise, honest market analyst. Given the deterministic pivot-watch facts below, "
-        "write a short read of 3-5 sentences in plain text (no markdown, no emojis, no headings) covering: "
+        "write a short read of 2-3 sentences in plain text (no markdown, no emojis, no headings, "
+        "total under 300 characters) covering: "
         "(1) directional bias and what the latest price action means relative to the pivots, "
         "(2) the key levels that matter right now, and "
         "(3) one clear risk / what would invalidate the view. "
@@ -84,7 +86,7 @@ def _chat(key: str, base: str, prompt: str, model: str = MODEL, timeout: int = 1
     payload = json.dumps({
         "model": model,
         "messages": [{"role": "user", "content": prompt}],
-        "max_tokens": 600,
+        "max_tokens": 3000,
         "temperature": 0.4,
     }).encode("utf-8")
     request = urllib.request.Request(
@@ -101,15 +103,23 @@ def _chat(key: str, base: str, prompt: str, model: str = MODEL, timeout: int = 1
         raise RuntimeError("DeepSeek response malformed") from exc
 
 
-def analyze_reports(reports, key: str, base: str, model: str = MODEL) -> dict:
+def analyze_reports(reports, key: str, base: str, model: str = MODEL, retries: int = 2) -> dict:
     out = {}
     for r in reports:
         ident = r.get("id")
         if not ident or r.get("error") or r.get("demo"):
             continue
-        try:
-            out[ident] = _chat(key, base, build_prompt(r), model)
-        except RuntimeError:
+        prompt = build_prompt(r)
+        for attempt in range(retries + 1):
+            try:
+                text = _chat(key, base, prompt, model)
+            except RuntimeError:
+                text = ""
+            if text:
+                out[ident] = text
+                break
+            time.sleep(2 * (attempt + 1))
+        else:
             out[ident] = ""
     return out
 

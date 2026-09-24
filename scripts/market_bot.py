@@ -90,6 +90,8 @@ def draft_text(payload: dict, ai: dict) -> str:
         if r.get("hourly"):
             lines.append(f"1H entry: {r['hourly'].get('decision')}")
         text = (ai or {}).get(ident)
+        if text and len(text) > 250:
+            text = text[:247] + "..."
         lines.append("")
         lines.append("AI read: " + (text if text else "(unavailable)"))
         lines.append("")

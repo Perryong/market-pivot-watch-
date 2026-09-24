@@ -37,6 +37,10 @@ Pivot selection: Frozen high/low of six prior completed 4H candles; latest exclu
 
 No tracked active setup. Price state alone does not establish a new entry.
 
+### AI analysis
+
+Bearish bias persists as BTC trades below the lower pivot at 85431 despite a modest bounce from the prior 4H close. Watch 85431 as the key upside barrier and 83579 as near support; losing that support would reinforce downside. A reclaim of 85431 on a completed close would invalidate the bearish read.
+
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
 Selling an existing long and opening a short are different actions. Targets are conditional; closed-bar invalidation is not a guaranteed stop-loss fill.
@@ -81,6 +85,10 @@ Pivot selection: Frozen high/low of six prior completed 4H candles; latest exclu
 Tracked setup: **BUY**, first confirmed 2026-09-21 12:00:00 UTC. Invalidation: completed close below 81,741.00.
 Retest: not yet confirmed on a later completed bar.
 
+### AI analysis
+
+Bias bullish while BTC holds above 81741; latest 4H close 84418 and current quote above it confirm constructive action. Key levels: 81741 invalidation, then 86265/90789 upside references. No new signal; a completed 4H close below 81741 invalidates the view.
+
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
 Selling an existing long and opening a short are different actions. Targets are conditional; closed-bar invalidation is not a guaranteed stop-loss fill.
@@ -123,6 +131,10 @@ Pivot selection: Frozen high/low of six prior completed 4H candles; latest exclu
 
 Tracked setup: **BUY**, first confirmed 2026-09-21 04:00:00 UTC. Invalidation: completed close below 2,646.55.
 Retest: confirmed on a later completed bar at 2026-09-21 08:00:00 UTC; this is not a promise of a current fill.
+
+### AI analysis
+
+ETH closed above the 2646.55 pivot at 2683.12, keeping bias bullish with price holding just above it. That pivot is key support; a completed 4H close below it invalidates the setup, while upside targets remain higher and confirmation is still lacking.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
@@ -170,7 +182,7 @@ Retest: confirmed on a later completed bar at 2026-09-23 20:00:00 UTC; this is n
 
 ### AI analysis
 
-ETH's directional bias is cautiously bullish: the latest completed 4H close sits above the frozen
+Bias is bullish: ETH closed at 2683.58, holding above the 2646 upper pivot after a retest. Key levels are 2646, where a completed 4H close below would invalidate the setup, with 2436.89 lower support and 2855/3064 upside targets in view. No new signal, so confirmation still matters.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
@@ -218,6 +230,10 @@ Retest: not yet confirmed on a later completed bar.
 Events processed this run:
 - SELL at 2026-09-24 16:00:00 UTC, close 4,256.77
 
+### AI analysis
+
+Bearish bias holds: latest 4H close was below the 4261.375 lower pivot, and price has only bounced above it without a confirmed retest. Key levels are 4261.375 and 4341.135; a completed 4H close back above 4261.375 invalidates the bearish setup.
+
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
 Selling an existing long and opening a short are different actions. Targets are conditional; closed-bar invalidation is not a guaranteed stop-loss fill.
@@ -260,6 +276,10 @@ Pivot selection: Frozen high/low of six prior completed 4H candles; latest exclu
 
 Tracked setup: **BUY**, first confirmed 2026-09-24 08:00:00 UTC. Invalidation: completed close below 95.80.
 Retest: not yet confirmed on a later completed bar.
+
+### AI analysis
+
+Bullish bias: latest 4H closed above the 95.798 pivot, but the current quote has pulled back below 99.348, so momentum is consolidating. Key levels are 95.798 support and 99.348/102.898 resistance; a 4H close below 95.798 invalidates the bullish view.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.

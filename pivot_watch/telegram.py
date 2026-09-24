@@ -37,6 +37,12 @@ def reading(report):
     return decision
 
 
+def _ai_snippet(text):
+    if not text:
+        return None
+    return text if len(text) <= 300 else text[:297] + "..."
+
+
 def caption(report, now=None, ai_text=None):
     heading = f"{report['id']} · {clock(report['checked_at'], 'Asia/Singapore')}"
     if report.get('error'):
@@ -61,8 +67,9 @@ def caption(report, now=None, ai_text=None):
                   '1H: '+(clock(r['close_time'], 'Asia/Singapore') if 'close_time' in r else 'Unavailable'),
                   '4H: '+clock(report['close_time'], 'Asia/Singapore'),
                   'Analysis only · No orders placed', report['chart']]
-        if ai_text:
-            lines += ['', 'AI read:', ai_text]
+        snippet = _ai_snippet(ai_text)
+        if snippet:
+            lines += ['', 'AI read:', snippet]
         return '\n'.join(lines)
     decision = reading(report)
     detected = {'BUY': 'Bullish breakout', 'SELL': 'Bearish breakout'}.get(report.get('signal'), 'No new breakout')
@@ -89,8 +96,9 @@ def caption(report, now=None, ai_text=None):
         f"Quote at check: {price(report['quote']['price'])}",
         f"Pivots: {price(report['lower'])} / {price(report['upper'])}",
         'Snapshot only; no orders placed.', report['chart']]
-    if ai_text:
-        lines += ['', 'AI read:', ai_text]
+    snippet = _ai_snippet(ai_text)
+    if snippet:
+        lines += ['', 'AI read:', snippet]
     return '\n'.join(lines)
 
 

@@ -2,6 +2,8 @@
 # One analysis run: engine -> AI analysis -> review draft. No push, no broadcast.
 set -euo pipefail
 cd /home/pi/code/market-pivot-watch
+mkdir -p logs
+exec >> logs/runner.log 2>&1
 
 set -a
 source .env
