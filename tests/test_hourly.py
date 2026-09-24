@@ -33,6 +33,28 @@ def event(kind, end):
 
 
 class HourlyTests(unittest.TestCase):
+    def test_plain_language_is_shared_and_stale_entries_stay_wait(self):
+        from pivot_watch.site import hourly_panel
+        from pivot_watch.telegram import caption, reading
+        rules, state = self.armed()
+        r = report(5)
+        r.update(chart='https://example.com', id='TEST')
+        r['hourly'], _ = hourly.evaluate(r, self.retest(), rules, state)
+        for now, expected in [(r['checked_at'], 'Entry conditions met'),
+                              (r['checked_at']+5401, 'Report expired')]:
+            with self.subTest(now=now):
+                text, html = caption(r, now), hourly_panel(r, now)
+                self.assertIn(expected, text)
+                self.assertIn(expected, html)
+                self.assertNotIn('RISK_CHECKS_PASSED', text+html)
+        self.assertIn('Entry conditions met', reading(r)['heading'])
+        r['hourly'].update(status='WATCHING', decision='WAIT', reason='WAIT_FOR_NEW_BREAKOUT')
+        r['hourly'].pop('retest_close_time')
+        for output in (caption(r), hourly_panel(r)):
+            self.assertIn('No new breakout is being tracked.', output)
+            self.assertNotIn('Conditional targets:', output)
+            self.assertNotIn('Proposed stop', output)
+
     def test_presentation_freshness_and_malformed_results(self):
         rules, state = self.armed()
         r = report(5)

@@ -17,8 +17,8 @@ class SiteTests(unittest.TestCase):
         r['hourly'] = dict(status='REJECTED', decision='WAIT', reason='COSTS_NOT_CONFIGURED',
                            checked_at=NOW, close_time=NOW-60, retest_close_time=NOW-60)
         html = site.hourly_panel(r, NOW)
-        self.assertIn('COSTS_NOT_CONFIGURED', html)
-        self.assertIn('1H RETEST CONFIRMED', html)
+        self.assertIn('Trading costs have not been configured.', html)
+        self.assertIn('Retest confirmed; entry not approved', html)
         self.assertNotIn('ENTRY ELIGIBLE', html)
         chart = site.level_chart(r, '1H')
         self.assertIn('1H candles with pivots and targets', chart)
@@ -185,7 +185,7 @@ class SiteTests(unittest.TestCase):
             write_outputs(out, reports, NOW)
             site.build(out, dst, CONFIG, NOW)
             html = (dst/'index.html').read_text()
-            self.assertIn('4H DIRECTION / 1H ENTRY', html)
+            self.assertIn('DECISION AT THIS CHECK', html)
             self.assertNotIn('Original 4H baseline comparison', html)
             self.assertNotIn('class="decision-panel', html)
 

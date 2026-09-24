@@ -105,12 +105,12 @@ class TelegramTests(unittest.TestCase):
         r['hourly'] = dict(status='REJECTED', decision='WAIT', reason='COSTS_NOT_CONFIGURED',
                            checked_at=NOW, close_time=NOW-60, retest_close_time=NOW-60)
         text = telegram.caption(r)
-        self.assertIn('1H RETEST CONFIRMED', text)
-        self.assertIn('COSTS_NOT_CONFIGURED', text)
-        self.assertIn('4H baseline:', text)
+        self.assertIn('Retest confirmed; entry not approved', text)
+        self.assertIn('Trading costs have not been configured.', text)
+        self.assertIn('4H direction:', text)
         self.assertLessEqual(len(text.encode('utf-16-le'))//2, 1024)
         text = telegram.caption(r, NOW+5401)
-        self.assertIn('STALE', text)
+        self.assertIn('Report expired', text)
         self.assertIn('WAIT', text)
 
     def test_cli_additional_recipient_retries_only_failed_destination(self):
