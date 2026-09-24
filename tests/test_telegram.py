@@ -2,6 +2,7 @@ import io
 import json
 from pathlib import Path
 import tempfile
+import subprocess
 import unittest
 from unittest.mock import patch
 
@@ -13,6 +14,92 @@ NOW = 1789516800 + 14460
 
 
 class TelegramTests(unittest.TestCase):
+    def test_renderer_recovers_after_timeout_without_a_complete_image(self):
+        png = b'\x89PNG\r\n\x1a\nfixtureIEND\xaeB`\x82'
+        profiles = []
+        def browser(command, **kwargs):
+            profiles.append(next(arg for arg in command if arg.startswith('--user-data-dir=')))
+            if len(profiles) == 1:
+                raise subprocess.TimeoutExpired(command, kwargs['timeout'])
+            image = Path(next(arg.split('=', 1)[1] for arg in command if arg.startswith('--screenshot=')))
+            image.write_bytes(png)
+            return subprocess.CompletedProcess(command, 0)
+        with patch.dict(telegram.os.environ, {'CHROME_BIN': 'test-chrome'}), \
+             patch.object(telegram.subprocess, 'run', side_effect=browser):
+            self.assertEqual(telegram.render_chart(self.reports()['markets'][0]), png)
+        self.assertEqual(len(set(profiles)), 2)
+
+    def test_renderer_reports_bounded_timeout_failure(self):
+        with patch.dict(telegram.os.environ, {'CHROME_BIN': 'test-chrome'}), \
+             patch.object(telegram.subprocess, 'run', side_effect=subprocess.TimeoutExpired('chrome', 30)) as browser:
+            with self.assertRaisesRegex(DataError, 'timed out.*2 attempts'):
+                telegram.render_chart(self.reports()['markets'][0])
+        self.assertEqual(browser.call_count, 2)
+
+    def test_renderer_accepts_complete_png_when_chrome_does_not_exit(self):
+        png = b'\x89PNG\r\n\x1a\nfixtureIEND\xaeB`\x82'
+        def browser(command, **kwargs):
+            image = Path(next(arg.split('=', 1)[1] for arg in command if arg.startswith('--screenshot=')))
+            image.write_bytes(png)
+            raise subprocess.TimeoutExpired(command, kwargs['timeout'])
+        with patch.dict(telegram.os.environ, {'CHROME_BIN': 'test-chrome'}), \
+             patch.object(telegram.subprocess, 'run', side_effect=browser) as process:
+            self.assertEqual(telegram.render_chart(self.reports()['markets'][0]), png)
+        self.assertEqual(process.call_count, 1)
+
+    def test_renderer_rejects_truncated_images_and_reports_chrome_exit_code(self):
+        def browser(command, **kwargs):
+            image = Path(next(arg.split('=', 1)[1] for arg in command if arg.startswith('--screenshot=')))
+            image.write_bytes(b'\x89PNG\r\n\x1a\nincomplete')
+            raise subprocess.CalledProcessError(7, command, stderr=b'private diagnostics')
+        with patch.dict(telegram.os.environ, {'CHROME_BIN': 'test-chrome'}), \
+             patch.object(telegram.subprocess, 'run', side_effect=browser):
+            with self.assertRaisesRegex(DataError, 'exited with code 7.*2 attempts'):
+                telegram.render_chart(self.reports()['markets'][0])
+
+    def test_failed_render_never_sends_or_records_receipt_and_is_shared(self):
+        payload = self.reports()
+        payload['markets'] = payload['markets'][:1]
+        attempts, deliveries = [], []
+        def render(report):
+            attempts.append(report['id'])
+            raise DataError('Chrome failed after retries')
+        with tempfile.TemporaryDirectory() as directory:
+            state = Path(directory)/'sent.json'
+            cache = {}
+            with patch.object(telegram, 'render_chart', side_effect=render), \
+                 patch.object(telegram, 'send', side_effect=lambda *args: deliveries.append(args)):
+                for chat in ('111', '222'):
+                    self.assertEqual(telegram.notify(payload, '123:abc', chat, state, NOW, chart_cache=cache), 1)
+                self.assertEqual(attempts, ['BTCUSD'])
+                self.assertEqual(deliveries, [])
+                self.assertFalse(state.exists())
+                # The next invocation gets a fresh cache and can recover.
+                with patch.object(telegram, 'render_chart', return_value=b'PNG'):
+                    self.assertEqual(telegram.notify(payload, '123:abc', '111', state, NOW), 0)
+                self.assertEqual(len(deliveries), 1)
+                self.assertEqual(len(json.loads(state.read_text())), 1)
+
+    def test_cli_reuses_chart_for_all_recipients(self):
+        payload = self.reports()
+        payload['markets'] = payload['markets'][:1]
+        deliveries = []
+        def render(report):
+            if deliveries:
+                raise DataError('Browser should not be restarted for another recipient')
+            return b'PNG'
+        with tempfile.TemporaryDirectory() as directory:
+            Path(directory, 'latest.json').write_text(json.dumps(payload))
+            with patch.dict(telegram.os.environ, {'TELEGRAM_BOT_TOKEN': '123:abc',
+                    'TELEGRAM_CHAT_ID': '111', 'TELEGRAM_ADDITIONAL_CHAT_IDS': '222'}), \
+                 patch.object(telegram.sys, 'argv', ['telegram', '--out', directory, '--state', directory+'/sent.json']), \
+                 patch.object(telegram.time, 'time', return_value=NOW), \
+                 patch.object(telegram, 'render_chart', side_effect=render), \
+                 patch.object(telegram, 'send', side_effect=lambda token, chat, text, photo: deliveries.append((chat, photo))):
+                self.assertEqual(telegram.main(), 0)
+            self.assertEqual(deliveries, [('111', b'PNG'), ('222', b'PNG')])
+            self.assertEqual(len(json.loads(Path(directory, 'sent.json').read_text())), 2)
+
     def test_hourly_caption_blocks_unpriced_risk_and_stale_confirmation(self):
         r = self.reports()['markets'][0]
         r['hourly'] = dict(status='REJECTED', decision='WAIT', reason='COSTS_NOT_CONFIGURED',

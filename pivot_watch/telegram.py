@@ -105,27 +105,36 @@ def render_chart(report):
                         f'<h2>{e(report["id"])} · {e(reading(report)["heading"])}</h2>' +
                         f'<p class="meta">Snapshot: {e(clock(report["checked_at"], "Asia/Singapore"))}</p>' + chart,
                         encoding='utf-8')
-        image = root/'chart.png'
-        command = [browser, '--headless', '--disable-gpu', '--hide-scrollbars',
-                   '--no-first-run', '--no-default-browser-check', '--force-device-scale-factor=1',
-                   '--timeout=5000', '--disable-background-networking',
-                   '--window-size=1200,900', '--user-data-dir=' + str(root/'profile'),
-                   '--screenshot=' + str(image), html.as_uri()]
-        if os.getenv('GITHUB_ACTIONS') == 'true':
-            command.insert(1, '--no-sandbox')
-        try:
+        # Retry only local rendering, never Telegram POSTs (which may have delivered).
+        for attempt in range(1, 3):
+            image = root/f'chart-{attempt}.png'
+            command = [browser, '--headless', '--disable-gpu', '--hide-scrollbars',
+                       '--no-first-run', '--no-default-browser-check', '--force-device-scale-factor=1',
+                       '--timeout=5000', '--disable-background-networking',
+                       '--window-size=1200,900', '--user-data-dir=' + str(root/f'profile-{attempt}'),
+                       '--screenshot=' + str(image), html.as_uri()]
+            if os.getenv('GITHUB_ACTIONS') == 'true':
+                command.insert(1, '--no-sandbox')
+            reason = 'no complete PNG was produced'
             try:
-                subprocess.run(command, check=True, capture_output=True, timeout=15)
+                subprocess.run(command, check=True, capture_output=True, timeout=30)
             except subprocess.TimeoutExpired:
-                # Chrome on macOS may stay alive after writing; accept only a complete PNG below.
-                pass
-            data = image.read_bytes()
-        except (OSError, subprocess.SubprocessError):
-            raise DataError('Chrome could not render the Telegram chart') from None
-        if (not data.startswith(b'\x89PNG\r\n\x1a\n') or not data.endswith(b'IEND\xaeB`\x82')
-                or len(data) > 10_000_000):
-            raise DataError('Invalid Telegram chart image')
-        return data
+                # Chrome can stay alive after writing; accept a complete PNG below.
+                reason = 'timed out after 30s without a complete PNG'
+            except subprocess.CalledProcessError as exc:
+                reason = f'exited with code {exc.returncode}'
+            except OSError:
+                raise DataError('Chrome could not be started to render the Telegram chart') from None
+            try:
+                data = image.read_bytes()
+            except OSError:
+                data = b''
+            if (data.startswith(b'\x89PNG\r\n\x1a\n') and data.endswith(b'IEND\xaeB`\x82')
+                    and len(data) <= 10_000_000):
+                return data
+            if attempt == 1:
+                print(f'{report["id"]}: Chrome {reason}; retrying chart render', file=sys.stderr, flush=True)
+        raise DataError(f'Chrome could not render the Telegram chart: {reason} (2 attempts)')
 
 
 def send(token, chat, text, photo):
@@ -157,7 +166,7 @@ def send(token, chat, text, photo):
         raise DataError('Telegram delivery could not be confirmed') from None
 
 
-def notify(payload, token, chat, state_path, now, preview=None):
+def notify(payload, token, chat, state_path, now, preview=None, chart_cache=None, recipient_label=None):
     reports = payload['markets']
     if not 0 <= now - float(payload['checked_at']) <= MAX_AGE:
         raise DataError('Refusing to send an expired or future report')
@@ -171,9 +180,11 @@ def notify(payload, token, chat, state_path, now, preview=None):
     if not isinstance(receipts, dict):
         raise DataError('Invalid Telegram delivery state')
     destination = hashlib.sha256((token + ':' + chat).encode()).hexdigest()
+    chart_cache = {} if chart_cache is None else chart_cache
     failed = False
     for report in reports:
         ident = report['id']
+        label = f'{ident} [{recipient_label}]' if recipient_label else ident
         key = destination + ':' + ident
         if not preview and receipts.get(key) == report['checked_at']:
             continue
@@ -182,7 +193,19 @@ def notify(payload, token, chat, state_path, now, preview=None):
             view = hourly.presentation(report, now) if 'hourly' in report else None
             chart_report = dict(report, hourly=view) if view else report
             no_hourly_chart = view is not None and (view['status'] == 'DATA_UNAVAILABLE' or not report.get('hourly_chart_candles'))
-            photo = None if report.get('error') or no_hourly_chart else render_chart(chart_report)
+            photo = None
+            if not report.get('error') and not no_hourly_chart:
+                # Include the presented state: an hourly view may become stale between recipients.
+                chart_key = json_text(chart_report)
+                if chart_key not in chart_cache:
+                    try:
+                        chart_cache[chart_key] = render_chart(chart_report)
+                    except DataError as exc:
+                        # Bound rendering work even when many recipients are configured.
+                        chart_cache[chart_key] = exc
+                photo = chart_cache[chart_key]
+                if isinstance(photo, DataError):
+                    raise photo
             if preview:
                 preview = Path(preview)
                 preview.mkdir(parents=True, exist_ok=True)
@@ -193,9 +216,9 @@ def notify(payload, token, chat, state_path, now, preview=None):
                 send(token, chat, text, photo)
                 receipts[key] = report['checked_at']
                 atomic_text(state_path, json_text(receipts))
-            print(ident + (': preview ready' if preview else ': sent'))
+            print(label + (': preview ready' if preview else ': sent'), flush=True)
         except DataError as exc:
-            print(ident + ': ' + str(exc), file=sys.stderr)
+            print(label + ': ' + str(exc), file=sys.stderr, flush=True)
             failed = True
     return int(failed)
 
@@ -224,8 +247,10 @@ def main():
         if any(not re.fullmatch(r'-?[1-9][0-9]*|@[A-Za-z][A-Za-z0-9_]{4,}', value) for value in recipients):
             raise DataError('Invalid Telegram recipient list')
         failed = 0
-        for recipient in recipients:
-            failed |= notify(payload, token, recipient, args.state, time.time())
+        chart_cache = {}
+        for index, recipient in enumerate(recipients, 1):
+            failed |= notify(payload, token, recipient, args.state, time.time(),
+                             chart_cache=chart_cache, recipient_label=f'recipient {index}/{len(recipients)}')
         return failed
     except (DataError, OSError, ValueError, KeyError, TypeError):
         print('ERROR: Telegram report or delivery state is invalid/unavailable; no reset performed', file=sys.stderr)
