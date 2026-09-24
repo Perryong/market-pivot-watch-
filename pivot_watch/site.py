@@ -217,6 +217,13 @@ def details(r):
 <div class="table-scroll"><table><thead><tr><th>Action</th><th>Confirmation / execution</th><th>T1 / T2 or invalidation</th></tr></thead><tbody>{table}</tbody></table></div>
 <p class="meta">Selling an existing long and opening a short are different actions. {e(r['range_origin'])}.</p>'''
 
+def ai_panel(text):
+    """Render the model's AI read for one market, if present."""
+    if not text:
+        return ''
+    return f'<div class="ai-read"><h3>AI read <span class="muted">/ model summary</span></h3><p>{e(text)}</p></div>'
+
+
 def build(out, destination, config, now):
     out, destination = Path(out), Path(destination)
     destination.mkdir(parents=True, exist_ok=True)
@@ -230,6 +237,12 @@ def build(out, destination, config, now):
         indexed = {r['id']: r for r in payload['markets']}
     except (OSError, ValueError, KeyError, TypeError):
         indexed = {}
+    try:
+        ai = json.loads((out / 'ai-analysis.json').read_text())
+        if not isinstance(ai, dict):
+            ai = {}
+    except (OSError, ValueError):
+        ai = {}
     panels, buttons = [], []
     enabled = [m for m in config['markets'] if m.get('enabled', True)]
     for n, market in enumerate(enabled):
@@ -273,6 +286,7 @@ def build(out, destination, config, now):
 <div class="stale-notice" role="status" hidden>STALE REPORT — wait for a fresh verified check. Values below are historical; do not treat them as a current signal.</div>
 <div class="signal"><strong>{e(status)}</strong><span>Breakout notification; entry decision is shown below.</span></div>
 <p class="meta">Analysis check: {e(clock(checked, 'Asia/Singapore'))}</p>
+{ai_panel(ai.get(ident))}
 {hourly_panel(r, now) if 'hourly' in r else ''}
 {'' if 'hourly' in r else decision_panel(r)}
 {research}
