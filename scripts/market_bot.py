@@ -24,6 +24,8 @@ import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))  # make pivot_watch importable when run as a script
+from pivot_watch.telegram import render_chart, send  # noqa: E402
 STATE = ROOT / ".state"
 PENDING = STATE / "pending-approval.json"
 OFFSET = STATE / "bot-offset.json"
@@ -75,27 +77,20 @@ def _fmt_price(p) -> str:
         return str(p)
 
 
-def draft_text(payload: dict, ai: dict) -> str:
-    lines = ["MARKET PIVOT WATCH — review draft", ""]
-    for r in payload["markets"]:
-        ident = r.get("id", "?")
-        if r.get("error"):
-            lines.append(f"{ident} — DATA UNAVAILABLE")
-            continue
-        decision = "NO NEW SIGNAL" if not r.get("signal") else f"{r['signal']}"
-        lines.append(f"--- {ident} ---")
-        lines.append(f"Decision: {decision} · state {r.get('state', '?')}")
-        lines.append(f"4H close {_fmt_price(r.get('close'))} · quote {_fmt_price(r.get('quote', {}).get('price'))}")
-        lines.append(f"Pivots: {_fmt_price(r.get('lower'))} / {_fmt_price(r.get('upper'))}")
-        if r.get("hourly"):
-            lines.append(f"1H entry: {r['hourly'].get('decision')}")
-        text = (ai or {}).get(ident)
-        if text and len(text) > 380:
-            text = text[:377] + "..."
-        lines.append("")
-        lines.append("AI read: " + (text if text else "(unavailable)"))
-        lines.append("")
-    lines.append("Approve to push to git and send to all recipients, or reject to discard.")
+def market_block(r, ai):
+    ident = r.get("id", "?")
+    if r.get("error"):
+        return f"{ident} — DATA UNAVAILABLE"
+    decision = "NO NEW SIGNAL" if not r.get("signal") else f"{r['signal']}"
+    lines = [f"{ident} — {decision} · state {r.get('state', '?')}",
+             f"4H close {_fmt_price(r.get('close'))} · quote {_fmt_price(r.get('quote', {}).get('price'))}",
+             f"Pivots: {_fmt_price(r.get('lower'))} / {_fmt_price(r.get('upper'))}"]
+    if r.get("hourly"):
+        lines.append(f"1H entry: {r['hourly'].get('decision')}")
+    text = (ai or {}).get(ident)
+    if text and len(text) > 900:
+        text = text[:897] + "..."
+    lines += ["", "AI read: " + (text if text else "(unavailable)")]
     return "\n".join(lines)
 
 
@@ -116,17 +111,35 @@ def cmd_draft(args) -> int:
         print("ERROR: no fresh output/latest.json", file=sys.stderr)
         return 1
     ai = _json(OUT / "ai-analysis.json", {})
-    text = draft_text(payload, ai)
     checked_at = payload["checked_at"]
+    sent = 0
+    unavailable = []
+    for r in payload["markets"]:
+        ident = r.get("id", "?")
+        if r.get("error") or r.get("demo"):
+            unavailable.append(ident)
+            continue
+        try:
+            has_1h = bool(r.get('hourly_chart_candles')) and r.get('hourly', {}).get('status') != 'DATA_UNAVAILABLE'
+            png = render_chart(r, timeframe='1H' if has_1h else '4H')
+            send(token, chat, market_block(r, ai), png)
+            sent += 1
+        except Exception as exc:  # per-market isolation; never block the rest
+            unavailable.append(ident)
+            print(f"{ident}: draft chart failed: {exc}", file=sys.stderr, flush=True)
+    btn_text = "MARKET PIVOT WATCH — review draft\n"
+    if unavailable:
+        btn_text += "\n".join(u + " — DATA UNAVAILABLE" for u in unavailable) + "\n"
+    btn_text += "\nApprove to push to git and send to all recipients, or reject to discard."
     result = tg(token, "sendMessage", {
         "chat_id": chat,
-        "text": text,
+        "text": btn_text,
         "reply_markup": build_keyboard(checked_at),
         "disable_web_page_preview": True,
     })
     message_id = result.get("message_id")
     _write_json(PENDING, {"checked_at": checked_at, "message_id": message_id, "chat_id": chat})
-    print(f"draft sent (checked_at={checked_at!r}, message_id={message_id})")
+    print(f"draft sent ({sent} charts, checked_at={checked_at!r}, message_id={message_id})")
     return 0
 
 

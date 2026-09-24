@@ -100,8 +100,8 @@ def caption(report, now=None, ai_text=None):
     return '\n'.join(lines)
 
 
-def render_chart(report):
-    chart = level_chart(report, '1H' if 'hourly' in report else '4H')
+def render_chart(report, timeframe=None):
+    chart = level_chart(report, timeframe or ('1H' if 'hourly' in report else '4H'))
     if '<svg' not in chart:
         raise DataError('Verified chart candles are missing')
     browser = os.getenv('CHROME_BIN') or shutil.which('google-chrome') or shutil.which('chromium')
