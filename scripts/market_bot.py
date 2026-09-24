@@ -143,10 +143,30 @@ def cmd_draft(args) -> int:
     return 0
 
 
+def _recover_git_state() -> None:
+    """Abort a stray rebase/merge and return to main if the repo is detached.
+
+    The approve action runs `git push`; a repo left mid-rebase (or in a
+    detached HEAD after one) makes that fail with "not on a branch". Recover
+    before touching git so finalize() never commits conflict markers.
+    """
+    for marker, abort in ((".git/rebase-merge", ["git", "rebase", "--abort"]),
+                          (".git/rebase-apply", ["git", "rebase", "--abort"]),
+                          (".git/MERGE_HEAD", ["git", "merge", "--abort"])):
+        if (ROOT / marker).exists():
+            subprocess.run(abort, cwd=ROOT, capture_output=True, timeout=30)
+    on_branch = subprocess.run(
+        ["git", "symbolic-ref", "--quiet", "--short", "HEAD"],
+        cwd=ROOT, capture_output=True, text=True, timeout=30)
+    if on_branch.returncode != 0:
+        subprocess.run(["git", "checkout", "main"], cwd=ROOT, capture_output=True, timeout=60)
+
+
 def finalize() -> tuple:
     """Push state/output to git and send to all recipients. Returns (ok, detail)."""
     errors = []
     try:
+        _recover_git_state()
         git = subprocess.run(["git", "add", "-A"], cwd=ROOT, capture_output=True, text=True, timeout=60)
         if git.returncode != 0:
             errors.append("git add failed: " + git.stderr.strip()[-200:])
@@ -157,7 +177,7 @@ def finalize() -> tuple:
                     cwd=ROOT, capture_output=True, text=True, timeout=60)
                 if commit.returncode != 0:
                     errors.append("git commit failed: " + commit.stderr.strip()[-200:])
-                push = subprocess.run(["git", "push"], cwd=ROOT, capture_output=True, text=True, timeout=120)
+                push = subprocess.run(["git", "push", "origin", "HEAD:main"], cwd=ROOT, capture_output=True, text=True, timeout=120)
                 if push.returncode != 0:
                     errors.append("git push failed: " + push.stderr.strip()[-200:])
     except (OSError, subprocess.TimeoutExpired) as exc:
