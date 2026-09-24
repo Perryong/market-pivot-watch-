@@ -33,7 +33,7 @@ def event(kind, end):
 
 
 class HourlyTests(unittest.TestCase):
-    def test_plain_language_is_shared_and_stale_entries_stay_wait(self):
+    def test_plain_language_in_panel_and_stale_entries_stay_wait(self):
         from pivot_watch.site import hourly_panel
         from pivot_watch.telegram import caption, reading
         rules, state = self.armed()
@@ -44,16 +44,15 @@ class HourlyTests(unittest.TestCase):
                               (r['checked_at']+5401, 'Report expired')]:
             with self.subTest(now=now):
                 text, html = caption(r, now), hourly_panel(r, now)
-                self.assertIn(expected, text)
-                self.assertIn(expected, html)
+                self.assertIn(expected, html)  # plain language lives in the site panel
+                self.assertIn('4H direction:', text)  # caption keeps the core, not the wording
                 self.assertNotIn('RISK_CHECKS_PASSED', text+html)
         self.assertIn('Entry conditions met', reading(r)['heading'])
         r['hourly'].update(status='WATCHING', decision='WAIT', reason='WAIT_FOR_NEW_BREAKOUT')
         r['hourly'].pop('retest_close_time')
-        for output in (caption(r), hourly_panel(r)):
-            self.assertIn('No new breakout is being tracked.', output)
-            self.assertNotIn('Conditional targets:', output)
-            self.assertNotIn('Proposed stop', output)
+        self.assertIn('No new breakout is being tracked.', hourly_panel(r))
+        self.assertNotIn('Conditional targets:', hourly_panel(r))
+        self.assertNotIn('Proposed stop', hourly_panel(r))
 
     def test_presentation_freshness_and_malformed_results(self):
         rules, state = self.armed()

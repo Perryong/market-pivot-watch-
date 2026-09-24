@@ -100,18 +100,19 @@ class TelegramTests(unittest.TestCase):
             self.assertEqual(deliveries, [('111', b'PNG'), ('222', b'PNG')])
             self.assertEqual(len(json.loads(Path(directory, 'sent.json').read_text())), 2)
 
-    def test_hourly_caption_blocks_unpriced_risk_and_stale_confirmation(self):
+    def test_hourly_caption_keeps_core_and_drops_wording(self):
         r = self.reports()['markets'][0]
         r['hourly'] = dict(status='REJECTED', decision='WAIT', reason='COSTS_NOT_CONFIGURED',
                            checked_at=NOW, close_time=NOW-60, retest_close_time=NOW-60)
         text = telegram.caption(r)
-        self.assertIn('Retest confirmed; entry not approved', text)
-        self.assertIn('Trading costs have not been configured.', text)
         self.assertIn('4H direction:', text)
+        self.assertNotIn('1H entry:', text)
+        self.assertNotIn('Why:', text)
+        self.assertNotIn('Next:', text)
         self.assertLessEqual(len(text.encode('utf-16-le'))//2, 1024)
         text = telegram.caption(r, NOW+5401)
-        self.assertIn('Report expired', text)
         self.assertIn('WAIT', text)
+        self.assertNotIn('Report expired', text)
 
     def test_cli_additional_recipient_retries_only_failed_destination(self):
         payload = self.reports()

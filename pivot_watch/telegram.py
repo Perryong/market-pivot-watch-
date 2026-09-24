@@ -40,7 +40,7 @@ def reading(report):
 def _ai_snippet(text):
     if not text:
         return None
-    return text if len(text) <= 300 else text[:297] + "..."
+    return text if len(text) <= 420 else text[:417] + "..."
 
 
 def caption(report, now=None, ai_text=None):
@@ -49,10 +49,8 @@ def caption(report, now=None, ai_text=None):
         return heading + '\nDATA UNAVAILABLE — WAIT\n' + report['error'][:500]
     if 'hourly' in report:
         r = hourly.presentation(report, now)
-        title, why, next_step = hourly.wording(r)
         lines = [f"{report['id']} · {r['decision']}", clock(report['checked_at'], 'Asia/Singapore'), '',
-                 f"4H direction: {report['state'].capitalize()}", f"1H entry: {title}", '',
-                 f"Why: {why}", f"Next: {next_step}", '',
+                 f"4H direction: {report['state'].capitalize()}", '',
                  f"Price: {price(report['quote']['price'])}",
                  f"Upper pivot: {price(report['upper'])} · Lower pivot: {price(report['lower'])}"]
         if hourly.active_levels(r) and r.get('side') in ('BUY', 'SELL'):

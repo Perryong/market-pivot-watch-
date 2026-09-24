@@ -40,7 +40,7 @@ def load(path: Path) -> dict:
         return {}
 
 
-def build_prompt(report: dict) -> str:
+def build_prompt(report: dict, previous_text=None) -> str:
     r = report
     lines = [
         f"Market: {r['id']} ({r.get('tradingview_symbol', '')})",
@@ -70,10 +70,16 @@ def build_prompt(report: dict) -> str:
     closes = [c["close"] for c in r.get("chart_candles", [])][-8:]
     lines.append("Recent completed 4H closes (oldest -> newest): " + ", ".join(f"{c:,.2f}" for c in closes))
     facts = "\n".join(lines)
+    prev = ""
+    if previous_text:
+        prev = ("Your previous read one hour ago was: \"" + previous_text + "\". "
+                "Open with ONE short sentence reviewing whether that read was right or wrong "
+                "given the current facts, then give your updated read. ")
     return (
         "You are a concise, honest market analyst. Given the deterministic pivot-watch facts below, "
-        "write a short read of 2-3 sentences in plain text (no markdown, no emojis, no headings, "
-        "total under 300 characters) covering: "
+        + prev +
+        "write a short read in plain text (no markdown, no emojis, no headings, "
+        "total under 400 characters) covering: "
         "(1) directional bias and what the latest price action means relative to the pivots, "
         "(2) the key levels that matter right now, and "
         "(3) one clear risk / what would invalidate the view. "
@@ -103,13 +109,13 @@ def _chat(key: str, base: str, prompt: str, model: str = MODEL, timeout: int = 1
         raise RuntimeError("DeepSeek response malformed") from exc
 
 
-def analyze_reports(reports, key: str, base: str, model: str = MODEL, retries: int = 2) -> dict:
+def analyze_reports(reports, key: str, base: str, model: str = MODEL, retries: int = 2, previous=None) -> dict:
     out = {}
     for r in reports:
         ident = r.get("id")
         if not ident or r.get("error") or r.get("demo"):
             continue
-        prompt = build_prompt(r)
+        prompt = build_prompt(r, (previous or {}).get(ident))
         for attempt in range(retries + 1):
             try:
                 text = _chat(key, base, prompt, model)
@@ -142,7 +148,8 @@ def main() -> int:
         return 1
     payload = json.loads((args.out / "latest.json").read_text(encoding="utf-8"))
     reports = payload["markets"]
-    analysis = analyze_reports(reports, key, base, args.model)
+    previous = load(args.out / "ai-analysis.json")  # last run's reads, to review
+    analysis = analyze_reports(reports, key, base, args.model, previous=previous)
     write_analysis(args.out, analysis)
     atomic_text(args.out / "report.md", render(reports, payload["checked_at"], analysis))
     produced = [t for t in analysis.values() if t]
