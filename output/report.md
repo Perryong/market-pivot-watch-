@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-09-24 12:42:09 +08** / 2026-09-24 04:42:09 UTC.
+Checked **2026-09-24 14:35:44 +08** / 2026-09-24 06:35:44 UTC.
 
 ## BTCUSD
 
@@ -13,15 +13,15 @@ Shadow research: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. Baseline unchang
 
 4H direction / 1H entry: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. No order or fill.
 
-Completed-candle state: **bearish**. New completed candle processed.
+Completed-candle state: **bearish**. No new 4H candle since the previous check.
 
 | Market data | Value |
 |---|---|
 | Latest completed 4H close | 83,928.16 |
 | Previous completed close | 84,378.31 |
 | Close time | 2026-09-24 12:00:00 +08 / 2026-09-24 04:00:00 UTC |
-| Current price | 83,852.13 at 2026-09-24 04:42:08 UTC |
-| Range low / high | 83,513.00 / 87,172.39 |
+| Current price | 84,189.21 at 2026-09-24 06:35:43 UTC |
+| Range low / high | 83,513.00 / 86,462.00 |
 
 Range definition: Provider rolling 24h range (retrieved at check time).
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -56,15 +56,15 @@ Shadow research: **WAIT / MISSED — MISSED_MOVE**. Baseline unchanged; no order
 
 4H direction / 1H entry: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. No order or fill.
 
-Completed-candle state: **bullish**. New completed candle processed.
+Completed-candle state: **bullish**. No new 4H candle since the previous check.
 
 | Market data | Value |
 |---|---|
 | Latest completed 4H close | 83,934.01 |
 | Previous completed close | 84,397.60 |
 | Close time | 2026-09-24 12:00:00 +08 / 2026-09-24 04:00:00 UTC |
-| Current price | 83,875.40 at 2026-09-24 04:42:10 UTC |
-| Range low / high | 83,500.01 / 87,223.88 |
+| Current price | 84,194.01 at 2026-09-24 06:35:46 UTC |
+| Range low / high | 83,500.01 / 86,564.01 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -99,15 +99,15 @@ Shadow research: **WAIT / REJECTED — TOO_FAR_FROM_PIVOT**. Baseline unchanged;
 
 4H direction / 1H entry: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. No order or fill.
 
-Completed-candle state: **bullish**. New completed candle processed.
+Completed-candle state: **bullish**. No new 4H candle since the previous check.
 
 | Market data | Value |
 |---|---|
 | Latest completed 4H close | 2,676.19 |
 | Previous completed close | 2,683.88 |
 | Close time | 2026-09-24 12:00:00 +08 / 2026-09-24 04:00:00 UTC |
-| Current price | 2,675.45 at 2026-09-24 04:42:09 UTC |
-| Range low / high | 2,635.00 / 2,779.86 |
+| Current price | 2,688.69 at 2026-09-24 06:35:46 UTC |
+| Range low / high | 2,635.00 / 2,753.91 |
 
 Range definition: Provider rolling 24h range (retrieved at check time).
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -143,15 +143,15 @@ Shadow research: **WAIT / EXPIRED — SETUP_EXPIRED**. Baseline unchanged; no or
 
 4H direction / 1H entry: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. No order or fill.
 
-Completed-candle state: **bullish**. New completed candle processed.
+Completed-candle state: **bullish**. No new 4H candle since the previous check.
 
 | Market data | Value |
 |---|---|
 | Latest completed 4H close | 2,676.76 |
 | Previous completed close | 2,684.71 |
 | Close time | 2026-09-24 12:00:00 +08 / 2026-09-24 04:00:00 UTC |
-| Current price | 2,676.12 at 2026-09-24 04:42:12 UTC |
-| Range low / high | 2,635.39 / 2,784.82 |
+| Current price | 2,689.02 at 2026-09-24 06:35:49 UTC |
+| Range low / high | 2,635.39 / 2,759.59 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -177,45 +177,17 @@ Selling an existing long and opening a short are different actions. Targets are 
 
 ## XAUUSD
 
-STATUS: NO NEW SIGNAL
-ACTION NOW: WAIT FOR CONFIRMATION
+STATUS: DATA UNAVAILABLE
+ACTION NOW: WAIT FOR VERIFIED DATA
 
 [Open actual TradingView 4H chart](https://www.tradingview.com/chart/?symbol=OANDA%3AXAUUSD&interval=240)
 
-Shadow research: **WAIT / REJECTED — QUOTE_WRONG_SIDE**. Baseline unchanged; no order or fill. Range age review due; levels have not moved.
+Shadow research: **WAIT / DATA_UNAVAILABLE — UNVERIFIED_DATA**. Baseline unchanged; no order or fill.
 
-4H direction / 1H entry: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. No order or fill.
+4H direction / 1H entry: **WAIT / DATA_UNAVAILABLE — UNVERIFIED_DATA**. No order or fill.
 
-Completed-candle state: **neutral**. New completed candle processed.
-
-| Market data | Value |
-|---|---|
-| Latest completed 4H close | 4,285.16 |
-| Previous completed close | 4,288.70 |
-| Close time | 2026-09-24 12:00:00 +08 / 2026-09-24 04:00:00 UTC |
-| Current price | 4,286.14 at 2026-09-24 04:42:15 UTC |
-| Range low / high | 4,273.81 / 4,347.39 |
-
-Range definition: Last six completed 4H candles, 2026-09-23T04:00:00Z to 2026-09-24T04:00:00Z (24h elapsed; gaps not filled; not rolling live 24h).
-Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
-
-### Trade levels — conditional plans
-
-| Action | Confirmation / level | T1 / T2 |
-|---|---|---|
-| Buy entry | New 4H cross above 4,341.14, then a later completed retest and hold | 4,420.90 / 4,500.66 |
-| Sell/exit long | Completed 4H close below 4,341.14 after a bullish setup | — |
-| Short entry | New 4H cross below 4,261.38, then a later completed retest and rejection | 4,181.61 / 4,101.85 |
-| Buy/exit short | Completed 4H close above 4,261.38 after a bearish setup | — |
-
-No tracked active setup. Price state alone does not establish a new entry.
-
-
-Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
-Selling an existing long and opening a short are different actions. Targets are conditional; closed-bar invalidation is not a guaranteed stop-loss fill.
-
-[Source 1](https://developer.oanda.com/rest-live-v20/instrument-df/)
-[Source 2](https://developer.oanda.com/rest-live-v20/pricing-ep/)
+Unexpected provider redirect; request stopped
+Exact completed 4H close, current price, range and active setup cannot be verified. No BUY/SELL signal issued.
 
 ## USOIL
 
@@ -228,14 +200,14 @@ Shadow research: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. Baseline unchang
 
 4H direction / 1H entry: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. No order or fill.
 
-Completed-candle state: **neutral**. New completed candle processed.
+Completed-candle state: **neutral**. No new 4H candle since the previous check.
 
 | Market data | Value |
 |---|---|
 | Latest completed 4H close | 94.80 |
 | Previous completed close | 95.72 |
 | Close time | 2026-09-24 12:00:00 +08 / 2026-09-24 04:00:00 UTC |
-| Current price | 95.02 at 2026-09-24 04:42:06 UTC |
+| Current price | 96.25 at 2026-09-24 06:35:51 UTC |
 | Range low / high | 92.25 / 96.67 |
 
 Range definition: Last six completed 4H candles, 2026-09-23T04:00:00Z to 2026-09-24T04:00:00Z (24h elapsed; gaps not filled; not rolling live 24h).
