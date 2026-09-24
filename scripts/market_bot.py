@@ -134,16 +134,10 @@ def finalize() -> tuple:
     """Push state/output to git and send to all recipients. Returns (ok, detail)."""
     errors = []
     try:
-        git = subprocess.run(
-            ["git", "add", "--", ".state/state.json", "output"],
-            cwd=ROOT, capture_output=True, text=True, timeout=60)
+        git = subprocess.run(["git", "add", "-A"], cwd=ROOT, capture_output=True, text=True, timeout=60)
         if git.returncode != 0:
             errors.append("git add failed: " + git.stderr.strip()[-200:])
         else:
-            for extra in (".state/telegram.json", ".state/review.json", ".state/pending-approval.json", "strategy-reviews", "history", "pivot_watch", "scripts"):
-                p = ROOT / extra
-                if p.exists():
-                    subprocess.run(["git", "add", "--", extra], cwd=ROOT, capture_output=True, text=True, timeout=60)
             if subprocess.run(["git", "diff", "--cached", "--quiet"], cwd=ROOT).returncode != 0:
                 commit = subprocess.run(
                     ["git", "commit", "-m", "Update analysis and delivery state"],
