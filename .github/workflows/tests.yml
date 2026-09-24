@@ -21,3 +21,20 @@ jobs:
       - run: python -m unittest discover -s tests -v
       - name: Offline demo smoke test
         run: python -m pivot_watch --demo --out demo-output --state demo-output/state.json
+      - name: Render Telegram charts without sending messages
+        timeout-minutes: 8
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from pivot_watch.telegram import render_chart
+          payload = json.loads(Path('demo-output/latest.json').read_text())
+          for report in payload['markets']:
+              for timeframe in ('1H', '4H'):
+                  view = dict(report)
+                  if timeframe == '4H':
+                      view.pop('hourly', None)
+                  image = render_chart(view)
+                  Path(f'demo-output/{report["id"]}-{timeframe}.png').write_bytes(image)
+                  print(f'{report["id"]} {timeframe}: rendered {len(image)} bytes', flush=True)
+          PY

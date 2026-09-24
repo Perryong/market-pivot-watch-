@@ -258,6 +258,15 @@ repeated when retrying the same report. Recipient IDs are not hardcoded in sourc
 Deploy this code and workflow before expecting the additional secret to be used;
 older deployed code ignores it and continues sending to the original recipient.
 
+Chart rendering gets two attempts, each with a fresh Chrome profile and a
+30-second process limit. A complete PNG is accepted even if Chrome does not
+exit before that limit. The resulting chart (or exhausted rendering failure)
+is shared across recipients for this invocation; a later invocation can retry.
+Logs distinguish `recipient 1/2` from `recipient 2/2` without printing chat IDs.
+`sent` for one recipient does not mean delivery to every recipient succeeded.
+Unresolved failures still return a nonzero exit code. Telegram network POSTs
+are not automatically retried because an unconfirmed request may have delivered.
+
 For a channel, give the bot permission to post. Keep the bot token out of chat,
 source files and logs. For local runs the same names can go in the ignored
 `.env`; load it using the shell commands below. Local secrets are not uploaded
