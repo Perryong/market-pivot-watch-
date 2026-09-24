@@ -15,6 +15,7 @@ import urllib.request
 import uuid
 
 from .app import ROOT, atomic_text, clock, json_text
+from .ai_analysis import load as load_ai
 from .core import DataError
 from .decision import decide
 from .providers import NoRedirect
@@ -36,7 +37,7 @@ def reading(report):
     return decision
 
 
-def caption(report, now=None):
+def caption(report, now=None, ai_text=None):
     heading = f"{report['id']} · {clock(report['checked_at'], 'Asia/Singapore')}"
     if report.get('error'):
         return heading + '\nDATA UNAVAILABLE — WAIT\n' + report['error'][:500]
@@ -60,6 +61,8 @@ def caption(report, now=None):
                   '1H: '+(clock(r['close_time'], 'Asia/Singapore') if 'close_time' in r else 'Unavailable'),
                   '4H: '+clock(report['close_time'], 'Asia/Singapore'),
                   'Analysis only · No orders placed', report['chart']]
+        if ai_text:
+            lines += ['', 'AI read:', ai_text]
         return '\n'.join(lines)
     decision = reading(report)
     detected = {'BUY': 'Bullish breakout', 'SELL': 'Bearish breakout'}.get(report.get('signal'), 'No new breakout')
@@ -86,6 +89,8 @@ def caption(report, now=None):
         f"Quote at check: {price(report['quote']['price'])}",
         f"Pivots: {price(report['lower'])} / {price(report['upper'])}",
         'Snapshot only; no orders placed.', report['chart']]
+    if ai_text:
+        lines += ['', 'AI read:', ai_text]
     return '\n'.join(lines)
 
 
@@ -168,7 +173,7 @@ def send(token, chat, text, photo):
         raise DataError('Telegram delivery could not be confirmed') from None
 
 
-def notify(payload, token, chat, state_path, now, preview=None, chart_cache=None, recipient_label=None):
+def notify(payload, token, chat, state_path, now, preview=None, chart_cache=None, recipient_label=None, ai=None):
     reports = payload['markets']
     if not 0 <= now - float(payload['checked_at']) <= MAX_AGE:
         raise DataError('Refusing to send an expired or future report')
@@ -191,7 +196,7 @@ def notify(payload, token, chat, state_path, now, preview=None, chart_cache=None
         if not preview and receipts.get(key) == report['checked_at']:
             continue
         try:
-            text = caption(report, now)
+            text = caption(report, now, (ai or {}).get(ident))
             view = hourly.presentation(report, now) if 'hourly' in report else None
             chart_report = dict(report, hourly=view) if view else report
             no_hourly_chart = view is not None and (view['status'] == 'DATA_UNAVAILABLE' or not report.get('hourly_chart_candles'))
@@ -243,8 +248,9 @@ def main():
         return 1
     try:
         payload = json.loads((args.out/'latest.json').read_text())
+        ai = load_ai(args.out/'ai-analysis.json')
         if args.dry_run:
-            return notify(payload, token, chat, args.state, time.time(), args.dry_run)
+            return notify(payload, token, chat, args.state, time.time(), args.dry_run, ai=ai)
         recipients = list(dict.fromkeys(value.strip() for value in chat.split(',')))
         if any(not re.fullmatch(r'-?[1-9][0-9]*|@[A-Za-z][A-Za-z0-9_]{4,}', value) for value in recipients):
             raise DataError('Invalid Telegram recipient list')
@@ -252,7 +258,7 @@ def main():
         chart_cache = {}
         for index, recipient in enumerate(recipients, 1):
             failed |= notify(payload, token, recipient, args.state, time.time(),
-                             chart_cache=chart_cache, recipient_label=f'recipient {index}/{len(recipients)}')
+                             chart_cache=chart_cache, recipient_label=f'recipient {index}/{len(recipients)}', ai=ai)
         return failed
     except (DataError, OSError, ValueError, KeyError, TypeError):
         print('ERROR: Telegram report or delivery state is invalid/unavailable; no reset performed', file=sys.stderr)

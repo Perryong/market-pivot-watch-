@@ -120,7 +120,7 @@ def demo_fetch(config, now):
             "hourly_candles": hours}
 
 
-def render(reports, now):
+def render(reports, now, analysis=None):
     text = ["# Four-hour pivot watch", "", f"Checked **{clock(now, 'Asia/Singapore')}** / {clock(now)}.", ""]
     if any(r.get("demo") for r in reports):
         text += ["**SYNTHETIC DEMO — NOT LIVE MARKET DATA. Do not trade these values.**", ""]
@@ -161,6 +161,9 @@ def render(reports, now):
             text += ["No tracked active setup. Price state alone does not establish a new entry.", ""]
         if r["events"]:
             text += ["Events processed this run:"] + [f"- {e['type']} at {clock(e['close_time'])}, close {price(e['close'])}" + (" — historical catch-up, not a new instruction" if e["historical"] else "") for e in r["events"]] + [""]
+        ai = (analysis or {}).get(r["id"])
+        if ai:
+            text += ["### AI analysis", "", ai, ""]
         text += r["notes"] + ["", "Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.",
                     "Selling an existing long and opening a short are different actions. Targets are conditional; closed-bar invalidation is not a guaranteed stop-loss fill.", ""]
         text += [f"[Source {i + 1}]({s})" for i, s in enumerate(r["sources"])] + [""]
