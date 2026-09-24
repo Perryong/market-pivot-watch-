@@ -85,22 +85,29 @@ def decision_panel(report):
 
 def hourly_panel(report, now=None):
     r = hourly.presentation(report, now)
+    title, why, next_step = hourly.wording(r)
     details = []
-    for key, label in [('entry','Quote-based entry estimate'), ('stop','Proposed stop (not an order)'),
-                       ('target','4H T1'), ('net_rr','Net reward / risk')]:
-        value = r.get(key)
-        if type(value) in (int, float) and math.isfinite(value):
-            details.append(f'<div><span>{label}</span><strong>{e(price(value))}</strong></div>')
+    if hourly.active_levels(r):
+        for key, label in [('entry', 'Quote-based entry estimate'), ('stop', 'Proposed stop (not an order)'),
+                           ('target', 'First target'), ('net_rr', 'Reward / risk after costs')]:
+            value = r.get(key)
+            if type(value) in (int, float) and math.isfinite(value):
+                details.append(f'<div><span>{label}</span><strong>{e(price(value))}</strong></div>')
     stamp = clock(r['close_time'], 'Asia/Singapore') if 'close_time' in r else 'Unavailable'
+    four_stamp = clock(report['close_time'], 'Asia/Singapore') if 'close_time' in report else 'Unavailable'
+    levels = ''
+    if report.get('quote') and 'upper' in report and 'lower' in report:
+        levels = f"<p>Price: <b>{e(price(report['quote']['price']))}</b><br>Upper pivot: {e(price(report['upper']))} · Lower pivot: {e(price(report['lower']))}</p>"
     return f'''<div class="hourly-panel" data-expires="{r['expires_at']}">
-<p class="eyebrow">4H DIRECTION / 1H ENTRY</p>
-<p>4H direction: <b>{e(report.get('state', 'unavailable'))}</b> · baseline candle {e(clock(report['close_time'], 'Asia/Singapore')) if 'close_time' in report else 'Unavailable'}</p>
-<div class="hourly-guidance"><h3>{e(r['decision'])}</h3><p>{e(r['confirmation'])}</p>
-<p>Risk / setup: {e(r.get('status', 'DATA_UNAVAILABLE'))} — {e(r.get('reason', 'UNVERIFIED_DATA'))}</p></div>
-<p class="hourly-stale" hidden="hidden">STALE 1H GUIDANCE — WAIT; historical evidence only.</p>
-<p class="meta">1H candle ended: {e(stamp)}. A later 1H retest of the original 4H pivot is required. Confirmation alone is not risk eligibility.</p>
-<div class="metrics">{''.join(details)}</div>
-<p class="meta">No orders or fills. Existing setups are not imported on first activation. Missing execution costs block entry eligibility.</p></div>'''
+<p class="eyebrow">DECISION AT THIS CHECK</p>
+<p>4H direction: <b>{e(report.get('state', 'unavailable').capitalize())}</b></p>
+<div class="hourly-guidance"><h3>{e(r['decision'])}</h3><p>1H entry: {e(title)}</p>
+<p><b>Why:</b> {e(why)}</p><p><b>Next:</b> {e(next_step)}</p>
+<div class="metrics">{''.join(details)}</div></div>
+<p class="hourly-stale" hidden="hidden">WAIT — Report expired. Wait for a fresh report; these levels are historical.</p>
+{levels}
+<p class="meta">Last completed candles (SGT):<br>1H: {e(stamp)}<br>4H: {e(four_stamp)}</p>
+<p class="meta">Entry requires configured trading costs. Analysis only · No orders placed.</p></div>'''
 
 def shadow_panel(report):
     result = report.get('shadow') or {}

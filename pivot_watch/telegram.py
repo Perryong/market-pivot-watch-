@@ -25,7 +25,7 @@ from . import hourly
 def reading(report):
     if 'hourly' in report:
         r = hourly.presentation(report)
-        return dict(decision=r['decision'], pending=False, heading=r['decision']+' — '+r['confirmation'])
+        return dict(decision=r['decision'], pending=False, heading=r['decision']+' — '+hourly.wording(r)[0])
     decision = decide(report)
     setup = report.get('setup')
     decision['pending'] = bool(decision['decision'] == 'WAIT' and setup
@@ -42,22 +42,24 @@ def caption(report, now=None):
         return heading + '\nDATA UNAVAILABLE — WAIT\n' + report['error'][:500]
     if 'hourly' in report:
         r = hourly.presentation(report, now)
-        baseline = decide(report)
-        lines = [heading, f"1H decision: {r['decision']} — {r['confirmation']}",
-                 f"4H direction: {report['state']} · {clock(report['close_time'], 'Asia/Singapore')}",
-                 f"Risk/setup: {r.get('status', 'DATA_UNAVAILABLE')} — {r.get('reason', 'UNVERIFIED_DATA')}"]
-        if 'close_time' in r:
-            lines.append('1H candle ended: '+clock(r['close_time'], 'Asia/Singapore'))
-        lines += [f"4H baseline: {baseline['decision']} (comparison only)",
-                  'Entry needs a later completed 1H retest of the 4H pivot and passed risk checks.',
-                  f"Quote: {price(report['quote']['price'])} · Pivots: {price(report['lower'])} / {price(report['upper'])}"]
-        if r.get('side') in ('BUY', 'SELL'):
+        title, why, next_step = hourly.wording(r)
+        lines = [f"{report['id']} · {r['decision']}", clock(report['checked_at'], 'Asia/Singapore'), '',
+                 f"4H direction: {report['state'].capitalize()}", f"1H entry: {title}", '',
+                 f"Why: {why}", f"Next: {next_step}", '',
+                 f"Price: {price(report['quote']['price'])}",
+                 f"Upper pivot: {price(report['upper'])} · Lower pivot: {price(report['lower'])}"]
+        if hourly.active_levels(r) and r.get('side') in ('BUY', 'SELL'):
             long = r['side'] == 'BUY'
-            lines += ['T1/T2: '+' / '.join(map(price, report['bullish_targets' if long else 'bearish_targets'])),
-                      f"Invalidation: 4H close {'below' if long else 'above'} {price(report['upper'] if long else report['lower'])}; existing position only."]
-        if r.get('stop'):
-            lines.append('Proposed stop: '+price(r['stop'])+' (not an order)')
-        lines += ['No orders/fills. Do not chase. Costs required for eligibility.', report['chart']]
+            targets = report['bullish_targets' if long else 'bearish_targets']
+            lines += [f"Conditional targets: {price(targets[0])} / {price(targets[1])}",
+                      f"Setup cancelled on 4H close {'below' if long else 'above'} {price(report['upper'] if long else report['lower'])}."]
+            if r.get('stop'):
+                lines.append('Proposed stop: '+price(r['stop'])+' (not an order)')
+        lines += ['', 'Entry requires configured trading costs.',
+                  'Last completed candles (SGT):',
+                  '1H: '+(clock(r['close_time'], 'Asia/Singapore') if 'close_time' in r else 'Unavailable'),
+                  '4H: '+clock(report['close_time'], 'Asia/Singapore'),
+                  'Analysis only · No orders placed', report['chart']]
         return '\n'.join(lines)
     decision = reading(report)
     detected = {'BUY': 'Bullish breakout', 'SELL': 'Bearish breakout'}.get(report.get('signal'), 'No new breakout')

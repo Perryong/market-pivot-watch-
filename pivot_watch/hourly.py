@@ -172,3 +172,43 @@ def presentation(report, now=None):
         return result
     except (KeyError, TypeError, ValueError, OverflowError):
         return fallback
+
+
+def wording(r):
+    """Plain-language copy for an already freshness-checked presentation."""
+    next_setup = 'Wait for a new 4H breakout, then a later completed 1H retest.'
+    reasons = {
+        'WAIT_FOR_NEW_BREAKOUT': ('No new breakout is being tracked.', next_setup),
+        'RANGE_CHANGED': ('The pivot levels changed; the previous setup was cleared.', next_setup),
+        'WAIT_FOR_RETEST': ('The breakout has not yet had a confirmed 1H retest.',
+                            'Wait for a later 1H candle to touch the pivot and close on the breakout side.'),
+        'MISSED_MOVE': ('Price already reached the first target before entry approval.', next_setup),
+        'SETUP_EXPIRED': ('The time allowed for a retest has passed.', next_setup),
+        'SETUP_INVALIDATED': ('A completed 4H candle cancelled the setup.', next_setup),
+        'HISTORICAL_RETEST': ('The retest was detected too late for a new entry.', next_setup),
+        'COSTS_NOT_CONFIGURED': ('Trading costs have not been configured.',
+                                 'Configure estimated trading costs for future setups.'),
+        'TOO_FAR_FROM_PIVOT': ('Price is too far from the retest level.', next_setup),
+        'INSUFFICIENT_REWARD': ('Potential reward is too small compared with risk and costs.', next_setup),
+        'QUOTE_WRONG_SIDE': ('Price is back on the wrong side of the pivot.', next_setup),
+        'DIRECTION_NOT_ALIGNED': ('The latest 4H direction no longer supports this entry.', next_setup),
+        'INVALID_STOP': ('A valid stop estimate could not be calculated.', next_setup),
+        'ATR_UNAVAILABLE': ('There is not enough reliable data to estimate risk.', 'Wait for verified market data.'),
+        'QUOTE_UNAVAILABLE': ('A fresh price could not be verified.', 'Wait for a fresh report.'),
+        'DATA_SESSION_GAP': ('Missing candles interrupted the setup.', next_setup),
+        'HOURLY_HISTORY_GAP': ('Missing history reset 1H tracking.', next_setup),
+        'BREAKOUT_EVIDENCE_UNAVAILABLE': ('The breakout candle could not be verified.', next_setup),
+    }
+    if r['reason'] == 'STALE_HOURLY_ASSESSMENT':
+        return 'Report expired', 'This snapshot is too old for a new entry.', 'Wait for a fresh report.'
+    if r['decision'] in ('BUY', 'SELL'):
+        return 'Entry conditions met', 'The 1H retest and risk checks passed.', 'Check the quoted entry and risk levels. Do not chase price.'
+    if r['status'] == 'ENTRY_ELIGIBLE':
+        return 'Earlier signal; no new entry', 'This entry was assessed on an earlier check.', next_setup
+    title = 'Retest confirmed; entry not approved' if r.get('retest_close_time') else 'No confirmed entry'
+    why, next_step = reasons.get(r['reason'], ('Market data or setup could not be verified.', 'Wait for a fresh verified report.'))
+    return title, why, next_step
+
+
+def active_levels(r):
+    return (r['status'] == 'RETEST_PENDING' or r['decision'] in ('BUY', 'SELL')) and r['reason'] != 'STALE_HOURLY_ASSESSMENT'
