@@ -94,6 +94,13 @@ def evaluate(candles, config, saved, now):
     config_id = fingerprint(config)
     baseline = not saved or saved.get("config_id") != config_id
     notes, events = [], []
+    # Auto re-baseline: force a fresh pivot when price closes far beyond the
+    # frozen one, so stale levels don't produce trivially-true signals.
+    drift = config.get("rebaseline_drift", 0.03)
+    if not baseline and saved:
+        if latest.close > saved["upper"] * (1 + drift) or latest.close < saved["lower"] * (1 - drift):
+            baseline = True
+            notes.append("Auto re-baseline: price drifted >%.0f%% beyond the frozen pivot" % (drift * 100))
     if baseline:
         lower, upper = config.get("lower"), config.get("upper")
         if (lower is None) != (upper is None):
