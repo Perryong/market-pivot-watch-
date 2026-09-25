@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-09-26 05:30:26 +08** / 2026-09-25 21:30:26 UTC.
+Checked **2026-09-26 06:30:26 +08** / 2026-09-25 22:30:26 UTC.
 
 ## BTCUSDT
 
@@ -22,7 +22,7 @@ Completed-candle state: **neutral**. No new 4H candle since the previous check.
 | Latest completed 4H close | 84,020.01 |
 | Previous completed close | 83,796.01 |
 | Close time | 2026-09-26 04:00:00 +08 / 2026-09-25 20:00:00 UTC |
-| Current price | 83,779.74 at 2026-09-25 21:30:28 UTC |
+| Current price | 83,914.00 at 2026-09-25 22:30:28 UTC |
 | Range low / high | 83,183.00 / 85,255.00 |
 
 Range definition: Provider rolling 24h range.
@@ -41,7 +41,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-Previous neutral/no-breakout read was right: price is still inside frozen pivots. Bias neutral-soft: latest 4H close 84020.01 above midpoint, but quote 83779.74 slipped below midpoint, so rangebound with fading firmness. Key levels: upper 84942.45, midpoint ~83909, lower 82874.93. Risk: whipsaw/false break; sustained close outside either edge invalidates neutral.
+Previous neutral/no-breakout read was right: price remains inside frozen pivots. Bias stays neutral with slight firmness: latest 4H close and current quote sit near/above midpoint, but no breakout. Key levels: midpoint ~83909, upper 84942.45, lower 82874.93. Risk is whipsaw/false break; sustained close outside either edge invalidates neutral.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
@@ -70,7 +70,7 @@ Completed-candle state: **bullish**. No new 4H candle since the previous check.
 | Latest completed 4H close | 2,693.34 |
 | Previous completed close | 2,686.90 |
 | Close time | 2026-09-26 04:00:00 +08 / 2026-09-25 20:00:00 UTC |
-| Current price | 2,681.05 at 2026-09-25 21:30:29 UTC |
+| Current price | 2,688.69 at 2026-09-25 22:30:29 UTC |
 | Range low / high | 2,667.33 / 2,743.00 |
 
 Range definition: Provider rolling 24h range.
@@ -90,7 +90,7 @@ Retest: confirmed on a later completed bar at 2026-09-23 20:00:00 UTC; this is n
 
 ### AI analysis
 
-Previous read was right: ETH stayed above 2646 and constructive. Latest 4H close 2693.34 holds above the upper pivot after retest, so bias is constructive but confirmation lags; 1H waits. Key levels: 2646 invalidation, then 2855.11 and 3064.22 for confirmation. Risk: completed 4H close below 2646 flips view.
+Previous read was right: ETH remains above 2646 and constructive. Bias stays constructive but confirmation lags; price holding just above upper pivot after retest and 1H still waits. Key levels: 2646 invalidation, then 2855.11 and 3064.22 confirmation; 2436.89 lower support. Risk: a completed 4H close below 2646 invalidates this view.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
