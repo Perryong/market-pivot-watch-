@@ -257,25 +257,31 @@ def main():
     chat = os.getenv('TELEGRAM_CHAT_ID', '').strip()
     additional = os.getenv('TELEGRAM_ADDITIONAL_CHAT_IDS', '').strip()
     chat = ','.join(value for value in (chat, additional) if value)
-    if not args.dry_run and not token and not chat:
+    # Optional second bot: independent token + recipient list, same payload.
+    token2 = os.getenv('TELEGRAM_BOT_TOKEN_2', '').strip()
+    chat2 = os.getenv('TELEGRAM_CHAT_IDS_2', '').strip()
+    bots = [(t, c) for t, c in ((token, chat), (token2, chat2)) if t or c]
+    if not args.dry_run and not bots:
         print('Telegram not configured; set TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID')
         return 0
-    if not args.dry_run and (not token or not chat):
-        print('ERROR: Both Telegram secrets are required', file=sys.stderr)
+    if not args.dry_run and any(not t or not c for t, c in bots):
+        print('ERROR: Both Telegram secrets are required per bot', file=sys.stderr)
         return 1
     try:
         payload = json.loads((args.out/'latest.json').read_text())
         ai = load_ai(args.out/'ai-analysis.json')
         if args.dry_run:
             return notify(payload, token, chat, args.state, time.time(), args.dry_run, ai=ai)
-        recipients = list(dict.fromkeys(value.strip() for value in chat.split(',')))
-        if any(not re.fullmatch(r'-?[1-9][0-9]*|@[A-Za-z][A-Za-z0-9_]{4,}', value) for value in recipients):
-            raise DataError('Invalid Telegram recipient list')
         failed = 0
         chart_cache = {}
-        for index, recipient in enumerate(recipients, 1):
-            failed |= notify(payload, token, recipient, args.state, time.time(),
-                             chart_cache=chart_cache, recipient_label=f'recipient {index}/{len(recipients)}', ai=ai)
+        for bot_index, (t, c) in enumerate(bots, 1):
+            recipients = list(dict.fromkeys(value.strip() for value in c.split(',')))
+            if any(not re.fullmatch(r'-?[1-9][0-9]*|@[A-Za-z][A-Za-z0-9_]{4,}', value) for value in recipients):
+                raise DataError('Invalid Telegram recipient list')
+            for index, recipient in enumerate(recipients, 1):
+                failed |= notify(payload, t, recipient, args.state, time.time(),
+                                 chart_cache=chart_cache,
+                                 recipient_label=f'bot {bot_index} recipient {index}/{len(recipients)}', ai=ai)
         return failed
     except (DataError, OSError, ValueError, KeyError, TypeError):
         print('ERROR: Telegram report or delivery state is invalid/unavailable; no reset performed', file=sys.stderr)
