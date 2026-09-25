@@ -177,7 +177,7 @@ def finalize() -> tuple:
                     cwd=ROOT, capture_output=True, text=True, timeout=60)
                 if commit.returncode != 0:
                     errors.append("git commit failed: " + commit.stderr.strip()[-200:])
-                push = subprocess.run(["git", "push", "origin", "HEAD:main"], cwd=ROOT, capture_output=True, text=True, timeout=120)
+                push = subprocess.run(["git", "push"], cwd=ROOT, capture_output=True, text=True, timeout=120)
                 if push.returncode != 0:
                     errors.append("git push failed: " + push.stderr.strip()[-200:])
     except (OSError, subprocess.TimeoutExpired) as exc:
