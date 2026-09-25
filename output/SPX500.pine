@@ -1,11 +1,11 @@
 //@version=6
 // Generated preset. Install on the EXACT named TradingView symbol, standard 4H candles.
 // GitHub cannot remotely update Pine Editor. Reinstall after changing/resetting pivots.
-indicator("ETHUSD 4H Pivot Watch", overlay=true, max_labels_count=50)
-upper = input.float(2646.55, "Upper pivot")
-lower = input.float(2434.6, "Lower pivot")
-baseline = input.time(1789790400000, "Baseline close (UTC)")
-expected = input.string("COINBASE:ETHUSD", "Exact TradingView symbol")
+indicator("SPX500 4H Pivot Watch", overlay=true, max_labels_count=50)
+upper = input.float(7731.0, "Upper pivot")
+lower = input.float(7655.6, "Lower pivot")
+baseline = input.time(1790337600000, "Baseline close (UTC)")
+expected = input.string("OANDA:SPX500USD", "Exact TradingView symbol")
 mode = input.string("Strict UTC", "Signal candle mode", options=["Strict UTC", "TradingView native"], tooltip="Native mode uses this chart's completed 4H candles. Signals are independent of the GitHub UTC journal. Pivots remain fixed.")
 nativeMode = mode == "TradingView native"
 
