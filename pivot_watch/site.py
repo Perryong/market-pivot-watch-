@@ -224,6 +224,15 @@ def ai_panel(text):
     return f'<div class="ai-read"><h3>AI read <span class="muted">/ model summary</span></h3><p>{e(text)}</p></div>'
 
 
+def combined_panel(report):
+    """Render the combined 4H+1H BUY/SELL/HOLD verdict."""
+    cb = report.get('combined') or {}
+    dec = cb.get('decision', 'HOLD')
+    cls = 'buy' if dec == 'BUY' else 'sell' if dec == 'SELL' else 'wait'
+    return (f'<div class="combined {cls}"><strong>COMBINED (4H+1H): {e(dec)}</strong>'
+            f'<span>{e(cb.get("reason", ""))}</span></div>')
+
+
 def build(out, destination, config, now):
     out, destination = Path(out), Path(destination)
     destination.mkdir(parents=True, exist_ok=True)
@@ -285,6 +294,7 @@ def build(out, destination, config, now):
 <div class="panel-heading"><div><p class="eyebrow">{symbol} · 4H</p><h2>{ident}</h2></div><span class="badge">Completed candles only</span></div>
 <div class="stale-notice" role="status" hidden>STALE REPORT — wait for a fresh verified check. Values below are historical; do not treat them as a current signal.</div>
 <div class="signal"><strong>{e(status)}</strong><span>Breakout notification; entry decision is shown below.</span></div>
+{combined_panel(r)}
 <p class="meta">Analysis check: {e(clock(checked, 'Asia/Singapore'))}</p>
 {ai_panel(ai.get(ident))}
 {hourly_panel(r, now) if 'hourly' in r else ''}

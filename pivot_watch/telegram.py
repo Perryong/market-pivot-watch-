@@ -49,10 +49,21 @@ def caption(report, now=None, ai_text=None):
         return heading + '\nDATA UNAVAILABLE — WAIT\n' + report['error'][:500]
     if 'hourly' in report:
         r = hourly.presentation(report, now)
-        lines = [f"{report['id']} · {r['decision']}", clock(report['checked_at'], 'Asia/Singapore'), '',
+        cb = report.get('combined', {})
+        lines = [f"{report['id']} · {cb.get('decision', 'HOLD')}", clock(report['checked_at'], 'Asia/Singapore'), '',
                  f"4H direction: {report['state'].capitalize()}", '',
+                 f"COMBINED (4H+1H): {cb.get('decision', 'HOLD')} — {cb.get('reason', '')}", '',
                  f"Price: {price(report['quote']['price'])}",
                  f"Upper pivot: {price(report['upper'])} · Lower pivot: {price(report['lower'])}"]
+        if cb.get('trend'):
+            arrow = '\u2191' if cb['trend'] == 'up' else '\u2193'
+            lines.append(f"1H trend: {arrow} ({cb['trend']})")
+        closed = cb.get('closed')
+        if closed:
+            pct = 100 * (closed['close'] / closed['open'] - 1)
+            lines.append(f"1H closed: {price(closed['open'])} \u2192 {price(closed['close'])} ({pct:+.2f}%)")
+        for kind, b, t in cb.get('fvgs', []):
+            lines.append(f"Open FVG ({kind}): {price(b)}\u2013{price(t)}")
         if hourly.active_levels(r) and r.get('side') in ('BUY', 'SELL'):
             long = r['side'] == 'BUY'
             targets = report['bullish_targets' if long else 'bearish_targets']

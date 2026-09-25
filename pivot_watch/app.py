@@ -11,7 +11,7 @@ from zoneinfo import ZoneInfo
 
 from .core import Candle, DataError, H4, evaluate
 from .providers import fetch
-from . import shadow, hourly
+from . import combined, shadow, hourly
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -66,11 +66,14 @@ def run(config, saved, now, provider=fetch):
             base["chart_candles"] = [asdict(c) for c in sorted(data["candles"], key=lambda c: c.start)
                                      if c.complete and c.end <= now][-60:]
             base["status"] = "NEW SIGNAL" if report["signal"] else "NO NEW SIGNAL"
+            base['combined'] = combined.combine(base, data.get('hourly_candles') or [])
         except DataError as exc:
             base.update(status="DATA UNAVAILABLE", signal=None, action="WAIT FOR VERIFIED DATA", error=str(exc))
+            base['combined'] = {'decision': 'HOLD', 'reason': 'unverified data', 'h1_signal': 'NO', 'h1_reason': 'unverified'}
         except (KeyError, IndexError, TypeError, ValueError, StopIteration):
             base.update(status="DATA UNAVAILABLE", signal=None, action="WAIT FOR VERIFIED DATA",
                         error="Provider/state payload failed validation; inspect schema or restore valid state")
+            base['combined'] = {'decision': 'HOLD', 'reason': 'unverified data', 'h1_signal': 'NO', 'h1_reason': 'unverified'}
         if 'shadow' in config:
             if base.get('error'):
                 base['shadow'] = dict(status='DATA_UNAVAILABLE', reason='UNVERIFIED_DATA', decision='WAIT')
@@ -126,7 +129,10 @@ def render(reports, now, analysis=None):
         text += ["**SYNTHETIC DEMO — NOT LIVE MARKET DATA. Do not trade these values.**", ""]
     for r in reports:
         text += [f"## {r['id']}", "", f"SIGNAL: {r['signal']}" if r["signal"] else f"STATUS: {r['status']}",
-                 f"ACTION NOW: {r['action']}", "", f"[Open actual TradingView 4H chart]({r['chart']})", ""]
+                 f"ACTION NOW: {r['action']}", ""]
+        cb = r.get('combined', {})
+        text += [f"**COMBINED (4H + 1H): {cb.get('decision', 'HOLD')}** — {cb.get('reason', '')}", ""]
+        text += [f"[Open actual TradingView 4H chart]({r['chart']})", ""]
         if r.get('shadow'):
             text += [shadow.summary(r), '']
         if r.get('hourly'):
