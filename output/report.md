@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-09-26 23:30:27 +08** / 2026-09-26 15:30:27 UTC.
+Checked **2026-09-27 00:30:26 +08** / 2026-09-26 16:30:26 UTC.
 
 ## BTCUSDT
 
@@ -15,15 +15,15 @@ Shadow research: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. Baseline unchang
 
 4H direction / 1H entry: **WAIT / WATCHING — RANGE_CHANGED**. No order or fill.
 
-Completed-candle state: **neutral**. No new 4H candle since the previous check.
+Completed-candle state: **neutral**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 84,176.00 |
-| Previous completed close | 84,116.80 |
-| Close time | 2026-09-26 20:00:00 +08 / 2026-09-26 12:00:00 UTC |
-| Current price | 84,075.30 at 2026-09-26 15:30:29 UTC |
-| Range low / high | 83,363.63 / 84,336.96 |
+| Latest completed 4H close | 84,155.99 |
+| Previous completed close | 84,176.00 |
+| Close time | 2026-09-27 00:00:00 +08 / 2026-09-26 16:00:00 UTC |
+| Current price | 84,112.22 at 2026-09-26 16:30:28 UTC |
+| Range low / high | 83,628.00 / 84,336.96 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -41,7 +41,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-Previous read was right: range held and neutral stayed intact. BTC remains upper-half range-bound: latest 4H close 84176 and quote 84075 sit above midpoint 83909 but below upper 84942. Bias is neutral-to-mildly constructive, no breakout. Key levels: 83909 midpoint, 84942 upper, 82875 lower. Risk is whipsaw; a sustained 4H close below midpoint or outside either pivot invalidates neutral.
+Previous read was right: range held, neutral intact. BTC remains upper-half range-bound: 4H close 84156 and quote 84112 are above midpoint 83909 but below upper 84942. Bias neutral, no breakout confirmation; recent closes flat-to-softer. Key levels: 83909 midpoint, 84942 upper, 82875 lower. Risk: whipsaw; a sustained 4H close below midpoint or outside either pivot invalidates neutral.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
@@ -63,15 +63,15 @@ Shadow research: **WAIT / EXPIRED — SETUP_EXPIRED**. Baseline unchanged; no or
 
 4H direction / 1H entry: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. No order or fill.
 
-Completed-candle state: **bullish**. No new 4H candle since the previous check.
+Completed-candle state: **bullish**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 2,689.49 |
-| Previous completed close | 2,691.16 |
-| Close time | 2026-09-26 20:00:00 +08 / 2026-09-26 12:00:00 UTC |
-| Current price | 2,692.35 at 2026-09-26 15:30:34 UTC |
-| Range low / high | 2,668.84 / 2,699.50 |
+| Latest completed 4H close | 2,692.97 |
+| Previous completed close | 2,689.49 |
+| Close time | 2026-09-27 00:00:00 +08 / 2026-09-26 16:00:00 UTC |
+| Current price | 2,691.12 at 2026-09-26 16:30:29 UTC |
+| Range low / high | 2,677.16 / 2,699.50 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -90,7 +90,7 @@ Retest: confirmed on a later completed bar at 2026-09-23 20:00:00 UTC; this is n
 
 ### AI analysis
 
-Previous read was right: ETH held above 2646 but stayed stalled near 2690. Bias remains constructive while 4H closes hold 2646; latest close 2689.49 and quote 2692.35 show no new breakout. Watch 2646 invalidation, 2436.89 support, upside 2855.11 then 3064.22. Risk: completed 4H close below 2646 flips bias.
+Previous read was right: ETH held above 2646 and stayed stalled near 2690. Latest 4H close 2692.97 keeps bias constructive but no breakout; quote 2691.12 is still range-bound. Key levels: 2646 invalidation, 2436.89 support, upside 2855.11 then 3064.22. Risk: completed 4H close below 2646 flips bias.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
