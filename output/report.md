@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-09-26 12:30:26 +08** / 2026-09-26 04:30:26 UTC.
+Checked **2026-09-26 13:30:26 +08** / 2026-09-26 05:30:26 UTC.
 
 ## BTCUSDT
 
@@ -15,14 +15,14 @@ Shadow research: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. Baseline unchang
 
 4H direction / 1H entry: **WAIT / WATCHING — RANGE_CHANGED**. No order or fill.
 
-Completed-candle state: **neutral**. New completed candle processed.
+Completed-candle state: **neutral**. No new 4H candle since the previous check.
 
 | Market data | Value |
 |---|---|
 | Latest completed 4H close | 83,939.00 |
 | Previous completed close | 84,099.99 |
 | Close time | 2026-09-26 12:00:00 +08 / 2026-09-26 04:00:00 UTC |
-| Current price | 83,878.80 at 2026-09-26 04:30:27 UTC |
+| Current price | 83,918.70 at 2026-09-26 05:30:27 UTC |
 | Range low / high | 83,183.00 / 85,255.00 |
 
 Range definition: Provider rolling 24h range.
@@ -41,7 +41,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-Mostly right: no breakout, range held, but quote slipped just below midpoint. Bias neutral, slight downside tilt as latest 4H close sits barely above midpoint while live quote is below. Price remains mid-range, no confirmation. Key levels: midpoint ~83909, upper 84942, lower 82875. Risk: whipsaw; sustained 4H close below midpoint or outside either pivot invalidates.
+Previous read mostly right: no breakout, range held, but quote is now just above midpoint, softening the downside tilt. Bias neutral; latest 4H close/quote sit barely above midpoint, still mid-range, no confirmation. Key levels: midpoint ~83909, upper 84942, lower 82875. Risk: whipsaw; sustained 4H close below midpoint or outside either pivot invalidates.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
@@ -55,7 +55,7 @@ Selling an existing long and opening a short are different actions. Targets are 
 STATUS: NO NEW SIGNAL
 ACTION NOW: WAIT FOR CONFIRMATION
 
-**COMBINED (4H + 1H): HOLD** — 4H bullish but 1H trend↑ but momentum↓
+**COMBINED (4H + 1H): BUY** — 4H bullish + 1H trend↑ + momentum↑, no gap overhead
 
 [Open actual TradingView 4H chart](https://www.tradingview.com/chart/?symbol=BINANCE%3AETHUSDT&interval=240)
 
@@ -63,14 +63,14 @@ Shadow research: **WAIT / EXPIRED — SETUP_EXPIRED**. Baseline unchanged; no or
 
 4H direction / 1H entry: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. No order or fill.
 
-Completed-candle state: **bullish**. New completed candle processed.
+Completed-candle state: **bullish**. No new 4H candle since the previous check.
 
 | Market data | Value |
 |---|---|
 | Latest completed 4H close | 2,687.98 |
 | Previous completed close | 2,691.61 |
 | Close time | 2026-09-26 12:00:00 +08 / 2026-09-26 04:00:00 UTC |
-| Current price | 2,685.75 at 2026-09-26 04:30:28 UTC |
+| Current price | 2,686.97 at 2026-09-26 05:30:28 UTC |
 | Range low / high | 2,667.33 / 2,743.00 |
 
 Range definition: Provider rolling 24h range.
@@ -90,7 +90,7 @@ Retest: confirmed on a later completed bar at 2026-09-23 20:00:00 UTC; this is n
 
 ### AI analysis
 
-That read still holds: ETH remains above 2646 and lacks fresh upside confirmation. Bias constructive but stalled; latest 4H closes 2687-2692 hold above upper pivot 2646 yet below breakout. Key levels: 2646 invalidation, upside 2855 then 3064, support 2436.89. Risk: a completed 4H close below 2646 flips bias; no new signal yet.
+That read was right: ETH still holds above 2646 without fresh upside confirmation. Bias constructive but stalled; latest 4H close 2687.98 stays above upper pivot 2646 but below breakout, so no new signal. Watch 2646 invalidation; upside 2855 then 3064, support 2436.89. Risk: a completed 4H close below 2646 flips bias.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
