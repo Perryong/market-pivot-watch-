@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-09-28 06:30:27 +08** / 2026-09-27 22:30:27 UTC.
+Checked **2026-09-28 07:30:26 +08** / 2026-09-27 23:30:26 UTC.
 
 ## BTCUSDT
 
@@ -22,8 +22,8 @@ Completed-candle state: **neutral**. No new 4H candle since the previous check.
 | Latest completed 4H close | 84,736.01 |
 | Previous completed close | 84,463.37 |
 | Close time | 2026-09-28 04:00:00 +08 / 2026-09-27 20:00:00 UTC |
-| Current price | 84,489.33 at 2026-09-27 22:30:27 UTC |
-| Range low / high | 84,257.07 / 85,159.03 |
+| Current price | 84,432.00 at 2026-09-27 23:30:27 UTC |
+| Range low / high | 84,132.00 / 85,159.03 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -41,7 +41,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-Prior read was right: still range-bound, upper half held, no breakout. Latest 4H close 84736 and quote 84489 sit above midpoint 83909 but below upper 84942, so neutral/range bias. Key levels: upper 84942, midpoint 83909, lower 82875. Risk: 4H close below midpoint weakens range; close above upper invalidates it.
+Prior read stays right: still range-bound, no breakout. Latest 4H close 84736 and quote 84432 sit above midpoint 83909 but below upper 84942, so neutral/range bias with upper-half resilience; no confirmation yet. Key levels: upper 84942, midpoint 83909, lower 82875. Risk: 4H close below midpoint weakens toward lower; close above upper invalidates range.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
@@ -70,8 +70,8 @@ Completed-candle state: **bullish**. No new 4H candle since the previous check.
 | Latest completed 4H close | 2,691.43 |
 | Previous completed close | 2,689.76 |
 | Close time | 2026-09-28 04:00:00 +08 / 2026-09-27 20:00:00 UTC |
-| Current price | 2,682.52 at 2026-09-27 22:30:29 UTC |
-| Range low / high | 2,671.44 / 2,724.12 |
+| Current price | 2,686.31 at 2026-09-27 23:30:29 UTC |
+| Range low / high | 2,669.78 / 2,724.12 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -90,7 +90,7 @@ Retest: confirmed on a later completed bar at 2026-09-23 20:00:00 UTC; this is n
 
 ### AI analysis
 
-Previous read was right: ETH stayed above 2646 with flat momentum. Bias remains mildly constructive but unconfirmed; price is still coiling just above upper pivot. Key levels: 2646 invalidation, 2436.89 support, upside pivots 2855.11 then 3064.22. Risk: a completed 4H close below 2646 flips the view bearish.
+Previous read was right: ETH held above 2646 and momentum stayed flat. Bias remains mildly constructive but unconfirmed; latest 4H close 2691.43 is still coiling above upper pivot, with 1H and shadow research waiting for a fresh breakout. Key levels: 2646 invalidation, 2436.89 support, upside 2855.11 then 3064.22. Risk: a completed 4H close below 2646 flips the view bearish.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
@@ -112,7 +112,7 @@ Shadow research: **WAIT / DATA_UNAVAILABLE — UNVERIFIED_DATA**. Baseline uncha
 
 4H direction / 1H entry: **WAIT / DATA_UNAVAILABLE — UNVERIFIED_DATA**. No order or fill.
 
-Latest expected completed 4H candle is unavailable (market closed or stale feed)
+Provider HTTP 401; check entitlement, region and rate limits
 Exact completed 4H close, current price, range and active setup cannot be verified. No BUY/SELL signal issued.
 
 ## USOIL
@@ -144,7 +144,7 @@ Shadow research: **WAIT / DATA_UNAVAILABLE — UNVERIFIED_DATA**. Baseline uncha
 
 4H direction / 1H entry: **WAIT / DATA_UNAVAILABLE — UNVERIFIED_DATA**. No order or fill.
 
-Latest expected completed 4H candle is unavailable (market closed or stale feed)
+Provider HTTP 401; check entitlement, region and rate limits
 Exact completed 4H close, current price, range and active setup cannot be verified. No BUY/SELL signal issued.
 
 ## TradingView drawings
