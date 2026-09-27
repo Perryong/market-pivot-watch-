@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-09-28 04:30:26 +08** / 2026-09-27 20:30:26 UTC.
+Checked **2026-09-28 05:30:27 +08** / 2026-09-27 21:30:27 UTC.
 
 ## BTCUSDT
 
@@ -15,15 +15,15 @@ Shadow research: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. Baseline unchang
 
 4H direction / 1H entry: **WAIT / WATCHING — RANGE_CHANGED**. No order or fill.
 
-Completed-candle state: **neutral**. New completed candle processed.
+Completed-candle state: **neutral**. No new 4H candle since the previous check.
 
 | Market data | Value |
 |---|---|
 | Latest completed 4H close | 84,736.01 |
 | Previous completed close | 84,463.37 |
 | Close time | 2026-09-28 04:00:00 +08 / 2026-09-27 20:00:00 UTC |
-| Current price | 84,628.62 at 2026-09-27 20:30:27 UTC |
-| Range low / high | 83,838.00 / 85,159.03 |
+| Current price | 84,603.45 at 2026-09-27 21:30:27 UTC |
+| Range low / high | 84,118.48 / 85,159.03 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -41,7 +41,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-Prior read was right: price stayed range-bound, no breakout, still above midpoint and below upper. Latest 4H close 84736 lifted but remains capped under 84942; quote 84629 sits in upper half, so neutral/range bias persists. Key levels: upper 84942, midpoint 83909, lower 82875. Risk: a 4H close below midpoint weakens the range; a close above upper invalidates it.
+Prior read was right: still range-bound, no breakout, price above midpoint and below upper. Latest 4H close 84736 and quote 84603 hold upper half but remain capped under 84942, so neutral/range bias persists. Key levels: upper 84942, midpoint ~83909, lower 82875. Risk: a 4H close below midpoint weakens the range; a close above upper invalidates it.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
@@ -63,15 +63,15 @@ Shadow research: **WAIT / EXPIRED — SETUP_EXPIRED**. Baseline unchanged; no or
 
 4H direction / 1H entry: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. No order or fill.
 
-Completed-candle state: **bullish**. New completed candle processed.
+Completed-candle state: **bullish**. No new 4H candle since the previous check.
 
 | Market data | Value |
 |---|---|
 | Latest completed 4H close | 2,691.43 |
 | Previous completed close | 2,689.76 |
 | Close time | 2026-09-28 04:00:00 +08 / 2026-09-27 20:00:00 UTC |
-| Current price | 2,689.58 at 2026-09-27 20:30:28 UTC |
-| Range low / high | 2,664.79 / 2,724.12 |
+| Current price | 2,686.72 at 2026-09-27 21:30:29 UTC |
+| Range low / high | 2,682.05 / 2,724.12 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -90,7 +90,7 @@ Retest: confirmed on a later completed bar at 2026-09-23 20:00:00 UTC; this is n
 
 ### AI analysis
 
-Previous read was right: ETH stayed above 2646, but momentum remains flat and unconfirmed. Latest 4H close 2691.43 and quote 2689.58 show price coiling just above upper pivot 2646. Bias mildly constructive while above 2646, yet no breakout confirmation. Key levels: 2646 invalidation, 2436.89 support, upside 2855.11 then 3064.22. Risk: completed 4H close below 2646 flips view.
+Previous read remains right: ETH is still holding above 2646 with flat momentum. Bias stays mildly constructive but unconfirmed; price is coiling just above upper pivot. Watch 2646 as invalidation, 2436.89 support, upside pivots 2855.11 then 3064.22. Risk: a completed 4H close below 2646 flips the view bearish.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
