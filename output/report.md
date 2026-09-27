@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-09-27 13:30:26 +08** / 2026-09-27 05:30:26 UTC.
+Checked **2026-09-27 14:30:26 +08** / 2026-09-27 06:30:26 UTC.
 
 ## BTCUSDT
 
@@ -22,8 +22,8 @@ Completed-candle state: **neutral**. No new 4H candle since the previous check.
 | Latest completed 4H close | 84,402.15 |
 | Previous completed close | 84,433.10 |
 | Close time | 2026-09-27 12:00:00 +08 / 2026-09-27 04:00:00 UTC |
-| Current price | 84,398.87 at 2026-09-27 05:30:27 UTC |
-| Range low / high | 83,838.00 / 84,571.13 |
+| Current price | 84,599.21 at 2026-09-27 06:30:27 UTC |
+| Range low / high | 83,838.00 / 84,654.02 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -41,7 +41,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-Previous neutral read was right: price remains above midpoint and below upper, no breakout. Bias still neutral/range. Latest 4H close and quote near 84400 show price holding mid-range, just above midpoint, with no confirmation. Key levels: midpoint ~83909, upper ~84942, lower ~82875. Risk: whipsaw in thin range; sustained 4H close below midpoint or outside either pivot invalidates neutral.
+Previous neutral read was right: still mid-range, no breakout. Bias remains neutral/range; latest 4H close and quote hold above midpoint but below upper, so no confirmed direction. Key levels: midpoint ~83909, upper ~84942, lower ~82875. Risk: thin-range whipsaw; sustained 4H close below midpoint or beyond either pivot invalidates neutral.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
@@ -55,7 +55,7 @@ Selling an existing long and opening a short are different actions. Targets are 
 STATUS: NO NEW SIGNAL
 ACTION NOW: WAIT FOR CONFIRMATION
 
-**COMBINED (4H + 1H): HOLD** — 4H bullish but 1H trend↑ but momentum↓
+**COMBINED (4H + 1H): BUY** — 4H bullish + 1H trend↑ + momentum↑, no gap overhead
 
 [Open actual TradingView 4H chart](https://www.tradingview.com/chart/?symbol=BINANCE%3AETHUSDT&interval=240)
 
@@ -70,8 +70,8 @@ Completed-candle state: **bullish**. No new 4H candle since the previous check.
 | Latest completed 4H close | 2,696.69 |
 | Previous completed close | 2,696.33 |
 | Close time | 2026-09-27 12:00:00 +08 / 2026-09-27 04:00:00 UTC |
-| Current price | 2,697.01 at 2026-09-27 05:30:28 UTC |
-| Range low / high | 2,664.79 / 2,706.09 |
+| Current price | 2,709.33 at 2026-09-27 06:30:29 UTC |
+| Range low / high | 2,664.79 / 2,712.13 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -90,7 +90,7 @@ Retest: confirmed on a later completed bar at 2026-09-23 20:00:00 UTC; this is n
 
 ### AI analysis
 
-Previous read was right: ETH held above 2646, no breakout confirmed. Updated: bias still mildly constructive/range-bound. Latest 4H close 2696.69 and quote 2697 sit above upper pivot 2646, but 1H remains WAIT, so momentum lacks confirmation. Watch 2646 invalidation, 2436.89 support, 2855.11/3064.22 upside. Risk: a completed 4H close below 2646 invalidates constructive view.
+Previous read was right: ETH held above 2646, no breakout confirmed. Updated read: bias still mildly constructive but range-bound. Latest 4H close 2696.69 and quote 2709.33 sit above upper pivot 2646, yet 1H remains WAIT, so momentum lacks confirmation. Key levels: 2646 invalidation, 2436.89 support, 2855.11/3064.22 upside. Risk: a completed 4H close below 2646 invalidates constructive view.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
