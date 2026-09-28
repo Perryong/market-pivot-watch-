@@ -62,7 +62,7 @@ def caption(report, now=None, ai_text=None):
         if closed:
             pct = 100 * (closed['close'] / closed['open'] - 1)
             lines.append(f"1H closed: {price(closed['open'])} \u2192 {price(closed['close'])} ({pct:+.2f}%)")
-        for kind, b, t in cb.get('fvgs', []):
+        for kind, b, t in cb.get('fvgs', [])[:3]:
             lines.append(f"Open FVG ({kind}): {price(b)}\u2013{price(t)}")
         if hourly.active_levels(r) and r.get('side') in ('BUY', 'SELL'):
             long = r['side'] == 'BUY'
@@ -165,6 +165,9 @@ def send(token, chat, text, photo):
     if not re.fullmatch(r'[0-9]+:[A-Za-z0-9_-]+', token):
         raise DataError('Invalid Telegram bot token format')
     boundary = uuid.uuid4().hex
+    if photo and len(text) > 1024:
+        # Telegram photo captions are hard-capped at 1024 chars.
+        text = text[:1000].rstrip() + '\u2026'
     fields = {'chat_id': chat, 'caption' if photo else 'text': text}
     body = b''.join((f'--{boundary}\r\nContent-Disposition: form-data; name="{key}"\r\n\r\n{value}\r\n').encode()
                     for key, value in fields.items())
