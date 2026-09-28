@@ -109,8 +109,10 @@ def evaluate(candles, config, saved, now):
             if len(bars) < 7:
                 raise DataError("Automatic calibration needs six prior bars plus the latest bar")
             sample = bars[-7:-1]
-            if any(b.start - a.start != H4 for a, b in zip(bars[-7:], bars[-6:])):
-                raise DataError("Calibration range contains missing 4H bars")
+            # Allow legitimate gaps (market closures) — spacing must be a positive
+            # multiple of H4; only out-of-order/duplicate/off-grid bars are invalid.
+            if any(b.start - a.start < H4 for a, b in zip(bars[-7:], bars[-6:])):
+                raise DataError("Calibration range has out-of-order 4H bars")
             lower, upper = min(c.low for c in sample), max(c.high for c in sample)
             origin = "Frozen high/low of six prior completed 4H candles; latest excluded"
         else:
