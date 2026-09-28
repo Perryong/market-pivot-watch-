@@ -174,20 +174,32 @@ def send(token, chat, text, photo):
     body += f'--{boundary}--\r\n'.encode()
     method = 'sendPhoto' if photo else 'sendMessage'
     request = urllib.request.Request(f'https://api.telegram.org/bot{token}/{method}', data=body,
-                                    headers={'Content-Type': 'multipart/form-data; boundary=' + boundary})
-    try:
-        with urllib.request.build_opener(NoRedirect()).open(request, timeout=30) as response:
-            result = json.load(response)
-            if not isinstance(result, dict) or result.get('ok') is not True:
-                raise DataError('Telegram rejected the message')
-    except urllib.error.HTTPError as exc:
-        raise DataError(f'Telegram HTTP {exc.code}; check bot access and chat ID') from None
-    except (urllib.error.URLError, OSError, ValueError) as exc:
-        if isinstance(exc, DataError):
-            raise
-        # Do not log URLs: the bot token is part of the Telegram URL.
-        # No automatic retry: a timed-out POST may already have delivered.
-        raise DataError('Telegram delivery could not be confirmed') from None
+                                     headers={'Content-Type': 'multipart/form-data; boundary=' + boundary})
+    last = None
+    for attempt in range(3):
+        try:
+            with urllib.request.build_opener(NoRedirect()).open(request, timeout=30) as response:
+                result = json.load(response)
+                if not isinstance(result, dict) or result.get('ok') is not True:
+                    raise DataError('Telegram rejected the message')
+                return
+        except urllib.error.HTTPError as exc:
+            detail = ''
+            try:
+                detail = exc.read().decode('utf-8', 'replace')[:200]
+            except Exception:
+                pass
+            last = DataError(f'Telegram HTTP {exc.code}: {detail}')
+            if exc.code in (400, 429) and attempt < 2:
+                time.sleep(2 * (attempt + 1))
+                continue
+            raise last from None
+        except (urllib.error.URLError, OSError, ValueError) as exc:
+            if isinstance(exc, DataError):
+                raise
+            # No retry: a timed-out POST may already have delivered.
+            raise DataError('Telegram delivery could not be confirmed') from None
+    raise last
 
 
 def notify(payload, token, chat, state_path, now, preview=None, chart_cache=None, recipient_label=None, ai=None):
