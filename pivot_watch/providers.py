@@ -34,7 +34,7 @@ def get_json(url, params=None, headers=None):
             with opener.open(request, timeout=20) as response:
                 return json.load(response)
         except urllib.error.HTTPError as exc:
-            if exc.code in (429, 500, 502, 503, 504) and attempt < 2:
+            if exc.code in (401, 403, 429, 500, 502, 503, 504) and attempt < 2:
                 time.sleep(2 ** attempt)
                 continue
             # Never include a response body, account URL, bearer token or raw exception.
