@@ -247,6 +247,7 @@ class ScreenerTest(unittest.TestCase):
         payloads=[dict(bars={'TEST':raw[:7]},next_page_token='page2'),dict(bars={'TEST':raw[7:]},next_page_token=None),
                   dict(quotes={'TEST':dict(bp=99,ap=101,t=datetime.fromtimestamp(now).astimezone().isoformat())})]
         data=feeds.MarketData(runtime.default_config(),{},now)
+        data.config['stocks']['provider']='alpaca'
         data.sessions=[(start,start+23400)]
         with patch('screener.feeds.get_json',side_effect=payloads):
             bundle=data.stock('TEST')

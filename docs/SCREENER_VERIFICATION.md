@@ -1,5 +1,23 @@
 # Screener verification — 2026-09-29
 
+## yfinance provider update — 2026-09-30
+
+- 19 existing screener tests and 4 new Yahoo tests pass in `.venv`.
+- Yahoo tests cover key-free calendars, holidays/DST/early closes, completed
+  candles, missing daily sessions and 15-minute bars, caching, provider validation,
+  and absence of fabricated executable quotes.
+- Live Yahoo scan: all 41 stock/ETF symbols loaded, with 1 DEVELOPING and
+  40 WATCHING; SPY regime was BULLISH. These are observations, not trade fills.
+- Independent review found no concrete defects in the provider change.
+- Live dashboard served locally on port 8766; port 8765 belongs to another project.
+- Browser: Yahoo notice, stock market filter and AAPL search verified.
+- Crypto refresh loaded 29 pairs; TONUSDT failed interval validation and remains
+  DATA_UNAVAILABLE. No fallback candles or fills were fabricated.
+- The full legacy suite was not rerun for this provider change; its previously
+  reproduced baseline failures are recorded below.
+
+## Original implementation
+
 - 19 new screener tests pass.
 - Full suite: 147 tests; 7 failures and 5 errors, all reproduced on untouched starting commit c618c99 (128 baseline tests). No additional failing tests.
 - Python compileall and git diff --check pass.

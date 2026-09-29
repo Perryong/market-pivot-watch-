@@ -80,6 +80,7 @@ header{{display:flex;justify-content:space-between;align-items:start;gap:20px}}h
 @media(max-width:700px){{main{{padding:22px 14px}}header{{display:block}}.stamp{{text-align:left}}h1{{font-size:28px}}.stats{{grid-template-columns:repeat(2,1fr)}}}}
 </style></head><body><main><header><div><div class="eyebrow">MARKET WATCH / RESEARCH DESK</div><h1>Breakout & breakdown screener</h1><p>Daily stocks · 4H crypto · 1H retests</p></div><div class="stamp">{stamp(payload['generated_at'])}<br><a href="latest.json">Download evidence JSON ↗</a></div></header>
 <div class="notice">{title}. Regime guides ranking; scores are not win probabilities. Costs must be configured before entry eligibility.</div>
+{'<div class="notice">Stocks use Yahoo research candles. No verified executable quotes: stock entry eligibility and new paper entries are blocked.</div>' if any('Yahoo Finance' in r.get('source','') for r in results) else ''}
 <section class="stats" aria-label="Scan summary">{''.join(f'<div class="stat"><strong>{n}</strong><span>{e(s.replace("_"," ").title())}</span></div>' for s,n in counts.items())}</section>
 <div class="filters"><label>Symbol<input id="search" type="search" placeholder="Search symbol"></label>
 <label>Market<select id="market"><option value="">All markets</option><option>stocks</option><option>crypto</option></select></label>

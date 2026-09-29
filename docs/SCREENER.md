@@ -1,7 +1,8 @@
 # Stock and crypto swing screener
 
 Run from the repository root with Python 3.12+ and system timezone/CA data.
-No pip packages are required. This application does not submit broker orders.
+Live Yahoo stocks require the dependencies below; demo, crypto and Alpaca can
+still run with the standard library. This application does not submit broker orders.
 It keeps its state separate from the original `pivot_watch` application.
 
 ## Try it locally
@@ -19,12 +20,41 @@ the private journal. Serve only `public/`.
 
 ## Live data setup
 
-Edit `screener.json`. The starter list contains 42 US stocks/ETFs and 30 Binance
+Edit `screener.json`. The starter list contains 41 US stocks/ETFs and 30 Binance
 spot pairs; it is a configurable watchlist, not a point-in-time index universe.
 Expand after measuring scan latency and your data-provider limits. Delisted or
 unavailable symbols return DATA_UNAVAILABLE independently of other symbols.
 
-Alpaca was selected for US stocks. Set environment variables on the runner:
+Stocks default to `"provider": "yfinance"`. No API key is needed:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements-screener.txt
+python -m screener once --market stocks
+python -m http.server 8765 --bind 127.0.0.1 --directory .screener/live/public
+```
+
+Stop an existing demo server on port 8765 before starting the live server.
+Yahoo daily candles supply the daily setups and SPY regime. Native 15-minute
+candles supply validated 30-minute execution bars and full hourly retests;
+using native candles avoids yfinance's 30-minute resampling masking gaps.
+Only completed regular-session candles are used. The `exchange_calendars`
+XNYS schedule handles US holidays, DST and early closes without Alpaca credentials.
+Downloads request two years of daily history and 60 days of intraday history;
+validated results are cached until the next completed half-hour candle.
+
+Yahoo is a research feed, with limited intraday history and possible delays,
+rate limits or revisions. This adapter deliberately supplies no executable quote:
+stock setups, regime and retests are visible, but stock entry eligibility and
+new paper entries are blocked. Crypto retains its existing quote behavior.
+Use a broker feed for stock entry checks. Missing candles fail visibly rather
+than being filled or silently substituted. The first scan establishes a baseline;
+new confirmed signals require subsequent scans. yfinance is an unofficial Yahoo
+client intended for personal research; see its [documentation](https://github.com/ranaroussi/yfinance).
+
+To use Alpaca instead, set `stocks.provider` to `alpaca` and set environment
+variables on the runner. Older configs without `provider` still select Alpaca:
 
 ```bash
 export APCA_API_KEY_ID='your-key'
@@ -32,7 +62,7 @@ export APCA_API_SECRET_KEY='your-secret'
 python3 -m screener once --market stocks
 ```
 
-`stocks.environment` chooses the paper/live **calendar API** corresponding to
+For Alpaca, `stocks.environment` chooses the paper/live **calendar API** corresponding to
 your credentials. Both modes fetch market data only. `stocks.feed` defaults to
 `sip` (consolidated US exchanges), requiring the appropriate Alpaca entitlement.
 You can explicitly choose `iex`; that venue's volume is different and sparse
@@ -40,6 +70,8 @@ bars may fail coverage checks. There is no silent feed substitution. Expect the
 initial stock scan to take longer: it loads 420 calendar days of 30-minute bars.
 Subsequent requests refresh the last three days; a full refresh occurs weekly.
 Missing sessions, revised setup evidence or changed feed/strategy block entries.
+Changing providers after a successful scan requires a fresh `--state-dir`;
+existing research journals are never silently rebased to another feed.
 
 Crypto uses Binance's public, read-only spot API:
 
@@ -122,7 +154,7 @@ wakes the application; its calendar and completed-bar checks decide what is due.
 For example, after placing environment variables in a private runner environment:
 
 ```cron
-* * * * * cd /opt/market-pivot-watch && /usr/bin/python3 -m screener tick >> /var/log/market-screener.log 2>&1
+* * * * * cd /opt/market-pivot-watch && .venv/bin/python -m screener tick >> /var/log/market-screener.log 2>&1
 ```
 
 This example is not installed automatically. Provision a server or run on an
@@ -136,8 +168,8 @@ always-on machine; sleeping laptops do not scan. Set up log rotation separately.
 | Stock daily | Exchange close +10 minutes |
 | Active setups and open paper positions | Every five minutes while stocks are open; crypto 24/7 |
 
-Sessions use Alpaca's calendar and `America/New_York`, so DST, holidays and early
-closes follow the exchange. Failed scans retry no sooner than five minutes where
+Sessions use the selected provider's calendar and `America/New_York`, so DST,
+holidays and early closes follow the exchange. Failed scans retry no sooner than five minutes where
 a job was started. One slow scan holds the process lock and later ticks skip;
 measure runtime before expanding to hundreds of symbols. This is periodic
 research monitoring, not low-latency execution. No scheduler or hosting service

@@ -16,7 +16,7 @@ from . import engine, feeds
 
 def default_config():
     return dict(
-        stocks=dict(enabled=True, environment='paper', feed='sip',
+        stocks=dict(enabled=True, provider='yfinance', environment='paper', feed='sip',
                     symbols='AAPL MSFT NVDA AMZN GOOGL META TSLA AVGO AMD NFLX CRM ORCL ADBE INTC MU QCOM AMAT JPM BAC GS V MA WMT COST HD UNH JNJ LLY ABBV XOM CVX CAT GE BA UBER PLTR COIN HOOD SHOP SPY QQQ'.split()),
         crypto=dict(enabled=True, symbols='BTCUSDT ETHUSDT SOLUSDT BNBUSDT XRPUSDT DOGEUSDT ADAUSDT LINKUSDT AVAXUSDT SUIUSDT LTCUSDT BCHUSDT DOTUSDT UNIUSDT NEARUSDT AAVEUSDT TRXUSDT TONUSDT ATOMUSDT FILUSDT ARBUSDT OPUSDT INJUSDT HBARUSDT XLMUSDT ETCUSDT ICPUSDT RENDERUSDT TAOUSDT PEPEUSDT'.split()),
         strategy=dict(engine.DEFAULTS),
@@ -35,7 +35,9 @@ def validate_config(config):
             raise DataError('Duplicate symbols or universe exceeds 500 per market')
         if any(not isinstance(s,str) or not re.fullmatch(r'[A-Z][A-Z0-9.-]{0,19}',s) for s in c['symbols']):
             raise DataError('Invalid symbol')
-    if config['stocks']['feed'] not in ('iex','sip') or config['stocks']['environment'] not in ('paper','live'):
+    if config['stocks'].get('provider', 'alpaca') not in ('alpaca', 'yfinance'):
+        raise DataError('Stocks provider must be alpaca or yfinance')
+    if config['stocks'].get('provider', 'alpaca') == 'alpaca' and (config['stocks']['feed'] not in ('iex','sip') or config['stocks']['environment'] not in ('paper','live')):
         raise DataError('Stocks require feed iex/sip and environment paper/live')
     if set(config['strategy']) != set(engine.DEFAULTS):
         raise DataError('Unknown or missing strategy settings')

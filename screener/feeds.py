@@ -1,4 +1,4 @@
-"""Official read-only APIs. All cached data remains attributable to its feed."""
+"""Read-only market data. All cached data remains attributable to its feed."""
 from datetime import datetime, timezone
 from zoneinfo import ZoneInfo
 import os
@@ -81,6 +81,10 @@ class MarketData:
         self.headers = {}
 
     def calendar(self):
+        if self.config['stocks'].get('provider', 'alpaca') == 'yfinance':
+            from . import yahoo
+            self.sessions = yahoo.calendar(self.now)
+            return self.sessions
         key, secret = os.getenv('APCA_API_KEY_ID'), os.getenv('APCA_API_SECRET_KEY')
         if not key or not secret:
             raise DataError('Set APCA_API_KEY_ID and APCA_API_SECRET_KEY for stock data')
@@ -107,6 +111,9 @@ class MarketData:
     def stock(self, symbol):
         if not self.sessions:
             self.calendar()
+        if self.config['stocks'].get('provider', 'alpaca') == 'yfinance':
+            from . import yahoo
+            return yahoo.stock(symbol, self.sessions, self.cache, self.now)
         feed = self.config['stocks']['feed']
         key = 'stock:'+feed+':'+symbol
         saved = self.cache.get(key, {})

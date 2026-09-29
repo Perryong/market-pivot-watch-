@@ -1,7 +1,7 @@
 # BTCUSD + BTCUSDT + ETHUSD + ETHUSDT + XAUUSD + USOIL Four-Hour Pivot Watch
 
-The separate [stock and crypto swing screener](docs/SCREENER.md) adds Alpaca
-stocks, Binance crypto, regime labels, a ranked dashboard and a paper journal.
+The separate [stock and crypto swing screener](docs/SCREENER.md) adds key-free
+yfinance stocks (optional Alpaca), Binance crypto, regime labels, a ranked dashboard and a paper journal.
 Try it offline with `python3 -m screener demo`. Its state is isolated from this watcher.
 
 Read the [Trading strategy and operating guide](docs/TRADING_STRATEGY.md) for
