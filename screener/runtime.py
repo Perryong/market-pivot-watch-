@@ -18,7 +18,7 @@ def default_config():
     return dict(
         stocks=dict(enabled=True, provider='yfinance', environment='paper', feed='sip',
                     symbols='AAPL MSFT NVDA AMZN GOOGL META TSLA AVGO AMD NFLX CRM ORCL ADBE INTC MU QCOM AMAT JPM BAC GS V MA WMT COST HD UNH JNJ LLY ABBV XOM CVX CAT GE BA UBER PLTR COIN HOOD SHOP SPY QQQ'.split()),
-        crypto=dict(enabled=True, symbols='BTCUSDT ETHUSDT SOLUSDT BNBUSDT XRPUSDT DOGEUSDT ADAUSDT LINKUSDT AVAXUSDT SUIUSDT LTCUSDT BCHUSDT DOTUSDT UNIUSDT NEARUSDT AAVEUSDT TRXUSDT TONUSDT ATOMUSDT FILUSDT ARBUSDT OPUSDT INJUSDT HBARUSDT XLMUSDT ETCUSDT ICPUSDT RENDERUSDT TAOUSDT PEPEUSDT'.split()),
+        crypto=dict(enabled=True, symbols='BTCUSDT ETHUSDT SOLUSDT BNBUSDT XRPUSDT DOGEUSDT ADAUSDT LINKUSDT AVAXUSDT SUIUSDT LTCUSDT BCHUSDT DOTUSDT UNIUSDT NEARUSDT AAVEUSDT TRXUSDT ATOMUSDT FILUSDT ARBUSDT OPUSDT INJUSDT HBARUSDT XLMUSDT ETCUSDT ICPUSDT RENDERUSDT TAOUSDT PEPEUSDT'.split()),
         strategy=dict(engine.DEFAULTS),
         paper=dict(enabled=True, capital=10000, risk_fraction=.0025,
                    max_notional_fraction=.1, max_total_fraction=.3))
@@ -184,6 +184,11 @@ def scan(store, config, now, scheduled=False, only=None):
             failed = False
             symbols = list(dict.fromkeys(config[market]['symbols'] +
                 [t['symbol'] for t in store.trades() if t['market']==market and t['status']=='OPEN']))
+            # Symbols removed from the config drop off the dashboard; their signal history is kept.
+            prefix = 'result:'+market+':'
+            for (key,) in store.db.execute('SELECT key FROM kv WHERE substr(key,1,?)=?',(len(prefix),prefix)).fetchall():
+                if key[len(prefix):] not in symbols:
+                    store.db.execute('DELETE FROM kv WHERE key=?',(key,))
             for symbol in symbols:
                 key = market+':'+symbol
                 if not full_scan and not ((store.get('signal:'+key) or {}).get('status') in engine.ACTIVE or

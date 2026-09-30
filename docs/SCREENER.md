@@ -20,7 +20,7 @@ the private journal. Serve only `public/`.
 
 ## Live data setup
 
-Edit `screener.json`. The starter list contains 41 US stocks/ETFs and 30 Binance
+Edit `screener.json`. The starter list contains 41 US stocks/ETFs and 29 Binance
 spot pairs; it is a configurable watchlist, not a point-in-time index universe.
 Expand after measuring scan latency and your data-provider limits. Delisted or
 unavailable symbols return DATA_UNAVAILABLE independently of other symbols.

@@ -341,6 +341,28 @@ class ScreenerTest(unittest.TestCase):
             self.assertEqual(store.trades()[0]['status'],'CLOSED')
             store.close()
 
+    def test_removed_symbol_leaves_dashboard_unless_position_open(self):
+        from screener import feeds,runtime
+        _,_,bundle,_=self.setup()
+        config=runtime.default_config();config['stocks']['enabled']=False
+        config['crypto']['symbols']=['NEW']
+        with tempfile.TemporaryDirectory() as d:
+            store=runtime.Store(Path(d)/'test.db')
+            for symbol in ('GONE','HELD'):
+                store.put('result:crypto:'+symbol,dict(symbol=symbol,market='crypto',status='DATA_UNAVAILABLE'))
+            store.trade(dict(id='held',key='crypto:HELD',symbol='HELD',market='crypto',currency='USDT',
+                status='OPEN',entry=100,entry_at=374400,stop=1,target=1000,quantity=2,last_end=374400,
+                cost_bps=10,slippage_bps=0,regime='BULLISH'))
+            def crypto(_self,symbol,daily=False):
+                if daily:return []
+                return dict(bundle,symbol=symbol)
+            with patch.object(feeds.MarketData,'crypto',crypto):
+                runtime.scan(store,config,374403,only='crypto')
+            self.assertIsNone(store.get('result:crypto:GONE'))
+            self.assertIsNotNone(store.get('result:crypto:HELD'))
+            self.assertIsNotNone(store.get('result:crypto:NEW'))
+            store.close()
+
     def test_lost_signal_anchor_marks_open_trade_unscorable(self):
         from screener import runtime
         engine,settings,bundle,saved=self.setup()
