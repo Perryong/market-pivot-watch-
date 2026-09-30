@@ -16,7 +16,8 @@ def publish(store, out, mode, now):
     results = [json.loads(r[0]) for r in store.db.execute("SELECT value FROM kv WHERE key LIKE 'result:%'")]
     priority = {s:i for i,s in enumerate(('ENTRY_ELIGIBLE','RETESTED','CONFIRMED','DEVELOPING','WATCHING','INVALIDATED','MISSED','EXPIRED','DATA_UNAVAILABLE'))}
     results.sort(key=lambda r:(priority.get(r['status'],99),-r.get('score',0),r['symbol']))
-    payload = dict(version=1,generated_at=now,mode=mode,results=results,trades=store.trades())
+    events = [json.loads(r[0]) for r in store.db.execute('SELECT value FROM events ORDER BY at')]
+    payload = dict(version=1,generated_at=now,mode=mode,results=results,trades=store.trades(),events=events)
     atomic_text(out/'latest.json',json_text(payload))
     atomic_text(out/'index.html',render(payload))
     return payload

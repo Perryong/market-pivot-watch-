@@ -116,6 +116,74 @@ class ScreenerTest(unittest.TestCase):
         self.assertIn('<select id="side">', text)
         self.assertIn("'side'", text)
 
+    def test_checklist_watching_row_is_mostly_not_reached(self):
+        from screener import view
+        states = dict((label, state) for label, state, _ in view.checks(dict(
+            status='WATCHING', side='SHORT', regime='BULLISH', volume_ratio=0.9, reasons=[])))
+        self.assertEqual(states['Trend agrees'], 'fail')
+        self.assertEqual(states['Breakout close'], 'pending')
+        self.assertEqual(states['Volume ≥ 1.5×'], 'fail')
+        for label in ('1H retest', 'Fresh quote', 'Not overextended', 'Costs configured', 'R:R ≥ 2'):
+            self.assertEqual(states[label], 'pending', label)
+
+    def test_checklist_retested_row_explains_failed_gates(self):
+        from screener import view
+        items = view.checks(dict(status='RETESTED', side='LONG', regime='BULLISH', volume_ratio=2,
+                                 retest_end=1, entry=10, reasons=['COSTS_UNKNOWN', 'EXTENDED']))
+        states = {label: state for label, state, _ in items}
+        notes = {label: note for label, _, note in items}
+        self.assertEqual([states[k] for k in ('Trend agrees', 'Breakout close', 'Volume ≥ 1.5×', '1H retest', 'Fresh quote')],
+                         ['pass'] * 5)
+        self.assertEqual((states['Not overextended'], states['Costs configured']), ('fail', 'fail'))
+        self.assertIn('round_trip_cost_bps', notes['Costs configured'])
+        self.assertEqual(states['R:R ≥ 2'], 'pending')
+
+    def test_checklist_eligible_row_passes_everything(self):
+        from screener import view
+        items = view.checks(dict(status='ENTRY_ELIGIBLE', side='LONG', regime='BULLISH', volume_ratio=2,
+                                 retest_end=1, entry=10, net_rr=2.5, reasons=[]))
+        self.assertEqual({state for _, state, _ in items}, {'pass'})
+
+    def test_track_record_funnel_counts_unique_signals(self):
+        from screener import view
+        ev = lambda s, st, t, m='crypto': dict(symbol=s, market=m, status=st, trigger=t)
+        record = view.track_record([ev('A', 'CONFIRMED', 1), ev('A', 'RETESTED', 1), ev('A', 'RETESTED', 1),
+                                    ev('B', 'CONFIRMED', 2), ev('B', 'INVALIDATED', 2),
+                                    ev('C', 'WATCHING', None), ev('D', 'CONFIRMED', 3, 'stocks')], [])
+        self.assertEqual(record['funnel']['crypto']['CONFIRMED'], 2)
+        self.assertEqual(record['funnel']['crypto']['RETESTED'], 1)
+        self.assertEqual(record['funnel']['crypto']['INVALIDATED'], 1)
+        self.assertEqual(record['funnel']['stocks']['CONFIRMED'], 1)
+        self.assertNotIn('WATCHING', record['funnel']['crypto'])
+
+    def test_track_record_scores_closed_trades_in_r(self):
+        from screener import view
+        trade = lambda pnl, at, status='CLOSED': dict(status=status, entry=100, stop=90, quantity=1,
+                                                      pnl=pnl, exit_at=at, currency='USDT')
+        record = view.track_record([], [trade(20, 3), trade(-10, 1), trade(-10, 2), trade(None, None, 'OPEN'),
+                                        dict(trade(None, None, 'UNSCORABLE'))])
+        self.assertEqual((record['closed'], record['wins']), (3, 1))
+        self.assertAlmostEqual(record['avg_r'], 0)
+        self.assertAlmostEqual(record['max_drawdown_r'], 2)   # -1R, -2R, then +2R back to 0
+        self.assertEqual(record['pnl'], {'USDT': 0})
+        self.assertIsNone(record['win_rate'])                 # under 30 closed trades
+
+    def test_track_record_reports_win_rate_from_thirty_trades(self):
+        from screener import view
+        trades = [dict(status='CLOSED', entry=100, stop=90, quantity=1, pnl=10 if i % 3 == 0 else -10,
+                       exit_at=i, currency='USD') for i in range(30)]
+        self.assertAlmostEqual(view.track_record([], trades)['win_rate'], 10/30)
+
+    def test_dashboard_shows_checklist_and_track_record(self):
+        from screener import view
+        text = view.render(dict(generated_at=1, mode='live', trades=[], events=[], results=[dict(
+            symbol='T', market='crypto', status='WATCHING', side='LONG', regime='BULLISH', score=1,
+            checked_at=1, volume_ratio=2, reasons=[])]))
+        self.assertIn('Checks 2/8', text)
+        self.assertIn('class="check pass"', text)
+        self.assertIn('Track record', text)
+        self.assertIn('Not enough history to judge — 0 of 30 trades', text)
+
     def test_revised_anchor_and_future_bar_rejected(self):
         engine, settings, bundle, saved = self.setup()
         bad = copy.deepcopy(bundle)
