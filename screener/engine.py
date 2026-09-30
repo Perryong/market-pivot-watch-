@@ -96,6 +96,22 @@ def entry_check(state, bundle, settings, now):
     return metrics, reasons
 
 
+def plan(result, state, settings):
+    """Conditional levels for display only; never used for eligibility, alerts or paper trades.
+    Entry assumes a retest at the trigger; stop sits past the deepest allowed retest touch."""
+    side = result.get('side')
+    if side not in ('LONG', 'SHORT'):
+        return {}
+    sign = 1 if side == 'LONG' else -1
+    level = result.get('level', result['upper'] if sign == 1 else result['lower'])
+    target = result.get('target', level+sign*(result['upper']-result['lower']))
+    buffer = (settings['retest_band_atr']+settings['stop_buffer_atr'])*state.get('setup_atr', result['atr'])
+    stop = state.get('stop', level-sign*buffer)
+    risk = sign*(level-stop)
+    return dict(plan_level=level, plan_entry=level, plan_stop=stop, plan_target=target,
+                plan_rr=sign*(target-level)/risk if risk > 0 else None)
+
+
 def evaluate(bundle, saved, settings, now):
     setup, hourly = bundle['setup'], bundle['hourly']
     for bars in (setup, hourly):
@@ -180,6 +196,7 @@ def evaluate(bundle, saved, settings, now):
     for k in ('upper','lower','level', 'trigger', 'target', 'retest_end'):
         if k in state:
             result[k] = state[k]
+    result.update(plan(result, state, settings))
     state.update(setup_end=setup[-1]['end'], hour_end=hourly[-1]['end'],
                  setup_anchor=fingerprint(setup[-1]), hour_anchor=fingerprint(hourly[-1]))
     return result, state, events

@@ -1,4 +1,5 @@
 """Dependency-free, filterable dashboard. No provider content is executable."""
+import math
 from datetime import datetime, timezone
 from html import escape
 from urllib.parse import quote
@@ -9,7 +10,18 @@ def e(value):
 
 
 def number(value):
-    return '—' if value is None else f'{value:,.4f}'.rstrip('0').rstrip('.')
+    if value is None:
+        return '—'
+    # At least four significant digits for sub-unit prices such as PEPEUSDT.
+    places = max(4, 3-math.floor(math.log10(abs(value)))) if value else 4
+    return f'{value:,.{places}f}'.rstrip('0').rstrip('.')
+
+
+def level(r, key):
+    """Real level when the setup has one; otherwise the display-only plan, tagged as such."""
+    if r.get(key) is not None or r.get('plan_'+key) is None:
+        return number(r.get(key))
+    return number(r['plan_'+key])+' <em class="plan">planned</em>'
 
 
 def stamp(value):
@@ -53,6 +65,8 @@ def render(payload):
         state = r['status']
         tv = ('BINANCE:' if r['market']=='crypto' else '')+r['symbol']
         reasons = ', '.join(r.get('reasons',[])) or 'Conditions evaluated from completed candles'
+        rr = (number(r['net_rr'])+' net R:R' if r.get('net_rr') is not None else
+              number(r['plan_rr'])+' gross R:R, planned' if r.get('plan_rr') is not None else '— net R:R')
         details = (f'<p>{e(r.get("source","Data unavailable"))} · Setup close {stamp(r.get("setup_close"))} · Hourly close {stamp(r.get("hourly_close"))}</p>'
                    f'<p>{e(reasons)}. {e(r.get("paper_note",""))} {e(r.get("quote_error") or "")}</p>'
                    f'<p>Range {number(r.get("lower"))}–{number(r.get("upper"))} · ATR {number(r.get("atr"))} · '
@@ -60,8 +74,8 @@ def render(payload):
         rows.append(f'''<tbody class="candidate" data-market="{e(r['market'])}" data-status="{e(state)}" data-regime="{e(r['regime'])}" data-symbol="{e(r['symbol'])}" data-time="{r['checked_at']}">
 <tr><td><a href="https://www.tradingview.com/chart/?symbol={quote(tv)}" target="_blank" rel="noopener noreferrer">{e(r['symbol'])} ↗</a><small>{e(r['market'])}</small></td>
 <td><span class="badge {e(state.lower())}">{e(state.replace('_',' '))}</span><small>{e(r.get('side') or '—')} <span class="age"></span></small></td>
-<td>{e(r['regime'])}</td><td>{number(r.get('volume_ratio'))}×</td><td>{number(r.get('level'))}</td>
-<td>{number(r.get('entry'))}<small>Stop {number(r.get('stop'))}</small></td><td>{number(r.get('target'))}<small>{number(r.get('net_rr'))} net R:R</small></td>
+<td>{e(r['regime'])}</td><td>{number(r.get('volume_ratio'))}×</td><td>{level(r,'level')}</td>
+<td>{level(r,'entry')}<small>Stop {level(r,'stop')}</small></td><td>{level(r,'target')}<small>{rr}</small></td>
 <td>{number(r.get('score'))}</td></tr><tr class="detail"><td colspan="8"><details><summary>Evidence, levels & chart</summary>{details}</details></td></tr></tbody>''')
     trades = ''.join(f'<tr><td>{e(t["symbol"])}</td><td>{e(t["status"])}</td><td>{e(t["regime"])}</td>'
                      f'<td>{number(t["entry"])}</td><td>{number(t.get("exit"))}</td><td>{number(t.get("pnl"))} {e(t["currency"])}</td>'
@@ -76,7 +90,7 @@ header{{display:flex;justify-content:space-between;align-items:start;gap:20px}}h
 .stats{{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}}.stat{{background:var(--panel);border:1px solid var(--line);padding:18px;border-radius:10px}}.stat strong{{display:block;font-size:29px}}.stat span{{color:var(--muted)}}
 .filters{{display:flex;gap:12px;flex-wrap:wrap;margin:24px 0 14px}}input,select{{background:var(--panel);border:1px solid var(--line);color:var(--text);padding:10px 12px;border-radius:6px;font:inherit}}label{{color:var(--muted);font-size:12px}}label>*{{display:block;margin-top:5px}}input:focus,select:focus,summary:focus{{outline:2px solid var(--green)}}
 .tablewrap{{overflow-x:auto;border:1px solid var(--line);border-radius:10px}}table{{border-collapse:collapse;width:100%;white-space:nowrap}}th{{background:#14202c;color:var(--muted);text-align:left;font-size:11px;letter-spacing:1px;text-transform:uppercase}}th,td{{padding:14px 16px}}tbody.candidate{{border-top:1px solid var(--line)}}tbody.candidate:hover{{background:#101b26}}td small{{display:block;font-size:11px;color:var(--muted);margin-top:5px}}a{{color:var(--text);font-weight:650;text-decoration:none}}a:hover{{color:var(--green)}}
-.badge{{font-size:10px;font-weight:700;letter-spacing:.5px;background:#263442;border-radius:4px;padding:5px 8px}}.entry_eligible{{background:#173e32;color:#8ce5be}}.confirmed,.retested,.developing{{background:#263b53;color:#b5d9ff}}.data_unavailable,.invalidated,.expired{{color:#f4b1a0}}.detail td{{padding-top:0;padding-bottom:10px}}details{{white-space:normal;color:var(--muted)}}summary{{cursor:pointer;font-size:12px}}svg{{width:100%;max-width:1000px;margin-top:12px}}.stale .badge{{background:#493429;color:#ffd1a5}}footer{{margin-top:30px;color:var(--muted);font-size:12px}}.empty{{padding:30px;color:var(--muted)}}[hidden]{{display:none!important}}
+.badge{{font-size:10px;font-weight:700;letter-spacing:.5px;background:#263442;border-radius:4px;padding:5px 8px}}.entry_eligible{{background:#173e32;color:#8ce5be}}.confirmed,.retested,.developing{{background:#263b53;color:#b5d9ff}}.data_unavailable,.invalidated,.expired{{color:#f4b1a0}}.detail td{{padding-top:0;padding-bottom:10px}}details{{white-space:normal;color:var(--muted)}}summary{{cursor:pointer;font-size:12px}}svg{{width:100%;max-width:1000px;margin-top:12px}}.stale .badge{{background:#493429;color:#ffd1a5}}footer{{margin-top:30px;color:var(--muted);font-size:12px}}.empty{{padding:30px;color:var(--muted)}}[hidden]{{display:none!important}}.plan{{font-style:normal;font-size:10px;color:var(--muted);margin-left:4px}}
 @media(max-width:700px){{main{{padding:22px 14px}}header{{display:block}}.stamp{{text-align:left}}h1{{font-size:28px}}.stats{{grid-template-columns:repeat(2,1fr)}}}}
 </style></head><body><main><header><div><div class="eyebrow">MARKET WATCH / RESEARCH DESK</div><h1>Breakout & breakdown screener</h1><p>Daily stocks · 4H crypto · 1H retests</p></div><div class="stamp">{stamp(payload['generated_at'])}<br><a href="latest.json">Download evidence JSON ↗</a></div></header>
 <div class="notice">{title}. Regime guides ranking; scores are not win probabilities. Costs must be configured before entry eligibility.</div>

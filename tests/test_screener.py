@@ -57,6 +57,45 @@ class ScreenerTest(unittest.TestCase):
         _, _, repeated = engine.evaluate(bundle, saved, settings, 378005)
         self.assertEqual(repeated, [])
 
+    def test_watching_rows_carry_planned_levels_only(self):
+        engine = self.engine()
+        settings = dict(engine.DEFAULTS)
+        bundle = dict(symbol='TEST', market='crypto', regime='BULLISH',
+                      setup=[bar(i, h=110, l=90, duration=14400) for i in range(25)],
+                      hourly=[bar(i, h=110, l=90) for i in range(100)])
+        result, saved, _ = engine.evaluate(bundle, None, settings, 360003)
+        self.assertEqual((result['status'], result['side']), ('WATCHING', 'SHORT'))
+        # Planned breakdown of 90..110 (ATR 20): retest at 90, stop beyond the retest band.
+        self.assertEqual(result['plan_level'], 90)
+        self.assertEqual(result['plan_entry'], 90)
+        self.assertAlmostEqual(result['plan_stop'], 96)
+        self.assertEqual(result['plan_target'], 70)
+        self.assertAlmostEqual(result['plan_rr'], 20/6)
+        # Plans are display-only: no real levels, and nothing is persisted for them.
+        for key in ('level', 'entry', 'stop', 'target', 'net_rr'):
+            self.assertNotIn(key, result)
+        self.assertFalse(any(k.startswith('plan_') for k in saved))
+
+    def test_confirmed_row_plans_entry_until_retest(self):
+        engine, settings, bundle, saved = self.setup()
+        result, _, _ = engine.evaluate(bundle, saved, settings, 374404)
+        self.assertEqual((result['level'], result['target']), (110, 130))
+        self.assertAlmostEqual(result['plan_stop'], 104)
+        self.assertNotIn('stop', result)
+
+    def test_dashboard_labels_planned_levels(self):
+        from screener import view
+        text = view.render(dict(generated_at=1, mode='live', trades=[], results=[dict(
+            symbol='TEST', market='crypto', status='WATCHING', regime='BULLISH', side='SHORT',
+            score=1, checked_at=1, volume_ratio=1, plan_level=90, plan_entry=90, plan_stop=96,
+            plan_target=70, plan_rr=20/6)]))
+        row = text.split('<tbody class="candidate"')[1]
+        self.assertIn('96', row)
+        self.assertIn('3.3333', row)
+        self.assertIn('planned', row)
+        self.assertEqual(view.number(0.00001234), '0.00001234')
+        self.assertEqual(view.number(1234.56789), '1,234.5679')
+
     def test_revised_anchor_and_future_bar_rejected(self):
         engine, settings, bundle, saved = self.setup()
         bad = copy.deepcopy(bundle)
