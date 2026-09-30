@@ -75,6 +75,20 @@ class YahooTest(unittest.TestCase):
                     with self.assertRaisesRegex(ValueError, 'Missing'):
                         data.stock('TEST')
 
+    def test_download_errors_name_the_cause(self):
+        from yfinance import exceptions
+        cases = ((ConnectionError('CONNECT tunnel failed'), 'connection failed'),
+                 (exceptions.YFRateLimitError(), 'rate limit'),
+                 (exceptions.YFPricesMissingError('TEST', ''), 'check symbol'))
+        for error, message in cases:
+            with self.subTest(message=message):
+                data = self.data()
+                data.calendar()
+                with patch('yfinance.Ticker') as ticker:
+                    ticker.return_value.history.side_effect = error
+                    with self.assertRaisesRegex(ValueError, message):
+                        data.stock('TEST')
+
     def test_unknown_provider_rejected(self):
         config = runtime.default_config()
         config['stocks']['provider'] = 'unknown'

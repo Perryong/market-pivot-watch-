@@ -30,6 +30,9 @@ def stock(symbol, sessions, cache, now):
     if saved.get('end') == expected:
         return dict(saved['bundle'], market_open=market_open)
 
+    # yfinance otherwise logs some failures and returns an empty frame, which
+    # would blame the symbol for a network outage.
+    yf.config.debug.hide_exceptions = False
     try:
         ticker = yf.Ticker(symbol.replace('.', '-'))
         daily_frame = ticker.history(period='2y', interval='1d', auto_adjust=False,
@@ -38,11 +41,15 @@ def stock(symbol, sessions, cache, now):
         intraday_frame = ticker.history(period='60d', interval='15m', auto_adjust=False,
                                         actions=False, prepost=False, repair=False, keepna=True, timeout=20)
         metadata = ticker.history_metadata
+    # Library exceptions can contain remote response bodies; keep errors curated.
+    except yf.exceptions.YFRateLimitError:
+        raise DataError('Yahoo rate limit reached; retry later') from None
+    except yf.exceptions.YFException:
+        raise DataError('Missing Yahoo price history; check symbol') from None
     except Exception:
-        # Library exceptions can contain remote response bodies; keep errors curated.
-        raise DataError('Yahoo download failed; check connection or rate limits') from None
+        raise DataError('Yahoo connection failed; check network access to Yahoo Finance') from None
     if daily_frame.empty or intraday_frame.empty:
-        raise DataError('Missing Yahoo price history; check symbol or rate limits')
+        raise DataError('Missing Yahoo price history; check symbol')
     if metadata.get('currency') != 'USD' or metadata.get('exchangeTimezoneName') != 'America/New_York':
         raise DataError('Yahoo stock provider supports US listings in USD only')
     by_date = {datetime.fromtimestamp(op, NY).date(): (op, cl) for op, cl in sessions}
