@@ -89,12 +89,32 @@ class ScreenerTest(unittest.TestCase):
             symbol='TEST', market='crypto', status='WATCHING', regime='BULLISH', side='SHORT',
             score=1, checked_at=1, volume_ratio=1, plan_level=90, plan_entry=90, plan_stop=96,
             plan_target=70, plan_rr=20/6)]))
-        row = text.split('<tbody class="candidate"')[1]
+        row = text.split('<tbody class="candidate')[1]
         self.assertIn('96', row)
         self.assertIn('3.3333', row)
         self.assertIn('planned', row)
         self.assertEqual(view.number(0.00001234), '0.00001234')
         self.assertEqual(view.number(1234.56789), '1,234.5679')
+
+    def test_dashboard_colours_direction_regime_and_levels(self):
+        from screener import view
+        common = dict(market='crypto', status='WATCHING', score=1, checked_at=1, volume_ratio=1,
+                      plan_level=90, plan_entry=90, plan_stop=96, plan_target=70)
+        text = view.render(dict(generated_at=1, mode='live', trades=[], results=[
+            dict(common, symbol='UP', side='LONG', regime='BULLISH'),
+            dict(common, symbol='DOWN', side='SHORT', regime='BEARISH')]))
+        up, down = text.split('<tbody class="candidate')[1:3]
+        self.assertTrue(up.startswith(' long"'))
+        self.assertTrue(down.startswith(' short"'))
+        self.assertIn('<span class="side long">▲ LONG', up)
+        self.assertIn('<span class="side short">▼ SHORT', down)
+        self.assertIn('data-side="LONG"', up)
+        self.assertIn('class="regime bullish"', up)
+        self.assertIn('class="regime bearish"', down)
+        self.assertIn('class="stop"', down)
+        self.assertIn('class="target"', down)
+        self.assertIn('<select id="side">', text)
+        self.assertIn("'side'", text)
 
     def test_revised_anchor_and_future_bar_rejected(self):
         engine, settings, bundle, saved = self.setup()
