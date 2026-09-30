@@ -175,6 +175,21 @@ measure runtime before expanding to hundreds of symbols. This is periodic
 research monitoring, not low-latency execution. No scheduler or hosting service
 has been provisioned by creating this code.
 
+## Scheduling on GitHub Actions (every 4 hours)
+
+`.github/workflows/screener.yml` runs `python -m screener once` at minute 7 of
+every fourth UTC hour, just after each 4H crypto close, and can also be started
+manually with **Run workflow**. It is coarser than the server schedule above:
+stock hourly retests and five-minute position checks only update every 4 hours.
+
+The journal is kept between runs in a private repository cache (not committed),
+so later scans can confirm signals against earlier baselines. GitHub evicts
+caches unused for 7 days; the next run then establishes a new baseline. Each
+run writes its state counts to the job summary and uploads the dashboard as the
+`screener-dashboard` artifact. If the `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID`
+repository secrets exist, the run adds `--notify`. Scheduled workflows run only
+from the default branch.
+
 ## Telegram
 
 Set `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, and optionally comma-separated
