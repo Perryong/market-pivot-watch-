@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-10-03 13:30:26 +08** / 2026-10-03 05:30:26 UTC.
+Checked **2026-10-03 14:30:26 +08** / 2026-10-03 06:30:26 UTC.
 
 ## BTCUSDT
 
@@ -22,7 +22,7 @@ Completed-candle state: **neutral**. No new 4H candle since the previous check.
 | Latest completed 4H close | 84,699.56 |
 | Previous completed close | 84,518.01 |
 | Close time | 2026-10-03 12:00:00 +08 / 2026-10-03 04:00:00 UTC |
-| Current price | 84,622.01 at 2026-10-03 05:30:27 UTC |
+| Current price | 84,649.55 at 2026-10-03 06:30:27 UTC |
 | Range low / high | 83,888.00 / 87,220.00 |
 
 Range definition: Provider rolling 24h range.
@@ -41,7 +41,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-Previous read was right: price remains between 84942.45 and 82874.93, below upper and above lower. Bias stays neutral/defensive: latest 4H close ticked up but did not reclaim 84942, and the quote sits below it, so confirmation is still absent. Watch 84942 and 82874. Risk: a completed 4H close above 84942 invalidates the defensive view; losing 82874 weakens stabilization.
+Previous read was right: price is still inside the frozen range, below upper and above lower. Bias stays neutral/defensive; latest 4H close rose but did not reclaim 84942.45, and quote remains below it, so confirmation is absent. Watch 84942.45 and 82874.93. Risk: a completed 4H close above 84942.45 invalidates the defensive view; losing 82874.93 weakens stabilization.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
@@ -70,7 +70,7 @@ Completed-candle state: **neutral**. No new 4H candle since the previous check.
 | Latest completed 4H close | 2,682.04 |
 | Previous completed close | 2,668.59 |
 | Close time | 2026-10-03 12:00:00 +08 / 2026-10-03 04:00:00 UTC |
-| Current price | 2,677.34 at 2026-10-03 05:30:27 UTC |
+| Current price | 2,677.60 at 2026-10-03 06:30:27 UTC |
 | Range low / high | 2,650.88 / 2,777.33 |
 
 Range definition: Provider rolling 24h range.
@@ -89,7 +89,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-Previous read was right: ETH remains between pivots with no bullish reclaim. Bias stays neutral-to-soft-bearish; latest close 2682.04 and quote 2677.34 show stabilization above the lower pivot, but momentum is muted. Key levels: 2637.38 floor, 2721.42 ceiling. Risk: chop near floor can fake a breakdown; sustained move above 2721.42 invalidates the soft-bearish view.
+Previous read was right: ETH is still between pivots with no bullish reclaim. Bias stays neutral-to-soft-bearish; latest close 2682.04 and quote 2677.6 are still above the 2637.38 floor but below the 2721.42 ceiling, so bounce lacks confirmation. Key levels: 2637.38 floor, 2721.42 ceiling. Risk: chop near floor can fake breakdown; sustained move above 2721.42 would invalidate soft-bearish view.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
