@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-10-03 23:30:26 +08** / 2026-10-03 15:30:26 UTC.
+Checked **2026-10-04 00:30:26 +08** / 2026-10-03 16:30:26 UTC.
 
 ## BTCUSDT
 
@@ -15,15 +15,15 @@ Shadow research: **WAIT / MISSED — MISSED_MOVE**. Baseline unchanged; no order
 
 4H direction / 1H entry: **WAIT / MISSED — MISSED_MOVE**. No order or fill.
 
-Completed-candle state: **neutral**. No new 4H candle since the previous check.
+Completed-candle state: **neutral**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 84,672.01 |
-| Previous completed close | 84,560.00 |
-| Close time | 2026-10-03 20:00:00 +08 / 2026-10-03 12:00:00 UTC |
-| Current price | 84,818.00 at 2026-10-03 15:30:27 UTC |
-| Range low / high | 83,888.00 / 85,554.46 |
+| Latest completed 4H close | 84,867.28 |
+| Previous completed close | 84,672.01 |
+| Close time | 2026-10-04 00:00:00 +08 / 2026-10-03 16:00:00 UTC |
+| Current price | 84,813.23 at 2026-10-03 16:30:27 UTC |
+| Range low / high | 83,888.00 / 85,296.97 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -41,7 +41,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-Previous read was right: range intact, no breakout. Bias neutral/defensive. Latest 4H close 84672 and quote 84818 remain below upper 84942.45 and above lower 82874.93, so chop persists with mild upward drift. Key levels: 84942.45, 82874.93. Risk: completed 4H close above upper invalidates defensive view; losing lower weakens stabilization.
+Previous read was right: range held, no breakout, upward drift continued. Bias still neutral/defensive with mild bullish tilt. Latest 4H close rose to 84867 but remains below upper 84942; quote 84813 sits inside range, so chop persists. Key levels: upper 84942 and lower 82874. Risk: a completed 4H close above upper invalidates defensive stance; losing lower weakens stabilization.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
@@ -63,15 +63,15 @@ Shadow research: **WAIT / INVALIDATED — SETUP_INVALIDATED**. Baseline unchange
 
 4H direction / 1H entry: **WAIT / INVALIDATED — SETUP_INVALIDATED**. No order or fill.
 
-Completed-candle state: **neutral**. No new 4H candle since the previous check.
+Completed-candle state: **neutral**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 2,684.55 |
-| Previous completed close | 2,681.51 |
-| Close time | 2026-10-03 20:00:00 +08 / 2026-10-03 12:00:00 UTC |
-| Current price | 2,680.57 at 2026-10-03 15:30:29 UTC |
-| Range low / high | 2,650.88 / 2,704.07 |
+| Latest completed 4H close | 2,681.69 |
+| Previous completed close | 2,684.55 |
+| Close time | 2026-10-04 00:00:00 +08 / 2026-10-03 16:00:00 UTC |
+| Current price | 2,680.48 at 2026-10-03 16:30:29 UTC |
+| Range low / high | 2,650.88 / 2,695.96 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -89,7 +89,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-That read was right: ETH is still inside 2637.38–2721.42, chopping just above midpoint. Bias stays neutral-to-soft-bearish; flat 4H closes show no breakout, though price is holding above the floor. Key levels remain 2637.38 and 2721.42. A sustained reclaim above 2721.42 invalidates the lean; fake breakdowns near 2637.38 are the main risk.
+That read was right: ETH remains range-bound inside 2637.38–2721.42, barely above midpoint. Bias stays neutral-to-soft-bearish; flat 4H closes show no breakout and no active setup. Key levels are 2637.38 and 2721.42. Risk: fake breakdown near the floor; a sustained 4H reclaim above 2721.42 invalidates the lean.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
