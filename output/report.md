@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-10-05 03:30:26 +08** / 2026-10-04 19:30:26 UTC.
+Checked **2026-10-05 04:30:26 +08** / 2026-10-04 20:30:26 UTC.
 
 ## BTCUSDT
 
@@ -15,15 +15,15 @@ Shadow research: **WAIT / RETEST_PENDING — WAIT_FOR_RETEST**. Baseline unchang
 
 4H direction / 1H entry: **WAIT / RETEST_PENDING — WAIT_FOR_RETEST**. No order or fill.
 
-Completed-candle state: **bullish**. No new 4H candle since the previous check.
+Completed-candle state: **bullish**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 85,256.01 |
-| Previous completed close | 85,309.46 |
-| Close time | 2026-10-05 00:00:00 +08 / 2026-10-04 16:00:00 UTC |
-| Current price | 85,462.50 at 2026-10-04 19:30:27 UTC |
-| Range low / high | 84,558.00 / 85,470.00 |
+| Latest completed 4H close | 85,428.00 |
+| Previous completed close | 85,256.01 |
+| Close time | 2026-10-05 04:00:00 +08 / 2026-10-04 20:00:00 UTC |
+| Current price | 85,474.30 at 2026-10-04 20:30:27 UTC |
+| Range low / high | 84,558.00 / 85,574.01 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -42,7 +42,7 @@ Retest: not yet confirmed on a later completed bar.
 
 ### AI analysis
 
-Last read was right: price still holds above the frozen upper pivot and retest remains unconfirmed. Bias stays cautiously bullish while 84942.45 holds on completed 4H closes; latest close 85256.01 and quote 85462.5 are above it. Key levels: 84942.45 pivot, 82874.93 support. Risk: a 4H close below 84942.45 invalidates, shifting bias neutral/bearish.
+Previous read was right: price remains above the frozen upper pivot with retest still unconfirmed. Bias cautiously bullish; latest 4H close 85428 and quote 85474 are above 84942.45, but action is waiting for retest. Key levels: 84942.45 pivot and 82874.93 support. Risk: a completed 4H close below 84942.45 invalidates, shifting bias neutral/bearish.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
@@ -64,15 +64,15 @@ Shadow research: **WAIT / INVALIDATED — SETUP_INVALIDATED**. Baseline unchange
 
 4H direction / 1H entry: **WAIT / INVALIDATED — SETUP_INVALIDATED**. No order or fill.
 
-Completed-candle state: **neutral**. No new 4H candle since the previous check.
+Completed-candle state: **neutral**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 2,698.99 |
-| Previous completed close | 2,699.99 |
-| Close time | 2026-10-05 00:00:00 +08 / 2026-10-04 16:00:00 UTC |
-| Current price | 2,703.46 at 2026-10-04 19:30:26 UTC |
-| Range low / high | 2,680.90 / 2,707.99 |
+| Latest completed 4H close | 2,701.64 |
+| Previous completed close | 2,698.99 |
+| Close time | 2026-10-05 04:00:00 +08 / 2026-10-04 20:00:00 UTC |
+| Current price | 2,702.02 at 2026-10-04 20:30:28 UTC |
+| Range low / high | 2,683.14 / 2,707.99 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -90,7 +90,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-Previous neutral read was right; price remains between the frozen pivots. ETH is still neutral: latest 4H close near 2699 and quote near 2703 sit inside 2637.38 support and 2721.42 resistance, so no confirmed breakout and chop persists. Key levels: 2637.38 and 2721.42. Risk: edge fakeouts; a sustained 4H close outside that band would invalidate neutrality.
+Previous neutral read was right; ETH remains inside the frozen pivots. Latest 4H close 2701.64 and quote 2702.02 stay range-bound below 2721.42, so bias is still neutral with no confirmed breakout. Key levels: 2637.38 support and 2721.42 resistance. Risk: edge fakeouts; a sustained 4H close outside that band would invalidate neutrality.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
