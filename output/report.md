@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-10-04 11:30:26 +08** / 2026-10-04 03:30:26 UTC.
+Checked **2026-10-04 12:30:26 +08** / 2026-10-04 04:30:26 UTC.
 
 ## BTCUSDT
 
@@ -15,14 +15,14 @@ Shadow research: **WAIT / MISSED — MISSED_MOVE**. Baseline unchanged; no order
 
 4H direction / 1H entry: **WAIT / MISSED — MISSED_MOVE**. No order or fill.
 
-Completed-candle state: **neutral**. No new 4H candle since the previous check.
+Completed-candle state: **neutral**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 84,753.56 |
-| Previous completed close | 84,842.50 |
-| Close time | 2026-10-04 08:00:00 +08 / 2026-10-04 00:00:00 UTC |
-| Current price | 84,801.37 at 2026-10-04 03:30:29 UTC |
+| Latest completed 4H close | 84,840.87 |
+| Previous completed close | 84,753.56 |
+| Close time | 2026-10-04 12:00:00 +08 / 2026-10-04 04:00:00 UTC |
+| Current price | 84,812.01 at 2026-10-04 04:30:29 UTC |
 | Range low / high | 84,525.00 / 85,037.63 |
 
 Range definition: Provider rolling 24h range.
@@ -41,7 +41,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-Previous read was right: no completed close above upper, so breakout is still unconfirmed. Bias stays neutral with mild upside tilt; latest 4H close 84753.56 and quote 84801.37 remain below upper 84942.45, keeping range intact. Key levels: upper 84942.45, lower 82874.93. Risk: a completed 4H close above upper invalidates the range view.
+Previous read was right: still no completed 4H close above upper, so breakout remains unconfirmed. Bias neutral with mild upside tilt; latest close 84840.87 and quote 84812.01 sit just below upper 84942.45, keeping range intact. Key levels: upper 84942.45, lower 82874.93. Risk: a completed 4H close above upper invalidates the range view.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
@@ -63,15 +63,15 @@ Shadow research: **WAIT / INVALIDATED — SETUP_INVALIDATED**. Baseline unchange
 
 4H direction / 1H entry: **WAIT / INVALIDATED — SETUP_INVALIDATED**. No order or fill.
 
-Completed-candle state: **neutral**. No new 4H candle since the previous check.
+Completed-candle state: **neutral**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 2,687.23 |
-| Previous completed close | 2,685.47 |
-| Close time | 2026-10-04 08:00:00 +08 / 2026-10-04 00:00:00 UTC |
-| Current price | 2,693.40 at 2026-10-04 03:30:29 UTC |
-| Range low / high | 2,672.34 / 2,696.54 |
+| Latest completed 4H close | 2,694.44 |
+| Previous completed close | 2,687.23 |
+| Close time | 2026-10-04 12:00:00 +08 / 2026-10-04 04:00:00 UTC |
+| Current price | 2,693.27 at 2026-10-04 04:30:30 UTC |
+| Range low / high | 2,672.34 / 2,697.00 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -89,7 +89,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-That read still holds: ETH remains range-bound and neutral between the frozen pivots. Latest 4H close 2687.23 and quote 2693.4 show mild upward drift but no confirmed breakout. Levels: lower 2637.38, upper 2721.42. Risk: a fake move near either pivot; a sustained 4H close beyond them would invalidate the neutral view.
+Previous read was right: ETH is still neutral and range-bound between the frozen pivots. Latest 4H close 2694.44 and quote 2693.27 show only mild upward drift, no breakout. Bias remains neutral/slightly constructive inside range. Key levels: 2637.38 lower, 2721.42 upper. Risk: fake move near either pivot; a sustained 4H close beyond them would invalidate neutral view.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
