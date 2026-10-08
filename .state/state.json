@@ -7,24 +7,28 @@
       "upper": 84942.45,
       "origin": "Frozen high/low of six prior completed 4H candles; latest excluded",
       "baseline_end": 1790337600,
-      "last_end": 1791417600,
+      "last_end": 1791432000,
       "last_bar": [
-        1791403200,
-        83434.67,
-        83606.01,
-        83119.99,
-        83321.81
+        1791417600,
+        83321.81,
+        83521.15,
+        82650.0,
+        82757.0
       ],
-      "setup": null,
+      "setup": {
+        "side": "SELL",
+        "signal_end": 1791432000,
+        "retest_close_time": null
+      },
       "shadow": {
         "version": 1,
         "range_id": "4397f7866c101e987dbefde0985e09e3b60a9f5a45f25b264e80173a1c554943",
-        "last_end": 1791417600,
-        "status": "EXPIRED",
-        "reason": "SETUP_EXPIRED",
-        "side": "BUY",
-        "signal_end": 1791100800,
-        "age_candles": 6,
+        "last_end": 1791432000,
+        "status": "RETEST_PENDING",
+        "reason": "WAIT_FOR_RETEST",
+        "side": "SELL",
+        "signal_end": 1791432000,
+        "age_candles": 0,
         "settings": {
           "retest_candles": 6,
           "atr_period": 14,
@@ -35,18 +39,17 @@
           "range_review_hours": 168
         },
         "lower": 82874.93,
-        "upper": 84942.45,
-        "resolved_at": 1791187200
+        "upper": 84942.45
       },
       "hourly": {
         "version": 1,
         "range_id": "4397f7866c101e987dbefde0985e09e3b60a9f5a45f25b264e80173a1c554943",
-        "last_end": 1791428400,
-        "status": "EXPIRED",
-        "reason": "SETUP_EXPIRED",
-        "side": "BUY",
-        "signal_end": 1791100800,
-        "age_candles": 24,
+        "last_end": 1791432000,
+        "status": "RETEST_PENDING",
+        "reason": "WAIT_FOR_RETEST",
+        "side": "SELL",
+        "signal_end": 1791432000,
+        "age_candles": 0,
         "settings": {
           "retest_candles": 24,
           "atr_period": 14,
@@ -59,14 +62,13 @@
         "lower": 82874.93,
         "upper": 84942.45,
         "last_bar": [
-          1791424800,
-          83099.21,
-          83297.25,
-          82912.01,
-          83168.01
+          1791428400,
+          83168.01,
+          83200.0,
+          82650.0,
+          82757.0
         ],
-        "last_4h_end": 1791417600,
-        "resolved_at": 1791187200
+        "last_4h_end": 1791432000
       }
     },
     "XAUUSD": {
@@ -75,28 +77,28 @@
       "upper": 4300.395,
       "origin": "Frozen high/low of six prior completed 4H candles; latest excluded",
       "baseline_end": 1790611200,
-      "last_end": 1791417600,
+      "last_end": 1791432000,
       "last_bar": [
-        1791403200,
-        4101.025,
-        4114.31,
-        4100.745,
-        4108.385
+        1791417600,
+        4108.195,
+        4143.425,
+        4105.56,
+        4136.475
       ],
       "setup": {
         "side": "SELL",
         "signal_end": 1791360000,
-        "retest_close_time": null
+        "retest_close_time": 1791432000
       },
       "shadow": {
         "version": 1,
         "range_id": "8f1e79670961ea1a78fea6b29e024993c837b3c2f664fa6fb9b4a1f10c3c4c5d",
-        "last_end": 1791417600,
-        "status": "RETEST_PENDING",
-        "reason": "WAIT_FOR_RETEST",
+        "last_end": 1791432000,
+        "status": "REJECTED",
+        "reason": "COSTS_NOT_CONFIGURED",
         "side": "SELL",
         "signal_end": 1791360000,
-        "age_candles": 4,
+        "age_candles": 5,
         "settings": {
           "retest_candles": 6,
           "atr_period": 14,
@@ -107,12 +109,24 @@
           "range_review_hours": 168
         },
         "lower": 4140.775,
-        "upper": 4300.395
+        "upper": 4300.395,
+        "entry": 4135.055,
+        "target": 3981.154999999999,
+        "evaluated_at": 1791433827.1274748,
+        "quote_time": 1791433830.887882,
+        "atr": 29.660000000000178,
+        "stop": 4146.3910000000005,
+        "distance_atr": 0.19285232636545216,
+        "gross_rr": 13.576217360620872,
+        "rejection_reasons": [
+          "COSTS_NOT_CONFIGURED"
+        ],
+        "resolved_at": 1791432000
       },
       "hourly": {
         "version": 1,
         "range_id": "8f1e79670961ea1a78fea6b29e024993c837b3c2f664fa6fb9b4a1f10c3c4c5d",
-        "last_end": 1791428400,
+        "last_end": 1791432000,
         "status": "INVALIDATED",
         "reason": "DATA_SESSION_GAP",
         "side": "SELL",
@@ -130,13 +144,13 @@
         "lower": 4140.775,
         "upper": 4300.395,
         "last_bar": [
-          1791424800,
-          4133.145,
-          4143.425,
-          4132.0,
-          4133.51
+          1791428400,
+          4133.535,
+          4140.24,
+          4128.545,
+          4136.475
         ],
-        "last_4h_end": 1791417600,
+        "last_4h_end": 1791432000,
         "resolved_at": 1791414000
       }
     },
@@ -215,13 +229,13 @@
       "upper": 2721.42,
       "origin": "Frozen high/low of six prior completed 4H candles; latest excluded",
       "baseline_end": 1790683200,
-      "last_end": 1791417600,
+      "last_end": 1791432000,
       "last_bar": [
-        1791403200,
-        2571.1,
-        2578.51,
-        2564.77,
-        2574.14
+        1791417600,
+        2574.15,
+        2587.28,
+        2563.55,
+        2564.34
       ],
       "setup": {
         "side": "SELL",
@@ -231,7 +245,7 @@
       "shadow": {
         "version": 1,
         "range_id": "5a38c0cb148ec3bac352d7e8395dd36c09bf9a7a57262f9374c3497c66baaf78",
-        "last_end": 1791417600,
+        "last_end": 1791432000,
         "status": "MISSED",
         "reason": "MISSED_MOVE",
         "side": "SELL",
@@ -253,7 +267,7 @@
       "hourly": {
         "version": 1,
         "range_id": "5a38c0cb148ec3bac352d7e8395dd36c09bf9a7a57262f9374c3497c66baaf78",
-        "last_end": 1791428400,
+        "last_end": 1791432000,
         "status": "MISSED",
         "reason": "MISSED_MOVE",
         "side": "SELL",
@@ -271,13 +285,13 @@
         "lower": 2637.38,
         "upper": 2721.42,
         "last_bar": [
-          1791424800,
-          2578.04,
-          2585.91,
-          2572.51,
-          2580.32
+          1791428400,
+          2580.31,
+          2580.9,
+          2563.55,
+          2564.34
         ],
-        "last_4h_end": 1791417600,
+        "last_4h_end": 1791432000,
         "resolved_at": 1791381600
       }
     },
@@ -325,34 +339,34 @@
       "upper": 93.283,
       "origin": "Frozen high/low of six prior completed 4H candles; latest excluded",
       "baseline_end": 1791288000,
-      "last_end": 1791417600,
+      "last_end": 1791432000,
       "last_bar": [
-        1791403200,
-        90.63,
-        90.959,
-        90.408,
-        90.64
+        1791417600,
+        90.65,
+        91.671,
+        90.395,
+        91.499
       ],
       "setup": null,
       "shadow": {
         "version": 1,
         "range_id": "d2f9c1818372f41b3483dcf78c96b10824500a773cc52fb6d214b9267a47e024",
-        "last_end": 1791417600,
+        "last_end": 1791432000,
         "status": "WATCHING",
         "reason": "WAIT_FOR_NEW_BREAKOUT"
       },
       "hourly": {
         "version": 1,
         "range_id": "d2f9c1818372f41b3483dcf78c96b10824500a773cc52fb6d214b9267a47e024",
-        "last_end": 1791428400,
+        "last_end": 1791432000,
         "last_bar": [
-          1791424800,
-          91.256,
-          91.607,
-          91.087,
-          91.459
+          1791428400,
+          91.464,
+          91.671,
+          91.283,
+          91.499
         ],
-        "last_4h_end": 1791417600,
+        "last_4h_end": 1791432000,
         "status": "WATCHING",
         "reason": "RANGE_CHANGED"
       }
@@ -363,13 +377,13 @@
       "upper": 7731.0,
       "origin": "Frozen high/low of six prior completed 4H candles; latest excluded",
       "baseline_end": 1790337600,
-      "last_end": 1791417600,
+      "last_end": 1791432000,
       "last_bar": [
-        1791403200,
-        7808.1,
+        1791417600,
+        7809.8,
         7814.8,
-        7804.6,
-        7809.4
+        7802.0,
+        7803.0
       ],
       "setup": {
         "side": "BUY",
@@ -379,7 +393,7 @@
       "shadow": {
         "version": 1,
         "range_id": "94d384cf9aac15a7d2a95a4e2d4489f8b64252dcf836c13f2473f49a01d28f0d",
-        "last_end": 1791417600,
+        "last_end": 1791432000,
         "status": "MISSED",
         "reason": "MISSED_MOVE",
         "side": "BUY",
@@ -401,7 +415,7 @@
       "hourly": {
         "version": 1,
         "range_id": "94d384cf9aac15a7d2a95a4e2d4489f8b64252dcf836c13f2473f49a01d28f0d",
-        "last_end": 1791428400,
+        "last_end": 1791432000,
         "status": "INVALIDATED",
         "reason": "DATA_SESSION_GAP",
         "side": "BUY",
@@ -419,13 +433,13 @@
         "lower": 7655.6,
         "upper": 7731.0,
         "last_bar": [
-          1791424800,
-          7812.4,
-          7814.8,
-          7806.6,
-          7808.0
+          1791428400,
+          7808.4,
+          7808.8,
+          7802.8,
+          7803.0
         ],
-        "last_4h_end": 1791417600,
+        "last_4h_end": 1791432000,
         "resolved_at": 1791241200
       }
     }
