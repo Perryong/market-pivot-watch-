@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-10-10 05:30:27 +08** / 2026-10-09 21:30:27 UTC.
+Checked **2026-10-10 06:30:27 +08** / 2026-10-09 22:30:27 UTC.
 
 ## BTCUSDT
 
@@ -22,7 +22,7 @@ Completed-candle state: **bearish**. No new 4H candle since the previous check.
 | Latest completed 4H close | 82,337.03 |
 | Previous completed close | 82,884.00 |
 | Close time | 2026-10-10 04:00:00 +08 / 2026-10-09 20:00:00 UTC |
-| Current price | 82,569.20 at 2026-10-09 21:30:28 UTC |
+| Current price | 82,524.01 at 2026-10-09 22:30:27 UTC |
 | Range low / high | 81,603.52 / 83,528.98 |
 
 Range definition: Provider rolling 24h range.
@@ -42,7 +42,7 @@ Retest: not yet confirmed on a later completed bar.
 
 ### AI analysis
 
-Previous read was right: still below 82874.93 and no retest yet. Bias bearish; latest 4H closed below the lower pivot, so breakdown active but unconfirmed. Key levels: 82874.93 invalidation, 80807 support target, 84942.45 upper resistance. Risk: whipsaw or failed breakdown; a completed 4H close above 82874.93 invalidates.
+Previous read remains correct: still below 82874.93 with no retest, and the latest 4H close keeps the breakdown active but unconfirmed. Bias
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
@@ -71,7 +71,7 @@ Completed-candle state: **bearish**. No new 4H candle since the previous check.
 | Latest completed 4H close | 2,477.54 |
 | Previous completed close | 2,489.03 |
 | Close time | 2026-10-10 04:00:00 +08 / 2026-10-09 20:00:00 UTC |
-| Current price | 2,483.53 at 2026-10-09 21:30:29 UTC |
+| Current price | 2,486.91 at 2026-10-09 22:30:29 UTC |
 | Range low / high | 2,471.05 / 2,520.54 |
 
 Range definition: Provider rolling 24h range.
@@ -90,7 +90,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-Previous read was right: ETH is still capped below 2527.57 and holding above 2467.86. Bias remains softly bearish/range-bound; latest 4H close at 2477.54 with quote near 2483.53 shows continued support testing but no breakdown. Key levels: 2467.86 then 2408.15 support; 2527.57 then 2587.28 resistance. Risk: a 4H close above 2527.57 would invalidate the bearish lean.
+Previous read was right: ETH remains capped below 2527.57 and above 2467.86. Bias stays softly bearish/range-bound; bearish 4H close near 2477.54 with quote at 2486.91 shows support still holding, no confirmed breakdown. Key levels: 2467.86 then 2408.15 support; 2527.57 then 2587.28 resistance. Risk: a 4H close above 2527.57 would invalidate the bearish lean.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
