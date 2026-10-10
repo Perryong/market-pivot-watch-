@@ -44,12 +44,12 @@
       "hourly": {
         "version": 1,
         "range_id": "4397f7866c101e987dbefde0985e09e3b60a9f5a45f25b264e80173a1c554943",
-        "last_end": 1791612000,
-        "status": "RETEST_PENDING",
-        "reason": "WAIT_FOR_RETEST",
+        "last_end": 1791615600,
+        "status": "REJECTED",
+        "reason": "TOO_FAR_FROM_PIVOT",
         "side": "SELL",
         "signal_end": 1791576000,
-        "age_candles": 10,
+        "age_candles": 11,
         "settings": {
           "retest_candles": 24,
           "atr_period": 14,
@@ -62,13 +62,27 @@
         "lower": 82874.93,
         "upper": 84942.45,
         "last_bar": [
-          1791608400,
-          82686.87,
-          82844.01,
-          82666.02,
-          82844.01
+          1791612000,
+          82844.0,
+          82892.01,
+          82709.06,
+          82738.01
         ],
-        "last_4h_end": 1791604800
+        "last_4h_end": 1791604800,
+        "retest_close_time": 1791615600,
+        "entry": 82640.01,
+        "target": 80807.40999999999,
+        "evaluated_at": 1791617427.1062946,
+        "quote_time": 1791617426.993,
+        "atr": 182.62857142856956,
+        "stop": 82910.27285714285,
+        "distance_atr": 1.2863266583229072,
+        "gross_rr": 6.780805987821571,
+        "rejection_reasons": [
+          "TOO_FAR_FROM_PIVOT",
+          "COSTS_NOT_CONFIGURED"
+        ],
+        "resolved_at": 1791615600
       }
     },
     "XAUUSD": {
@@ -244,13 +258,13 @@
       "hourly": {
         "version": 1,
         "range_id": "e106f89aca18ddff49af955872fee79482a3d007a7dcfdd3203f60caafeed14e",
-        "last_end": 1791612000,
+        "last_end": 1791615600,
         "last_bar": [
-          1791608400,
-          2494.97,
+          1791612000,
+          2498.17,
           2499.14,
-          2493.58,
-          2498.17
+          2493.08,
+          2493.33
         ],
         "last_4h_end": 1791604800,
         "status": "WATCHING",
