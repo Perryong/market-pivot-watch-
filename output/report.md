@@ -1,13 +1,13 @@
 # Four-hour pivot watch
 
-Checked **2026-10-10 10:30:27 +08** / 2026-10-10 02:30:27 UTC.
+Checked **2026-10-10 11:30:27 +08** / 2026-10-10 03:30:27 UTC.
 
 ## BTCUSDT
 
 STATUS: NO NEW SIGNAL
 ACTION NOW: WAIT FOR CONFIRMATION
 
-**COMBINED (4H + 1H): HOLD** — 4H bearish but 1H trend↑ + momentum↑ but bearish gap overhead
+**COMBINED (4H + 1H): HOLD** — 4H bearish but 1H trend↓ + momentum↓ but support gap below
 
 [Open actual TradingView 4H chart](https://www.tradingview.com/chart/?symbol=BINANCE%3ABTCUSDT&interval=240)
 
@@ -22,8 +22,8 @@ Completed-candle state: **bearish**. No new 4H candle since the previous check.
 | Latest completed 4H close | 82,635.55 |
 | Previous completed close | 82,337.03 |
 | Close time | 2026-10-10 08:00:00 +08 / 2026-10-10 00:00:00 UTC |
-| Current price | 82,627.60 at 2026-10-10 02:30:27 UTC |
-| Range low / high | 81,910.44 / 83,528.98 |
+| Current price | 82,589.17 at 2026-10-10 03:30:27 UTC |
+| Range low / high | 82,174.73 / 83,528.98 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -42,7 +42,7 @@ Retest: not yet confirmed on a later completed bar.
 
 ### AI analysis
 
-That read still holds: price remains below 82874.93 with no retest. Bias stays bearish; the 4H close edged up to 82635.55 but is still under the lower pivot, so pressure persists yet lacks confirmation. 82874.93 caps/invalidates; 80807.41 is downside reference. Risk: any completed 4H close above 82874.93 flips the view.
+Prior read was right: price remained below 82874.93 with no retest. Bias stays bearish; latest 4H close 82635.55 and quote 82589.17 remain under the lower pivot, so pressure persists but confirmation is still missing. Key levels: 82874.93 caps/invalidates; 80807.41 is downside reference, with 84942.45 above. Risk: any completed 4H close above 82874.93 flips the view.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
@@ -56,7 +56,7 @@ Selling an existing long and opening a short are different actions. Targets are 
 STATUS: NO NEW SIGNAL
 ACTION NOW: WAIT FOR CONFIRMATION
 
-**COMBINED (4H + 1H): HOLD** — 4H bearish but 1H trend↓ but momentum↑
+**COMBINED (4H + 1H): SELL** — 4H bearish + 1H trend↓ + momentum↓, no support gap below
 
 [Open actual TradingView 4H chart](https://www.tradingview.com/chart/?symbol=BINANCE%3AETHUSDT&interval=240)
 
@@ -71,7 +71,7 @@ Completed-candle state: **bearish**. No new 4H candle since the previous check.
 | Latest completed 4H close | 2,487.70 |
 | Previous completed close | 2,477.54 |
 | Close time | 2026-10-10 08:00:00 +08 / 2026-10-10 00:00:00 UTC |
-| Current price | 2,493.57 at 2026-10-10 02:30:28 UTC |
+| Current price | 2,491.19 at 2026-10-10 03:30:29 UTC |
 | Range low / high | 2,474.34 / 2,520.54 |
 
 Range definition: Provider rolling 24h range.
@@ -90,7 +90,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-That read held: no confirmed break, price remains inside 2467.86-2527.57. Bias stays soft bearish/range. Latest 4H close 2487.7 bounced slightly but is still below 2527.57; quote 2493.57. Key support 2467.86 then 2408.15; resistance 2527.57 then 2587.28. Risk: a 4H close above 2527.57 invalidates the bearish lean; losing 2467.86 confirms breakdown.
+That read held: no break, price still inside 2467.86-2527.57. Bias remains soft bearish/range; latest 4H close 2487.7 edged up from 2477.54 but stays below 2527.57, so no confirmation. Key levels: support 2467.86 then 2408.15; resistance 2527.57 then 2587.28. Risk: a 4H close above 2527.57 invalidates the bearish lean; losing 2467.86 confirms breakdown.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
