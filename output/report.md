@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-10-10 16:30:27 +08** / 2026-10-10 08:30:27 UTC.
+Checked **2026-10-10 17:30:27 +08** / 2026-10-10 09:30:27 UTC.
 
 ## BTCUSDT
 
@@ -15,14 +15,14 @@ Shadow research: **WAIT / REJECTED — COSTS_NOT_CONFIGURED**. Baseline unchange
 
 4H direction / 1H entry: **WAIT / REJECTED — TOO_FAR_FROM_PIVOT**. No order or fill.
 
-Completed-candle state: **bearish**. New completed candle processed.
+Completed-candle state: **bearish**. No new 4H candle since the previous check.
 
 | Market data | Value |
 |---|---|
 | Latest completed 4H close | 82,807.47 |
 | Previous completed close | 82,596.83 |
 | Close time | 2026-10-10 16:00:00 +08 / 2026-10-10 08:00:00 UTC |
-| Current price | 82,827.43 at 2026-10-10 08:30:26 UTC |
+| Current price | 82,911.17 at 2026-10-10 09:30:26 UTC |
 | Range low / high | 82,285.71 / 83,528.98 |
 
 Range definition: Provider rolling 24h range.
@@ -40,12 +40,9 @@ Pivot selection: Frozen high/low of six prior completed 4H candles; latest exclu
 Tracked setup: **SELL**, first confirmed 2026-10-09 20:00:00 UTC. Invalidation: completed close above 82,874.93.
 Retest: confirmed on a later completed bar at 2026-10-10 08:00:00 UTC; this is not a promise of a current fill.
 
-Events processed this run:
-- RETEST_CONFIRMED at 2026-10-10 08:00:00 UTC, close 82,807.47
-
 ### AI analysis
 
-Previous read was directionally right; price stayed under 82874.93, and a retest is now confirmed. Latest 4H close 82807.47 and quote 82827.43 remain below the lower pivot, so bias stays bearish but confirmation is still pending. Key levels: 82874.93 caps/invalidation, downside 80807.41 then 78739.89. Risk: a completed 4H close above 82874.93 invalidates.
+Previous read was right on the completed close, though the live quote has now edged above the pivot. Completed 4H close stays below 82874.93, so bearish bias holds, but the quote above it signals an unresolved retest and no confirmation. Key levels: 82874.93 caps/invalidation; downside 80807.41 then 78739.89. Risk: a completed 4H close above 82874.93 invalidates.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
@@ -67,14 +64,14 @@ Shadow research: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. Baseline unchang
 
 4H direction / 1H entry: **WAIT / WATCHING — RANGE_CHANGED**. No order or fill.
 
-Completed-candle state: **bearish**. New completed candle processed.
+Completed-candle state: **bearish**. No new 4H candle since the previous check.
 
 | Market data | Value |
 |---|---|
 | Latest completed 4H close | 2,495.48 |
 | Previous completed close | 2,491.38 |
 | Close time | 2026-10-10 16:00:00 +08 / 2026-10-10 08:00:00 UTC |
-| Current price | 2,494.37 at 2026-10-10 08:30:29 UTC |
+| Current price | 2,497.76 at 2026-10-10 09:30:28 UTC |
 | Range low / high | 2,474.34 / 2,520.54 |
 
 Range definition: Provider rolling 24h range.
@@ -93,7 +90,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-Previous read was right: no breakout, still range-bound under 2527.57. Updated: soft bearish/range bias holds. Latest 4H close and quote sit mid-range, above 2467.86 support but below 2527.57 resistance; no confirmation. Watch 2527.57 then 2587.28; support 2467.86 then 2408.15. Risk: 4H close above 2527.57 invalidates bearish lean; losing 2467.86 would confirm breakdown.
+Previous read was right: no breakout, still range-bound under 2527.57. Updated: soft bearish/range bias holds; price mid-range, above 2467.86 but below 2527.57, latest 4H closes slightly higher but unconfirmed. Watch 2527.57 then 2587.28; support 2467.86 then 2408.15. Risk: 4H close above 2527.57 invalidates bearish lean; losing 2467.86 confirms breakdown.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
