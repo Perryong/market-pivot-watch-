@@ -55,7 +55,7 @@
       "hourly": {
         "version": 1,
         "range_id": "4397f7866c101e987dbefde0985e09e3b60a9f5a45f25b264e80173a1c554943",
-        "last_end": 1791892800,
+        "last_end": 1791896400,
         "status": "REJECTED",
         "reason": "TOO_FAR_FROM_PIVOT",
         "side": "SELL",
@@ -73,11 +73,11 @@
         "lower": 82874.93,
         "upper": 84942.45,
         "last_bar": [
-          1791889200,
-          83341.42,
-          83739.95,
-          83146.53,
-          83360.01
+          1791892800,
+          83360.01,
+          83481.62,
+          83122.95,
+          83360.0
         ],
         "last_4h_end": 1791892800,
         "retest_close_time": 1791824400,
@@ -147,7 +147,7 @@
       "hourly": {
         "version": 1,
         "range_id": "8f1e79670961ea1a78fea6b29e024993c837b3c2f664fa6fb9b4a1f10c3c4c5d",
-        "last_end": 1791892800,
+        "last_end": 1791896400,
         "status": "INVALIDATED",
         "reason": "DATA_SESSION_GAP",
         "side": "SELL",
@@ -165,11 +165,11 @@
         "lower": 4140.775,
         "upper": 4300.395,
         "last_bar": [
-          1791889200,
-          4181.615,
-          4189.185,
-          4179.86,
-          4185.525
+          1791892800,
+          4185.565,
+          4190.88,
+          4177.56,
+          4179.615
         ],
         "last_4h_end": 1791892800,
         "resolved_at": 1791414000
@@ -287,12 +287,12 @@
       "hourly": {
         "version": 1,
         "range_id": "65299f865c6535da9ba810b434ecb0c87e46e3baf1652f4aaaacd77bac3ee1cf",
-        "last_end": 1791892800,
+        "last_end": 1791896400,
         "status": "RETEST_PENDING",
         "reason": "WAIT_FOR_RETEST",
         "side": "SELL",
         "signal_end": 1791892800,
-        "age_candles": 0,
+        "age_candles": 1,
         "settings": {
           "retest_candles": 24,
           "atr_period": 14,
@@ -305,11 +305,11 @@
         "lower": 2504.26,
         "upper": 2579.88,
         "last_bar": [
-          1791889200,
-          2498.97,
-          2525.0,
-          2489.0,
-          2500.86
+          1791892800,
+          2500.85,
+          2507.2,
+          2493.85,
+          2505.53
         ],
         "last_4h_end": 1791892800
       }
@@ -395,12 +395,12 @@
       "hourly": {
         "version": 1,
         "range_id": "d2f9c1818372f41b3483dcf78c96b10824500a773cc52fb6d214b9267a47e024",
-        "last_end": 1791892800,
-        "status": "RETEST_PENDING",
-        "reason": "WAIT_FOR_RETEST",
+        "last_end": 1791896400,
+        "status": "REJECTED",
+        "reason": "TOO_FAR_FROM_PIVOT",
         "side": "BUY",
         "signal_end": 1791892800,
-        "age_candles": 0,
+        "age_candles": 1,
         "settings": {
           "retest_candles": 24,
           "atr_period": 14,
@@ -413,13 +413,27 @@
         "lower": 90.115,
         "upper": 93.283,
         "last_bar": [
-          1791889200,
-          92.763,
-          93.622,
-          92.667,
-          93.485
+          1791892800,
+          93.506,
+          93.642,
+          92.992,
+          93.611
         ],
-        "last_4h_end": 1791892800
+        "last_4h_end": 1791892800,
+        "retest_close_time": 1791896400,
+        "entry": 93.8,
+        "target": 96.45100000000001,
+        "evaluated_at": 1791898227.0815854,
+        "quote_time": 1791898232.801698,
+        "atr": 0.5376428571428552,
+        "stop": 92.93823571428572,
+        "distance_atr": 0.9616048890660248,
+        "gross_rr": 3.0762472336652142,
+        "rejection_reasons": [
+          "TOO_FAR_FROM_PIVOT",
+          "COSTS_NOT_CONFIGURED"
+        ],
+        "resolved_at": 1791896400
       }
     },
     "SPX500": {
@@ -462,7 +476,7 @@
       "hourly": {
         "version": 1,
         "range_id": "94d384cf9aac15a7d2a95a4e2d4489f8b64252dcf836c13f2473f49a01d28f0d",
-        "last_end": 1791892800,
+        "last_end": 1791896400,
         "status": "INVALIDATED",
         "reason": "DATA_SESSION_GAP",
         "side": "BUY",
@@ -480,11 +494,11 @@
         "lower": 7655.6,
         "upper": 7731.0,
         "last_bar": [
-          1791889200,
-          7809.6,
-          7814.2,
-          7805.0,
-          7809.2
+          1791892800,
+          7809.4,
+          7815.4,
+          7807.8,
+          7810.0
         ],
         "last_4h_end": 1791892800,
         "resolved_at": 1791241200
