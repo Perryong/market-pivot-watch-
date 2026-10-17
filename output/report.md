@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-10-17 09:30:27 +08** / 2026-10-17 01:30:27 UTC.
+Checked **2026-10-17 10:30:27 +08** / 2026-10-17 02:30:27 UTC.
 
 ## BTCUSDT
 
@@ -22,7 +22,7 @@ Completed-candle state: **bearish**. No new 4H candle since the previous check.
 | Latest completed 4H close | 81,615.64 |
 | Previous completed close | 81,589.86 |
 | Close time | 2026-10-17 08:00:00 +08 / 2026-10-17 00:00:00 UTC |
-| Current price | 81,540.90 at 2026-10-17 01:30:28 UTC |
+| Current price | 81,437.47 at 2026-10-17 02:30:27 UTC |
 | Range low / high | 80,809.25 / 82,940.81 |
 
 Range definition: Provider rolling 24h range.
@@ -42,7 +42,7 @@ Retest: confirmed on a later completed bar at 2026-10-16 12:00:00 UTC; this is n
 
 ### AI analysis
 
-Previous read was right: price held below 82874.93 and above 80807.41, no decisive break. Bias stays bearish; latest 4H close is flat and quote is slightly lower, so bounce remains capped/stalling. Key levels: 82874.93 caps/invalidates; 80807.41 support, then 78739.89. Risk: completed 4H close above 82874.93 flips view; losing 80807.41 strengthens bearish setup.
+Previous read was right: price held below 82874.93 and above 80807.41, no decisive break. Bias stays bearish; latest 4H close is flat and quote is slightly lower, so the bounce remains capped/stalling. Key levels: 82874.93 caps/invalidates; 80807.41 support, then 78739.89. Risk: completed 4H close above 82874.93 flips view; losing 80807.41 strengthens bearish setup.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
@@ -71,7 +71,7 @@ Completed-candle state: **neutral**. No new 4H candle since the previous check.
 | Latest completed 4H close | 2,423.54 |
 | Previous completed close | 2,413.21 |
 | Close time | 2026-10-17 08:00:00 +08 / 2026-10-17 00:00:00 UTC |
-| Current price | 2,420.75 at 2026-10-17 01:30:33 UTC |
+| Current price | 2,420.36 at 2026-10-17 02:30:29 UTC |
 | Range low / high | 2,393.48 / 2,494.00 |
 
 Range definition: Provider rolling 24h range.
@@ -90,7 +90,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-The prior neutral read held: price remains between 2413.52 and 2530.44. Bias neutral. Latest 4H close 2423.54 and quote 2420.75 hold above lower pivot 2413.52, so the breakdown still looks failed but upside is unconfirmed. Watch 2413.52 support and 2530.44 resistance. Risk: a completed 4H close below 2413.52 revives the bearish case.
+Previous neutral read held: price stayed above the lower pivot, though upside remains unconfirmed. Bias neutral; latest 4H close 2423.54 and quote 2420.36 sit just above 2413.52, keeping the failed-breakdown view intact. Watch 2413.52 support and 2530.44 resistance. Risk: a completed 4H close below 2413.52 revives the bearish case.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
