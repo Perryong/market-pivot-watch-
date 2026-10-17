@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-10-17 15:30:27 +08** / 2026-10-17 07:30:27 UTC.
+Checked **2026-10-17 16:30:27 +08** / 2026-10-17 08:30:27 UTC.
 
 ## BTCUSDT
 
@@ -15,14 +15,14 @@ Shadow research: **WAIT / MISSED — MISSED_MOVE**. Baseline unchanged; no order
 
 4H direction / 1H entry: **WAIT / MISSED — MISSED_MOVE**. No order or fill.
 
-Completed-candle state: **bearish**. No new 4H candle since the previous check.
+Completed-candle state: **bearish**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 81,573.58 |
-| Previous completed close | 81,615.64 |
-| Close time | 2026-10-17 12:00:00 +08 / 2026-10-17 04:00:00 UTC |
-| Current price | 81,658.00 at 2026-10-17 07:30:27 UTC |
+| Latest completed 4H close | 81,738.87 |
+| Previous completed close | 81,573.58 |
+| Close time | 2026-10-17 16:00:00 +08 / 2026-10-17 08:00:00 UTC |
+| Current price | 81,719.28 at 2026-10-17 08:30:27 UTC |
 | Range low / high | 80,809.25 / 82,940.81 |
 
 Range definition: Provider rolling 24h range.
@@ -42,7 +42,7 @@ Retest: confirmed on a later completed bar at 2026-10-16 12:00:00 UTC; this is n
 
 ### AI analysis
 
-Previous read was right: price stayed below 82874.93 and above 80807.41, with another slightly lower 4H close. Bias remains bearish but mid-range; latest action gives no bounce confirmation, so status stays wait-for-confirmation. Key levels: 82874.93 caps/invalidates, 80807.41 support, then 78739.89. Risk: completed 4H close above 82874.93 flips the view; losing 80807.41 would strengthen bearish.
+Previous read was mostly right on range and bearish bias, though the newest 4H close edged up rather than lower. Bias remains bearish but mid-range: price is still capped below 82874.93 and holding above 80807.41, so no confirmation. Watch 82874.93 as invalidation and 80807.41 then 78739.89 as support. Risk: a completed 4H close above 82874.93 flips the view; losing 80807.41 strengthens bearish.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
@@ -64,14 +64,14 @@ Shadow research: **WAIT / INVALIDATED — SETUP_INVALIDATED**. Baseline unchange
 
 4H direction / 1H entry: **WAIT / INVALIDATED — SETUP_INVALIDATED**. No order or fill.
 
-Completed-candle state: **neutral**. No new 4H candle since the previous check.
+Completed-candle state: **neutral**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 2,428.06 |
-| Previous completed close | 2,423.54 |
-| Close time | 2026-10-17 12:00:00 +08 / 2026-10-17 04:00:00 UTC |
-| Current price | 2,434.40 at 2026-10-17 07:30:29 UTC |
+| Latest completed 4H close | 2,435.04 |
+| Previous completed close | 2,428.06 |
+| Close time | 2026-10-17 16:00:00 +08 / 2026-10-17 08:00:00 UTC |
+| Current price | 2,434.54 at 2026-10-17 08:30:28 UTC |
 | Range low / high | 2,393.48 / 2,494.00 |
 
 Range definition: Provider rolling 24h range.
@@ -90,7 +90,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-That read was right: support held and neutrality persisted. Bias remains neutral; latest 4H close 2428.06 and quote 2434.40 sit above lower pivot 2413.52 but well below upper 2530.44, so range structure persists and upside is unconfirmed. Watch 2413.52 support and 2530.44 resistance. Risk: a completed 4H close below 2413.52 would invalidate neutrality and revive the bearish case.
+That read was right: support held and neutrality persisted. Bias stays neutral; latest 4H close 2435.04 and quote 2434.54 remain above lower pivot 2413.52 but well below upper 2530.44, so range structure persists and upside is unconfirmed. Watch 2413.52 support and 2530.44 resistance. Risk: a completed 4H close below 2413.52 would invalidate neutrality and revive bearish case.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
