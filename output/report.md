@@ -1,13 +1,13 @@
 # Four-hour pivot watch
 
-Checked **2026-10-19 06:30:27 +08** / 2026-10-18 22:30:27 UTC.
+Checked **2026-10-19 07:30:27 +08** / 2026-10-18 23:30:27 UTC.
 
 ## BTCUSDT
 
 STATUS: NO NEW SIGNAL
 ACTION NOW: WAIT FOR CONFIRMATION
 
-**COMBINED (4H + 1H): HOLD** — 4H bearish but 1H trend↓ but momentum↑
+**COMBINED (4H + 1H): HOLD** — 4H bearish but 1H trend↑ + momentum↑, no gap overhead
 
 [Open actual TradingView 4H chart](https://www.tradingview.com/chart/?symbol=BINANCE%3ABTCUSDT&interval=240)
 
@@ -22,7 +22,7 @@ Completed-candle state: **bearish**. No new 4H candle since the previous check.
 | Latest completed 4H close | 80,880.02 |
 | Previous completed close | 81,178.18 |
 | Close time | 2026-10-19 04:00:00 +08 / 2026-10-18 20:00:00 UTC |
-| Current price | 81,533.84 at 2026-10-18 22:30:28 UTC |
+| Current price | 82,204.91 at 2026-10-18 23:30:27 UTC |
 | Range low / high | 80,684.36 / 82,295.47 |
 
 Range definition: Provider rolling 24h range.
@@ -42,7 +42,7 @@ Retest: confirmed on a later completed bar at 2026-10-16 12:00:00 UTC; this is n
 
 ### AI analysis
 
-Previous read was right: bearish bias but no breakdown, with 4H close still between 80807.41 and 82874.93. Updated read: latest completed 4H close 80880.02 keeps pressure on 80807.41 without breaking it; current quote 81533.84 is not a completed confirmation. Bias stays bearish. Watch 80807.41 then 78739.89 below; 82874.93 is invalidation. Risk: a completed 4H close above 82874.93 negates the bearish view.
+Previous read held up: bearish bias with no completed breakdown, despite the intraday bounce. Updated read: latest 4H close 80880.02 and current quote 82204.91 remain above 80807.41 but below 82874.93, so bearish pressure persists without confirmation. Watch 80807.41 then 78739.89 below; 82874.93 is invalidation. Risk: a completed 4H close above 82874.93 negates the bearish view.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
@@ -56,7 +56,7 @@ Selling an existing long and opening a short are different actions. Targets are 
 STATUS: NO NEW SIGNAL
 ACTION NOW: WAIT FOR CONFIRMATION
 
-**COMBINED (4H + 1H): HOLD** — 4H bearish but 1H trend↓ but momentum↑
+**COMBINED (4H + 1H): HOLD** — 4H bearish but 1H trend↑ + momentum↑, no gap overhead
 
 [Open actual TradingView 4H chart](https://www.tradingview.com/chart/?symbol=BINANCE%3AETHUSDT&interval=240)
 
@@ -71,7 +71,7 @@ Completed-candle state: **bearish**. No new 4H candle since the previous check.
 | Latest completed 4H close | 2,338.25 |
 | Previous completed close | 2,379.60 |
 | Close time | 2026-10-19 04:00:00 +08 / 2026-10-18 20:00:00 UTC |
-| Current price | 2,385.97 at 2026-10-18 22:30:30 UTC |
+| Current price | 2,409.86 at 2026-10-18 23:30:29 UTC |
 | Range low / high | 2,329.00 / 2,430.00 |
 
 Range definition: Provider rolling 24h range.
@@ -90,7 +90,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-That read was broadly right: completed 4H close stayed bearish below 2356.79, though quote remains above it. Bias is bearish on completed candles; latest action is mixed as price holds back above the lower pivot. Key levels: 2356.79 and 2430.00. Below 2356.79 favors downside; holding above shows hesitation. Risk: a 4H close above 2430.00 invalidates the bearish view.
+That read was right: the completed 4H close held below 2356.79 while quote stayed above it, so mixed hesitation persists. Bias remains bearish on completed candles, but latest action is a rebound above the lower pivot toward the upper. Key levels: 2356.79 and 2430.00. Holding above 2356.79 shows hesitation; below favors downside. Risk: a 4H close above 2430.00 invalidates the bearish view.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
