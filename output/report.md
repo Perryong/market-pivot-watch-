@@ -1,13 +1,13 @@
 # Four-hour pivot watch
 
-Checked **2026-10-19 04:30:27 +08** / 2026-10-18 20:30:27 UTC.
+Checked **2026-10-19 05:30:27 +08** / 2026-10-18 21:30:27 UTC.
 
 ## BTCUSDT
 
 STATUS: NO NEW SIGNAL
 ACTION NOW: WAIT FOR CONFIRMATION
 
-**COMBINED (4H + 1H): SELL** — 4H bearish + 1H trend↓ + momentum↓, no support gap below
+**COMBINED (4H + 1H): HOLD** — 4H bearish but 1H trend↓ but momentum↑
 
 [Open actual TradingView 4H chart](https://www.tradingview.com/chart/?symbol=BINANCE%3ABTCUSDT&interval=240)
 
@@ -15,14 +15,14 @@ Shadow research: **WAIT / MISSED — MISSED_MOVE**. Baseline unchanged; no order
 
 4H direction / 1H entry: **WAIT / MISSED — MISSED_MOVE**. No order or fill.
 
-Completed-candle state: **bearish**. New completed candle processed.
+Completed-candle state: **bearish**. No new 4H candle since the previous check.
 
 | Market data | Value |
 |---|---|
 | Latest completed 4H close | 80,880.02 |
 | Previous completed close | 81,178.18 |
 | Close time | 2026-10-19 04:00:00 +08 / 2026-10-18 20:00:00 UTC |
-| Current price | 80,950.43 at 2026-10-18 20:30:28 UTC |
+| Current price | 81,010.01 at 2026-10-18 21:30:27 UTC |
 | Range low / high | 80,684.36 / 82,295.47 |
 
 Range definition: Provider rolling 24h range.
@@ -42,7 +42,7 @@ Retest: confirmed on a later completed bar at 2026-10-16 12:00:00 UTC; this is n
 
 ### AI analysis
 
-Previous read was right: price remains below 82874.93 with a bearish 4H close. Bias stays bearish; latest close 80880.02 pressures 80807.41 but hasn't broken it, so confirmation is still lacking. Watch 80807.41 then 78739.89 below; 82874.93 is invalidation. Risk: a completed 4H close above 82874.93 negates the bearish view.
+Previous read was right: 4H close still below 82874.93 and above 80807.41, so bearish bias lacks breakdown confirmation. Bias stays bearish; latest completed close 80880.02 keeps pressure on 80807.41 without breaking it. Watch 80807.41 then 78739.89 below; 82874.93 is invalidation. Risk: a completed 4H close above 82874.93 negates the bearish view.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
@@ -56,7 +56,7 @@ Selling an existing long and opening a short are different actions. Targets are 
 STATUS: NO NEW SIGNAL
 ACTION NOW: WAIT FOR CONFIRMATION
 
-**COMBINED (4H + 1H): SELL** — 4H bearish + 1H trend↓ + momentum↓, no support gap below
+**COMBINED (4H + 1H): HOLD** — 4H bearish but 1H trend↓ but momentum↑
 
 [Open actual TradingView 4H chart](https://www.tradingview.com/chart/?symbol=BINANCE%3AETHUSDT&interval=240)
 
@@ -64,14 +64,14 @@ Shadow research: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. Baseline unchang
 
 4H direction / 1H entry: **WAIT / WATCHING — RANGE_CHANGED**. No order or fill.
 
-Completed-candle state: **bearish**. Baseline only; no historical entry emitted.
+Completed-candle state: **bearish**. No new 4H candle since the previous check.
 
 | Market data | Value |
 |---|---|
 | Latest completed 4H close | 2,338.25 |
 | Previous completed close | 2,379.60 |
 | Close time | 2026-10-19 04:00:00 +08 / 2026-10-18 20:00:00 UTC |
-| Current price | 2,350.87 at 2026-10-18 20:30:29 UTC |
+| Current price | 2,360.45 at 2026-10-18 21:30:28 UTC |
 | Range low / high | 2,329.00 / 2,430.00 |
 
 Range definition: Provider rolling 24h range.
@@ -90,10 +90,8 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-Previous read was right: price weakened further and remains below the lower pivot. Bias stays bearish; latest 4H close 2338.25 and quote 2350.87 are below 2356.79, keeping downside pressure toward bearish targets. Key levels now 2356.79 and 2430.00. Risk: a completed 4H close back above 2430.00 would invalidate the bearish view; no new signal yet.
+Previous read was partly right: the bearish 4H close held, but quote has reclaimed the lower pivot. Bias remains bearish on completed candles, though current action is mixed and unconfirmed. Key levels: 2356.79 and 2430.00. Below 2356.79 favors downside; holding above shows hesitation. Risk: a 4H close above 2430.00 invalidates the bearish view.
 
-Auto re-baseline: price drifted >3% beyond the frozen pivot
-Baseline established; existing price state is not a newly observed signal
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
 Selling an existing long and opening a short are different actions. Targets are conditional; closed-bar invalidation is not a guaranteed stop-loss fill.
