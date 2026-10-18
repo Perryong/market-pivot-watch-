@@ -1,13 +1,13 @@
 # Four-hour pivot watch
 
-Checked **2026-10-18 18:30:27 +08** / 2026-10-18 10:30:27 UTC.
+Checked **2026-10-18 19:30:27 +08** / 2026-10-18 11:30:27 UTC.
 
 ## BTCUSDT
 
 STATUS: NO NEW SIGNAL
 ACTION NOW: WAIT FOR CONFIRMATION
 
-**COMBINED (4H + 1H): HOLD** — 4H bearish but 1H trend↑ + momentum↑, no gap overhead
+**COMBINED (4H + 1H): HOLD** — 4H bearish but 1H trend↑ but momentum↓
 
 [Open actual TradingView 4H chart](https://www.tradingview.com/chart/?symbol=BINANCE%3ABTCUSDT&interval=240)
 
@@ -22,7 +22,7 @@ Completed-candle state: **bearish**. No new 4H candle since the previous check.
 | Latest completed 4H close | 81,681.14 |
 | Previous completed close | 81,960.00 |
 | Close time | 2026-10-18 16:00:00 +08 / 2026-10-18 08:00:00 UTC |
-| Current price | 82,245.14 at 2026-10-18 10:30:27 UTC |
+| Current price | 82,104.02 at 2026-10-18 11:30:28 UTC |
 | Range low / high | 80,819.66 / 82,295.47 |
 
 Range definition: Provider rolling 24h range.
@@ -42,7 +42,7 @@ Retest: confirmed on a later completed bar at 2026-10-16 12:00:00 UTC; this is n
 
 ### AI analysis
 
-Previous read was right: no 4H close above invalidation and range held. Bias remains bearish; latest close 81681.14 was lower, and quote 82245.14 is still between 80807.41 support and 82874.93 invalidation, so range persists. Watch 82874.93 invalidation and 80807.41 downside confirmation. Risk: a completed 4H close above 82874.93 flips the view.
+Previous read was right: no 4H close above invalidation and range held. Bias remains bearish; latest completed close 81681.14 was lower and quote 82104.02 is still below 82874.93, so range persists between 80807.41 support and invalidation. Watch 82874.93 and 80807.41. Risk: a completed 4H close above 82874.93 flips the view.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
@@ -56,7 +56,7 @@ Selling an existing long and opening a short are different actions. Targets are 
 STATUS: NO NEW SIGNAL
 ACTION NOW: WAIT FOR CONFIRMATION
 
-**COMBINED (4H + 1H): HOLD** — 4H bearish but 1H trend↑ + momentum↑, no gap overhead
+**COMBINED (4H + 1H): HOLD** — 4H bearish but 1H trend↓ + momentum↓ but support gap below
 
 [Open actual TradingView 4H chart](https://www.tradingview.com/chart/?symbol=BINANCE%3AETHUSDT&interval=240)
 
@@ -71,8 +71,8 @@ Completed-candle state: **bearish**. No new 4H candle since the previous check.
 | Latest completed 4H close | 2,408.62 |
 | Previous completed close | 2,425.53 |
 | Close time | 2026-10-18 16:00:00 +08 / 2026-10-18 08:00:00 UTC |
-| Current price | 2,425.22 at 2026-10-18 10:30:28 UTC |
-| Range low / high | 2,356.79 / 2,441.66 |
+| Current price | 2,419.97 at 2026-10-18 11:30:29 UTC |
+| Range low / high | 2,356.79 / 2,436.46 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -91,7 +91,7 @@ Retest: not yet confirmed on a later completed bar.
 
 ### AI analysis
 
-Previous bearish read remains directionally right: latest 4H close is still below 2413.52 while quote sits above it, so the rebound is unconfirmed. Bias stays bearish; price action is still a retest-watch, not confirmation. Key levels: 2413.52 pivot/invalidation, 2296.6/2179.68 downside targets, 2530.44 resistance. Risk: a completed 4H close above 2413.52 invalidates.
+Previous read remains directionally correct: latest completed 4H close is still below 2413.52 while quote holds above it. Updated read: bearish bias stands; latest completed candle is bearish and price is still a retest-watch, not confirmation. Key levels: 2413.52 pivot/invalidation, 2296.6/2179.68 downside targets, 2530.44 resistance. Risk: a completed 4H close above 2413.52 invalidates the bearish view.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
