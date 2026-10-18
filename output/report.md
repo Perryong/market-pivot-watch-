@@ -1,13 +1,13 @@
 # Four-hour pivot watch
 
-Checked **2026-10-18 13:30:27 +08** / 2026-10-18 05:30:27 UTC.
+Checked **2026-10-18 14:30:27 +08** / 2026-10-18 06:30:27 UTC.
 
 ## BTCUSDT
 
 STATUS: NO NEW SIGNAL
 ACTION NOW: WAIT FOR CONFIRMATION
 
-**COMBINED (4H + 1H): HOLD** — 4H bearish but 1H trend↑ but momentum↓
+**COMBINED (4H + 1H): HOLD** — 4H bearish but 1H trend↓ + momentum↓ but support gap below
 
 [Open actual TradingView 4H chart](https://www.tradingview.com/chart/?symbol=BINANCE%3ABTCUSDT&interval=240)
 
@@ -22,7 +22,7 @@ Completed-candle state: **bearish**. No new 4H candle since the previous check.
 | Latest completed 4H close | 81,960.00 |
 | Previous completed close | 81,491.04 |
 | Close time | 2026-10-18 12:00:00 +08 / 2026-10-18 04:00:00 UTC |
-| Current price | 81,746.00 at 2026-10-18 05:30:28 UTC |
+| Current price | 81,700.01 at 2026-10-18 06:30:27 UTC |
 | Range low / high | 80,819.66 / 82,078.00 |
 
 Range definition: Provider rolling 24h range.
@@ -42,7 +42,7 @@ Retest: confirmed on a later completed bar at 2026-10-16 12:00:00 UTC; this is n
 
 ### AI analysis
 
-That read was right: no 4H close above 82874.93 and support at 80807.41 has held. Bias remains bearish by completed-candle state, but latest close 81960 is still below the 82874.93 pivot and above 80807.41, so range/no-signal persists. Key levels: 82874.93 invalidation, 80807.41 support. Risk: a completed 4H close above 82874.93 flips the view; losing 80807.41 reinforces downside.
+Prior read remains right: no 4H close above 82874.93 and support 80807.41 held. Bias stays bearish by completed-candle state, but latest close 81960 and quote 81700 sit between pivots, so range/no-signal persists. Watch 82874.93 invalidation and 80807.41 support. Risk: a completed 4H close above 82874.93 flips the view; losing 80807.41 reinforces downside.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
@@ -71,7 +71,7 @@ Completed-candle state: **neutral**. No new 4H candle since the previous check.
 | Latest completed 4H close | 2,425.53 |
 | Previous completed close | 2,402.82 |
 | Close time | 2026-10-18 12:00:00 +08 / 2026-10-18 04:00:00 UTC |
-| Current price | 2,412.97 at 2026-10-18 05:30:29 UTC |
+| Current price | 2,411.04 at 2026-10-18 06:30:28 UTC |
 | Range low / high | 2,356.79 / 2,441.66 |
 
 Range definition: Provider rolling 24h range.
@@ -90,7 +90,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-That read was mostly right: the 4H close was above 2413.52, though price has since slipped below it. Bias stays neutral; the close above was constructive but current price back under the pivot means no confirmation and no active setup. Key levels: 2413.52 pivot/support, 2530.44 resistance, 2296.6 then 2179.68 bearish refs. Risk: a completed 4H close below 2413.52 revives bearish pressure.
+That read was broadly right: the 4H close held above the pivot, but price is still below it now. Bias stays neutral; latest 4H close above 2413.52 is mildly constructive, yet current price under the pivot leaves no confirmation and no active setup. Key levels: 2413.52 pivot, 2530.44 resistance, 2296.6/2179.68 bearish refs. Risk: a completed 4H close below 2413.52 would revive bearish pressure.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
@@ -112,7 +112,7 @@ Shadow research: **WAIT / DATA_UNAVAILABLE — UNVERIFIED_DATA**. Baseline uncha
 
 4H direction / 1H entry: **WAIT / DATA_UNAVAILABLE — UNVERIFIED_DATA**. No order or fill.
 
-OANDA market closed or instrument not tradeable; no current signal
+Unexpected provider redirect; request stopped
 Exact completed 4H close, current price, range and active setup cannot be verified. No BUY/SELL signal issued.
 
 ## USOIL
