@@ -1,9 +1,9 @@
 {
-  "checked_at": 1792747856.7494621,
+  "checked_at": 1792751456.817044,
   "markets": [
     {
       "id": "BTCUSDT",
-      "checked_at": 1792747856.7494621,
+      "checked_at": 1792751456.817044,
       "tradingview_symbol": "BINANCE:BTCUSDT",
       "chart": "https://www.tradingview.com/chart/?symbol=BINANCE%3ABTCUSDT&interval=240",
       "state": "bearish",
@@ -35,8 +35,8 @@
       "events": [],
       "notes": [],
       "quote": {
-        "price": 81618.74,
-        "time": 1792747857.012
+        "price": 81711.66,
+        "time": 1792751457.012
       },
       "low": 80939.54,
       "high": 82178.2,
@@ -1843,7 +1843,7 @@
           "open": 81579.52,
           "high": 81914.83,
           "low": 81550.09,
-          "close": 81618.74,
+          "close": 81711.66,
           "complete": false,
           "duration": 14400
         }
@@ -2392,14 +2392,14 @@
       ],
       "status": "NO NEW SIGNAL",
       "combined": {
-        "decision": "HOLD",
-        "reason": "4H bearish but 1H trend↓ but momentum↑",
-        "h1_signal": "NO",
-        "h1_reason": "trend↓ but momentum↑",
+        "decision": "SELL",
+        "reason": "4H bearish + 1H trend↓ + momentum↓, no support gap below",
+        "h1_signal": "SELL",
+        "h1_reason": "trend↓ + momentum↓, no support gap below",
         "trend": "down",
         "closed": {
-          "open": 81579.52,
-          "close": 81762.52
+          "open": 81762.52,
+          "close": 81676.26
         },
         "fvgs": [
           [
@@ -2437,13 +2437,13 @@
         "resolved_at": 1792742400,
         "decision": "WAIT",
         "transitions": [],
-        "range_age_hours": 669.5157637394799,
+        "range_age_hours": 670.5157825122277,
         "range_review_due": true
       },
       "hourly": {
         "version": 1,
         "range_id": "4397f7866c101e987dbefde0985e09e3b60a9f5a45f25b264e80173a1c554943",
-        "last_end": 1792746000,
+        "last_end": 1792749600,
         "status": "EXPIRED",
         "reason": "SETUP_EXPIRED",
         "side": "SELL",
@@ -2461,30 +2461,21 @@
         "lower": 82874.93,
         "upper": 84942.45,
         "last_bar": [
-          1792742400,
-          81579.52,
-          81914.83,
-          81550.09,
-          81762.52
+          1792746000,
+          81762.52,
+          81827.25,
+          81551.04,
+          81676.26
         ],
         "last_4h_end": 1792742400,
         "resolved_at": 1792742400,
         "decision": "WAIT",
         "transitions": [],
         "direction": "bearish",
-        "checked_at": 1792747856.7494621,
-        "close_time": 1792746000
+        "checked_at": 1792751456.817044,
+        "close_time": 1792749600
       },
       "hourly_candles": [
-        {
-          "start": 1792029600,
-          "open": 81640.0,
-          "high": 81814.01,
-          "low": 80226.35,
-          "close": 81538.01,
-          "complete": true,
-          "duration": 3600
-        },
         {
           "start": 1792033200,
           "open": 81538.01,
@@ -4266,18 +4257,18 @@
           "close": 81762.52,
           "complete": true,
           "duration": 3600
+        },
+        {
+          "start": 1792746000,
+          "open": 81762.52,
+          "high": 81827.25,
+          "low": 81551.04,
+          "close": 81676.26,
+          "complete": true,
+          "duration": 3600
         }
       ],
       "hourly_chart_candles": [
-        {
-          "start": 1792530000,
-          "open": 82848.0,
-          "high": 83009.41,
-          "low": 82805.35,
-          "close": 82975.01,
-          "complete": true,
-          "duration": 3600
-        },
         {
           "start": 1792533600,
           "open": 82975.02,
@@ -4808,12 +4799,21 @@
           "close": 81762.52,
           "complete": true,
           "duration": 3600
+        },
+        {
+          "start": 1792746000,
+          "open": 81762.52,
+          "high": 81827.25,
+          "low": 81551.04,
+          "close": 81676.26,
+          "complete": true,
+          "duration": 3600
         }
       ]
     },
     {
       "id": "ETHUSDT",
-      "checked_at": 1792747856.7494621,
+      "checked_at": 1792751456.817044,
       "tradingview_symbol": "BINANCE:ETHUSDT",
       "chart": "https://www.tradingview.com/chart/?symbol=BINANCE%3AETHUSDT&interval=240",
       "state": "neutral",
@@ -4841,8 +4841,8 @@
       "events": [],
       "notes": [],
       "quote": {
-        "price": 2394.74,
-        "time": 1792747857.968
+        "price": 2400.26,
+        "time": 1792751459.014
       },
       "low": 2360.32,
       "high": 2417.77,
@@ -6648,8 +6648,8 @@
           "start": 1792742400,
           "open": 2401.47,
           "high": 2413.87,
-          "low": 2393.57,
-          "close": 2394.73,
+          "low": 2391.61,
+          "close": 2400.26,
           "complete": false,
           "duration": 14400
         }
@@ -7200,12 +7200,12 @@
       "combined": {
         "decision": "HOLD",
         "reason": "4H neutral, no structure",
-        "h1_signal": "NO",
-        "h1_reason": "trend↓ but momentum↑",
+        "h1_signal": "SELL",
+        "h1_reason": "trend↓ + momentum↓, no support gap below",
         "trend": "down",
         "closed": {
-          "open": 2401.47,
-          "close": 2406.59
+          "open": 2406.6,
+          "close": 2398.65
         },
         "fvgs": []
       },
@@ -7217,19 +7217,19 @@
         "reason": "WAIT_FOR_NEW_BREAKOUT",
         "decision": "WAIT",
         "transitions": [],
-        "range_age_hours": 41.515763739479915,
+        "range_age_hours": 42.515782512227695,
         "range_review_due": false
       },
       "hourly": {
         "version": 1,
         "range_id": "63ea6822ac6f714b298bfe8065bf296318872c726fee5ea0022640bc9eaa9aa5",
-        "last_end": 1792746000,
+        "last_end": 1792749600,
         "last_bar": [
-          1792742400,
-          2401.47,
-          2413.87,
-          2400.04,
-          2406.59
+          1792746000,
+          2406.6,
+          2408.27,
+          2391.61,
+          2398.65
         ],
         "last_4h_end": 1792742400,
         "status": "WATCHING",
@@ -7237,19 +7237,10 @@
         "decision": "WAIT",
         "transitions": [],
         "direction": "neutral",
-        "checked_at": 1792747856.7494621,
-        "close_time": 1792746000
+        "checked_at": 1792751456.817044,
+        "close_time": 1792749600
       },
       "hourly_candles": [
-        {
-          "start": 1792029600,
-          "open": 2413.69,
-          "high": 2418.31,
-          "low": 2318.0,
-          "close": 2380.66,
-          "complete": true,
-          "duration": 3600
-        },
         {
           "start": 1792033200,
           "open": 2380.67,
@@ -9031,18 +9022,18 @@
           "close": 2406.59,
           "complete": true,
           "duration": 3600
+        },
+        {
+          "start": 1792746000,
+          "open": 2406.6,
+          "high": 2408.27,
+          "low": 2391.61,
+          "close": 2398.65,
+          "complete": true,
+          "duration": 3600
         }
       ],
       "hourly_chart_candles": [
-        {
-          "start": 1792530000,
-          "open": 2449.07,
-          "high": 2460.0,
-          "low": 2448.03,
-          "close": 2457.48,
-          "complete": true,
-          "duration": 3600
-        },
         {
           "start": 1792533600,
           "open": 2457.48,
@@ -9573,12 +9564,21 @@
           "close": 2406.59,
           "complete": true,
           "duration": 3600
+        },
+        {
+          "start": 1792746000,
+          "open": 2406.6,
+          "high": 2408.27,
+          "low": 2391.61,
+          "close": 2398.65,
+          "complete": true,
+          "duration": 3600
         }
       ]
     },
     {
       "id": "XAUUSD",
-      "checked_at": 1792747856.7494621,
+      "checked_at": 1792751456.817044,
       "tradingview_symbol": "OANDA:XAUUSD",
       "chart": "https://www.tradingview.com/chart/?symbol=OANDA%3AXAUUSD&interval=240",
       "state": "bearish",
@@ -9606,8 +9606,8 @@
       "events": [],
       "notes": [],
       "quote": {
-        "price": 4027.405,
-        "time": 1792747860.921612
+        "price": 4024.885,
+        "time": 1792751461.031323
       },
       "low": 3986.73,
       "high": 4094.07,
@@ -11414,7 +11414,7 @@
           "open": 4011.58,
           "high": 4030.95,
           "low": 4009.64,
-          "close": 4027.685,
+          "close": 4024.905,
           "complete": false,
           "duration": 14400
         }
@@ -11969,8 +11969,8 @@
         "h1_reason": "trend↓ but momentum↑",
         "trend": "down",
         "closed": {
-          "open": 4011.58,
-          "close": 4022.955
+          "open": 4022.93,
+          "close": 4023.8
         },
         "fvgs": [
           [
@@ -11988,19 +11988,19 @@
         "reason": "WAIT_FOR_NEW_BREAKOUT",
         "decision": "WAIT",
         "transitions": [],
-        "range_age_hours": 5.515763739479913,
+        "range_age_hours": 6.515782512227694,
         "range_review_due": false
       },
       "hourly": {
         "version": 1,
         "range_id": "6af59a2ebafe6c526439ee27d33605405be8c92e41e4b5eafdcf4ddde1215c0e",
-        "last_end": 1792746000,
+        "last_end": 1792749600,
         "last_bar": [
-          1792742400,
-          4011.58,
-          4025.095,
-          4009.64,
-          4022.955
+          1792746000,
+          4022.93,
+          4030.95,
+          4021.49,
+          4023.8
         ],
         "last_4h_end": 1792742400,
         "status": "WATCHING",
@@ -12008,19 +12008,10 @@
         "decision": "WAIT",
         "transitions": [],
         "direction": "bearish",
-        "checked_at": 1792747856.7494621,
-        "close_time": 1792746000
+        "checked_at": 1792751456.817044,
+        "close_time": 1792749600
       },
       "hourly_candles": [
-        {
-          "start": 1791824400,
-          "open": 4164.85,
-          "high": 4170.845,
-          "low": 4164.31,
-          "close": 4170.745,
-          "complete": true,
-          "duration": 3600
-        },
         {
           "start": 1791828000,
           "open": 4170.795,
@@ -13802,18 +13793,18 @@
           "close": 4022.955,
           "complete": true,
           "duration": 3600
+        },
+        {
+          "start": 1792746000,
+          "open": 4022.93,
+          "high": 4030.95,
+          "low": 4021.49,
+          "close": 4023.8,
+          "complete": true,
+          "duration": 3600
         }
       ],
       "hourly_chart_candles": [
-        {
-          "start": 1792519200,
-          "open": 4124.215,
-          "high": 4127.05,
-          "low": 4121.275,
-          "close": 4123.755,
-          "complete": true,
-          "duration": 3600
-        },
         {
           "start": 1792522800,
           "open": 4123.805,
@@ -14344,12 +14335,21 @@
           "close": 4022.955,
           "complete": true,
           "duration": 3600
+        },
+        {
+          "start": 1792746000,
+          "open": 4022.93,
+          "high": 4030.95,
+          "low": 4021.49,
+          "close": 4023.8,
+          "complete": true,
+          "duration": 3600
         }
       ]
     },
     {
       "id": "USOIL",
-      "checked_at": 1792747856.7494621,
+      "checked_at": 1792751456.817044,
       "tradingview_symbol": "OANDA:WTICOUSD",
       "chart": "https://www.tradingview.com/chart/?symbol=OANDA%3AWTICOUSD&interval=240",
       "state": "bullish",
@@ -14381,8 +14381,8 @@
       "events": [],
       "notes": [],
       "quote": {
-        "price": 102.669,
-        "time": 1792747862.603179
+        "price": 102.982,
+        "time": 1792751461.865812
       },
       "low": 99.738,
       "high": 102.842,
@@ -16187,9 +16187,9 @@
         {
           "start": 1792742400,
           "open": 102.525,
-          "high": 103.046,
+          "high": 103.147,
           "low": 101.81,
-          "close": 102.669,
+          "close": 102.982,
           "complete": false,
           "duration": 14400
         }
@@ -16738,14 +16738,14 @@
       ],
       "status": "NO NEW SIGNAL",
       "combined": {
-        "decision": "HOLD",
-        "reason": "4H bullish but 1H trend↑ but momentum↓",
-        "h1_signal": "NO",
-        "h1_reason": "trend↑ but momentum↓",
+        "decision": "BUY",
+        "reason": "4H bullish + 1H trend↑ + momentum↑, no gap overhead",
+        "h1_signal": "BUY",
+        "h1_reason": "trend↑ + momentum↑, no gap overhead",
         "trend": "up",
         "closed": {
-          "open": 102.525,
-          "close": 102.064
+          "open": 102.059,
+          "close": 103.06
         },
         "fvgs": [
           [
@@ -16790,13 +16790,13 @@
         "resolved_at": 1792742400,
         "decision": "WAIT",
         "transitions": [],
-        "range_age_hours": 69.51576373947991,
+        "range_age_hours": 70.51578251222769,
         "range_review_due": false
       },
       "hourly": {
         "version": 1,
         "range_id": "0197c147f0eba113d22569abe871d5537a2b22904aa098c54834d69c2e0b581c",
-        "last_end": 1792746000,
+        "last_end": 1792749600,
         "status": "REJECTED",
         "reason": "ATR_UNAVAILABLE",
         "side": "BUY",
@@ -16814,11 +16814,11 @@
         "lower": 98.753,
         "upper": 101.774,
         "last_bar": [
-          1792742400,
-          102.525,
-          102.611,
-          101.81,
-          102.064
+          1792746000,
+          102.059,
+          103.147,
+          101.998,
+          103.06
         ],
         "last_4h_end": 1792742400,
         "retest_close_time": 1792731600,
@@ -16834,19 +16834,10 @@
         "decision": "WAIT",
         "transitions": [],
         "direction": "bullish",
-        "checked_at": 1792747856.7494621,
-        "close_time": 1792746000
+        "checked_at": 1792751456.817044,
+        "close_time": 1792749600
       },
       "hourly_candles": [
-        {
-          "start": 1791824400,
-          "open": 94.87,
-          "high": 95.097,
-          "low": 94.74,
-          "close": 94.94,
-          "complete": true,
-          "duration": 3600
-        },
         {
           "start": 1791828000,
           "open": 94.935,
@@ -18628,18 +18619,18 @@
           "close": 102.064,
           "complete": true,
           "duration": 3600
+        },
+        {
+          "start": 1792746000,
+          "open": 102.059,
+          "high": 103.147,
+          "low": 101.998,
+          "close": 103.06,
+          "complete": true,
+          "duration": 3600
         }
       ],
       "hourly_chart_candles": [
-        {
-          "start": 1792519200,
-          "open": 99.496,
-          "high": 99.963,
-          "low": 99.425,
-          "close": 99.927,
-          "complete": true,
-          "duration": 3600
-        },
         {
           "start": 1792522800,
           "open": 99.932,
@@ -19170,12 +19161,21 @@
           "close": 102.064,
           "complete": true,
           "duration": 3600
+        },
+        {
+          "start": 1792746000,
+          "open": 102.059,
+          "high": 103.147,
+          "low": 101.998,
+          "close": 103.06,
+          "complete": true,
+          "duration": 3600
         }
       ]
     },
     {
       "id": "SPX500",
-      "checked_at": 1792747856.7494621,
+      "checked_at": 1792751456.817044,
       "tradingview_symbol": "OANDA:SPX500USD",
       "chart": "https://www.tradingview.com/chart/?symbol=OANDA%3ASPX500USD&interval=240",
       "state": "neutral",
@@ -19203,8 +19203,8 @@
       "events": [],
       "notes": [],
       "quote": {
-        "price": 7659.2,
-        "time": 1792747860.845267
+        "price": 7654.7,
+        "time": 1792751465.3291
       },
       "low": 7645.2,
       "high": 7709.1,
@@ -21010,8 +21010,8 @@
           "start": 1792742400,
           "open": 7663.4,
           "high": 7680.0,
-          "low": 7657.2,
-          "close": 7659.2,
+          "low": 7649.2,
+          "close": 7654.4,
           "complete": false,
           "duration": 14400
         }
@@ -21562,19 +21562,14 @@
       "combined": {
         "decision": "HOLD",
         "reason": "4H neutral, no structure",
-        "h1_signal": "NO",
-        "h1_reason": "trend↓ but momentum↑",
+        "h1_signal": "SELL",
+        "h1_reason": "trend↓ + momentum↓, no support gap below",
         "trend": "down",
         "closed": {
-          "open": 7663.4,
-          "close": 7668.8
+          "open": 7668.6,
+          "close": 7654.2
         },
         "fvgs": [
-          [
-            "bear",
-            7726.4,
-            7728.0
-          ],
           [
             "bear",
             7718.4,
@@ -21622,19 +21617,19 @@
         "resolved_at": 1792584000,
         "decision": "WAIT",
         "transitions": [],
-        "range_age_hours": 669.5157637394799,
+        "range_age_hours": 670.5157825122277,
         "range_review_due": true
       },
       "hourly": {
         "version": 1,
         "range_id": "94d384cf9aac15a7d2a95a4e2d4489f8b64252dcf836c13f2473f49a01d28f0d",
-        "last_end": 1792746000,
+        "last_end": 1792749600,
         "last_bar": [
-          1792742400,
-          7663.4,
-          7680.0,
-          7663.2,
-          7668.8
+          1792746000,
+          7668.6,
+          7670.4,
+          7652.6,
+          7654.2
         ],
         "last_4h_end": 1792742400,
         "status": "WATCHING",
@@ -21642,19 +21637,10 @@
         "decision": "WAIT",
         "transitions": [],
         "direction": "neutral",
-        "checked_at": 1792747856.7494621,
-        "close_time": 1792746000
+        "checked_at": 1792751456.817044,
+        "close_time": 1792749600
       },
       "hourly_candles": [
-        {
-          "start": 1791824400,
-          "open": 7811.7,
-          "high": 7815.4,
-          "low": 7810.3,
-          "close": 7812.9,
-          "complete": true,
-          "duration": 3600
-        },
         {
           "start": 1791828000,
           "open": 7813.2,
@@ -23436,18 +23422,18 @@
           "close": 7668.8,
           "complete": true,
           "duration": 3600
+        },
+        {
+          "start": 1792746000,
+          "open": 7668.6,
+          "high": 7670.4,
+          "low": 7652.6,
+          "close": 7654.2,
+          "complete": true,
+          "duration": 3600
         }
       ],
       "hourly_chart_candles": [
-        {
-          "start": 1792519200,
-          "open": 7730.4,
-          "high": 7732.4,
-          "low": 7715.0,
-          "close": 7721.9,
-          "complete": true,
-          "duration": 3600
-        },
         {
           "start": 1792522800,
           "open": 7721.6,
@@ -23976,6 +23962,15 @@
           "high": 7680.0,
           "low": 7663.2,
           "close": 7668.8,
+          "complete": true,
+          "duration": 3600
+        },
+        {
+          "start": 1792746000,
+          "open": 7668.6,
+          "high": 7670.4,
+          "low": 7652.6,
+          "close": 7654.2,
           "complete": true,
           "duration": 3600
         }
