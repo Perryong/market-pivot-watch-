@@ -2,9 +2,9 @@
 // Generated preset. Install on the EXACT named TradingView symbol, standard 4H candles.
 // GitHub cannot remotely update Pine Editor. Reinstall after changing/resetting pivots.
 indicator("XAUUSD 4H Pivot Watch", overlay=true, max_labels_count=50)
-upper = input.float(4300.395, "Upper pivot")
-lower = input.float(4140.775, "Lower pivot")
-baseline = input.time(1790611200000, "Baseline close (UTC)")
+upper = input.float(4126.37, "Upper pivot")
+lower = input.float(4021.165, "Lower pivot")
+baseline = input.time(1792728000000, "Baseline close (UTC)")
 expected = input.string("OANDA:XAUUSD", "Exact TradingView symbol")
 mode = input.string("Strict UTC", "Signal candle mode", options=["Strict UTC", "TradingView native"], tooltip="Native mode uses this chart's completed 4H candles. Signals are independent of the GitHub UTC journal. Pivots remain fixed.")
 nativeMode = mode == "TradingView native"
