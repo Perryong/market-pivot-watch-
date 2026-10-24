@@ -1,13 +1,13 @@
 # Four-hour pivot watch
 
-Checked **2026-10-25 03:30:56 +08** / 2026-10-24 19:30:56 UTC.
+Checked **2026-10-25 04:30:56 +08** / 2026-10-24 20:30:56 UTC.
 
 ## BTCUSDT
 
 STATUS: NO NEW SIGNAL
 ACTION NOW: WAIT FOR CONFIRMATION
 
-**COMBINED (4H + 1H): HOLD** — 4H bearish but 1H trend↓ but momentum↑
+**COMBINED (4H + 1H): HOLD** — 4H neutral, no structure
 
 [Open actual TradingView 4H chart](https://www.tradingview.com/chart/?symbol=BINANCE%3ABTCUSDT&interval=240)
 
@@ -15,14 +15,14 @@ Shadow research: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. Baseline unchang
 
 4H direction / 1H entry: **WAIT / WATCHING — RANGE_CHANGED**. No order or fill.
 
-Completed-candle state: **bearish**. No new 4H candle since the previous check.
+Completed-candle state: **neutral**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 79,803.75 |
-| Previous completed close | 80,599.41 |
-| Close time | 2026-10-25 00:00:00 +08 / 2026-10-24 16:00:00 UTC |
-| Current price | 80,535.44 at 2026-10-24 19:30:57 UTC |
+| Latest completed 4H close | 80,489.11 |
+| Previous completed close | 79,803.75 |
+| Close time | 2026-10-25 04:00:00 +08 / 2026-10-24 20:00:00 UTC |
+| Current price | 80,553.96 at 2026-10-24 20:30:57 UTC |
 | Range low / high | 79,220.74 / 81,500.00 |
 
 Range definition: Provider rolling 24h range.
@@ -41,7 +41,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-Previous read was right: the completed 4H close stayed below the lower pivot and no new signal triggered. Bias remains bearish, but the current quote back above 80451.18 shows an intraday reclaim attempt; without a completed close confirming, it is still a wait. Key levels: 80451.18, downside 78841.48, invalidation 82060.88. Risk: a completed 4H close above 82060.88 flips the view.
+That read was wrong: the latest completed 4H close is above the lower pivot. Bias is neutral-to-bearish; the reclaim of 80451.18 weakens downside momentum, but price is still capped below 82060.88 and no new signal is active. Key levels: 80451.18, 82060.88, downside 78841.48. Risk: a completed 4H close above 82060.88 invalidates the bearish/range view; losing 80451.18 restores downside pressure.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
@@ -63,14 +63,14 @@ Shadow research: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. Baseline unchang
 
 4H direction / 1H entry: **WAIT / WATCHING — RANGE_CHANGED**. No order or fill.
 
-Completed-candle state: **bearish**. No new 4H candle since the previous check.
+Completed-candle state: **bearish**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 2,306.41 |
-| Previous completed close | 2,365.74 |
-| Close time | 2026-10-25 00:00:00 +08 / 2026-10-24 16:00:00 UTC |
-| Current price | 2,339.51 at 2026-10-24 19:30:58 UTC |
+| Latest completed 4H close | 2,339.62 |
+| Previous completed close | 2,306.41 |
+| Close time | 2026-10-25 04:00:00 +08 / 2026-10-24 20:00:00 UTC |
+| Current price | 2,345.04 at 2026-10-24 20:30:57 UTC |
 | Range low / high | 2,282.46 / 2,405.22 |
 
 Range definition: Provider rolling 24h range.
@@ -89,7 +89,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-Previous read was right: bearish held under 2351.55 and above 2285.33; 4H close 2306.41 confirms. Updated: bias bearish/corrective. Latest bounce 2339.51 stays below 2351.55 while close holds above 2285.33. Key levels: 2351.55 invalidation, 2285.33 then 2219.11 downside, 2417.77 above. Risk: 4H close above 2351.55 invalidates; holding above 2285.33 may delay pressure.
+Previous read was right on range, but bearish follow-through is unconfirmed. Bias bearish/corrective: 4H close 2339.62 and quote 2345.04 remain below 2351.55 but above 2285.33, so no new signal; wait for confirmation. Key levels: 2351.55 invalidation, 2285.33 then 2219.11 downside, 2417.77 above. Risk: 4H close above 2351.55 invalidates; holding above 2285.33 may delay pressure.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
