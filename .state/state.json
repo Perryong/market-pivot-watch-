@@ -26,13 +26,13 @@
       "hourly": {
         "version": 1,
         "range_id": "a54a5c8a7a05b8365198e594fb4a18e0f242367a9b889999144fff3ade36d3a4",
-        "last_end": 1792958400,
+        "last_end": 1792962000,
         "last_bar": [
-          1792954800,
-          80666.69,
-          80680.0,
-          80546.33,
-          80567.47
+          1792958400,
+          80567.47,
+          80622.54,
+          80432.46,
+          80492.85
         ],
         "last_4h_end": 1792958400,
         "status": "WATCHING",
@@ -233,12 +233,12 @@
       "hourly": {
         "version": 1,
         "range_id": "c3012ddf59e401f49c393ef6168b8ba5c5e700971876c77499b2509437ed46d6",
-        "last_end": 1792958400,
-        "status": "RETEST_PENDING",
-        "reason": "WAIT_FOR_RETEST",
+        "last_end": 1792962000,
+        "status": "REJECTED",
+        "reason": "TOO_FAR_FROM_PIVOT",
         "side": "SELL",
         "signal_end": 1792915200,
-        "age_candles": 12,
+        "age_candles": 13,
         "settings": {
           "retest_candles": 24,
           "atr_period": 14,
@@ -251,13 +251,27 @@
         "lower": 2351.55,
         "upper": 2417.77,
         "last_bar": [
-          1792954800,
-          2355.6,
-          2355.65,
-          2350.05,
-          2351.05
+          1792958400,
+          2351.05,
+          2352.9,
+          2345.11,
+          2347.29
         ],
-        "last_4h_end": 1792958400
+        "last_4h_end": 1792958400,
+        "retest_close_time": 1792962000,
+        "entry": 2342.92,
+        "target": 2285.3300000000004,
+        "evaluated_at": 1792963856.8184226,
+        "quote_time": 1792963857.992,
+        "atr": 12.471428571428532,
+        "stop": 2354.147142857143,
+        "distance_atr": 0.6919816723940544,
+        "gross_rr": 5.129533019468029,
+        "rejection_reasons": [
+          "TOO_FAR_FROM_PIVOT",
+          "COSTS_NOT_CONFIGURED"
+        ],
+        "resolved_at": 1792962000
       }
     },
     "BTCUSD": {
