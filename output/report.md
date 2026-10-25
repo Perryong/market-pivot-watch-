@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-10-25 13:30:56 +08** / 2026-10-25 05:30:56 UTC.
+Checked **2026-10-25 14:30:56 +08** / 2026-10-25 06:30:56 UTC.
 
 ## BTCUSDT
 
@@ -22,7 +22,7 @@ Completed-candle state: **neutral**. No new 4H candle since the previous check.
 | Latest completed 4H close | 80,862.98 |
 | Previous completed close | 80,888.16 |
 | Close time | 2026-10-25 12:00:00 +08 / 2026-10-25 04:00:00 UTC |
-| Current price | 80,824.08 at 2026-10-25 05:30:57 UTC |
+| Current price | 80,634.00 at 2026-10-25 06:30:57 UTC |
 | Range low / high | 79,220.74 / 81,033.69 |
 
 Range definition: Provider rolling 24h range.
@@ -41,7 +41,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-Previous read was right: price remains range-bound between the frozen pivots. Updated read: neutral/range; latest 4H closes are flat just above the lower pivot and below the upper, so no confirmed direction. Key levels are 80451.18 and 82060.88. Risk: a 4H close below 80451.18 restores bearish pressure; above 82060.88 invalidates the range view.
+Previous read was right: price stayed flat between the frozen pivots. Updated read: still neutral/range, with recent 4H closes clustered just above 80451.18 and well below 82060.88, so no confirmed direction. Key levels remain 80451.18 and 82060.88. Risk: a 4H close below 80451.18 restores bearish pressure; a close above 82060.88 invalidates the range view.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
@@ -70,7 +70,7 @@ Completed-candle state: **neutral**. No new 4H candle since the previous check.
 | Latest completed 4H close | 2,362.80 |
 | Previous completed close | 2,358.82 |
 | Close time | 2026-10-25 12:00:00 +08 / 2026-10-25 04:00:00 UTC |
-| Current price | 2,364.30 at 2026-10-25 05:30:58 UTC |
+| Current price | 2,351.04 at 2026-10-25 06:30:57 UTC |
 | Range low / high | 2,282.46 / 2,384.28 |
 
 Range definition: Provider rolling 24h range.
@@ -89,7 +89,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-Previous read was right: support held and price stayed range-bound. Bias remains neutral-to-tentatively bullish; latest 4H close 2362.8 and quote 2364.3 sit above 2351.55 but below 2417.77, so no breakout confirmation. Key levels: 2351.55 support/invalidation, 2417.77 upside trigger; downside 2285.33/2219.11. Risk: a 4H close below 2351.55 invalidates the tentative view.
+Previous read was mostly right, though the quote has now slipped just below 2351.55 support. Bias is neutral: latest 4H close 2362.8 held above 2351.55, but current 2351.04 is slightly below it and below 2417.77, so no breakout. Key levels: 2351.55 support/invalidation, 2417.77 upside trigger, downside 2285.33/2219.11. Risk: a decisive 4H close below 2351.55 invalidates the tentative bullish lean.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
