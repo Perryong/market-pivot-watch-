@@ -53,7 +53,7 @@
       "hourly": {
         "version": 1,
         "range_id": "a54a5c8a7a05b8365198e594fb4a18e0f242367a9b889999144fff3ade36d3a4",
-        "last_end": 1793145600,
+        "last_end": 1793149200,
         "status": "REJECTED",
         "reason": "QUOTE_WRONG_SIDE",
         "side": "SELL",
@@ -71,11 +71,11 @@
         "lower": 80451.18,
         "upper": 82060.88,
         "last_bar": [
-          1793142000,
-          80905.74,
-          81034.0,
-          80773.19,
-          80909.77
+          1793145600,
+          80909.77,
+          80909.78,
+          80707.07,
+          80747.14
         ],
         "last_4h_end": 1793145600,
         "retest_close_time": 1793016000,
@@ -134,7 +134,7 @@
       "hourly": {
         "version": 1,
         "range_id": "6af59a2ebafe6c526439ee27d33605405be8c92e41e4b5eafdcf4ddde1215c0e",
-        "last_end": 1793145600,
+        "last_end": 1793149200,
         "status": "INVALIDATED",
         "reason": "DATA_SESSION_GAP",
         "side": "SELL",
@@ -152,11 +152,11 @@
         "lower": 4021.165,
         "upper": 4126.37,
         "last_bar": [
-          1793142000,
-          4063.54,
-          4063.865,
-          4057.705,
-          4062.78
+          1793145600,
+          4062.7,
+          4070.84,
+          4059.38,
+          4061.93
         ],
         "last_4h_end": 1793145600,
         "resolved_at": 1792969200
@@ -286,7 +286,7 @@
       "hourly": {
         "version": 1,
         "range_id": "c3012ddf59e401f49c393ef6168b8ba5c5e700971876c77499b2509437ed46d6",
-        "last_end": 1793145600,
+        "last_end": 1793149200,
         "status": "REJECTED",
         "reason": "TOO_FAR_FROM_PIVOT",
         "side": "SELL",
@@ -304,11 +304,11 @@
         "lower": 2351.55,
         "upper": 2417.77,
         "last_bar": [
-          1793142000,
-          2350.46,
-          2354.47,
-          2346.86,
-          2350.36
+          1793145600,
+          2350.35,
+          2350.36,
+          2344.73,
+          2346.68
         ],
         "last_4h_end": 1793145600,
         "retest_close_time": 1792962000,
@@ -405,7 +405,7 @@
       "hourly": {
         "version": 1,
         "range_id": "9941a10e6ad39daa281e0505760b7137097cc127c754fd5222420a21d24992b3",
-        "last_end": 1793145600,
+        "last_end": 1793149200,
         "status": "REJECTED",
         "reason": "ATR_UNAVAILABLE",
         "side": "BUY",
@@ -423,11 +423,11 @@
         "lower": 99.738,
         "upper": 103.194,
         "last_bar": [
-          1793142000,
-          101.474,
-          101.709,
-          101.361,
-          101.694
+          1793145600,
+          101.689,
+          102.286,
+          101.638,
+          101.986
         ],
         "last_4h_end": 1793145600,
         "retest_close_time": 1793095200,
@@ -485,12 +485,12 @@
       "hourly": {
         "version": 1,
         "range_id": "94d384cf9aac15a7d2a95a4e2d4489f8b64252dcf836c13f2473f49a01d28f0d",
-        "last_end": 1793145600,
-        "status": "RETEST_PENDING",
-        "reason": "WAIT_FOR_RETEST",
+        "last_end": 1793149200,
+        "status": "REJECTED",
+        "reason": "QUOTE_WRONG_SIDE",
         "side": "BUY",
         "signal_end": 1793145600,
-        "age_candles": 0,
+        "age_candles": 1,
         "settings": {
           "retest_candles": 24,
           "atr_period": 14,
@@ -503,13 +503,24 @@
         "lower": 7655.6,
         "upper": 7731.0,
         "last_bar": [
-          1793142000,
-          7731.4,
+          1793145600,
+          7731.8,
           7735.8,
-          7729.2,
-          7732.0
+          7727.2,
+          7733.6
         ],
-        "last_4h_end": 1793145600
+        "last_4h_end": 1793145600,
+        "retest_close_time": 1793149200,
+        "entry": 7730.8,
+        "target": 7806.4,
+        "evaluated_at": 1793151056.7760353,
+        "quote_time": 1793151062.961281,
+        "atr": null,
+        "rejection_reasons": [
+          "QUOTE_WRONG_SIDE",
+          "ATR_UNAVAILABLE"
+        ],
+        "resolved_at": 1793149200
       }
     }
   },
