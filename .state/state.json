@@ -57,7 +57,7 @@
       "hourly": {
         "version": 1,
         "range_id": "a54a5c8a7a05b8365198e594fb4a18e0f242367a9b889999144fff3ade36d3a4",
-        "last_end": 1793282400,
+        "last_end": 1793286000,
         "status": "REJECTED",
         "reason": "TOO_FAR_FROM_PIVOT",
         "side": "SELL",
@@ -75,11 +75,11 @@
         "lower": 80451.18,
         "upper": 82060.88,
         "last_bar": [
-          1793278800,
-          80058.01,
-          80418.67,
-          79916.0,
-          80305.21
+          1793282400,
+          80305.22,
+          81537.36,
+          80262.05,
+          81178.32
         ],
         "last_4h_end": 1793275200,
         "retest_close_time": 1793253600,
@@ -141,7 +141,7 @@
       "hourly": {
         "version": 1,
         "range_id": "6af59a2ebafe6c526439ee27d33605405be8c92e41e4b5eafdcf4ddde1215c0e",
-        "last_end": 1793282400,
+        "last_end": 1793286000,
         "status": "REJECTED",
         "reason": "QUOTE_WRONG_SIDE",
         "side": "SELL",
@@ -159,11 +159,11 @@
         "lower": 4021.165,
         "upper": 4126.37,
         "last_bar": [
-          1793278800,
-          4020.74,
-          4037.805,
-          4019.94,
-          4023.61
+          1793282400,
+          4023.56,
+          4037.455,
+          4017.06,
+          4026.365
         ],
         "last_4h_end": 1793275200,
         "retest_close_time": 1793278800,
@@ -294,12 +294,12 @@
       "hourly": {
         "version": 1,
         "range_id": "c3012ddf59e401f49c393ef6168b8ba5c5e700971876c77499b2509437ed46d6",
-        "last_end": 1793282400,
-        "status": "RETEST_PENDING",
-        "reason": "WAIT_FOR_RETEST",
+        "last_end": 1793286000,
+        "status": "REJECTED",
+        "reason": "QUOTE_WRONG_SIDE",
         "side": "SELL",
         "signal_end": 1793246400,
-        "age_candles": 10,
+        "age_candles": 11,
         "settings": {
           "retest_candles": 24,
           "atr_period": 14,
@@ -312,13 +312,29 @@
         "lower": 2351.55,
         "upper": 2417.77,
         "last_bar": [
-          1793278800,
-          2323.11,
-          2332.32,
-          2313.65,
-          2327.22
+          1793282400,
+          2327.23,
+          2353.87,
+          2323.0,
+          2344.73
         ],
-        "last_4h_end": 1793275200
+        "last_4h_end": 1793275200,
+        "retest_close_time": 1793286000,
+        "entry": 2359.25,
+        "target": 2285.3300000000004,
+        "evaluated_at": 1793287856.8153622,
+        "quote_time": 1793287858.01,
+        "atr": 17.291428571428533,
+        "stop": 2355.599142857143,
+        "distance_atr": 0.44530733641770365,
+        "gross_rr": null,
+        "rejection_reasons": [
+          "QUOTE_WRONG_SIDE",
+          "TOO_FAR_FROM_PIVOT",
+          "INVALID_STOP",
+          "COSTS_NOT_CONFIGURED"
+        ],
+        "resolved_at": 1793286000
       }
     },
     "BTCUSD": {
@@ -414,12 +430,12 @@
       "hourly": {
         "version": 1,
         "range_id": "9941a10e6ad39daa281e0505760b7137097cc127c754fd5222420a21d24992b3",
-        "last_end": 1793282400,
+        "last_end": 1793286000,
         "status": "RETEST_PENDING",
         "reason": "WAIT_FOR_RETEST",
         "side": "BUY",
         "signal_end": 1793260800,
-        "age_candles": 6,
+        "age_candles": 7,
         "settings": {
           "retest_candles": 24,
           "atr_period": 14,
@@ -432,11 +448,11 @@
         "lower": 99.738,
         "upper": 103.194,
         "last_bar": [
-          1793278800,
-          102.786,
-          102.786,
-          101.237,
-          101.957
+          1793282400,
+          101.952,
+          102.651,
+          101.599,
+          101.736
         ],
         "last_4h_end": 1793275200
       }
@@ -489,7 +505,7 @@
       "hourly": {
         "version": 1,
         "range_id": "94d384cf9aac15a7d2a95a4e2d4489f8b64252dcf836c13f2473f49a01d28f0d",
-        "last_end": 1793282400,
+        "last_end": 1793286000,
         "status": "REJECTED",
         "reason": "QUOTE_WRONG_SIDE",
         "side": "BUY",
@@ -507,11 +523,11 @@
         "lower": 7655.6,
         "upper": 7731.0,
         "last_bar": [
-          1793278800,
-          7729.8,
-          7735.2,
-          7704.7,
-          7718.7
+          1793282400,
+          7719.0,
+          7734.0,
+          7708.2,
+          7718.2
         ],
         "last_4h_end": 1793275200,
         "retest_close_time": 1793149200,
