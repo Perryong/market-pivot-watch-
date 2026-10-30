@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-10-31 06:30:56 +08** / 2026-10-30 22:30:56 UTC.
+Checked **2026-10-31 07:30:56 +08** / 2026-10-30 23:30:56 UTC.
 
 ## BTCUSDT
 
@@ -22,8 +22,8 @@ Completed-candle state: **neutral**. No new 4H candle since the previous check.
 | Latest completed 4H close | 76,942.57 |
 | Previous completed close | 77,622.00 |
 | Close time | 2026-10-31 04:00:00 +08 / 2026-10-30 20:00:00 UTC |
-| Current price | 76,900.00 at 2026-10-30 22:30:57 UTC |
-| Range low / high | 76,325.98 / 79,243.81 |
+| Current price | 77,164.22 at 2026-10-30 23:30:57 UTC |
+| Range low / high | 76,325.98 / 78,880.00 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -41,7 +41,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-Previous read was right: price held above 76500 and below 77622. Bias stays neutral-to-bearish; latest 4H close 76943 is below prior 77622 and quote 76900 is near it, so no breakdown is confirmed. Key levels: 76500 support, 77449/77622 overhead, 81971 upper. Risk: sustained acceptance below 76500 strengthens downside; recovery above 77622 would invalidate the bearish lean. No confirmed setup; wait.
+Previous read was right: price held 76500-77622 with no breakdown. Bias stays neutral-to-bearish: latest 4H close 76943 is below prior 77622, and quote 77164 bounced but has not reclaimed it. Key levels: 76500 support, 77622 overhead/invalidation, 81971 upper. Risk: sustained acceptance below 76500 strengthens downside; recovery above 77622 invalidates the bearish lean. No confirmed setup; wait.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
@@ -70,8 +70,8 @@ Completed-candle state: **bearish**. No new 4H candle since the previous check.
 | Latest completed 4H close | 2,240.32 |
 | Previous completed close | 2,227.44 |
 | Close time | 2026-10-31 04:00:00 +08 / 2026-10-30 20:00:00 UTC |
-| Current price | 2,237.46 at 2026-10-30 22:30:57 UTC |
-| Range low / high | 2,174.08 / 2,285.29 |
+| Current price | 2,243.24 at 2026-10-30 23:30:57 UTC |
+| Range low / high | 2,174.08 / 2,273.15 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -89,7 +89,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-Prior read was right: no breakout and price remains below 2293.44. Bias stays mildly bearish; latest 4H close 2240.32 and quote 2237.46 are still inside the range, so no confirmation. Watch 2293.44 above; 2195.33 then 2097.22 below. Risk: a reclaim/4H close above 2293.44 would neutralize the bearish tilt; above 2391.55 invalidates.
+Prior read held: still no breakout above 2293.44 and price remains range-bound. Bias stays mildly bearish; latest 4H close 2240.32 and quote 2243.24 sit below the lower pivot, with bearish completed-candle state. Key levels: 2293.44 above; 2195.33 then 2097.22 below. Risk: a 4H reclaim above 2293.44 would neutralize the bearish tilt; above 2391.55 invalidates.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
@@ -111,7 +111,7 @@ Shadow research: **WAIT / DATA_UNAVAILABLE — UNVERIFIED_DATA**. Baseline uncha
 
 4H direction / 1H entry: **WAIT / DATA_UNAVAILABLE — UNVERIFIED_DATA**. No order or fill.
 
-Provider HTTP 503; check entitlement, region and rate limits
+OANDA market closed or instrument not tradeable; no current signal
 Exact completed 4H close, current price, range and active setup cannot be verified. No BUY/SELL signal issued.
 
 ## USOIL
@@ -127,7 +127,7 @@ Shadow research: **WAIT / DATA_UNAVAILABLE — UNVERIFIED_DATA**. Baseline uncha
 
 4H direction / 1H entry: **WAIT / DATA_UNAVAILABLE — UNVERIFIED_DATA**. No order or fill.
 
-Provider HTTP 503; check entitlement, region and rate limits
+OANDA market closed or instrument not tradeable; no current signal
 Exact completed 4H close, current price, range and active setup cannot be verified. No BUY/SELL signal issued.
 
 ## SPX500
@@ -143,7 +143,7 @@ Shadow research: **WAIT / DATA_UNAVAILABLE — UNVERIFIED_DATA**. Baseline uncha
 
 4H direction / 1H entry: **WAIT / DATA_UNAVAILABLE — UNVERIFIED_DATA**. No order or fill.
 
-Provider HTTP 503; check entitlement, region and rate limits
+OANDA market closed or instrument not tradeable; no current signal
 Exact completed 4H close, current price, range and active setup cannot be verified. No BUY/SELL signal issued.
 
 ## TradingView drawings
