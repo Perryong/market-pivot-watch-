@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-11-01 16:30:56 +08** / 2026-11-01 08:30:56 UTC.
+Checked **2026-11-01 17:30:56 +08** / 2026-11-01 09:30:56 UTC.
 
 ## BTCUSDT
 
@@ -15,15 +15,15 @@ Shadow research: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. Baseline unchang
 
 4H direction / 1H entry: **WAIT / WATCHING — RANGE_CHANGED**. No order or fill.
 
-Completed-candle state: **neutral**. New completed candle processed.
+Completed-candle state: **neutral**. No new 4H candle since the previous check.
 
 | Market data | Value |
 |---|---|
 | Latest completed 4H close | 77,991.28 |
 | Previous completed close | 77,802.00 |
 | Close time | 2026-11-01 16:00:00 +08 / 2026-11-01 08:00:00 UTC |
-| Current price | 78,066.43 at 2026-11-01 08:30:57 UTC |
-| Range low / high | 77,262.72 / 78,068.00 |
+| Current price | 78,002.03 at 2026-11-01 09:30:57 UTC |
+| Range low / high | 77,392.01 / 78,285.00 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -41,7 +41,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-The prior neutral-constructive read was broadly right: price held above 77622 and no new signal appeared. Bias remains neutral with a mild constructive tilt; latest 4H closes are accepting above near support but still capped below 81971. Watch 77622 and 76500 support, 81971 cap. Risk: a 4H close below 77622 or loss of 76500 invalidates the tilt.
+Prior read was broadly right: price stayed above 77622 and no new signal emerged. Bias remains neutral with a mild constructive tilt; latest 4H closes are creeping higher and accepting above near support but remain capped below 81971. Watch 77622 and 76500 support, 81971 cap. Risk: a 4H close back below 77622 would weaken the tilt, and loss of 76500 invalidates it.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
@@ -63,15 +63,15 @@ Shadow research: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. Baseline unchang
 
 4H direction / 1H entry: **WAIT / WATCHING — RANGE_CHANGED**. No order or fill.
 
-Completed-candle state: **bearish**. New completed candle processed.
+Completed-candle state: **bearish**. No new 4H candle since the previous check.
 
 | Market data | Value |
 |---|---|
 | Latest completed 4H close | 2,270.30 |
 | Previous completed close | 2,268.43 |
 | Close time | 2026-11-01 16:00:00 +08 / 2026-11-01 08:00:00 UTC |
-| Current price | 2,271.79 at 2026-11-01 08:30:58 UTC |
-| Range low / high | 2,238.57 / 2,276.31 |
+| Current price | 2,268.87 at 2026-11-01 09:30:58 UTC |
+| Range low / high | 2,243.44 / 2,278.00 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -89,7 +89,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-Previous read remains right: still no breakout and price stays below 2293.44. Bias stays mildly bearish/range-bound; latest 4H close 2270.30 and quote 2271.79 are still under the lower pivot despite the slow grind up. Key levels: 2293.44 above; 2195.33 then 2097.22 below. Risk: a 4H reclaim above 2293.44 neutralizes the bearish tilt; above 2391.55 invalidates it.
+Previous read was right: still no breakout and price remains below 2293.44. Bias stays mildly bearish/range-bound; latest 4H close 2270.30 and quote 2268.87 are under the lower pivot despite the slow grind up. Key levels: 2293.44 above; 2195.33 then 2097.22 below. Risk: a 4H reclaim above 2293.44 neutralizes the bearish tilt; above 2391.55 invalidates it.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
