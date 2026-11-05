@@ -41,7 +41,7 @@
       "hourly": {
         "version": 1,
         "range_id": "d75d20f87c10d4364772713da1a5843c0ecfbdecd22874b48b71e1fcf580248f",
-        "last_end": 1793880000,
+        "last_end": 1793883600,
         "status": "INVALIDATED",
         "reason": "SETUP_INVALIDATED",
         "side": "SELL",
@@ -59,11 +59,11 @@
         "lower": 76500.11,
         "upper": 81971.0,
         "last_bar": [
-          1793876400,
-          80276.07,
-          80408.75,
-          80228.32,
-          80390.01
+          1793880000,
+          80390.01,
+          80390.02,
+          79520.32,
+          79662.01
         ],
         "last_4h_end": 1793880000,
         "resolved_at": 1793779200
@@ -124,7 +124,7 @@
       "hourly": {
         "version": 1,
         "range_id": "f94a4a03bd55da23c0941d3cf07c37892b681b6191cbc6d4372224cc1ca23127",
-        "last_end": 1793880000,
+        "last_end": 1793883600,
         "status": "REJECTED",
         "reason": "QUOTE_WRONG_SIDE",
         "side": "BUY",
@@ -142,11 +142,11 @@
         "lower": 3964.205,
         "upper": 4037.805,
         "last_bar": [
-          1793876400,
-          4130.0,
-          4138.275,
-          4127.01,
-          4133.52
+          1793880000,
+          4133.415,
+          4134.66,
+          4116.575,
+          4119.835
         ],
         "last_4h_end": 1793880000,
         "retest_close_time": 1793797200,
@@ -274,12 +274,12 @@
       "hourly": {
         "version": 1,
         "range_id": "03ce88419bc841b6259108e33f6e536b858ce6629cb41d1b0129db9a1fc8281d",
-        "last_end": 1793880000,
-        "status": "RETEST_PENDING",
-        "reason": "WAIT_FOR_RETEST",
+        "last_end": 1793883600,
+        "status": "REJECTED",
+        "reason": "QUOTE_WRONG_SIDE",
         "side": "BUY",
         "signal_end": 1793808000,
-        "age_candles": 20,
+        "age_candles": 21,
         "settings": {
           "retest_candles": 24,
           "atr_period": 14,
@@ -292,13 +292,29 @@
         "lower": 2293.44,
         "upper": 2391.55,
         "last_bar": [
-          1793876400,
-          2418.48,
-          2423.76,
-          2416.61,
-          2421.0
+          1793880000,
+          2421.0,
+          2421.0,
+          2387.45,
+          2393.45
         ],
-        "last_4h_end": 1793880000
+        "last_4h_end": 1793880000,
+        "retest_close_time": 1793883600,
+        "entry": 2385.39,
+        "target": 2489.6600000000003,
+        "evaluated_at": 1793885456.702061,
+        "quote_time": 1793885458.012,
+        "atr": 14.708571428571434,
+        "stop": 2385.9791428571425,
+        "distance_atr": 0.4188034188034397,
+        "gross_rr": null,
+        "rejection_reasons": [
+          "QUOTE_WRONG_SIDE",
+          "TOO_FAR_FROM_PIVOT",
+          "INVALID_STOP",
+          "COSTS_NOT_CONFIGURED"
+        ],
+        "resolved_at": 1793883600
       }
     },
     "BTCUSD": {
@@ -379,7 +395,7 @@
       "hourly": {
         "version": 1,
         "range_id": "0b3f4c5196f7e88380457f02d434c39a1861cba14e1f130e3ec4d46cea34142d",
-        "last_end": 1793880000,
+        "last_end": 1793883600,
         "status": "REJECTED",
         "reason": "ATR_UNAVAILABLE",
         "side": "SELL",
@@ -397,11 +413,11 @@
         "lower": 88.031,
         "upper": 98.192,
         "last_bar": [
-          1793876400,
-          89.5,
-          90.422,
-          89.424,
-          90.381
+          1793880000,
+          90.376,
+          90.714,
+          90.193,
+          90.278
         ],
         "last_4h_end": 1793880000,
         "retest_close_time": 1793854800,
@@ -468,7 +484,7 @@
       "hourly": {
         "version": 1,
         "range_id": "94d384cf9aac15a7d2a95a4e2d4489f8b64252dcf836c13f2473f49a01d28f0d",
-        "last_end": 1793880000,
+        "last_end": 1793883600,
         "status": "MISSED",
         "reason": "MISSED_MOVE",
         "side": "SELL",
@@ -486,11 +502,11 @@
         "lower": 7655.6,
         "upper": 7731.0,
         "last_bar": [
-          1793876400,
-          7708.6,
-          7714.6,
-          7707.4,
-          7713.6
+          1793880000,
+          7713.4,
+          7716.4,
+          7697.8,
+          7706.2
         ],
         "last_4h_end": 1793880000,
         "resolved_at": 1793383200
