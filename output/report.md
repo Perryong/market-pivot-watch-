@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-11-07 16:30:56 +08** / 2026-11-07 08:30:56 UTC.
+Checked **2026-11-07 17:30:56 +08** / 2026-11-07 09:30:56 UTC.
 
 ## BTCUSDT
 
@@ -15,14 +15,14 @@ Shadow research: **WAIT / REJECTED — TOO_FAR_FROM_PIVOT**. Baseline unchanged;
 
 4H direction / 1H entry: **WAIT / REJECTED — TOO_FAR_FROM_PIVOT**. No order or fill.
 
-Completed-candle state: **bearish**. New completed candle processed.
+Completed-candle state: **bearish**. No new 4H candle since the previous check.
 
 | Market data | Value |
 |---|---|
 | Latest completed 4H close | 76,094.95 |
 | Previous completed close | 75,893.66 |
 | Close time | 2026-11-07 16:00:00 +08 / 2026-11-07 08:00:00 UTC |
-| Current price | 76,120.74 at 2026-11-07 08:30:57 UTC |
+| Current price | 76,109.90 at 2026-11-07 09:30:57 UTC |
 | Range low / high | 74,888.00 / 76,378.00 |
 
 Range definition: Provider rolling 24h range.
@@ -42,7 +42,7 @@ Retest: confirmed on a later completed bar at 2026-11-05 20:00:00 UTC; this is n
 
 ### AI analysis
 
-Previous read was right: price stayed below the frozen pivot and bearish structure held. Latest 4H close 76094.95 and quote 76120.74 remain under 76500.11, so bias stays bearish despite the bounce; no new signal. Key resistance/invalidation 76500.11; downside pivots 71029.22 then 65558.33. Risk is a completed 4H close above 76500.11.
+Previous read remains right: price held below 76500.11 and bearish structure persisted. Bias stays bearish; latest 4H close 76094.95 and quote 76109.9 sit just under the frozen pivot, so the bounce lacks confirmation and signal remains wait. Key resistance/invalidation 76500.11; downside pivots 71029.22 then 65558.33. Risk: a completed 4H close above 76500.11 flips the view.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
@@ -56,7 +56,7 @@ Selling an existing long and opening a short are different actions. Targets are 
 STATUS: NO NEW SIGNAL
 ACTION NOW: WAIT FOR CONFIRMATION
 
-**COMBINED (4H + 1H): SELL** — 4H bearish + 1H trend↓ + momentum↓, no support gap below
+**COMBINED (4H + 1H): HOLD** — 4H bearish but 1H trend↓ but momentum↑
 
 [Open actual TradingView 4H chart](https://www.tradingview.com/chart/?symbol=BINANCE%3AETHUSDT&interval=240)
 
@@ -64,14 +64,14 @@ Shadow research: **WAIT / EXPIRED — SETUP_EXPIRED**. Baseline unchanged; no or
 
 4H direction / 1H entry: **WAIT / EXPIRED — SETUP_EXPIRED**. No order or fill.
 
-Completed-candle state: **bearish**. New completed candle processed.
+Completed-candle state: **bearish**. No new 4H candle since the previous check.
 
 | Market data | Value |
 |---|---|
 | Latest completed 4H close | 2,245.99 |
 | Previous completed close | 2,245.11 |
 | Close time | 2026-11-07 16:00:00 +08 / 2026-11-07 08:00:00 UTC |
-| Current price | 2,248.02 at 2026-11-07 08:30:57 UTC |
+| Current price | 2,247.38 at 2026-11-07 09:30:58 UTC |
 | Range low / high | 2,210.00 / 2,254.26 |
 
 Range definition: Provider rolling 24h range.
@@ -91,7 +91,7 @@ Retest: not yet confirmed on a later completed bar.
 
 ### AI analysis
 
-Previous read was right: price stayed below 2293.44 and firmness stayed unconfirmed. Bias remains bearish; latest 4H close 2245.99 and quote 2248.02 are still below the lower pivot, so recent mild firmness lacks confirmation. Key levels: 2293.44 above is invalidation; downside focus 2195.33 then 2097.22. Risk: a completed 4H close above 2293.44 invalidates the bearish view.
+Previous read was right: price remains below 2293.44 and firmness is unconfirmed. Bias remains bearish; latest 4H close 2245.99 and quote 2247.38 are below the lower pivot, so mild drift lacks confirmation. Key levels: 2293.44 above is invalidation; downside focus 2195.33 then 2097.22. Risk: a completed 4H close above 2293.44 invalidates the bearish view.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
