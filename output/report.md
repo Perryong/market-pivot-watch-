@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-11-14 20:30:56 +08** / 2026-11-14 12:30:56 UTC.
+Checked **2026-11-14 21:30:56 +08** / 2026-11-14 13:30:56 UTC.
 
 ## BTCUSDT
 
@@ -15,14 +15,14 @@ Shadow research: **WAIT / RETEST_PENDING — WAIT_FOR_RETEST**. Baseline unchang
 
 4H direction / 1H entry: **WAIT / RETEST_PENDING — WAIT_FOR_RETEST**. No order or fill.
 
-Completed-candle state: **bearish**. New completed candle processed.
+Completed-candle state: **bearish**. No new 4H candle since the previous check.
 
 | Market data | Value |
 |---|---|
 | Latest completed 4H close | 67,272.79 |
 | Previous completed close | 67,165.42 |
 | Close time | 2026-11-14 20:00:00 +08 / 2026-11-14 12:00:00 UTC |
-| Current price | 67,181.03 at 2026-11-14 12:30:57 UTC |
+| Current price | 66,638.41 at 2026-11-14 13:30:57 UTC |
 | Range low / high | 66,456.00 / 70,214.31 |
 
 Range definition: Provider rolling 24h range.
@@ -42,7 +42,7 @@ Retest: not yet confirmed on a later completed bar.
 
 ### AI analysis
 
-Previous read was right: price remains below the lower pivot and has not retested it. Updated read: bearish bias holds; latest 4H close 67272.79 stayed under 68527.89, keeping price in the lower zone and confirmation pending. Key levels: 68527.89 resistance/invalidation, 73866.72 range cap. Risk: a completed 4H close above 68527.89 invalidates the bearish view.
+Previous read was right: price stayed below the lower pivot with no retest. Bearish bias remains; latest 4H close and current quote are still under 68527.89, so confirmation is pending. Watch 68527.89 as resistance/invalidation and 73866.72 as range cap. Risk: a completed 4H close above 68527.89 invalidates the bearish view.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
@@ -64,14 +64,14 @@ Shadow research: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. Baseline unchang
 
 4H direction / 1H entry: **WAIT / WATCHING — RANGE_CHANGED**. No order or fill.
 
-Completed-candle state: **neutral**. New completed candle processed.
+Completed-candle state: **neutral**. No new 4H candle since the previous check.
 
 | Market data | Value |
 |---|---|
 | Latest completed 4H close | 1,910.49 |
 | Previous completed close | 1,898.25 |
 | Close time | 2026-11-14 20:00:00 +08 / 2026-11-14 12:00:00 UTC |
-| Current price | 1,908.14 at 2026-11-14 12:30:58 UTC |
+| Current price | 1,888.45 at 2026-11-14 13:30:59 UTC |
 | Range low / high | 1,878.00 / 1,989.11 |
 
 Range definition: Provider rolling 24h range.
@@ -90,7 +90,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-Prior neutral-to-mildly bullish range read was right: support held and no breakout confirmed. Bias remains neutral-to-mildly bullish inside the range; latest 4H close at 1910.49 is firmer above 1895.95, but 2021.11 still caps. Key levels: 1895.95 support, 2021.11 overhead confirmation. Risk: a 4H close below 1895.95 invalidates the hold and revives bearish pressure.
+Prior read was partly right: 4H closed above support, but price has since slipped below it. Bias is neutral-to-cautious: latest 4H close at 1910.49 held above 1895.95, yet current 1888.45 is below it, showing renewed downside pressure. Key levels: reclaim 1895.95 to stabilize; 2021.11 still caps. Risk: a completed 4H close below 1895.95 invalidates the hold and revives bearish pressure.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
