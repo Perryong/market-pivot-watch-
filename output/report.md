@@ -1,13 +1,13 @@
 # Four-hour pivot watch
 
-Checked **2026-11-15 04:30:56 +08** / 2026-11-14 20:30:56 UTC.
+Checked **2026-11-15 05:30:56 +08** / 2026-11-14 21:30:56 UTC.
 
 ## BTCUSDT
 
 STATUS: NO NEW SIGNAL
 ACTION NOW: WAIT FOR CONFIRMATION
 
-**COMBINED (4H + 1H): HOLD** — 4H bearish but 1H trend↓ but momentum↑
+**COMBINED (4H + 1H): SELL** — 4H bearish + 1H trend↓ + momentum↓, no support gap below
 
 [Open actual TradingView 4H chart](https://www.tradingview.com/chart/?symbol=BINANCE%3ABTCUSDT&interval=240)
 
@@ -15,15 +15,15 @@ Shadow research: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. Baseline unchang
 
 4H direction / 1H entry: **WAIT / WATCHING — RANGE_CHANGED**. No order or fill.
 
-Completed-candle state: **bearish**. New completed candle processed.
+Completed-candle state: **bearish**. No new 4H candle since the previous check.
 
 | Market data | Value |
 |---|---|
 | Latest completed 4H close | 65,727.61 |
 | Previous completed close | 65,742.01 |
 | Close time | 2026-11-15 04:00:00 +08 / 2026-11-14 20:00:00 UTC |
-| Current price | 65,524.61 at 2026-11-14 20:30:57 UTC |
-| Range low / high | 65,000.00 / 69,028.60 |
+| Current price | 64,528.01 at 2026-11-14 21:30:57 UTC |
+| Range low / high | 63,944.00 / 68,496.67 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -41,7 +41,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-That read was right: price remains below the lower pivot and the latest 4H close edged lower. Bias stays bearish; latest 4H close 65727.61 and quote 65524.61 are below lower pivot 66456.0. Key levels: 66456.0 resistance, 70214.31 range cap; bearish targets begin 62697.69. Risk: a completed 4H close above 66456.0 invalidates.
+That read was right: price stayed below the lower pivot and weakened further. Bias remains bearish; latest 4H close 65727.61 and current quote 64528.01 are both below lower pivot 66456.0, with price action pressing toward bearish target zone beginning 62697.69. Key levels: 66456.0 resistance, 62697.69 downside reference. Risk: a completed 4H close back above 66456.0 would invalidate the bearish view.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
@@ -63,15 +63,15 @@ Shadow research: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. Baseline unchang
 
 4H direction / 1H entry: **WAIT / WATCHING — RANGE_CHANGED**. No order or fill.
 
-Completed-candle state: **neutral**. Baseline only; no historical entry emitted.
+Completed-candle state: **neutral**. No new 4H candle since the previous check.
 
 | Market data | Value |
 |---|---|
 | Latest completed 4H close | 1,835.09 |
 | Previous completed close | 1,841.23 |
 | Close time | 2026-11-15 04:00:00 +08 / 2026-11-14 20:00:00 UTC |
-| Current price | 1,826.92 at 2026-11-14 20:30:58 UTC |
-| Range low / high | 1,811.29 / 1,953.01 |
+| Current price | 1,779.50 at 2026-11-14 21:30:58 UTC |
+| Range low / high | 1,751.82 / 1,936.49 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -89,10 +89,8 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-Previous read was right: ETH stayed below old resistance and bearish bias held. Bias remains bearish but is stalling near lower pivot 1824.46; latest 4H close 1835.09 and quote 1826.92 are just above it. Key levels: 1824.46 pivot, downside refs 1692.42/1560.38, upper invalidation 1956.5. Risk: a completed 4H close above 1956.5 invalidates; no confirmation yet, wait.
+Previous read was right on bearish bias: quote has now fallen below the 1824.46 lower pivot, though the latest 4H close at 1835.09 was still above it. Bias remains bearish; a completed 4H close below 1824.46 would confirm. Key levels: 1824.46 pivot, downside refs 1692.42/1560.38, upper invalidation 1956.5. Risk: a 4H close back above 1824.46 stalls the view; above 1956.5 invalidates.
 
-Auto re-baseline: price drifted >3% beyond the frozen pivot
-Baseline established; existing price state is not a newly observed signal
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
 Selling an existing long and opening a short are different actions. Targets are conditional; closed-bar invalidation is not a guaranteed stop-loss fill.
@@ -113,7 +111,7 @@ Shadow research: **WAIT / DATA_UNAVAILABLE — UNVERIFIED_DATA**. Baseline uncha
 
 4H direction / 1H entry: **WAIT / DATA_UNAVAILABLE — UNVERIFIED_DATA**. No order or fill.
 
-Provider HTTP 401; check entitlement, region and rate limits
+OANDA market closed or instrument not tradeable; no current signal
 Exact completed 4H close, current price, range and active setup cannot be verified. No BUY/SELL signal issued.
 
 ## USOIL
@@ -129,7 +127,7 @@ Shadow research: **WAIT / DATA_UNAVAILABLE — UNVERIFIED_DATA**. Baseline uncha
 
 4H direction / 1H entry: **WAIT / DATA_UNAVAILABLE — UNVERIFIED_DATA**. No order or fill.
 
-Provider HTTP 401; check entitlement, region and rate limits
+OANDA market closed or instrument not tradeable; no current signal
 Exact completed 4H close, current price, range and active setup cannot be verified. No BUY/SELL signal issued.
 
 ## SPX500
@@ -145,7 +143,7 @@ Shadow research: **WAIT / DATA_UNAVAILABLE — UNVERIFIED_DATA**. Baseline uncha
 
 4H direction / 1H entry: **WAIT / DATA_UNAVAILABLE — UNVERIFIED_DATA**. No order or fill.
 
-Provider HTTP 401; check entitlement, region and rate limits
+OANDA market closed or instrument not tradeable; no current signal
 Exact completed 4H close, current price, range and active setup cannot be verified. No BUY/SELL signal issued.
 
 ## TradingView drawings
