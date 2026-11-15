@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-11-15 22:30:56 +08** / 2026-11-15 14:30:56 UTC.
+Checked **2026-11-15 23:30:56 +08** / 2026-11-15 15:30:56 UTC.
 
 ## BTCUSDT
 
@@ -22,8 +22,8 @@ Completed-candle state: **neutral**. No new 4H candle since the previous check.
 | Latest completed 4H close | 65,351.00 |
 | Previous completed close | 64,012.60 |
 | Close time | 2026-11-15 20:00:00 +08 / 2026-11-15 12:00:00 UTC |
-| Current price | 64,860.84 at 2026-11-15 14:30:57 UTC |
-| Range low / high | 62,006.00 / 66,368.00 |
+| Current price | 64,665.15 at 2026-11-15 15:30:57 UTC |
+| Range low / high | 62,006.00 / 66,189.88 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -41,7 +41,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-That neutral read was only partly right: the 4H close held above 65000, but the live quote has now slipped below it. Bias stays neutral with a mild bearish tilt while price sits just under the lower pivot; the latest completed 4H close above it blocks confirmation. Key levels are 65000 and 69118, with 60882 the bearish target. Risk: a completed 4H close below 65000 would revive the corrective view and invalidate neutral.
+That read was right: live price is still below 65000 while the completed 4H close holds above it. Bias remains neutral with a mild bearish tilt; price sits under the lower pivot but lacks completed-close confirmation. Key levels: 65000 and 69118, with 60882 the bearish target. Risk: a completed 4H close below 65000 would revive the corrective view; reclaiming 65000 would invalidate the tilt.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
@@ -70,8 +70,8 @@ Completed-candle state: **neutral**. No new 4H candle since the previous check.
 | Latest completed 4H close | 1,823.69 |
 | Previous completed close | 1,782.25 |
 | Close time | 2026-11-15 20:00:00 +08 / 2026-11-15 12:00:00 UTC |
-| Current price | 1,809.50 at 2026-11-15 14:30:58 UTC |
-| Range low / high | 1,711.08 / 1,863.68 |
+| Current price | 1,809.84 at 2026-11-15 15:30:58 UTC |
+| Range low / high | 1,711.08 / 1,858.25 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -89,7 +89,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-The read was partly right: the 4H close reclaimed 1811.29, but price has since slipped below it. Bias is neutral; latest completed close at 1823.69 is above the lower pivot, while the 1809.5 quote is just below, so momentum is unresolved. Watch 1811.29 and 1956; 1666.58 is downside key. Risk: a completed 4H close below 1811.29 invalidates the neutral-to-upside lean.
+The prior read held: close above 1811.29 but quote below it, so momentum is unresolved. Bias remains neutral; latest completed 4H close at 1823.69 is above the lower pivot, while 1809.84 sits just below it, showing no confirmation. Watch 1811.29 and 1956.0; 1666.58 is downside key. Risk: a completed 4H close below 1811.29 would invalidate the neutral-to-upside lean.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
@@ -111,7 +111,7 @@ Shadow research: **WAIT / DATA_UNAVAILABLE — UNVERIFIED_DATA**. Baseline uncha
 
 4H direction / 1H entry: **WAIT / DATA_UNAVAILABLE — UNVERIFIED_DATA**. No order or fill.
 
-OANDA market closed or instrument not tradeable; no current signal
+Provider HTTP 401; check entitlement, region and rate limits
 Exact completed 4H close, current price, range and active setup cannot be verified. No BUY/SELL signal issued.
 
 ## USOIL
