@@ -56,7 +56,7 @@
       "hourly": {
         "version": 1,
         "range_id": "ce78edf3e477f458b99eb1225cba25fe9fce27f68f6ce82a1802e71bc08ee7b7",
-        "last_end": 1794934800,
+        "last_end": 1794938400,
         "status": "REJECTED",
         "reason": "COSTS_NOT_CONFIGURED",
         "side": "SELL",
@@ -74,11 +74,11 @@
         "lower": 65000.0,
         "upper": 69118.02,
         "last_bar": [
-          1794931200,
-          64115.08,
-          64483.33,
-          63455.71,
-          63747.09
+          1794934800,
+          63747.09,
+          64126.98,
+          63535.96,
+          63827.64
         ],
         "last_4h_end": 1794931200,
         "retest_close_time": 1794916800,
@@ -136,7 +136,7 @@
       "hourly": {
         "version": 1,
         "range_id": "f94a4a03bd55da23c0941d3cf07c37892b681b6191cbc6d4372224cc1ca23127",
-        "last_end": 1794934800,
+        "last_end": 1794938400,
         "status": "MISSED",
         "reason": "MISSED_MOVE",
         "side": "SELL",
@@ -154,11 +154,11 @@
         "lower": 3964.205,
         "upper": 4037.805,
         "last_bar": [
-          1794931200,
-          3875.8,
-          3875.885,
-          3861.85,
-          3866.4
+          1794934800,
+          3866.405,
+          3871.97,
+          3862.06,
+          3863.23
         ],
         "last_4h_end": 1794931200,
         "resolved_at": 1794492000
@@ -276,12 +276,12 @@
       "hourly": {
         "version": 1,
         "range_id": "6d5fea17032d7e2995cb2366fe1438f0442b1893de7a945df674c3dc797a8413",
-        "last_end": 1794934800,
+        "last_end": 1794938400,
         "status": "RETEST_PENDING",
         "reason": "WAIT_FOR_RETEST",
         "side": "SELL",
         "signal_end": 1794931200,
-        "age_candles": 1,
+        "age_candles": 2,
         "settings": {
           "retest_candles": 24,
           "atr_period": 14,
@@ -294,11 +294,11 @@
         "lower": 1811.29,
         "upper": 1956.0,
         "last_bar": [
-          1794931200,
-          1785.44,
-          1797.64,
-          1767.3,
-          1778.52
+          1794934800,
+          1778.52,
+          1793.52,
+          1771.89,
+          1787.94
         ],
         "last_4h_end": 1794931200
       }
@@ -366,13 +366,13 @@
       "hourly": {
         "version": 1,
         "range_id": "7b0fc2f241f7e620544fb30deb0f016c30eacf5096ba6e3958cc9df9017de892",
-        "last_end": 1794934800,
+        "last_end": 1794938400,
         "last_bar": [
-          1794931200,
-          86.744,
-          87.295,
-          86.482,
-          86.782
+          1794934800,
+          86.777,
+          86.782,
+          86.09,
+          86.522
         ],
         "last_4h_end": 1794931200,
         "status": "WATCHING",
@@ -422,12 +422,12 @@
       "hourly": {
         "version": 1,
         "range_id": "1dbda0fd741ca0bb1c44aa3b7cd446dc421d31ec7717e454c7f5e5942bdaa932",
-        "last_end": 1794934800,
-        "status": "RETEST_PENDING",
-        "reason": "WAIT_FOR_RETEST",
+        "last_end": 1794938400,
+        "status": "REJECTED",
+        "reason": "TOO_FAR_FROM_PIVOT",
         "side": "SELL",
         "signal_end": 1794931200,
-        "age_candles": 1,
+        "age_candles": 2,
         "settings": {
           "retest_candles": 24,
           "atr_period": 14,
@@ -440,13 +440,27 @@
         "lower": 7367.1,
         "upper": 7718.4,
         "last_bar": [
-          1794931200,
-          7337.3,
-          7357.1,
-          7306.3,
-          7334.7
+          1794934800,
+          7334.6,
+          7369.8,
+          7315.3,
+          7339.8
         ],
-        "last_4h_end": 1794931200
+        "last_4h_end": 1794931200,
+        "retest_close_time": 1794938400,
+        "entry": 7356.15,
+        "target": 7015.800000000001,
+        "evaluated_at": 1794940256.913184,
+        "quote_time": 1794940263.521272,
+        "atr": 31.742857142857183,
+        "stop": 7372.9742857142855,
+        "distance_atr": 0.34495949594961745,
+        "gross_rr": 20.22968497919642,
+        "rejection_reasons": [
+          "TOO_FAR_FROM_PIVOT",
+          "COSTS_NOT_CONFIGURED"
+        ],
+        "resolved_at": 1794938400
       }
     }
   },
