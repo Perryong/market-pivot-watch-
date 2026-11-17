@@ -56,7 +56,7 @@
       "hourly": {
         "version": 1,
         "range_id": "ce78edf3e477f458b99eb1225cba25fe9fce27f68f6ce82a1802e71bc08ee7b7",
-        "last_end": 1794949200,
+        "last_end": 1794952800,
         "status": "REJECTED",
         "reason": "COSTS_NOT_CONFIGURED",
         "side": "SELL",
@@ -74,11 +74,11 @@
         "lower": 65000.0,
         "upper": 69118.02,
         "last_bar": [
-          1794945600,
-          63753.74,
-          64120.35,
-          63685.96,
-          63997.13
+          1794949200,
+          63997.13,
+          64664.0,
+          63954.79,
+          64358.42
         ],
         "last_4h_end": 1794945600,
         "retest_close_time": 1794916800,
@@ -276,12 +276,12 @@
       "hourly": {
         "version": 1,
         "range_id": "6d5fea17032d7e2995cb2366fe1438f0442b1893de7a945df674c3dc797a8413",
-        "last_end": 1794949200,
-        "status": "RETEST_PENDING",
-        "reason": "WAIT_FOR_RETEST",
+        "last_end": 1794952800,
+        "status": "REJECTED",
+        "reason": "COSTS_NOT_CONFIGURED",
         "side": "SELL",
         "signal_end": 1794931200,
-        "age_candles": 5,
+        "age_candles": 6,
         "settings": {
           "retest_candles": 24,
           "atr_period": 14,
@@ -294,13 +294,26 @@
         "lower": 1811.29,
         "upper": 1956.0,
         "last_bar": [
-          1794945600,
-          1791.13,
-          1804.51,
-          1788.81,
-          1800.72
+          1794949200,
+          1800.72,
+          1817.98,
+          1796.89,
+          1806.2
         ],
-        "last_4h_end": 1794945600
+        "last_4h_end": 1794945600,
+        "retest_close_time": 1794952800,
+        "entry": 1810.55,
+        "target": 1666.58,
+        "evaluated_at": 1794954656.8223624,
+        "quote_time": 1794954658.012,
+        "atr": 23.57642857142855,
+        "stop": 1820.3376428571428,
+        "distance_atr": 0.03138728148574586,
+        "gross_rr": 14.709363848000805,
+        "rejection_reasons": [
+          "COSTS_NOT_CONFIGURED"
+        ],
+        "resolved_at": 1794952800
       }
     },
     "BTCUSD": {
