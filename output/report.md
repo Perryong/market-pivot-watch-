@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-11-22 03:30:56 +08** / 2026-11-21 19:30:56 UTC.
+Checked **2026-11-22 04:30:56 +08** / 2026-11-21 20:30:56 UTC.
 
 ## BTCUSDT
 
@@ -15,14 +15,14 @@ Shadow research: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. Baseline unchang
 
 4H direction / 1H entry: **WAIT / WATCHING — RANGE_CHANGED**. No order or fill.
 
-Completed-candle state: **neutral**. No new 4H candle since the previous check.
+Completed-candle state: **neutral**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 59,943.70 |
-| Previous completed close | 58,206.10 |
-| Close time | 2026-11-22 00:00:00 +08 / 2026-11-21 16:00:00 UTC |
-| Current price | 60,327.62 at 2026-11-21 19:30:57 UTC |
+| Latest completed 4H close | 60,364.02 |
+| Previous completed close | 59,943.70 |
+| Close time | 2026-11-22 04:00:00 +08 / 2026-11-21 20:00:00 UTC |
+| Current price | 60,463.95 at 2026-11-21 20:30:57 UTC |
 | Range low / high | 55,130.00 / 60,996.00 |
 
 Range definition: Provider rolling 24h range.
@@ -41,7 +41,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-Previous read was broadly right: support held and constructive tone persisted, though price has now moved above midpoint. Updated read: neutral-to-mild constructive; latest 4H close improved and quote sits above midpoint but below upper pivot. Key levels: 57778 support, 62639 resistance, midpoint ~60209. Risk: rejection near upper pivot or sustained 4H close below 57778 invalidates the lean.
+Previous read was right: support held and price remains above midpoint. Updated read: neutral-to-mild constructive; latest 4H close edged higher and quote holds above midpoint but below upper pivot, so no breakout confirmation. Key levels: 57778 support, 62639 resistance, midpoint ~60209. Risk: rejection near upper pivot or sustained 4H close below 57778 invalidates the lean.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
@@ -63,14 +63,14 @@ Shadow research: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. Baseline unchang
 
 4H direction / 1H entry: **WAIT / WATCHING — RANGE_CHANGED**. No order or fill.
 
-Completed-candle state: **neutral**. No new 4H candle since the previous check.
+Completed-candle state: **neutral**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 1,684.62 |
-| Previous completed close | 1,652.66 |
-| Close time | 2026-11-22 00:00:00 +08 / 2026-11-21 16:00:00 UTC |
-| Current price | 1,685.40 at 2026-11-21 19:30:57 UTC |
+| Latest completed 4H close | 1,687.34 |
+| Previous completed close | 1,684.62 |
+| Close time | 2026-11-22 04:00:00 +08 / 2026-11-21 20:00:00 UTC |
+| Current price | 1,686.85 at 2026-11-21 20:30:57 UTC |
 | Range low / high | 1,538.00 / 1,716.58 |
 
 Range definition: Provider rolling 24h range.
@@ -89,7 +89,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-Previous read was right: price remains inside frozen pivots with no confirmed breakout. Bias stays neutral/range; the latest 4H close improved and quote holds near it, but price is still below upper pivot, so no breakout confirmation. Key levels: 1581.47 support, 1770.55 resistance. Risk: a completed 4H close outside either pivot invalidates the neutral view.
+Previous read was right: price stayed inside frozen pivots with no confirmed breakout. Bias remains neutral/range; latest 4H close edged up and quote sits near it, but ETH is still inside 1581.47-1770.55, so action is consolidation, not confirmation. Key levels: 1581.47 support, 1770.55 resistance. Risk: a completed 4H close outside either pivot would invalidate the neutral view.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
