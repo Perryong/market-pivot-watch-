@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-11-21 11:30:56 +08** / 2026-11-21 03:30:56 UTC.
+Checked **2026-11-21 12:30:56 +08** / 2026-11-21 04:30:56 UTC.
 
 ## BTCUSDT
 
@@ -15,15 +15,15 @@ Shadow research: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. Baseline unchang
 
 4H direction / 1H entry: **WAIT / WATCHING — RANGE_CHANGED**. No order or fill.
 
-Completed-candle state: **bearish**. No new 4H candle since the previous check.
+Completed-candle state: **bearish**. Baseline only; no historical entry emitted.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 58,951.51 |
-| Previous completed close | 58,558.66 |
-| Close time | 2026-11-21 08:00:00 +08 / 2026-11-21 00:00:00 UTC |
-| Current price | 57,900.58 at 2026-11-21 03:30:57 UTC |
-| Range low / high | 57,778.35 / 62,341.94 |
+| Latest completed 4H close | 56,740.43 |
+| Previous completed close | 58,951.51 |
+| Close time | 2026-11-21 12:00:00 +08 / 2026-11-21 04:00:00 UTC |
+| Current price | 55,752.86 at 2026-11-21 04:30:57 UTC |
+| Range low / high | 55,555.55 / 62,341.94 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -32,17 +32,19 @@ Pivot selection: Frozen high/low of six prior completed 4H candles; latest exclu
 
 | Action | Confirmation / level | T1 / T2 |
 |---|---|---|
-| Buy entry | New 4H cross above 63,408.62, then a later completed retest and hold | 67,429.24 / 71,449.86 |
-| Sell/exit long | Completed 4H close below 63,408.62 after a bullish setup | — |
-| Short entry | New 4H cross below 59,388.00, then a later completed retest and rejection | 55,367.38 / 51,346.76 |
-| Buy/exit short | Completed 4H close above 59,388.00 after a bearish setup | — |
+| Buy entry | New 4H cross above 62,639.52, then a later completed retest and hold | 67,500.69 / 72,361.86 |
+| Sell/exit long | Completed 4H close below 62,639.52 after a bullish setup | — |
+| Short entry | New 4H cross below 57,778.35, then a later completed retest and rejection | 52,917.18 / 48,056.01 |
+| Buy/exit short | Completed 4H close above 57,778.35 after a bearish setup | — |
 
 No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-That read was partly wrong: 58500 support has now broken. Bias turns more bearish; price is below the 58500/58559 shelf and far under 59388, with the latest 4H close weak. Watch 58500/58559 as reclaimed resistance and 59388 as the larger invalidation; downside focus is the 55367 bearish target area. Risk: a strong reclaim of 58500 and 4H closes back above 59388 would negate the bearish view.
+That read was right: price kept falling below 58500 and is now under the 57778.35 lower pivot. Bias remains bearish; the weak 4H close and quote below the broken shelf confirm momentum. Key levels are 57778.35 and 58500/58559 as reclaimed resistance, with 52917.18 the next bearish target. Risk: a strong reclaim of 57778.35 and 4H closes back above 58500/58559 would invalidate the bearish view.
 
+Auto re-baseline: price drifted >3% beyond the frozen pivot
+Baseline established; existing price state is not a newly observed signal
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
 Selling an existing long and opening a short are different actions. Targets are conditional; closed-bar invalidation is not a guaranteed stop-loss fill.
@@ -63,15 +65,15 @@ Shadow research: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. Baseline unchang
 
 4H direction / 1H entry: **WAIT / WATCHING — RANGE_CHANGED**. No order or fill.
 
-Completed-candle state: **bearish**. No new 4H candle since the previous check.
+Completed-candle state: **bearish**. Baseline only; no historical entry emitted.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 1,623.09 |
-| Previous completed close | 1,607.97 |
-| Close time | 2026-11-21 08:00:00 +08 / 2026-11-21 00:00:00 UTC |
-| Current price | 1,594.83 at 2026-11-21 03:30:58 UTC |
-| Range low / high | 1,581.47 / 1,763.33 |
+| Latest completed 4H close | 1,572.29 |
+| Previous completed close | 1,623.09 |
+| Close time | 2026-11-21 12:00:00 +08 / 2026-11-21 04:00:00 UTC |
+| Current price | 1,549.58 at 2026-11-21 04:30:58 UTC |
+| Range low / high | 1,538.00 / 1,763.33 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -80,17 +82,19 @@ Pivot selection: Frozen high/low of six prior completed 4H candles; latest exclu
 
 | Action | Confirmation / level | T1 / T2 |
 |---|---|---|
-| Buy entry | New 4H cross above 1,791.57, then a later completed retest and hold | 1,933.14 / 2,074.71 |
-| Sell/exit long | Completed 4H close below 1,791.57 after a bullish setup | — |
-| Short entry | New 4H cross below 1,650.00, then a later completed retest and rejection | 1,508.43 / 1,366.86 |
-| Buy/exit short | Completed 4H close above 1,650.00 after a bearish setup | — |
+| Buy entry | New 4H cross above 1,770.55, then a later completed retest and hold | 1,959.63 / 2,148.71 |
+| Sell/exit long | Completed 4H close below 1,770.55 after a bullish setup | — |
+| Short entry | New 4H cross below 1,581.47, then a later completed retest and rejection | 1,392.39 / 1,203.31 |
+| Buy/exit short | Completed 4H close above 1,581.47 after a bearish setup | — |
 
 No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-Prior read was right: price stayed below 1650 and is now weaker. Bearish bias remains; latest completed 4H close 1623.09 and quote 1594.83 are still below the lower pivot, with no fresh confirmation. Key levels: 1650.00, then 1508.43. Risk: a completed 4H close above 1650.00 would invalidate the bearish view.
+Prior read was right: ETH weakened further and closed a 4H candle below the lower pivot. Bearish bias remains; latest 4H close 1572.29 and quote 1549.58 sit below lower pivot 1581.47, showing continued downside pressure. Key levels: 1581.47, then 1392.39. Risk: a completed 4H close back above 1581.47 would weaken the bearish view.
 
+Auto re-baseline: price drifted >3% beyond the frozen pivot
+Baseline established; existing price state is not a newly observed signal
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
 Selling an existing long and opening a short are different actions. Targets are conditional; closed-bar invalidation is not a guaranteed stop-loss fill.
