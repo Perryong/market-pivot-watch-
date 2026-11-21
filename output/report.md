@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-11-21 17:30:56 +08** / 2026-11-21 09:30:56 UTC.
+Checked **2026-11-21 18:30:56 +08** / 2026-11-21 10:30:56 UTC.
 
 ## BTCUSDT
 
@@ -22,7 +22,7 @@ Completed-candle state: **neutral**. No new 4H candle since the previous check.
 | Latest completed 4H close | 57,997.00 |
 | Previous completed close | 56,740.43 |
 | Close time | 2026-11-21 16:00:00 +08 / 2026-11-21 08:00:00 UTC |
-| Current price | 57,990.01 at 2026-11-21 09:30:57 UTC |
+| Current price | 58,052.34 at 2026-11-21 10:30:57 UTC |
 | Range low / high | 55,130.00 / 62,341.94 |
 
 Range definition: Provider rolling 24h range.
@@ -41,7 +41,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-Prior read was broadly right: the 4H close held above 57778.35, and quote now does too. Bias is neutral-to-mildly constructive; price has reclaimed the lower pivot but remains far below 62639.52, so no breakout. Key levels: 57778.35 support pivot, 62639.52 resistance, 52917.18 bearish target. Risk: a sustained 4H close below 57778.35 invalidates the constructive tilt.
+Previous read was right: price still holds above 57778.35 and below 62639.52. Latest 4H close and quote are just above support, so bias stays neutral-to-mildly constructive, still rangebound with no breakout. Key levels: 57778.35 support, 62639.52 resistance, 52917.18 bearish target. Risk: a sustained 4H close below 57778.35 invalidates the constructive tilt.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
@@ -70,7 +70,7 @@ Completed-candle state: **neutral**. No new 4H candle since the previous check.
 | Latest completed 4H close | 1,630.93 |
 | Previous completed close | 1,572.29 |
 | Close time | 2026-11-21 16:00:00 +08 / 2026-11-21 08:00:00 UTC |
-| Current price | 1,638.62 at 2026-11-21 09:30:58 UTC |
+| Current price | 1,642.91 at 2026-11-21 10:30:58 UTC |
 | Range low / high | 1,538.00 / 1,763.33 |
 
 Range definition: Provider rolling 24h range.
@@ -89,7 +89,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-Previous neutral/range-bound read held. Bias remains neutral: latest 4H close 1630.93 and current 1638.62 sit above lower pivot 1581.47 but below upper 1770.55, with no new signal. Key levels: 1581.47 support, 1770.55 resistance. Risk: a completed 4H close below 1581.47 revives downside; above 1770.55 invalidates neutrality.
+Previous neutral read was right; price remains inside the same pivots with no new signal. Bias stays neutral: latest 4H close rebounded to 1630.93 and quote is 1642.91, still above lower pivot 1581.47 but below upper 1770.55. Key levels: 1581.47 support, 1770.55 resistance. Risk: a completed 4H close below 1581.47 revives downside; above 1770.55 invalidates neutrality.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
