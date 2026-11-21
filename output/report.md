@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-11-21 12:30:56 +08** / 2026-11-21 04:30:56 UTC.
+Checked **2026-11-21 13:30:56 +08** / 2026-11-21 05:30:56 UTC.
 
 ## BTCUSDT
 
@@ -15,14 +15,14 @@ Shadow research: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. Baseline unchang
 
 4H direction / 1H entry: **WAIT / WATCHING — RANGE_CHANGED**. No order or fill.
 
-Completed-candle state: **bearish**. Baseline only; no historical entry emitted.
+Completed-candle state: **bearish**. No new 4H candle since the previous check.
 
 | Market data | Value |
 |---|---|
 | Latest completed 4H close | 56,740.43 |
 | Previous completed close | 58,951.51 |
 | Close time | 2026-11-21 12:00:00 +08 / 2026-11-21 04:00:00 UTC |
-| Current price | 55,752.86 at 2026-11-21 04:30:57 UTC |
+| Current price | 56,111.07 at 2026-11-21 05:30:57 UTC |
 | Range low / high | 55,555.55 / 62,341.94 |
 
 Range definition: Provider rolling 24h range.
@@ -41,10 +41,8 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-That read was right: price kept falling below 58500 and is now under the 57778.35 lower pivot. Bias remains bearish; the weak 4H close and quote below the broken shelf confirm momentum. Key levels are 57778.35 and 58500/58559 as reclaimed resistance, with 52917.18 the next bearish target. Risk: a strong reclaim of 57778.35 and 4H closes back above 58500/58559 would invalidate the bearish view.
+That read was right: price stayed below 57778.35 and fell further. Bias remains bearish; the latest 4H close 56740 and quote 56111 are under the broken lower pivot, confirming momentum. Key levels: 57778.35 as reclaimed resistance, then 58500/58559; 52917.18 is next bearish target. Risk: a strong reclaim of 57778.35 and 4H closes above 58500/58559 would invalidate the bearish view.
 
-Auto re-baseline: price drifted >3% beyond the frozen pivot
-Baseline established; existing price state is not a newly observed signal
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
 Selling an existing long and opening a short are different actions. Targets are conditional; closed-bar invalidation is not a guaranteed stop-loss fill.
@@ -65,14 +63,14 @@ Shadow research: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. Baseline unchang
 
 4H direction / 1H entry: **WAIT / WATCHING — RANGE_CHANGED**. No order or fill.
 
-Completed-candle state: **bearish**. Baseline only; no historical entry emitted.
+Completed-candle state: **bearish**. No new 4H candle since the previous check.
 
 | Market data | Value |
 |---|---|
 | Latest completed 4H close | 1,572.29 |
 | Previous completed close | 1,623.09 |
 | Close time | 2026-11-21 12:00:00 +08 / 2026-11-21 04:00:00 UTC |
-| Current price | 1,549.58 at 2026-11-21 04:30:58 UTC |
+| Current price | 1,568.10 at 2026-11-21 05:30:58 UTC |
 | Range low / high | 1,538.00 / 1,763.33 |
 
 Range definition: Provider rolling 24h range.
@@ -91,10 +89,8 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-Prior read was right: ETH weakened further and closed a 4H candle below the lower pivot. Bearish bias remains; latest 4H close 1572.29 and quote 1549.58 sit below lower pivot 1581.47, showing continued downside pressure. Key levels: 1581.47, then 1392.39. Risk: a completed 4H close back above 1581.47 would weaken the bearish view.
+Prior read was right: ETH remains below the lower pivot with a bearish completed 4H candle. Bias stays bearish; latest 4H close 1572.29 and quote 1568.1 are still under 1581.47, so downside pressure persists though no new signal. Key levels: 1581.47, then 1392.39. Risk: a completed 4H close back above 1581.47 would weaken the bearish view.
 
-Auto re-baseline: price drifted >3% beyond the frozen pivot
-Baseline established; existing price state is not a newly observed signal
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
 Selling an existing long and opening a short are different actions. Targets are conditional; closed-bar invalidation is not a guaranteed stop-loss fill.
