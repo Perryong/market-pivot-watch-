@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-11-22 16:30:56 +08** / 2026-11-22 08:30:56 UTC.
+Checked **2026-11-22 17:30:56 +08** / 2026-11-22 09:30:56 UTC.
 
 ## BTCUSDT
 
@@ -15,15 +15,15 @@ Shadow research: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. Baseline unchang
 
 4H direction / 1H entry: **WAIT / WATCHING — RANGE_CHANGED**. No order or fill.
 
-Completed-candle state: **neutral**. New completed candle processed.
+Completed-candle state: **neutral**. No new 4H candle since the previous check.
 
 | Market data | Value |
 |---|---|
 | Latest completed 4H close | 59,170.02 |
 | Previous completed close | 59,359.98 |
 | Close time | 2026-11-22 16:00:00 +08 / 2026-11-22 08:00:00 UTC |
-| Current price | 59,729.46 at 2026-11-22 08:30:57 UTC |
-| Range low / high | 57,381.45 / 60,996.00 |
+| Current price | 59,931.02 at 2026-11-22 09:30:57 UTC |
+| Range low / high | 57,837.32 / 60,996.00 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -41,7 +41,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-Prior read was right: range held and price stayed inside pivots. Updated read: neutral bias; latest 4H close softened but quote remains above it and inside the frozen range, so no directional break. Key levels are 57778 and 62639. Risk: a sustained 4H close below 57778 invalidates neutral; upper rejection keeps range risk.
+Prior read was right: price held inside pivots and neutral bias persisted. Updated read: neutral; latest 4H close softened but remains above lower pivot and inside range, while quote sits above it, so no directional break. Key levels are 57778 and 62639. Risk: sustained 4H close below 57778 invalidates neutral; upper rejection keeps range risk.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
@@ -63,15 +63,15 @@ Shadow research: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. Baseline unchang
 
 4H direction / 1H entry: **WAIT / WATCHING — RANGE_CHANGED**. No order or fill.
 
-Completed-candle state: **neutral**. New completed candle processed.
+Completed-candle state: **neutral**. No new 4H candle since the previous check.
 
 | Market data | Value |
 |---|---|
 | Latest completed 4H close | 1,666.35 |
 | Previous completed close | 1,661.48 |
 | Close time | 2026-11-22 16:00:00 +08 / 2026-11-22 08:00:00 UTC |
-| Current price | 1,682.93 at 2026-11-22 08:30:58 UTC |
-| Range low / high | 1,618.00 / 1,716.58 |
+| Current price | 1,687.34 at 2026-11-22 09:30:58 UTC |
+| Range low / high | 1,635.00 / 1,716.58 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -89,7 +89,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-Previous read was broadly right: ETH stayed inside the frozen pivots with no confirmation, though tone has firmed slightly. Bias remains neutral/range. Latest 4H close edged up and quote sits mid-band, still no breakout. Key levels: 1581.47 support, 1770.55 resistance. Risk: a completed 4H close outside either level would invalidate the neutral range view.
+Previous read was right: ETH remains inside the frozen pivots with no confirmed breakout. Bias stays neutral/range; the latest 4H close was slightly higher and quote is mid-band, so price action still lacks directional confirmation. Key levels: 1581.47 support, 1770.55 resistance. Risk: a completed 4H close outside either level would invalidate the neutral range view.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
@@ -111,7 +111,7 @@ Shadow research: **WAIT / DATA_UNAVAILABLE — UNVERIFIED_DATA**. Baseline uncha
 
 4H direction / 1H entry: **WAIT / DATA_UNAVAILABLE — UNVERIFIED_DATA**. No order or fill.
 
-OANDA market closed or instrument not tradeable; no current signal
+Provider HTTP 401; check entitlement, region and rate limits
 Exact completed 4H close, current price, range and active setup cannot be verified. No BUY/SELL signal issued.
 
 ## USOIL
