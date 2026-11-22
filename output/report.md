@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-11-23 04:30:56 +08** / 2026-11-22 20:30:56 UTC.
+Checked **2026-11-23 05:30:56 +08** / 2026-11-22 21:30:56 UTC.
 
 ## BTCUSDT
 
@@ -15,14 +15,14 @@ Shadow research: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. Baseline unchang
 
 4H direction / 1H entry: **WAIT / WATCHING — RANGE_CHANGED**. No order or fill.
 
-Completed-candle state: **neutral**. New completed candle processed.
+Completed-candle state: **neutral**. No new 4H candle since the previous check.
 
 | Market data | Value |
 |---|---|
 | Latest completed 4H close | 60,737.12 |
 | Previous completed close | 60,894.91 |
 | Close time | 2026-11-23 04:00:00 +08 / 2026-11-22 20:00:00 UTC |
-| Current price | 60,647.97 at 2026-11-22 20:30:57 UTC |
+| Current price | 60,998.06 at 2026-11-22 21:30:57 UTC |
 | Range low / high | 58,768.51 / 61,669.99 |
 
 Range definition: Provider rolling 24h range.
@@ -63,14 +63,14 @@ Shadow research: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. Baseline unchang
 
 4H direction / 1H entry: **WAIT / WATCHING — RANGE_CHANGED**. No order or fill.
 
-Completed-candle state: **neutral**. New completed candle processed.
+Completed-candle state: **neutral**. No new 4H candle since the previous check.
 
 | Market data | Value |
 |---|---|
 | Latest completed 4H close | 1,715.72 |
 | Previous completed close | 1,718.40 |
 | Close time | 2026-11-23 04:00:00 +08 / 2026-11-22 20:00:00 UTC |
-| Current price | 1,713.65 at 2026-11-22 20:30:57 UTC |
+| Current price | 1,725.06 at 2026-11-22 21:30:58 UTC |
 | Range low / high | 1,648.35 / 1,732.52 |
 
 Range definition: Provider rolling 24h range.
@@ -89,7 +89,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-Previous read was mostly right: range held, but the mild upside drift has faded. Updated: neutral; latest 4H close 1715.72 and quote 1713.65 sit inside frozen pivots after a small pullback, so no breakout is confirmed. Key levels: 1581.47 support, 1770.55 resistance. Risk: a completed 4H close outside either pivot invalidates the range view.
+Previous read was right: range held and neutral remained appropriate. Updated read: neutral, with latest 4H close 1715.72 and quote 1725.06 still inside frozen pivots, so no confirmed breakout despite minor rebound. Key levels: 1581.47 support, 1770.55 resistance. Risk: a completed 4H close outside either pivot would invalidate the range view.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
