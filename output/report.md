@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-11-23 01:30:56 +08** / 2026-11-22 17:30:56 UTC.
+Checked **2026-11-23 02:30:56 +08** / 2026-11-22 18:30:56 UTC.
 
 ## BTCUSDT
 
@@ -22,7 +22,7 @@ Completed-candle state: **neutral**. No new 4H candle since the previous check.
 | Latest completed 4H close | 60,894.91 |
 | Previous completed close | 61,062.74 |
 | Close time | 2026-11-23 00:00:00 +08 / 2026-11-22 16:00:00 UTC |
-| Current price | 60,878.39 at 2026-11-22 17:30:57 UTC |
+| Current price | 60,697.02 at 2026-11-22 18:30:57 UTC |
 | Range low / high | 58,768.51 / 61,669.99 |
 
 Range definition: Provider rolling 24h range.
@@ -70,7 +70,7 @@ Completed-candle state: **neutral**. No new 4H candle since the previous check.
 | Latest completed 4H close | 1,718.40 |
 | Previous completed close | 1,708.46 |
 | Close time | 2026-11-23 00:00:00 +08 / 2026-11-22 16:00:00 UTC |
-| Current price | 1,715.74 at 2026-11-22 17:30:58 UTC |
+| Current price | 1,714.34 at 2026-11-22 18:30:57 UTC |
 | Range low / high | 1,648.35 / 1,732.52 |
 
 Range definition: Provider rolling 24h range.
@@ -89,7 +89,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-Previous read was right: range held and mild upside drift continued. Updated: neutral with mild upside drift; latest 4H close 1718.4 and quote 1715.74 remain inside frozen pivots and below upper resistance, so no breakout confirmed. Key levels: 1581.47 support, 1770.55 resistance. Risk: a completed 4H close outside either pivot invalidates the range view.
+Previous read was right: range held and mild upside drift continued. Updated: neutral with mild upside drift; latest 4H close 1718.4 and quote 1714.34 stay inside frozen pivots, below upper resistance, so no breakout confirmed. Key levels: 1581.47 support, 1770.55 resistance. Risk: a completed 4H close outside either pivot invalidates the range view.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
