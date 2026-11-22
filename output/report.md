@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-11-22 19:30:56 +08** / 2026-11-22 11:30:56 UTC.
+Checked **2026-11-22 20:30:56 +08** / 2026-11-22 12:30:56 UTC.
 
 ## BTCUSDT
 
@@ -15,15 +15,15 @@ Shadow research: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. Baseline unchang
 
 4H direction / 1H entry: **WAIT / WATCHING — RANGE_CHANGED**. No order or fill.
 
-Completed-candle state: **neutral**. No new 4H candle since the previous check.
+Completed-candle state: **neutral**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 59,170.02 |
-| Previous completed close | 59,359.98 |
-| Close time | 2026-11-22 16:00:00 +08 / 2026-11-22 08:00:00 UTC |
-| Current price | 60,978.07 at 2026-11-22 11:30:57 UTC |
-| Range low / high | 57,980.00 / 61,365.24 |
+| Latest completed 4H close | 61,062.74 |
+| Previous completed close | 59,170.02 |
+| Close time | 2026-11-22 20:00:00 +08 / 2026-11-22 12:00:00 UTC |
+| Current price | 60,740.54 at 2026-11-22 12:30:57 UTC |
+| Range low / high | 58,458.45 / 61,669.99 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -41,7 +41,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-Previous read was right: neutral held and no directional break occurred. Updated read: neutral range bias persists; latest 4H close remains above lower pivot, while current quote has rebounded but stays below upper pivot, so no confirmed breakout. Key levels are 57778 and 62639. Risk: a sustained 4H close below 57778 invalidates neutral; rejection near upper pivot keeps range risk.
+Previous read was right: neutral held and no breakout confirmed. Updated read: neutral range bias persists; latest 4H close remains above lower pivot while current quote sits below upper pivot, so no confirmed direction. Key levels are 57778.35 and 62639.52. Risk: a sustained 4H close below lower invalidates neutral; rejection near upper keeps range risk.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
@@ -63,15 +63,15 @@ Shadow research: **WAIT / WATCHING — WAIT_FOR_NEW_BREAKOUT**. Baseline unchang
 
 4H direction / 1H entry: **WAIT / WATCHING — RANGE_CHANGED**. No order or fill.
 
-Completed-candle state: **neutral**. No new 4H candle since the previous check.
+Completed-candle state: **neutral**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 1,666.35 |
-| Previous completed close | 1,661.48 |
-| Close time | 2026-11-22 16:00:00 +08 / 2026-11-22 08:00:00 UTC |
-| Current price | 1,708.72 at 2026-11-22 11:30:57 UTC |
-| Range low / high | 1,641.30 / 1,723.88 |
+| Latest completed 4H close | 1,708.46 |
+| Previous completed close | 1,666.35 |
+| Close time | 2026-11-22 20:00:00 +08 / 2026-11-22 12:00:00 UTC |
+| Current price | 1,706.82 at 2026-11-22 12:30:58 UTC |
+| Range low / high | 1,648.35 / 1,732.52 |
 
 Range definition: Provider rolling 24h range.
 Pivot selection: Frozen high/low of six prior completed 4H candles; latest excluded. These levels stay fixed until explicitly reset.
@@ -89,7 +89,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-Previous read was right: ETH remains inside the frozen pivots with no confirmed breakout. Updated read: bias is neutral/range; the modestly higher 4H close and current push toward the upper band still lack confirmation. Key levels: 1581.47 support, 1770.55 resistance. Risk: a completed 4H close outside either pivot would invalidate the range view.
+Previous read was right: ETH stayed inside the frozen pivots and did not confirm a breakout. Updated read: neutral/range bias; the higher 4H close to 1708.46 and quote near 1707 show firmer price but still no upper-pivot confirmation. Key levels: 1581.47 support, 1770.55 resistance. Risk: a completed 4H close outside either pivot would invalidate the range view.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
