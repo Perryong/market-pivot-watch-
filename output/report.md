@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-11-28 23:30:01 +08** / 2026-11-28 15:30:01 UTC.
+Checked **2026-11-29 00:30:01 +08** / 2026-11-28 16:30:01 UTC.
 
 ## BTCUSDT
 
@@ -15,14 +15,14 @@ Shadow research: **WAIT / INVALIDATED — SETUP_INVALIDATED**. Baseline unchange
 
 4H direction / 1H entry: **WAIT / INVALIDATED — SETUP_INVALIDATED**. No order or fill.
 
-Completed-candle state: **neutral**. No new 4H candle since the previous check.
+Completed-candle state: **neutral**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 59,238.30 |
-| Previous completed close | 59,832.00 |
-| Close time | 2026-11-28 20:00:00 +08 / 2026-11-28 12:00:00 UTC |
-| Current price | 59,318.12 at 2026-11-28 15:30:02 UTC |
+| Latest completed 4H close | 59,496.72 |
+| Previous completed close | 59,238.30 |
+| Close time | 2026-11-29 00:00:00 +08 / 2026-11-28 16:00:00 UTC |
+| Current price | 59,453.21 at 2026-11-28 16:30:02 UTC |
 | Range low / high | 58,934.56 / 60,559.62 |
 
 Range definition: Provider rolling 24h range.
@@ -41,7 +41,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-Prior read was right: neutrality held and price remains inside pivots. Updated read: bias stays neutral; BTC at 59318 is still within 57778.35–62639.52 and just above the latest 4H close, so action remains range-bound with no confirmed direction. Key levels are 57778.35 and 62639.52. Risk: a completed 4H close outside either pivot would invalidate neutrality.
+Prior read was right: neutrality held and price remains inside pivots. Updated read: bias stays neutral; BTC at 59453 is still between 57778.35 and 62639.52 after a slightly higher 4H close, so action remains range-bound with no confirmed direction. Key levels are 57778.35 and 62639.52. Risk: a completed 4H close outside either pivot would invalidate neutrality.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
@@ -63,14 +63,14 @@ Shadow research: **WAIT / INVALIDATED — SETUP_INVALIDATED**. Baseline unchange
 
 4H direction / 1H entry: **WAIT / INVALIDATED — SETUP_INVALIDATED**. No order or fill.
 
-Completed-candle state: **neutral**. No new 4H candle since the previous check.
+Completed-candle state: **neutral**. New completed candle processed.
 
 | Market data | Value |
 |---|---|
-| Latest completed 4H close | 1,648.54 |
-| Previous completed close | 1,657.87 |
-| Close time | 2026-11-28 20:00:00 +08 / 2026-11-28 12:00:00 UTC |
-| Current price | 1,647.58 at 2026-11-28 15:30:04 UTC |
+| Latest completed 4H close | 1,650.94 |
+| Previous completed close | 1,648.54 |
+| Close time | 2026-11-29 00:00:00 +08 / 2026-11-28 16:00:00 UTC |
+| Current price | 1,647.54 at 2026-11-28 16:30:04 UTC |
 | Range low / high | 1,634.62 / 1,687.60 |
 
 Range definition: Provider rolling 24h range.
@@ -89,7 +89,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-Previous read was right: ETH remains neutral and softer inside the pivots. Latest 4H close 1648.54 and quote 1647.58 keep price mid-range after lower closes, with no sustained break. Watch 1581.47 and 1770.55; a sustained 4H close outside either would invalidate the neutral view. Risk is continued chop or false breaks.
+Previous read was broadly right: ETH stayed neutral inside the pivots, though the latest 4H close ticked up. Bias remains neutral; price is still mid-range with flat closes and quote below the latest close, so no sustained directional break. Key levels are 1581.47 and 1770.55; a sustained 4H close outside either would invalidate the neutral view. Risk is continued chop and false breaks.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
