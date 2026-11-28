@@ -1,6 +1,6 @@
 # Four-hour pivot watch
 
-Checked **2026-11-28 14:30:01 +08** / 2026-11-28 06:30:01 UTC.
+Checked **2026-11-28 15:30:01 +08** / 2026-11-28 07:30:01 UTC.
 
 ## BTCUSDT
 
@@ -22,7 +22,7 @@ Completed-candle state: **neutral**. No new 4H candle since the previous check.
 | Latest completed 4H close | 60,029.20 |
 | Previous completed close | 59,923.10 |
 | Close time | 2026-11-28 12:00:00 +08 / 2026-11-28 04:00:00 UTC |
-| Current price | 59,857.86 at 2026-11-28 06:30:02 UTC |
+| Current price | 59,708.76 at 2026-11-28 07:30:02 UTC |
 | Range low / high | 58,792.37 / 62,248.91 |
 
 Range definition: Provider rolling 24h range.
@@ -70,7 +70,7 @@ Completed-candle state: **neutral**. No new 4H candle since the previous check.
 | Latest completed 4H close | 1,665.99 |
 | Previous completed close | 1,662.48 |
 | Close time | 2026-11-28 12:00:00 +08 / 2026-11-28 04:00:00 UTC |
-| Current price | 1,659.54 at 2026-11-28 06:30:04 UTC |
+| Current price | 1,655.25 at 2026-11-28 07:30:04 UTC |
 | Range low / high | 1,634.03 / 1,744.00 |
 
 Range definition: Provider rolling 24h range.
@@ -89,7 +89,7 @@ No tracked active setup. Price state alone does not establish a new entry.
 
 ### AI analysis
 
-Previous read was right: ETH remains neutral inside the frozen pivots with no confirmed break. Latest 4H close is mid-range and current quote is slightly softer, so bias stays neutral. Key levels: 1581.47 and 1770.55. Risk is chop or another false break; a sustained 4H close outside either pivot would invalidate neutrality.
+Previous read remains right: ETH is still neutral inside the frozen pivots with no confirmed break. Latest 4H close ticked up but current quote is softer and still mid-range, so bias stays neutral. Key levels: 1581.47 and 1770.55. Risk is continued chop or another false break; a sustained 4H close outside either pivot would invalidate neutrality.
 
 
 Strategy: completed 4H pivot breakout plus a later completed retest; targets project one and two range widths. Breakout signals ignore active candles and intrabar wicks. Retest touches use the range of a later finished candle.
